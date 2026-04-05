@@ -81,7 +81,7 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
     $uid=get_comment_meta($comment_ID,'uid',true);
     $level=get_comment_meta($comment_ID,'level',true);
     if($uid) {
-        $avatar ='<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.$uid.'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.$photo.'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.$hang.');"></div></a><a href="//www.bilibili.com/blackboard/help.html#会员等级相关" target="_blank" lvl="'.$level.'" class="h-level m-level"></a></div>';
+        $avatar ='<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.esc_attr($uid).'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.esc_url($photo).'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.esc_url($hang).');"></div></a><a href="//www.bilibili.com/blackboard/help.html#会员等级相关" target="_blank" lvl="'.esc_attr($level).'" class="h-level m-level"></a></div>';
     }
     else{
         /*下面是显示本地的随机头像和自定义头像*/
@@ -372,11 +372,11 @@ function most_hot_posts($days=30,$nums=5){
 //存储数据
 add_action('wp_insert_comment','wp_insert_weibo',10,2);
 function wp_insert_weibo($comment_ID,$commmentdata) {
-    $uid= isset($_POST['uid']) ? $_POST['uid'] : false;
+    $uid= isset($_POST['uid']) ? sanitize_text_field($_POST['uid']) : false;
 //    $nickname= isset($_REQUEST['nickname']) ? $_REQUEST['nickname'] : "无名";
-    $bilibiliphoto= isset($_REQUEST['photo']) ? $_REQUEST['photo'] : "";
-    $avatarshang= isset($_REQUEST['hang']) ? $_REQUEST['hang'] : "";
-    $level= isset($_REQUEST['level']) ? $_REQUEST['level'] : "0";
+    $bilibiliphoto= isset($_REQUEST['photo']) ? esc_url_raw($_REQUEST['photo']) : "";
+    $avatarshang= isset($_REQUEST['hang']) ? esc_url_raw($_REQUEST['hang']) : "";
+    $level= isset($_REQUEST['level']) ? sanitize_text_field($_REQUEST['level']) : "0";
     update_comment_meta($comment_ID,'uid',$uid);
 //    update_comment_meta($comment_ID,'nickname',$nickname);
     update_comment_meta($comment_ID,'photo',$bilibiliphoto);
@@ -397,19 +397,19 @@ function my_comments_columns( $columns ){
 function output_my_comments_columns( $column_name, $comment_id ){
     switch( $column_name ) {
         case "uid" :
-            echo get_comment_meta( $comment_id, 'uid', true );
+            echo esc_html( get_comment_meta( $comment_id, 'uid', true ) );
             break;
 //        case "nickname" :
-//            echo get_comment_meta( $comment_id, 'nickname', true );
+//            echo esc_html( get_comment_meta( $comment_id, 'nickname', true ) );
 //            break;
         case "photo" :
-            echo get_comment_meta( $comment_id, 'photo', true );
+            echo esc_html( get_comment_meta( $comment_id, 'photo', true ) );
             break;
         case "hang" :
-            echo get_comment_meta( $comment_id, 'hang', true );
+            echo esc_html( get_comment_meta( $comment_id, 'hang', true ) );
             break;
         case "level" :
-            echo get_comment_meta( $comment_id, 'level', true );
+            echo esc_html( get_comment_meta( $comment_id, 'level', true ) );
             break;
     }
 }
