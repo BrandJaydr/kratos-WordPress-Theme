@@ -48,13 +48,13 @@
                 $prev_post = get_previous_post();
                 if(!empty($prev_post)){ ?>
                     <div class="nav-previous clearfix">
-                        <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo '上一篇'; ?></a>
+                        <a title="<?php echo esc_attr($prev_post->post_title);?>" href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>">&lt; <?php echo '上一篇'; ?></a>
                     </div>
                 <?php }
                 $next_post = get_next_post();
                 if(!empty($next_post)){ ?>
                     <div class="nav-next">
-                        <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo '下一篇'; ?> &gt;</a>
+                        <a title="<?php echo esc_attr($next_post->post_title); ?>" href="<?php echo esc_url(get_permalink($next_post->ID)); ?>"><?php echo '下一篇'; ?> &gt;</a>
                     </div>
                 <?php } ?>
             </nav>
@@ -127,13 +127,13 @@
             $prev_post = get_previous_post();
             if(!empty($prev_post)){ ?>
             <div class="nav-previous clearfix">
-                <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo '上一篇'; ?></a>
+                <a title="<?php echo esc_attr($prev_post->post_title);?>" href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>">&lt; <?php echo '上一篇'; ?></a>
             </div>
             <?php }
             $next_post = get_next_post();
             if(!empty($next_post)){ ?>
             <div class="nav-next">
-                <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo '下一篇'; ?> &gt;</a>
+                <a title="<?php echo esc_attr($next_post->post_title); ?>" href="<?php echo esc_url(get_permalink($next_post->ID)); ?>"><?php echo '下一篇'; ?> &gt;</a>
             </div>
             <?php } ?>
         </nav>

@@ -49,6 +49,9 @@ function downloadimg($url,$imgpath)
 
 //看板娘的设置界面
 function live2d_option_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
     //判断是否有数据提交
     if(!empty($_POST)) {
         check_admin_referer('kratos_admin_options-update');
@@ -203,16 +206,16 @@ function live2d_option_page() {
             //获取数据库前缀
             global $table_prefix;
             $data=[];
-            $data['link_name']=$_POST['name'];
-            $data['link_url']=$_POST['web'];
-            $data['link_description']=$_POST['introduce'];
-            $data['link_image']=$_POST['avater'];
+            $data['link_name']=sanitize_text_field($_POST['name']);
+            $data['link_url']=esc_url_raw($_POST['web']);
+            $data['link_description']=sanitize_text_field($_POST['introduce']);
+            $data['link_image']=esc_url_raw($_POST['avater']);
 //    $wpdb->insert($table_name, array('album' => "$_POST['album']", 'artist' => "$_POST['artist']"));
             //向数据库中插入友链数据
             $wpdb->insert($table_prefix.'links',$data);
             //删除这个内容
             $delete=$_POST['aselect']."]!!";
-            update_option('application_list',str_replace($delete,"",esc_attr(get_option('application_list'))));
+            update_option('application_list',str_replace($delete,"",get_option('application_list')));
             //发送邮件通知申请者
             $to=$_POST['mail'];
             $subject = '友链申请通过通知!';
@@ -229,7 +232,7 @@ function live2d_option_page() {
         if($_POST['adelete']) {
             //先获取到想删除的内容
             $delete=$_POST['aselect']."]!!";
-            update_option('application_list',str_replace($delete,"",esc_attr(get_option('application_list'))));
+            update_option('application_list',str_replace($delete,"",get_option('application_list')));
             ?>
             <div id="message" class="updated">
                 <p><strong>已删除该申请</strong></p>
@@ -263,10 +266,13 @@ function live2d_option_page() {
                 <select name="aselect" id="aselect">
                     <?php
                         //先获取到所有的申请者
-                        $application=esc_attr(get_option('application_list'));
+                        $application=get_option('application_list');
                         $applications=explode("]!!",$application);
-                        foreach ($applications as $key)
-                            echo "<option value='".esc_attr($key)."'>".esc_html(explode("!!]",$key)[0])."</option>"
+                        foreach ($applications as $key) {
+                            if (!empty($key)) {
+                                echo "<option value='".esc_attr($key)."'>".esc_html(explode("!!]",$key)[0])."</option>";
+                            }
+                        }
                     ?>
                 </select>
             </p>
@@ -307,7 +313,7 @@ function live2d_option_page() {
         <form action="" method="post" id="email-options-form">
             <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div><div class="title"><h4>邮件订阅设置</h4></div>这里显示了所有订阅者名单,每行一个,添加时不会判断邮箱的正确性，请自行检查</div>
-                <textarea  rows="6" cols="50" name="email_lists"><?php $arr=explode(",",esc_attr(get_option('email_list')));$i=1;foreach ($arr as $item ){if($item){echo $i.':'.$item."\n";}$i++;}?></textarea>
+                <textarea  rows="6" cols="50" name="email_lists"><?php $arr=explode(",",get_option('email_list'));$i=1;foreach ($arr as $item ){if($item){echo $i.':'.esc_html($item)."\n";}$i++;}?></textarea>
             <p>
             添加订阅用户:<input type="text" id="email_list" name="email_list"/>
             <input class="savejs" type="submit" name="submit1" value="添加到订阅列表" /><br>

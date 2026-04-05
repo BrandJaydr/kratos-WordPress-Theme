@@ -174,7 +174,7 @@ function send_email($new,$old,$post)
 }
 //给注册用户开放邮件订阅服务
 function open_email($user) {
-    $content=esc_attr(get_option('email_list'));
+    $content=get_option('email_list');
     //判断用户是否已经订阅
     if(strpos($content,$user->user_email)===false)
     {
@@ -195,7 +195,7 @@ function open_email($user) {
 //给自己的列表添加用户
 function emaillist_add($email)
 {
-    $content=esc_attr(get_option('email_list'));
+    $content=get_option('email_list');
     if(strpos($content,$email)===false)
     {
         if(!$content)
@@ -213,7 +213,7 @@ function emaillist_add($email)
 //给自己的列表删除用户
 function emaillist_remove($email)
 {
-    $content=esc_attr(get_option('email_list'));
+    $content=get_option('email_list');
     if(strpos($content,$email)===false)
     {
         return 0;
@@ -337,7 +337,7 @@ function most_hot_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>'.__('暂时没有数据','moedog').'</li>';

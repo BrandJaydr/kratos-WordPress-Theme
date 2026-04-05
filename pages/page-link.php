@@ -19,7 +19,7 @@ if(!empty($_REQUEST)) {
     else{
 //        获取到了需要的数据
         //获取所有的申请
-        $application=esc_attr(get_option('application_list'));
+        $application=get_option('application_list');
         //欲添加的数据
         $add=$webname."!!]".$web."!!]".$introduce."!!]".$avater."!!]".$mail;
         update_option('application_list',$application.$add."]!!");
@@ -96,7 +96,7 @@ if($_COOKIE['goto_bibo']==1){
                                     foreach($bookmarks as $bookmark){
                                         $friendimg = $bookmark->link_image;
                                         if(empty($friendimg)) $friendimg = get_stylesheet_directory_uri().'/static/images/avatar.png';
-                                        echo '<li><a href="'.$bookmark->link_url.'" target="_blank"><img src="'.$friendimg.'"><h4>'.$bookmark->link_name.'</h4><p>'.$bookmark->link_description.'</p></a></li>';
+                                        echo '<li><a href="'.esc_url($bookmark->link_url).'" target="_blank"><img src="'.esc_url($friendimg).'"><h4>'.esc_html($bookmark->link_name).'</h4><p>'.esc_html($bookmark->link_description).'</p></a></li>';
                                     }
                                 } ?>
                                 </ul>

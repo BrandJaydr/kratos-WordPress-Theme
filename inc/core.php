@@ -471,9 +471,8 @@ function kratos_get_html_sitemap(){
     <h2 class="section-title">文章 / Article</h2>
     <ul class="sitemap-lists post-lists clear-fix">
         <?php foreach($posts as $post) : 
-                $title = $post->post_title;
-                $title = htmlspecialchars_decode($title,ENT_QUOTES); ?>
-        <li><a href="<?php echo get_permalink($post->ID); ?>" title="<?php echo $title; ?>" target="_blank"><?php echo $title; ?></a></li>
+                $title = $post->post_title; ?>
+        <li><a href="<?php echo esc_url(get_permalink($post->ID)); ?>" title="<?php echo esc_attr($title); ?>" target="_blank"><?php echo esc_html($title); ?></a></li>
         <?php endforeach; ?>
     </ul><?php
     endif;
@@ -482,9 +481,8 @@ function kratos_get_html_sitemap(){
     <h2 class="section-title">页面 / Page</h2>
     <ul class="sitemap-lists post-lists clear-fix">
         <?php foreach($pages as $page) : 
-                $title = $page->post_title;
-                $title = htmlspecialchars_decode($title,ENT_QUOTES); ?>
-        <li><a href="<?php echo get_page_link($page->ID); ?>" title="<?php echo $title; ?>" target="_blank"><?php echo $title; ?></a></li>
+                $title = $page->post_title; ?>
+        <li><a href="<?php echo esc_url(get_page_link($page->ID)); ?>" title="<?php echo esc_attr($title); ?>" target="_blank"><?php echo esc_html($title); ?></a></li>
         <?php endforeach; ?>
     </ul><?php
     endif;
@@ -493,9 +491,8 @@ function kratos_get_html_sitemap(){
     <h2 class="section-title">分类 / Category</h2>
     <ul class="sitemap-lists category-lists clear-fix">
         <?php foreach ($categorys as $category) : 
-                $title = $category->name;
-                $title = htmlspecialchars_decode($title,ENT_QUOTES); ?>
-        <li><a href="<?php echo get_term_link($category, $category->slug); ?>" title="<?php echo $title; ?>" target="_blank"><?php echo $title; ?></a></li>
+                $title = $category->name; ?>
+        <li><a href="<?php echo esc_url(get_term_link($category, $category->slug)); ?>" title="<?php echo esc_attr($title); ?>" target="_blank"><?php echo esc_html($title); ?></a></li>
         <?php endforeach; ?>
     </ul><?php
     endif;
@@ -504,9 +501,8 @@ function kratos_get_html_sitemap(){
     <h2 class="section-title">标签 / Tag</h2>
     <ul class="sitemap-lists tag-lists clear-fix">
         <?php foreach ($tags as $tag) : 
-                $title = $tag->name;
-                $title = htmlspecialchars_decode($title,ENT_QUOTES); ?>
-        <li><a href="<?php echo get_term_link($tag, $tag->slug); ?>" title="<?php echo $title; ?>" target="_blank"><?php echo $title; ?></a></li>
+                $title = $tag->name; ?>
+        <li><a href="<?php echo esc_url(get_term_link($tag, $tag->slug)); ?>" title="<?php echo esc_attr($title); ?>" target="_blank"><?php echo esc_html($title); ?></a></li>
         <?php endforeach; ?>
     </ul>
     <?php endif; ?>
@@ -539,9 +535,9 @@ function comment_author_link_window(){
     $url = get_comment_author_url();
     $author = get_comment_author();
     if(empty($url)||"http://"==$url||"https://"==$url)
-        $return = $author;
+        $return = esc_html($author);
     else
-        $return = '<a href="'.$url.'" target="_blank" rel="nofollow">'.$author.'</a>';
+        $return = '<a href="'.esc_url($url).'" target="_blank" rel="nofollow">'.esc_html($author).'</a>';
     return $return;
 }
 add_filter('get_comment_author_link','comment_author_link_window');

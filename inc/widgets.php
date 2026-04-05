@@ -4,7 +4,7 @@ function most_comm_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>暂时没有数据</li>';
@@ -106,9 +106,9 @@ class kratos_widget_ad extends WP_Widget {
     }
     function widget($args,$instance){
         extract($args);
-        $aurl = $instance['aurl']?$instance['aurl']:'';
-        $title = $instance['title']?$instance['title']:'';
-        $imgurl = $instance['imgurl']?$instance['imgurl']:'';
+        $aurl = !empty($instance['aurl']) ? esc_url($instance['aurl']) : '';
+        $title = !empty($instance['title']) ? esc_html($instance['title']) : '';
+        $imgurl = !empty($instance['imgurl']) ? esc_url($instance['imgurl']) : '';
         echo $before_widget;
         if(!empty($title)){ ?>
             <h4 class="widget-title"><?php echo $title; ?></h4><?php
@@ -155,13 +155,13 @@ class kratos_widget_about extends WP_Widget {
     }
     function widget($args,$instance){
         extract($args);
-        $profile = $instance['profile']?$instance['profile']:'';
-        $imgurl = $instance['imgurl']?$instance['imgurl']:'';
-        $bkimgurl = $instance['bkimgurl']?$instance['bkimgurl']:'';
+        $profile = !empty($instance['profile']) ? esc_html($instance['profile']) : '';
+        $imgurl = !empty($instance['imgurl']) ? esc_url($instance['imgurl']) : '';
+        $bkimgurl = !empty($instance['bkimgurl']) ? esc_url($instance['bkimgurl']) : '';
         echo $before_widget;
         if(!is_home()) $redirect = get_permalink(); else $redirect = get_bloginfo('home');?>
         <div class="photo-background">
-            <div class="photo-background" style="background:url(<?php if(!empty($bkimgurl)) echo $bkimgurl; else echo bloginfo('template_url')."/static/images/about.jpg"; ?>) no-repeat center center;-webkit-background-size:cover;background-size:cover"></div>
+            <div class="photo-background" style="background:url(<?php if(!empty($bkimgurl)) echo $bkimgurl; else echo esc_url(get_bloginfo('template_url')."/static/images/about.jpg"); ?>) no-repeat center center;-webkit-background-size:cover;background-size:cover"></div>
         </div>
         <?php if(current_user_can('manage_options')){ ?>
         <div class="photo-wrapper clearfix">
@@ -417,7 +417,7 @@ class kratos_widget_comments extends WP_Widget {
                     $output .= '<span class="comment-avatar">'.get_avatar($comment,50,null).'</span>';
                 else
                     $output .= '<span class="comment-avatar">'.'<img alt="" src="'.esc_url($photo).'" class="avatar avatar-50 photo" height="50" width="50">'.'</span>';
-                $output .= '<div class="comment-author" title="'.$comment->comment_author.'">'.$comment->comment_author.'</div>';
+                $output .= '<div class="comment-author" title="'.esc_attr($comment->comment_author).'">'.esc_html($comment->comment_author).'</div>';
                 $output .= '<span class="comment-date">'.timeago($comment->comment_date_gmt).'</span>';
                 $output .= '</div>';
                 $output .= '<div class="comment-content-link"><a href="'.get_comment_link($comment->comment_ID).'"><div class="comment-content">'.convert_smilies(kratos_string_cut(strip_tags(get_comment_excerpt($comment->comment_ID)),30)).'</div></a></div>';

@@ -188,14 +188,14 @@ function QPlayer_page() {
                 <input type="radio" name="random" value="1" <?php if (get_option('random')) echo "checked";?>>是
             </div><br>
 			<div><div class="title">自定义主色调</div>
-			  <input type="text" name="color" value="<?php echo get_option('color'); ?>">
+			  <input type="text" name="color" value="<?php echo esc_attr(get_option('color')); ?>">
   			  <p class="tip">默认为<span style="color: #1abc9c;">#1abc9c</span>, 你可以自定义任何你喜欢的颜色作为播放器主色调。自定义主色调支持css的设置格式，如: `#233333`,"rgb(255,255,255)","rgba(255,255,255,1)","hsl(0, 0%, 100%)","hsla(0, 0%, 100%,1)"。填写其他错误的格式可能不会生效。</p>
 			</div><br>
 			<div><div class="title">自定义CSS</div>
-			  <textarea rows="6" cols="100" name="css"><?php echo get_option('css') ?></textarea>
+			  <textarea rows="6" cols="100" name="css"><?php echo esc_textarea(get_option('css')) ?></textarea>
 			</div><br>
 			<div><div class="title">自定义JS</div>
-			  <textarea rows="6" cols="100" name="js"><?php echo get_option('js') ?></textarea>
+			  <textarea rows="6" cols="100" name="js"><?php echo esc_textarea(get_option('js')) ?></textarea>
 			</div><br>
             <div class="title">添加网易云音乐(需主机支持curl扩展)</div>
             <div>id类型
@@ -205,12 +205,12 @@ function QPlayer_page() {
                 <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>单曲
             </div>
             <div>id输入
-                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="多个id用英文,分隔开" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
+                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="多个id用英文,分隔开" name="neteaseID" value="<?php echo esc_attr(get_option('neteaseID')) ?>">
                 <p class="tip" style="margin-bottom: 0;">请自行去网易云音乐网页版获取音乐id(具体在每个音乐项目的网址最后会有个id)。有版权的音乐无法解析!</p>
             </div>
 			<input type="submit" name="addMusic" id="addMusic" value="添加到歌曲列表"  /><br><br>
 			<div><div class="title">歌曲列表</div>
-			  <textarea rows="8" cols="100" name="musicList"><?php echo get_option('musicList') ?></textarea>
+			  <textarea rows="8" cols="100" name="musicList"><?php echo esc_textarea(get_option('musicList')) ?></textarea>
   			  <p class="tip">格式: {title:"xxx", artist:"xxx", cover:"http:xxxx", mp3:"http:xxxx"} ，每个歌曲之间用英文,隔开。请保证歌曲列表里至少有一首歌！</p>
 			</div>
 			<input type="submit" name="submit" id="submit" value="<?php _e('Save Changes') ?>"  />  
