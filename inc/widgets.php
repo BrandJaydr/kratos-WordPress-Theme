@@ -106,9 +106,9 @@ class kratos_widget_ad extends WP_Widget {
     }
     function widget($args,$instance){
         extract($args);
-        $aurl = $instance['aurl']?$instance['aurl']:'';
-        $title = $instance['title']?$instance['title']:'';
-        $imgurl = $instance['imgurl']?$instance['imgurl']:'';
+        $aurl = $instance['aurl']?esc_url($instance['aurl']):'';
+        $title = $instance['title']?esc_html($instance['title']):'';
+        $imgurl = $instance['imgurl']?esc_url($instance['imgurl']):'';
         echo $before_widget;
         if(!empty($title)){ ?>
             <h4 class="widget-title"><?php echo $title; ?></h4><?php
@@ -121,7 +121,11 @@ class kratos_widget_ad extends WP_Widget {
         echo $after_widget;
     }
     function update($new_instance,$old_instance){
-        return $new_instance;
+        $instance = array();
+        $instance['title'] = (!empty($new_instance['title']))?sanitize_text_field($new_instance['title']):'';
+        $instance['aurl'] = (!empty($new_instance['aurl']))?esc_url_raw($new_instance['aurl']):'';
+        $instance['imgurl'] = (!empty($new_instance['imgurl']))?esc_url_raw($new_instance['imgurl']):'';
+        return $instance;
     }
     function form($instance){
         @$title = esc_attr($instance['title']);
@@ -155,9 +159,9 @@ class kratos_widget_about extends WP_Widget {
     }
     function widget($args,$instance){
         extract($args);
-        $profile = $instance['profile']?$instance['profile']:'';
-        $imgurl = $instance['imgurl']?$instance['imgurl']:'';
-        $bkimgurl = $instance['bkimgurl']?$instance['bkimgurl']:'';
+        $profile = $instance['profile']?esc_html($instance['profile']):'';
+        $imgurl = $instance['imgurl']?esc_url($instance['imgurl']):'';
+        $bkimgurl = $instance['bkimgurl']?esc_url($instance['bkimgurl']):'';
         echo $before_widget;
         if(!is_home()) $redirect = get_permalink(); else $redirect = get_bloginfo('home');?>
         <div class="photo-background">
@@ -210,7 +214,13 @@ class kratos_widget_about extends WP_Widget {
     }
         echo $after_widget;
     }
-    function update($new_instance,$old_instance){return $new_instance;}
+    function update($new_instance,$old_instance){
+        $instance = array();
+        $instance['profile'] = (!empty($new_instance['profile']))?sanitize_text_field($new_instance['profile']):'';
+        $instance['imgurl'] = (!empty($new_instance['imgurl']))?esc_url_raw($new_instance['imgurl']):'';
+        $instance['bkimgurl'] = (!empty($new_instance['bkimgurl']))?esc_url_raw($new_instance['bkimgurl']):'';
+        return $instance;
+    }
     function form($instance){
         @$imgurl = esc_attr($instance['imgurl']);
         @$bkimgurl = esc_attr($instance['bkimgurl']);

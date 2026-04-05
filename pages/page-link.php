@@ -7,12 +7,15 @@ get_header(); ?>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <?php
 //这边接收post数据然后判断
-if(!empty($_REQUEST)) {
-    $webname=array_key_exists("webname",$_REQUEST)?$_REQUEST['webname']:"";
-    $web=array_key_exists("web",$_REQUEST)?$_REQUEST['web']:"";
-    $introduce=array_key_exists("introduce",$_REQUEST)?$_REQUEST['introduce']:"无";
-    $avater=array_key_exists("avater",$_REQUEST)?$_REQUEST['avater']:"无";
-    $mail=array_key_exists("mail",$_REQUEST)?$_REQUEST['mail']:"";
+if(!empty($_POST)) {
+    if ( ! isset( $_POST['friend_nonce_field'] ) || ! wp_verify_nonce( $_POST['friend_nonce_field'], 'friend_nonce_action' ) ) {
+        wp_die('Nonce verification failed');
+    }
+    $webname=array_key_exists("webname",$_POST)?sanitize_text_field($_POST['webname']):"";
+    $web=array_key_exists("web",$_POST)?esc_url_raw($_POST['web']):"";
+    $introduce=array_key_exists("introduce",$_POST)?sanitize_text_field($_POST['introduce']):"无";
+    $avater=array_key_exists("avater",$_POST)?esc_url_raw($_POST['avater']):"无";
+    $mail=array_key_exists("mail",$_POST)?sanitize_email($_POST['mail']):"";
     if(!$webname) echo "<script type='text/javascript'>alert('名字不能为空！')</script>";
     else if(!$web) echo "<script type='text/javascript'>alert('网址不能为空！')</script>";
     else if(!$mail) echo "<script type='text/javascript'>alert('邮件地址不能为空！')</script>";
@@ -113,6 +116,7 @@ if($_COOKIE['goto_bibo']==1){
                                             </div>
                                             <div class="modal-body">
                                                 <form action=" " method="post" class="bs-example bs-example-form" role="form" style="text-align: center;">
+                                                    <?php wp_nonce_field( 'friend_nonce_action', 'friend_nonce_field' ); ?>
                                                     <div class="input-group" >
                                                         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                                         <input type="text" name="webname" class="form-control" placeholder="名字">

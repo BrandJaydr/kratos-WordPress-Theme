@@ -48,7 +48,8 @@
                 var ajax_data = {
                     action:'love',
                     um_id:id,
-                    um_action:action
+                    um_action:action,
+                    love:xb.love
                 };
                 $.post(xb.ajax_url,ajax_data,function(data){
                     $(rateHolder).html(data);
