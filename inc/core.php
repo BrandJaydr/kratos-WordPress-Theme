@@ -103,7 +103,8 @@ function kratos_theme_scripts(){
       'ajax_url'=> admin_url('admin-ajax.php'),
          'order'=> get_option('comment_order'),
            'owo'=> $url2,
-       'site_sh'=> $site_sa_h
+       'site_sh'=> $site_sa_h,
+         'love'=> wp_create_nonce('kratos-love-nonce')
     );
     wp_localize_script('kratos','xb',$d2kratos);
 }
@@ -198,26 +199,26 @@ function my_css_attributes_filter($var){return is_array($var)?array_intersect($v
 add_theme_support('post-formats',array('status'));
 //Keywords Description set
 function kratos_keywords(){
-    if(is_home()||is_front_page()){echo kratos_option('site_keywords');}
+    if(is_home()||is_front_page()){echo esc_attr(kratos_option('site_keywords'));}
     elseif(is_category()){single_cat_title();}
     elseif(is_single()){
-        echo trim(wp_title('',FALSE)).',';
-        if(has_tag()){foreach((get_the_tags()) as $tag){echo $tag->name.',';}}
-        foreach((get_the_category()) as $category){echo $category->cat_name.',';} 
+        echo esc_attr(trim(wp_title('',FALSE))).',';
+        if(has_tag()){foreach((get_the_tags()) as $tag){echo esc_attr($tag->name).',';}}
+        foreach((get_the_category()) as $category){echo esc_attr($category->cat_name).',';}
     }
-    elseif(is_search()){the_search_query();}
-    else{echo trim(wp_title('',FALSE));}
+    elseif(is_search()){echo esc_attr(get_search_query());}
+    else{echo esc_attr(trim(wp_title('',FALSE)));}
 }
 function kratos_description(){
-    if(is_home()||is_front_page()){echo trim(kratos_option('site_description'));}
-    elseif(is_category()){$description = strip_tags(category_description());echo trim($description);}
+    if(is_home()||is_front_page()){echo esc_attr(trim(kratos_option('site_description')));}
+    elseif(is_category()){$description = strip_tags(category_description());echo esc_attr(trim($description));}
     elseif(is_single()){ 
-        if(get_the_excerpt()){echo get_the_excerpt();}
-        else{global $post;$description = trim(str_replace(array("\r\n","\r","\n","　"," ")," ",str_replace("\"","'",strip_tags(do_shortcode($post->post_content)))));echo mb_substr($description,0,220,'utf-8');}
+        if(get_the_excerpt()){echo esc_attr(get_the_excerpt());}
+        else{global $post;$description = trim(str_replace(array("\r\n","\r","\n","　"," ")," ",str_replace("\"","'",strip_tags(do_shortcode($post->post_content)))));echo esc_attr(mb_substr($description,0,220,'utf-8'));}
     }
-    elseif(is_search()){echo '“';the_search_query();global $wp_query;echo '”'.sprintf('为您找到结果 %s 个',$wp_query->found_posts);}
-    elseif(is_tag()){$description = strip_tags(tag_description());echo trim($description);}
-    else{$description = strip_tags(term_description());echo trim($description);}
+    elseif(is_search()){echo '“';echo esc_attr(get_search_query());global $wp_query;echo '”'.esc_html(sprintf('为您找到结果 %s 个',$wp_query->found_posts));}
+    elseif(is_tag()){$description = strip_tags(tag_description());echo esc_attr(trim($description));}
+    else{$description = strip_tags(term_description());echo esc_attr(trim($description));}
 }
 //Article outside chain optimization
 function imgnofollow($content){

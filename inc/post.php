@@ -23,8 +23,9 @@ function kratos_get_post_views($before='',$after='',$echo=1){
 }
 //Appreciate the article
 function kratos_love(){
+    check_ajax_referer('kratos-love-nonce','love');
     global $wpdb,$post;
-    $id = $_POST["um_id"];
+    $id = (int)$_POST["um_id"];
     $action = $_POST["um_action"];
     if($action=='love'){
         $raters = get_post_meta($id,'love',true);
