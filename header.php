@@ -57,7 +57,6 @@ if($_COOKIE['goto_bibo']==1){
     <meta name="referrer" content="same-origin">
     <link rel="icon" type="image/x-icon" href="<?php echo kratos_option('site_ico'); ?>">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-    <title><?php wp_title('-',true,'right'); ?></title>
     <?php wp_head();wp_print_scripts('theme-jq'); ?>
     <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/inc/live2d/waifu.css';?>"/>
     <link rel="stylesheet" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/style.css" type="text/css">
@@ -68,6 +67,7 @@ if($_COOKIE['goto_bibo']==1){
 </head>
 <?php flush(); ?>
 <body class="home blog" style="background-image: url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/body_repeat.png); background-color: #d4d5e0; background-repeat: repeat-x; background-position: center 0;">
+<?php wp_body_open(); ?>
 <div id="kratos-wrapper">
     <div id="kratos-page">
         <div id="sider-bar">
@@ -140,7 +140,6 @@ if($_COOKIE['goto_bibo']==1){
     <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/bootstrap.min.css';?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/style.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
-    <title><?php wp_title('-',true,'right'); ?></title>
     <?php wp_head();wp_print_scripts('theme-jq'); ?>
     <style><?php
         echo '#offcanvas-menu{background:#3a3f51}';
@@ -163,6 +162,7 @@ if($_COOKIE['goto_bibo']==1){
   </head>
     <?php flush(); ?>
     <body>
+    <?php wp_body_open(); ?>
     <div class="theme-bg" <?php if(kratos_option('background_mode')=='image') echo 'class="custom-background"'; ?>></div>
     <div id="kratos-wrapper">
             <div id="kratos-page">

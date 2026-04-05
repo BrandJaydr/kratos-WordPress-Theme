@@ -24,7 +24,10 @@ function kratos_options_menu_filter($menu){
 }
 add_filter('optionsframework_menu','kratos_options_menu_filter');
 //The menu navigation registration
-function kratos_register_nav_menu(){register_nav_menus(array('header_menu'=>'顶部菜单'));}
+function kratos_register_nav_menu(){
+    register_nav_menus(array('header_menu'=>'顶部菜单'));
+    add_theme_support('title-tag');
+}
 add_action('after_setup_theme','kratos_register_nav_menu');
 //Highlighting the active menu
 function kratos_active_menu_class($classes){
@@ -131,8 +134,8 @@ remove_filter('wp_mail','wp_staticize_emoji_for_email');
 add_filter('emoji_svg_url','__return_false');
 add_filter('show_admin_bar','__return_false');
 add_action('wp_enqueue_scripts','mt_enqueue_scripts',1);
-add_filter('rest_enabled','_return_false');
-add_filter('rest_jsonp_enabled','_return_false');
+add_filter('rest_enabled','__return_false');
+add_filter('rest_jsonp_enabled','__return_false');
 function mt_enqueue_scripts(){wp_deregister_script('jquery');}
 function disable_embeds_init(){
     global $wp;
@@ -246,17 +249,6 @@ function imgnofollow($content){
     return $content;
 }
 add_filter('the_content','imgnofollow');
-//The title set
-function kratos_wp_title($title,$sep){
-    global $paged,$page;
-    if(is_feed()) return $title;
-    $title .= get_bloginfo('name');
-    $site_description = get_bloginfo('description','display');
-    if($site_description&&(is_home()||is_front_page())) $title = "$title $sep $site_description";
-    if($paged>=2||$page>=2) $title = "$title $sep " . sprintf('Page %s',max($paged,$page));
-    return $title;
-}
-add_filter('wp_title','kratos_wp_title',10,2);
 //More...
 function my_more_link($more_link,$more_link_text){return str_replace($more_link_text,'(More...)',$more_link);}
 add_filter('the_content_more_link','my_more_link',10,2);
