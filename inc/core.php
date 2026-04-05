@@ -289,11 +289,11 @@ function add_user_additional_column($columns){
 add_action('manage_users_custom_column','show_user_additional_column_content',10,3);
 function show_user_additional_column_content($value,$column_name,$user_id){
     $user = get_userdata($user_id);
-    if('user_nickname'==$column_name) return $user->nickname;
-    if('user_url'==$column_name) return '<a href="'.$user->user_url.'" target="_blank">'.$user->user_url.'</a>';
-    if('reg_time'==$column_name) return get_date_from_gmt($user->user_registered);
-    if('last_login'==$column_name&&$user->last_login) return get_user_meta($user->ID,'last_login',true);
-    if('last_login_ip'==$column_name) return get_user_meta($user->ID,'last_login_ip',true);
+    if('user_nickname'==$column_name) return esc_html($user->nickname);
+    if('user_url'==$column_name) return '<a href="'.esc_url($user->user_url).'" target="_blank">'.esc_html($user->user_url).'</a>';
+    if('reg_time'==$column_name) return esc_html(get_date_from_gmt($user->user_registered));
+    if('last_login'==$column_name&&$user->last_login) return esc_html(get_user_meta($user->ID,'last_login',true));
+    if('last_login_ip'==$column_name) return esc_html(get_user_meta($user->ID,'last_login_ip',true));
     return $value;
 }
 add_filter("manage_users_sortable_columns",'cmhello_users_sortable_columns');

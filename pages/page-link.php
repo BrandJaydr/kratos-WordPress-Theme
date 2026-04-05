@@ -8,11 +8,11 @@ get_header(); ?>
 <?php
 //这边接收post数据然后判断
 if(!empty($_REQUEST)) {
-    $webname=array_key_exists("webname",$_REQUEST)?$_REQUEST['webname']:"";
-    $web=array_key_exists("web",$_REQUEST)?$_REQUEST['web']:"";
-    $introduce=array_key_exists("introduce",$_REQUEST)?$_REQUEST['introduce']:"无";
-    $avater=array_key_exists("avater",$_REQUEST)?$_REQUEST['avater']:"无";
-    $mail=array_key_exists("mail",$_REQUEST)?$_REQUEST['mail']:"";
+    $webname=array_key_exists("webname",$_REQUEST)?sanitize_text_field($_REQUEST['webname']):"";
+    $web=array_key_exists("web",$_REQUEST)?esc_url_raw($_REQUEST['web']):"";
+    $introduce=array_key_exists("introduce",$_REQUEST)?sanitize_text_field($_REQUEST['introduce']):"无";
+    $avater=array_key_exists("avater",$_REQUEST)?esc_url_raw($_REQUEST['avater']):"无";
+    $mail=array_key_exists("mail",$_REQUEST)?sanitize_email($_REQUEST['mail']):"";
     if(!$webname) echo "<script type='text/javascript'>alert('名字不能为空！')</script>";
     else if(!$web) echo "<script type='text/javascript'>alert('网址不能为空！')</script>";
     else if(!$mail) echo "<script type='text/javascript'>alert('邮件地址不能为空！')</script>";

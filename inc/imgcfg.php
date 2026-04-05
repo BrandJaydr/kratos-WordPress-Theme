@@ -136,6 +136,7 @@ function print_media_new_panel($is_in_upload_ui){
     wp_enqueue_style('emwi',get_template_directory_uri().'/inc/theme-options/css/media.css');
     wp_enqueue_script('emwi',get_template_directory_uri().'/inc/theme-options/js/media.js'); ?>
     <div id="emwi-media-new-panel" <?php if($is_in_upload_ui): ?>style="display:none"<?php endif; ?>>
+      <?php wp_nonce_field('add_external_media', 'add_external_media_nonce'); ?>
       <div class="url-row">
         <label>从URL添加媒体项目</label>
         <span id="emwi-url-input-wrapper">
@@ -165,6 +166,7 @@ function print_media_new_panel($is_in_upload_ui){
     </div><?php
 }
 function wp_ajax_add_external_media_without_import(){
+    check_ajax_referer('add_external_media', 'add_external_media_nonce');
     $info = add_external_media_without_import();
     if(isset($info['id'])){
         if($attachment = wp_prepare_attachment_for_js($info['id'])){
@@ -178,6 +180,7 @@ function wp_ajax_add_external_media_without_import(){
     }
 }
 function admin_post_add_external_media_without_import(){
+    check_admin_referer('add_external_media', 'add_external_media_nonce');
     $info = add_external_media_without_import();
     $redirect_url = 'upload.php';
     if(!isset($info['id'])){

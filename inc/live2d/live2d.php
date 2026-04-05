@@ -51,6 +51,7 @@ function downloadimg($url,$imgpath)
 function live2d_option_page() {
     //判断是否有数据提交
     if(!empty($_POST)) {
+        check_admin_referer('kratos_admin_options-update');
         //live2d的设置
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
@@ -247,6 +248,7 @@ function live2d_option_page() {
     <h1>主题其他设置</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div><div class="title"><h4>看板娘设置</h4> 直接读取的js文件，同时也会保存为js文件，不要修改除设置以外的其他地方！</div>
                 <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
             </div>
@@ -254,7 +256,7 @@ function live2d_option_page() {
         </form>
     </div>
     <div>
-        <form action="" method="post" id="email-options-form">
+        <form action="" method="post" id="link-options-form">
             <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div><div class="title"><h4>友链申请处理</h4></div>先下拉选择一个申请者，然后可以编辑申请者的内容</div>
             <p>申请者列表
@@ -264,7 +266,7 @@ function live2d_option_page() {
                         $application=esc_attr(get_option('application_list'));
                         $applications=explode("]!!",$application);
                         foreach ($applications as $key)
-                            echo "<option value='$key'>".explode("!!]",$key)[0]."</option>"
+                            echo "<option value='".esc_attr($key)."'>".esc_html(explode("!!]",$key)[0])."</option>"
                     ?>
                 </select>
             </p>
@@ -318,6 +320,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>背景图片资源包下载</h4>请自行选择你喜欢的类型(<span style="color:red;">注意：将会把之前的图片全部删除（包括自己上传的）,如果两个都选将全部下载</span>)</div>
             <p><div>默认动漫图:<input type="checkbox" name="donman"/> 哔哩哔哩:<input type="checkbox" name="bilibili" /></div></p>
             <p><input type="submit" name="download" value="开始下载"/></p>
@@ -325,6 +328,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>随机头像下载</h4>请自行选择你喜欢的类型(<span style="color:red;">注意：将会把之前的头像全部删除（包括自己上传的）,如果两个都选将全部下载</span>)</div>
             <p><div>动漫男生头像:<input type="checkbox" name="man"/> 动漫女生头像:<input type="checkbox" name="woman" /></div></p>
             <p><input type="submit" name="downloadavatar" value="开始下载"/></p>
@@ -335,6 +339,7 @@ function live2d_option_page() {
         ?>
         <div>
             <form action="" method="post">
+                <?php wp_nonce_field('kratos_admin_options-update'); ?>
                 <div class="title"><h4>live2dapi下载</h4>此功能专为小白使用,因为原api太大，所以该api为精简版(想体验完整版的自行下载原版api)</div>
                 <span style="color:red;">注意：下载完毕后该功能会自行消失，下载完后到主页刷新一般会出现人物，没有人物可以试着切换人物，如果出现人物说明说明下载成功，一般过一会会自动出现的，所以不要认为api有问题，如果真的没用，请自行到博客根目录删除live2d-api目录</span>
                 <p><input type="submit" name="downlive2d" value="开始下载"/></p>
@@ -345,6 +350,7 @@ function live2d_option_page() {
     }?>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>表情包下载</h4>请自行选择你喜欢的类型(<span style="color:red;">会把之前的表情包全部删除，请至少选择一个表情包</span>)</div>
             <p><div>
                 贴吧泡泡:<input type="checkbox" name="tieba"/>
