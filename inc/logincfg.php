@@ -138,7 +138,7 @@ function limit_login_handle_cookies(){
 function limit_login_failed_cookie_hash($cookie_elements){
     limit_login_clear_auth_cookie();
     extract($cookie_elements,EXTR_OVERWRITE);
-    $user = get_userdatabylogin($username);
+    $user = get_user_by('login', $username);
     if(!$user){
         limit_login_failed($username);
         return;
