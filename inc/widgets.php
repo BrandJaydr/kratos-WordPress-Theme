@@ -416,7 +416,7 @@ class kratos_widget_comments extends WP_Widget {
                 if($photo=="无照片" || $photo=="")
                     $output .= '<span class="comment-avatar">'.get_avatar($comment,50,null).'</span>';
                 else
-                    $output .= '<span class="comment-avatar">'.'<img alt="" src="'.$photo.'" class="avatar avatar-50 photo" height="50" width="50">'.'</span>';
+                    $output .= '<span class="comment-avatar">'.'<img alt="" src="'.esc_url($photo).'" class="avatar avatar-50 photo" height="50" width="50">'.'</span>';
                 $output .= '<div class="comment-author" title="'.$comment->comment_author.'">'.$comment->comment_author.'</div>';
                 $output .= '<span class="comment-date">'.timeago($comment->comment_date_gmt).'</span>';
                 $output .= '</div>';
