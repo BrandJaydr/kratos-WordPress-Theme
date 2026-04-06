@@ -397,19 +397,19 @@ function my_comments_columns( $columns ){
 function output_my_comments_columns( $column_name, $comment_id ){
     switch( $column_name ) {
         case "uid" :
-            echo get_comment_meta( $comment_id, 'uid', true );
+            echo esc_html( get_comment_meta( $comment_id, 'uid', true ) );
             break;
 //        case "nickname" :
-//            echo get_comment_meta( $comment_id, 'nickname', true );
+//            echo esc_html( get_comment_meta( $comment_id, 'nickname', true ) );
 //            break;
         case "photo" :
-            echo get_comment_meta( $comment_id, 'photo', true );
+            echo esc_html( get_comment_meta( $comment_id, 'photo', true ) );
             break;
         case "hang" :
-            echo get_comment_meta( $comment_id, 'hang', true );
+            echo esc_html( get_comment_meta( $comment_id, 'hang', true ) );
             break;
         case "level" :
-            echo get_comment_meta( $comment_id, 'level', true );
+            echo esc_html( get_comment_meta( $comment_id, 'level', true ) );
             break;
     }
 }

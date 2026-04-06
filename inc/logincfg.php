@@ -77,8 +77,8 @@ function kratos_register_extra_fields($user_id){
     $userdata = array();
     $userdata['ID'] = $user_id;
     if(kratos_option('mail_reg')) $userdata['user_pass'] = $_POST['password'];
-    $userdata['nickname'] = $_POST['nickname'];
-    $userdata['display_name'] = $_POST['nickname'];
+    $userdata['nickname'] = sanitize_text_field($_POST['nickname']);
+    $userdata['display_name'] = sanitize_text_field($_POST['nickname']);
     $new_user_id = wp_update_user($userdata);
 }
 //Login limit

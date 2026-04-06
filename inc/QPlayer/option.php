@@ -112,6 +112,7 @@ function QPlayer_page() {
         wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
     } 
     if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD']=='POST'){
+        check_admin_referer('qplayer_options_update', 'qplayer_nonce');
         update_option('autoPlay', sanitize_text_field($_POST['autoPlay']));
         update_option('rotate', sanitize_text_field($_POST['rotate']));
         update_option('random', sanitize_text_field($_POST['random']));
@@ -125,6 +126,7 @@ function QPlayer_page() {
 <p><strong>Settings saved.</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Ignore this notification.</span></button></div>';
     } 
     if (isset($_POST['addMusic']) && $_SERVER['REQUEST_METHOD']=='POST') {
+        check_admin_referer('qplayer_options_update', 'qplayer_nonce');
     	update_option('musicType',sanitize_text_field($_POST['musicType']));
         update_option('neteaseID',sanitize_text_field($_POST['neteaseID']));
     	$musicResult = parse(get_option('neteaseID'), get_option('musicType'));

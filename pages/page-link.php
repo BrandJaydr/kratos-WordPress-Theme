@@ -113,6 +113,7 @@ if($_COOKIE['goto_bibo']==1){
                                             </div>
                                             <div class="modal-body">
                                                 <form action=" " method="post" class="bs-example bs-example-form" role="form" style="text-align: center;">
+                                                    <?php wp_nonce_field( 'friend_nonce_action', 'friend_nonce_field' ); ?>
                                                     <div class="input-group" >
                                                         <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                                         <input type="text" name="webname" class="form-control" placeholder="Name">

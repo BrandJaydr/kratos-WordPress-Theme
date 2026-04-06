@@ -129,6 +129,7 @@ function post_upload_ui(){
 }
 function print_submenu_page(){ ?>
     <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+      <?php wp_nonce_field('add_external_media', 'external_media_nonce'); ?>
       <?php print_media_new_panel(false); ?>
     </form><?php
 }
@@ -165,6 +166,7 @@ function print_media_new_panel($is_in_upload_ui){
     </div><?php
 }
 function wp_ajax_add_external_media_without_import(){
+    check_ajax_referer('add_external_media', 'external_media_nonce');
     $info = add_external_media_without_import();
     if(isset($info['id'])){
         if($attachment = wp_prepare_attachment_for_js($info['id'])){
@@ -178,6 +180,7 @@ function wp_ajax_add_external_media_without_import(){
     }
 }
 function admin_post_add_external_media_without_import(){
+    check_admin_referer('add_external_media', 'external_media_nonce');
     $info = add_external_media_without_import();
     $redirect_url = 'upload.php';
     if(!isset($info['id'])){
