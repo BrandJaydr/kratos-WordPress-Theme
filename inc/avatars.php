@@ -28,8 +28,15 @@ class kratos_local_avatars{
         if(empty($local_avatars[$size])){
             $upload_path = wp_upload_dir();
             $avatar_full_path = str_replace($upload_path['baseurl'],$upload_path['basedir'],$local_avatars['full']);
-            $image_sized = image_resize($avatar_full_path,$size,$size,true);       
-            $local_avatars[$size] = is_wp_error($image_sized)?$local_avatars[$size]=$local_avatars['full']:str_replace($upload_path['basedir'],$upload_path['baseurl'],$image_sized); 
+            $editor = wp_get_image_editor($avatar_full_path);
+            if(!is_wp_error($editor)){
+                $editor->resize($size,$size,true);
+                $resized_file = $editor->save();
+                $image_sized = is_wp_error($resized_file)?$avatar_full_path:$resized_file['path'];
+            }else{
+                $image_sized = $avatar_full_path;
+            }
+            $local_avatars[$size] = str_replace($upload_path['basedir'],$upload_path['baseurl'],$image_sized);
             update_user_meta($user_id,'kratos_local_avatar',$local_avatars);
         }elseif(substr($local_avatars[$size],0,4)!='http') $local_avatars[$size] = home_url($local_avatars[$size]);
         $author_class = is_author($user_id)?' current-author':'';

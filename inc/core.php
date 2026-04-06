@@ -202,12 +202,12 @@ function kratos_keywords(){
     if(is_home()||is_front_page()){echo esc_attr(kratos_option('site_keywords'));}
     elseif(is_category()){single_cat_title();}
     elseif(is_single()){
-        echo esc_attr(trim(wp_title('',FALSE))).',';
+        echo esc_attr(trim(get_the_title())).',';
         if(has_tag()){foreach((get_the_tags()) as $tag){echo esc_attr($tag->name).',';}}
         foreach((get_the_category()) as $category){echo esc_attr($category->cat_name).',';}
     }
     elseif(is_search()){echo esc_attr(get_search_query());}
-    else{echo esc_attr(trim(wp_title('',FALSE)));}
+    else{echo esc_attr(trim(get_the_title()));}
 }
 function kratos_description(){
     if(is_home()||is_front_page()){echo esc_attr(trim(kratos_option('site_description')));}

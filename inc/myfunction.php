@@ -9,12 +9,11 @@ if(!is_plugin_active('enlighter/Enlighter.php')) if(kratos_option('open_enlighte
 //Word count
 function count_words ($text) {
     global $post;
-    $output = '';
     if ( '' == $text ) {
         $text = $post->post_content;
-        if (mb_strlen($output, 'UTF-8') < mb_strlen($text, 'UTF-8')) $output .= 'Total ' . mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($post->post_content))),'UTF-8') . ' characters&nbsp;&nbsp;';
-        return $output;
     }
+    $word_count = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($text))),'UTF-8');
+    return '共' . $word_count . '个字&nbsp;&nbsp;';
 }
 //Filter specific category posts on homepage
 function excludeCat($query) {

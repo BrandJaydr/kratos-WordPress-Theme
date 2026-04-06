@@ -43,12 +43,12 @@ if($_COOKIE['goto_bibo']==1){
     <meta name="format-detection" content="telphone=no,email=no">
     <meta name="keywords" content="<?php kratos_keywords(); ?>">
     <meta name="description" itemprop="description" content="<?php kratos_description(); ?>">
-    <meta property="og:title" content="<?php wp_title('-',true,'right'); ?>">
-    <meta property="og:site_name" content="<?php wp_title('-',true,'right'); ?>">
+    <meta property="og:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
     <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
-    <meta name="twitter:title" content="<?php wp_title('-',true,'right'); ?>">
+    <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
     <!-- Allow access to external resources -->
@@ -124,12 +124,12 @@ if($_COOKIE['goto_bibo']==1){
     <meta name="format-detection" content="telphone=no,email=no">
     <meta name="keywords" content="<?php kratos_keywords(); ?>">
     <meta name="description" itemprop="description" content="<?php kratos_description(); ?>">
-    <meta property="og:title" content="<?php wp_title('-',true,'right'); ?>">
-    <meta property="og:site_name" content="<?php wp_title('-',true,'right'); ?>">
+    <meta property="og:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
     <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
-    <meta name="twitter:title" content="<?php wp_title('-',true,'right'); ?>">
+    <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
     <!-- Allow access to external resources -->
