@@ -179,7 +179,7 @@ a,
     margin-bottom: 50px;
     margin-top: 10px;
 }
-/*颜表情评论框*/
+/*Emojicomment box*/
 .expression {
     list-style: none;
     padding-left: 20px;
@@ -210,7 +210,7 @@ a,
 .nav-back ul {
     padding-top: 0px;
 }
-/*以下是文字抖动特效*/
+/*Text jitter effects below*/
 @-webkit-keyframes shake {
     0% {
         -webkit-transform: translate(2px, 2px);
@@ -249,7 +249,7 @@ a,
     -webkit-animation: shake 1s infinite;
     animation: shake 1s infinite;
 }
-/*!*表情框抖动*!*/
+/*!*Emoji box jitter*!*/
 /*.pl{*/
     /*font-size: 5px;*/
     /*color: #888;*/
@@ -260,7 +260,7 @@ a,
     /*background-color: #FFFFFF;*/
     /*color: #444;*/
 /*}*/
-/*!*颜表情*!*/
+/*!*Emoji*!*/
 /*#OwO-body{*/
     /*display: none;*/
     /*float: left;*/

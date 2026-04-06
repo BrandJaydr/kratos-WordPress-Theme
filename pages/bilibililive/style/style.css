@@ -1,5 +1,5 @@
 #loop.right@charset "utf-8";
-/*后面自己加上的样式*/
+/*Styles added later*/
 .entry-.hot-views .item .titlecontent a :hover {
     color: #000000;
 }
@@ -19,7 +19,7 @@
     padding: 0px;
 }
 
-/*加载更多按钮*/
+/*Load more button*/
 .button.login {
     width: 60%;
     left: 20%;
@@ -201,7 +201,7 @@ textarea::-webkit-input-placeholder {
     color: #cccccc
 }
 
-/*====== [ 通用 ] =======*/
+/*====== [ General ] =======*/
 
 body.fix,
 #fixedbar.fixed {
@@ -515,7 +515,7 @@ html.fix {
 
 
 
-/*====== [ 头部 ] =======*/
+/*====== [ Header ] =======*/
 
 .site-header {
     position: relative;
@@ -666,7 +666,7 @@ html.fix {
     line-height: 34px;
     color: #fff;
     font-size: 14px;
-    font-family: "微软雅黑";
+    font-family: "Microsoft Yahei";
     border-radius:4px;
 
 }
@@ -706,7 +706,7 @@ html.fix {
     background-color: #666B75;
     line-height: 34px;
     font-size: 14px;
-    font-family: "微软雅黑";
+    font-family: "Microsoft Yahei";
     border-radius:4px;
     color: #fff;
     cursor: pointer;
@@ -742,7 +742,7 @@ html.fix {
     transition-delay: 4s;
 }
 
-/*====== [ 内容布局 ] =======*/
+/*====== [ Content layout ] =======*/
 
 .site-refresh {
     position: relative;
@@ -994,7 +994,7 @@ li.frinum, li.vitnum {
     right: 10px;
     background-position: -38px -53px;
 }
-/*B站等级*/
+/*Bilibili Level*/
 .m-level[lvl="0"]{background-position:-21px -10px}
 .m-level[lvl="1"]{background-position:-21px -46px}
 .m-level[lvl="2"]{background-position:-21px -82px}
@@ -1011,7 +1011,7 @@ li.frinum, li.vitnum {
     background-repeat: no-repeat;
     background-position: 999px 999px;
 }
-/*年度大会员*/
+/*Annual VIP*/
 .h-vipType {
     display: inline-block;
     height: 16px;
@@ -1028,7 +1028,7 @@ li.frinum, li.vitnum {
 .h-vipType:hover {
     color: #ffffff;
 }
-/*性别*/
+/*Sex*/
 .gender.male {
     display: inline-block;
     background-position: -212px -472px;
@@ -1038,7 +1038,7 @@ li.frinum, li.vitnum {
     background-image: url(//s1.hdslb.com/bfs/static/jinkela/space/asserts/icons.png);
 }
 
-/*个人认证页*/
+/*Personal authentication page*/
 .auth-icon.personal-auth {
     background-position: -35px -50px;
     margin-bottom: 3px;
@@ -1059,7 +1059,7 @@ li.item {
     margin-left: 10px;
 }
 
-/*个人信息页*/
+/*Personal info page*/
 .card .user-head[data-v-4077d7b8] {
     display: block;
     position: absolute;
@@ -1102,7 +1102,7 @@ li.item {
  }
 
 
-/*个人信息页下方的数据*/
+/*Personal info page data below*/
 .status-webo {
     margin-left: -4.8em;
     margin-right: -2em;
@@ -1115,7 +1115,7 @@ li.item {
     margin-bottom: 27px;
 }
 
-/*内容页*/
+/*Content page*/
 .summary {
     margin-top: 27px;
     margin-right: 20px;
@@ -1246,14 +1246,14 @@ li.item {
     font-size: 12px;
 }
 
-/*关于页面*/
+/*About page*/
 .about-me{
     height: 500px;
     background: #fff;
 }
 
 
-/*====== [ 边栏 ] =======*/
+/*====== [ Sidebar ] =======*/
 
 #aside.right .inner {
     padding: 0 5px
@@ -1308,13 +1308,13 @@ li.item {
     /*border-radius: 4px;*/
     transition: .15s ease-out;
     text-transform: none;
-    -webkit-transform:none; /* Safari 和 Chrome */
+    -webkit-transform:none; /* Safari  and  Chrome */
 }
 .sltags a:hover{
     transition: .15s ease-out;
     background-color:#C7CDD1;
     text-transform: scale(1.05,1.05);
-    -webkit-transform:scale(1.05,1.05); /* Safari 和 Chrome */
+    -webkit-transform:scale(1.05,1.05); /* Safari  and  Chrome */
     -moz-transform: scale(1.05,1.05);
     -o-text-transform: scale(1.05,1.05);
 }
@@ -1487,11 +1487,11 @@ li.item {
     background-color: #E4DCD5;
      transition: .15s ease-out;
     text-transform: none;
-    -webkit-transform:none; /* Safari 和 Chrome */
+    -webkit-transform:none; /* Safari  and  Chrome */
 }
 
 
-/*====== [ 文章列表 ] =======*/
+/*====== [ Post list ] =======*/
 
 .list .post {
     position: relative;
@@ -1655,7 +1655,7 @@ li.item {
     margin: 0
 }
 
-/*====== [ 内容页 ] =======*/
+/*====== [ Content page ] =======*/
 
 .post {
     font-size: 14px;
@@ -2107,7 +2107,7 @@ li.item {
     }
 }
 
-/*======== 动画 ========*/
+/*======== Animation ========*/
 
 @keyframes top20 {
     0% {
@@ -2170,7 +2170,7 @@ li.item {
 }
 
 
-/*====== [ 加载条 ] =======*/
+/*====== [ Loading bar ] =======*/
 
 #nprogress {
     pointer-events: none
@@ -2254,11 +2254,11 @@ li.item {
     }
 }
 
-/*手机样式*/
+/*Mobile styles*/
 @media(max-width:530px) {
 
-    /*手机*/
-    /*顶部*/
+    /*Mobile*/
+    /*Top*/
     .items .item{width:24.795%!important}
     div#wrapper {background: #ffffff!important;}
     .big-title {
@@ -2308,7 +2308,7 @@ li.item {
 
 
 
-    /*====== [ 字体图标 ] =======*/
+    /*====== [ Font icons ] =======*/
 
 .icon {
     font-family:"icon","PingFang SC","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft YaHei",sans-serif !important;

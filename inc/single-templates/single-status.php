@@ -10,14 +10,14 @@
         <div id="primary-new" class="list">
             <article class="post" style=" border-radius: 15px;">
                 <div class="entry-header pull-left">
-                    <!-- 头像 -->
+                    <!-- Avatar -->
                     <?php echo get_avatar( get_the_author_meta( 'ID' ) ); ?>
                 </div>
                 <div class="entry-content">
                     <div class="meta">
                         <div class="author" itemprop="author">
                             <span class="author-name"><?php the_author(); ?></span>
-                            <span class="is-author icon" aria-label="This is master"></span></div>
+                            <span class="is-author icon" aria-label="This is master">M</span></div>
                         <time class="author-time" itemprop="datePublished" datetime="">
                             <?php echo get_the_date();echo get_the_date(' H:i'); ?>
                         </time>
@@ -29,14 +29,14 @@
                         </div>
                     </a>
                 </div>
-                <!--底部信息-->
+                <!--Bottom Info-->
                 <div class="status-webo">
                     <ul class="items state">
                         <li class="item-diary fa fa-comment-o" style="border-bottom-left-radius:15px;<?php if($_COOKIE['goto_bibo']==1)echo'width:49.9%'?>">
-                            <?php comments_number('0','1','%');echo '条评论'; ?>
+                            <?php comments_number('0','1','%');echo ' comments'; ?>
                         </li>
                         <li class="item-diary fa fa-eye" style="border-right:0;border-bottom-right-radius:15px;<?php if($_COOKIE['goto_bibo']==1)echo'width:49.9%'?>">
-                            <?php echo kratos_get_post_views();echo '次阅读'; ?>
+                            <?php echo kratos_get_post_views();echo ' views'; ?>
                         </li>
                     </ul>
                 </div>
@@ -47,13 +47,13 @@
             $prev_post = get_previous_post();
             if(!empty($prev_post)){ ?>
             <div class="nav-previous clearfix">
-                <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo '上一篇'; ?></a>
+                <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo 'Previous'; ?></a>
             </div>
             <?php }
             $next_post = get_next_post();
             if(!empty($next_post)){ ?>
             <div class="nav-next">
-                <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo '下一篇'; ?> &gt;</a>
+                <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo 'Next'; ?> &gt;</a>
             </div>
             <?php } ?>
         </nav>

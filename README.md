@@ -1,405 +1,236 @@
 # kratos
-> **一款二次元wordpress主题**
+> **An Anime-style WordPress Theme**
 
-**注意：本主题已停止更新，感谢大家这一路对我的支持**
+**Note: This theme has stopped updating. Thank you all for your support along the way.**
 
 
 
-# 主题更新记录
+# Theme Update Log
 
-## 2019.6.25---主题正式开源
+## 2019.6.25 --- Theme Officially Open Sourced
 
-> 更新内容
+> Update Content
 
-1.添加了可爱的看板娘，不仅支持多个人物切换，而且还可以更换衣服
+1. Added a cute Live2D model, supporting multiple character switching and outfit changes.
+2. Added a code beautification plugin to style your code.
+3. Homepage articles now have animation effects when displayed.
+4. Status display optimization, can be used for diaries.
+5. Article archive interface optimization, with random color displays for a better look.
+6. Added a WeChat-style music player for playing music in status updates.
+7. Added article filtering on the homepage, allowing you to exclude categories you don't want to show (e.g., diaries).
+8. Added an anime tracking page to show your progress on Bilibili (requires your Bilibili login cookie data).
+9. Beautified the mobile sidebar.
+10. Added QQ emojis to the comment area; fixed emoji sizes (large stickers not recommended).
 
-2.添加了代码美化插件，可以美化你的代码
 
-3.主页文章展示有动画效果
 
-4.状态展示优化，可以用来显示日记
+## 2019.7.19 --- Version 1.1 Released
 
-5.文章归档界面优化，不同颜色随机显示，更加美观
+> Update Content
 
-6.添加了仿微信的音乐播放器，可以用在状态里面播放音乐。
+1. Added a settings interface in the backend.
+2. Modified article background images.
+3. Updated comment emojis with high-definition backgrounds.
+4. Avatars can now be displayed randomly.
+5. Integrated a music player into the theme.
+6. Updated Live2D models with a large number of new character models.
+7. Simplified the article editor content.
+8. Added an article table of contents (TOC) module.
 
-7.首页添加文章过滤功能，可以过滤自己不想在首页显示的分类文章，比如自己的日记
 
-8.添加了追番的页面，可以显示自己的哔哩哔哩看动漫的进度（该功能需要你自己的B站登录的cooki数据。）
 
-9.手机版侧边栏进行了美化，下面是美化后的效果
+## 2019.8.2 --- Version 1.2 Released
 
-10.评论区添加了QQ表情，这里的发的表情大小被固定了，建议不要发送大的表情包
+> Update Content
 
-
-
-## 2019.7.19 ---1.1版本发布
-
-> 更新内容
-
-1.后台添加了设置界面
-2.修改文章背景图
-3.评论区表情更新，换成了高清背景图
-4.头像现在可以随机显示
-5.主题集成了音乐播放器
-6.看板娘模型更新，这次添加了大量的看板娘模型
-7.文章编辑器内容精简
-8.添加文章目录模块
-
-
-
-## 2019.8.2---1.2版本发布
-
-> 更新内容
-
-1.（7.27）修改了文章摘要显示，有摘要就全部显示摘要，然后在判断有无信息框（背景栏或者面板）就会优先全部显示里面的内容，如果没有那么就直接按照设定的字数进行截取。
-
-2.(7.28)修复了文章目录的bug（现在限制了目录的宽度和高度，同时目录只会显示一行），现在目录添加关闭按钮，同时在主题设置里面提供关闭目录的功能。原来采用链接切换页面会刷新，会导致模块复位，现在采用js来切换，速度更快，而且更平滑，同时也页面不会刷新。
-
-3.(7.28) 修复站点统计bug，现在可以使用自己的站点统计图标
-
-4.(7.28) 修复代码美化插件bug，现在也可以直接显示预格式化的内容了，大家直接把代码粘贴到里面就可以了
-
-5.(7.28) 添加代码块按钮，和代码美化不同，这个只是把代码显示在一个方框里，同时去除了首尾换行符，这样就可以刚好适应，不会出现前面空一行的bug
-
-6.(7.28) 侧边栏头像部分进行圆角处理，且不会继续贴边
-
-7.(7.28)优化看板娘图标，现已改成fontawson图标，同时优化了在不同标签上显示不同的信息(主题很多东西鼠标放在上面看板娘都可以显示专属内容了，看板娘互动性更强了，大家可以找找彩蛋哦！)。
-
-8.(7.29)看板娘添加夜间模式功能，给深夜看博客的你减少一些负担。
-
-9.(7.29)底部添加RSS订阅按钮（默认wordpress自带RSS订阅，所以只是一个链接）
-
-10.(7.29)看板娘可以说话了，需要点击才有概率发声（目前只有 凉宫青叶，小埋，蕾姆，紫罗兰永恒花园，德丽莎，初音才有声音文件），快来调戏她们把！（这个是api的问题，所以api也要换掉了，到时候需要重新下载api）
-
-11.（7.30）主题添加邮件订阅功能，站长更新文章后就会发送邮件给所有订阅者，你需要安装插件才能使用该功能，到时候主题更新时会具体说明。
-
-12.(7.31)现在可以支持更新主题了（本来想自己开发的，不过既然有现成的轮子那我就不需要自己造了）到时候有更新wordpress会自动提醒和真正的主题更新差不多，因为主题安装包有点大，所以大家请耐心等待更新。到时候大家就不需要自己到我的网站来看主题是否更新了。
-
-13.（7.31）现在背景图片和头像都不需要按顺序来了，也不需要自己改名字了，直接上传图片到指定目录就行了，上传多少就随机显示多少，只要注意最好不要上传中文名字的图片（不过应该也可以）
-
-14.（7.31）编辑器的添加表情按钮已经修复，同时也做了一些改进，现在可以直接在编辑器上显示图片，更直观方便。
-
-15.(8.1)主题集成了新的插件tinymce，编辑器有了更多功能（不喜欢的可以关掉），可以直接支持插入表格，表格也做了相应的优化，显示更加美观（引用部分也改了，字体颜色更淡）。
-
-16.（8.1）主题超精简化，目前大小仅为15M。目前背景图只有一张，同时我在设置里面添加了下载背景图片的功能，目前有默认背景和哔哩哔哩两种风格背景图供你下载，你只需要后续下载你喜欢的风格的壁纸就好了哦。
-
-17.（8.1）主题再次精简，头像目前也只有一张，同样在设置里面添加了下载头像的功能，目前可以下载男生头像或者女生头像（时间比较赶，所以选的图片也比较随意，也欢迎你们把你们喜欢的头像发给我鸭，后面大家就可以用这些可爱的头像了）
-
-18.（8.1）主题提供live2d的api下载功能（原api太大，这里api删掉了很多皮肤和几个人物，所以想体验完整版的自己下原版api），所以本主题现在对小白超友好哦，下载好api后就可以直接用了不需要做任何东西。当然下载东西需要带宽。。。
-
-19.(8.2)音乐播放器添加了音量控制按钮（时间赶做了一个很丑的样式，不过勉强可以使用），主题也差不多要发布了。
-
-## 2019.9.21---2.0版本发布
-
-> 更新内容
-
-1.（8.28）已经发现网站卡顿的原因可能是一个css文件和jQuery下载速度慢的原因。目前已经修复，目前网站打开速度正常，后续我也会继续追踪。
-
-2.（8.28）已经把七牛云的临时域名换成正式域名，目前可以正常下载文件，现在下载主题的话，下载服务将无法使用，所以需要用的话请等待下个版本更新。
-
-3.（8.28）主题集成了enlighter插件，原来的在编辑器里面加上代码有很多bug，使用该插件可以避免很多问题。
-
-4.（8.28）网页标签添加了离开和返回两种显示效果，互动性更强了。
-
-5.(9.3)已经把日记样式改为了仿微博样式，比以前更好看了。
-
-6.（9.4）新增B博页面，感觉原来主题腻了，可以换换风格哦。
-
-7.（9.4）目前B博已经添加了B站认证，地址说明，简介，推广链接，公告宫内人，友情链接，热门文章等功能。
-
-8.主题原来的日记样式以及换掉了，换成了微博的样式
-
-9.主题部分细节优化
-
-10.评论区添加了B站uid评论功能，只需要输入你的B站uid就可以快速获得你的B站头像昵称，等级和头像挂件
-
-11.注册用户没有上传头像不显示随机头像的问题已经解决。
-
-12.本站取消了相对链接（因为这个会导致很多地方出现问题）
-
-13.目录结构优化，现在可以进行多级嵌套，注意一级标题必须是编辑器里面的二级标题，二级标题必须是编辑器里面的三级标题
-
-14.音乐播放现在可以设置默认开合状态
-
-15.主题现在已经有专门的的帮助文档了，不过我现在也没有时间去专门编辑，以后会腾出时间来写的（帮助文档地址:http://help.xiaoyou66.com/1283866）
-
-16.主题现在支持自定义随机背景和随机头像。自己可以到主题设置里面就可以自己定义自己想显示的内容了。
-
-17.B博界面优化完成，现在可以正常显示所有的动态
-
-18.现在可以支持自定义下载表情包了，如果觉得网站加载很慢，可以减少表情包的数目哦。
-
-
-
-## 2019.10.25---主题2.1版本发布
-
-> 更新内容
-
-1.修复侧边栏无法显示B站头像问题
-
-2.修复Qplayer添加单曲失败问题
-
-3.修复Qplayer自动播放时同时播放多个音乐的问题
-
-4.修复Qplay无法播放已经播放过的音乐的问题
-
-5.修改文章标题效果，同时美化了图片样式
-
-6.添加了标签彩色聚合功能
-
-7.修复苹果手机侧边栏无法显示问题
-
-8.修复个别文章内侧边栏头像无法显示的问题
-
-9.美化了代码块
-
-10.修复密码文章输入密码无法进入的问题
-
-11.修复文章版权说明无法显示的问题
-
-12.修复了B博下某些页面会莫名显示侧边栏问题
-
-13.修复了B博下某些页面无法对齐问题
-
-14.修复B博下文章页面和默认主题页面不一致问题以及修复文章目录显示错位问题
-
-
-
-## 2020.2.9--主题最终版本2.2发布
-
-> 更新内容
-
-1.修复音乐播放多次点击会重复播放的bug
-
-2.修复评论区作者标签超过两个字就显示异常的问题
-
-3.修复轮播图电脑端和手机端显示异常问题
-
-4.修复标签移动时不断抽搐问题
-
-5.友情链接页面现在可以打开评论功能（默认不开启，需要自己打开）
-
-6.友情链接界面添加了申请按钮，可以一键申请
-
-7.一键申请后可以直接在后台进行审核管理，可以直接通过或者删除，通过后可以自动发送邮件通知对方
-
-8.修复插件不兼容的bug，现在可以完美的支持eplayer插件
-
-9.修复B博标题长挡住内容的问题
-
-10.修复主题fontawsome和jQuery的问题，现在采用主题自带的js和css文件，删除原来cdn文件，现在直接从本地加载
-
-11.删除了登录界面的logo，现在登录界面不显示logo
-
-12.删除了主题更新函数，现在主题不再支持更新
-
-13.修改所有的下载链接，现在我不在提供下载服务，主题资源全部托管在github上，并由jsdelivr提供加速服务
-
-14.主题API服务会继续支持
-
-# 感谢
-
-## 感谢下面这些小伙伴们对我的支持
-
-> 因为我的QQ号被封了，而且被封了3个群，所以很多人都找不到了，目前只通过评论区来找那些人了，如果有遗漏在所难免（排名不分先后，都是我找的一个算一个的）
-
-1.糊涂扁扁(bug找的最多的)  
-
-2.buvidcai
-
-3.阴月有晴
-
-4.何军同学
-
-5.derder
-
-6.大白瓜
-
-7.厉害的二星
-
-8.来玩ubuntu
-
-9.纱雾酱世界第一可爱
-
-10.包子
-
-11.昔日轮回
-
-12.源初熙
-
-13.墨柯
-
-14.秦有时
-
-15.six酱
-
-16.想用0和1创造世界
-
-17.通灵男孩
-
-18.洛尘曦
-
-19.super翔
-
-20.protaos
-
-21.小玉
-
-22.轻司云
-
-23.西门吹风
-
-24.RightTriangle
-
-25.星之邂逅
-
-26夏天永远晴朗
-
-27.断桥♡之恋
-
-28.LOP
-
-29.祭﹌
-
-30.一只子初
-
-31.---柯南
-
-32.机枪豌豆
-
-33.cubes
-
-34.离数
-
-35.南小嘘
-
-36.一花
-
-37.sutinki
-
-38.木槿*
-
-39.ally
-
-40.sumual
-
-41.日落东单
-
-42.TaiGa
-
-43.x_x
-
-44.绅云Rex
-
-45.宁静致远
-
-46.蛇羽
-
-47.Memor.の忆惜
-
-48.曙雀
-
-49.学习使我超快乐
-
-50.浅印
-
-51.PIM
-
+1. (7.27) Modified article excerpt display: if an excerpt exists, it displays fully. If an information box (background bar or panel) is present, its content is prioritized. Otherwise, text is truncated according to the set character count.
+2. (7.28) Fixed article TOC bugs (restricted width/height, limited to one line). Added a close button for the TOC and a toggle in theme settings. Switched from page refreshes to JS-based switching for faster, smoother transitions without refreshing.
+3. (7.28) Fixed site statistics bug; now supports custom site statistics icons.
+4. (7.28) Fixed code beautification plugin bug; now displays pre-formatted content correctly.
+5. (7.28) Added a code block button. Unlike code beautification, this just puts code in a box and trims leading/trailing newlines to fit better.
+6. (7.28) Applied rounded corners to the sidebar avatar section.
+7. (7.28) Optimized Live2D icons to use FontAwesome. Optimized context-aware messages (Live2D now shows specific messages when hovering over different elements).
+8. (7.29) Added night mode for the Live2D model to reduce eye strain at night.
+9. (7.29) Added an RSS subscription button to the footer.
+10. (7.29) Enabled voice for Live2D models (requires clicking; currently only supported for certain characters like Haruhi, Umaru, Rem, Violet, Theresa, and Miku).
+11. (7.30) Added email subscription functionality. Requires a plugin to notify subscribers of new posts.
+12. (7.31) Added theme update support via WordPress notifications. Note: the installation package is large, so updates may take time.
+13. (7.31) Background images and avatars no longer need specific names or sequential ordering. Upload to the designated directory for random display. Avoid Chinese filenames.
+14. (7.31) Fixed the "Add Emoji" button in the editor and improved it to display images directly.
+15. (8.1) Integrated the TinyMCE plugin for more editor features (can be disabled). Supports table insertion and optimized table displays.
+16. (8.1) Optimized theme size to 15MB. Added a function to download background image styles (Default and Bilibili styles available).
+17. (8.1) Further streamlined the theme. Added an avatar download function in settings.
+18. (8.1) Provided a Live2D API download function to make setup easier for beginners.
+19. (8.2) Added volume control to the music player.
+
+
+
+## 2019.9.21 --- Version 2.0 Released
+
+> Update Content
+
+1. (8.28) Fixed website lag caused by slow CSS and jQuery downloads.
+2. (8.28) Replaced temporary Qiniu Cloud domains with official ones.
+3. (8.28) Integrated the Enlighter plugin to avoid bugs with the previous code insertion method.
+4. (8.28) Added tab titles that change when the user leaves or returns to the page.
+5. (9.3) Changed diary style to a Weibo-like layout.
+6. (9.4) Added a "Bilibili Dynamics"  page style for Bilibili-like dynamics.
+7. (9.4) Added Bilibili authentication, address, intro, links, announcements, friend links, and hot articles to the Bilibili Dynamics interface.
+8. Optimized several theme details.
+9. Added Bilibili UID comment support: enter your UID to automatically fetch your Bilibili avatar, nickname, level, and pendant.
+10. Fixed an issue where users without avatars didn't show random avatars.
+11. Removed relative links to avoid issues in certain environments.
+12. Optimized TOC structure to support multi-level nesting.
+13. Added a default open/closed state setting for the music player.
+14. Provided documentation (Help link: http://help.xiaoyou66.com/1283866).
+15. Supported custom random backgrounds and avatars.
+16. Optimized the Bilibili Dynamics interface to display all dynamics correctly.
+17. Supported custom emoji pack downloads.
+
+
+
+## 2019.10.25 --- Version 2.1 Released
+
+> Update Content
+
+1. Fixed Bilibili avatar display in the sidebar.
+2. Fixed single track addition issues in QPlayer.
+3. Fixed multiple track playback bugs in QPlayer.
+4. Modified article title effects and beautified image styles.
+5. Added colored tag cloud functionality.
+6. Fixed mobile sidebar display issues on iOS.
+7. Fixed sidebar avatar display issues in specific posts.
+8. Beautified code blocks.
+9. Fixed password-protected post access issues.
+10. Fixed copyright statement display issues.
+11. Fixed sidebar display issues in the Bilibili Dynamics layout.
+12. Fixed alignment issues in the Bilibili Dynamics layout.
+13. Fixed inconsistencies between Bilibili Dynamics article pages and default theme pages.
+
+
+
+## 2020.2.9 --- Final Version 2.2 Released
+
+> Update Content
+
+1. Fixed music playback repetition bugs.
+2. Fixed comment author tag display issues.
+3. Fixed carousel display issues on desktop and mobile.
+4. Fixed tag movement jitter.
+5. Added comment support for the friend links page (disabled by default).
+6. Added a "One-click Apply" button for friend links.
+7. Added backend management for friend link applications with automatic email notifications.
+8. Fixed plugin compatibility issues (now supports the EPlayer plugin).
+9. Fixed Bilibili Dynamics title length issues.
+10. Localized FontAwesome and jQuery to remove CDN dependencies.
+11. Removed the logo from the login interface.
+12. Removed the theme update function (updates no longer supported).
+13. Updated download links: resources are now hosted on GitHub and accelerated by jsDelivr.
+14. Continued support for the theme API service.
+
+# Acknowledgments
+
+## Thank you to these friends for your support:
+
+> Since my QQ account was banned and 3 groups were lost, I can only find people through the comment section. My apologies if I missed anyone (in no particular order).
+
+1. 糊涂扁扁 / Hutu Bianbian / Muddled Flat (Found the most bugs)
+2. buvidcai
+3. 阴月有晴 / Yinyue Youqing / Cloudy Moon with Sun
+4. 何军同学 / He Jun Tongxue / Student He Jun
+5. derder
+6. 大白瓜 / Da Baigua / Big White Melon
+7. 厉害的二星 / Lihai de Erxing / Awesome Two-Star
+8. 来玩ubuntu / Laiwan Ubuntu / Come play Ubuntu
+9. 纱雾酱世界第一可爱 / Sagiri-chan Sekai Ichiban Kawaii / Sagiri-chan is the cutest in the world
+10. 包子 / Baozi / Steamed Bun
+11. 昔日轮回 / Xiri Lunhui / Past Reincarnation
+12. 源初熙 / Yuanchu Xi / Original Dawn
+13. 墨柯 / Moke / Ink Ke
+14. 秦有时 / Qin Youshi / Qin Sometimes
+15. six酱 / six-chan
+16. 想用0和1创造世界 / Xiangyong 0 he 1 chuangzao shijie / Want to create the world with 0 and 1
+17. 通灵男孩 / Tongling Nanhai / Psychic Boy
+18. 洛尘曦 / Luochen Xi / Fallen Dust Dawn
+19. super翔 / super Xiang
+20. protaos
+21. 小玉 / Xiaoyu / Little Jade
+22. 轻司云 / Qingsi Yun / Light Division Cloud
+23. 西门吹风 / Ximen Chuifeng / Ximen Blowing Wind
+24. RightTriangle
+25. 星之邂逅 / Xing zhi Xiehou / Encounter of Stars
+26夏天永远晴朗 / Xiatian yongyuan qinglang / Summer is always sunny
+27. 断桥♡之恋 / Duanqiao Lian / Broken Bridge Love
+28. LOP
+29. 祭﹌ / Ji / Ritual
+30. 一只子初 / Yizhi Zichu / A Zichu
+31. ---柯南 / ---Conan
+32. 机枪豌豆 / Jiqiang Wandou / Gatling Pea
+33. cubes
+34. 离数 / Lishu / Away from Numbers
+35. 南小嘘 / Nan Xiaoxu / South Little Whisper
+36. 一花 / Yihua / One Flower
+37. sutinki
+38. 木槿* / Mujin / Hibiscus
+39. ally
+40. sumual
+41. 日落东单 / Riluo Dongdan / Sunset at Dongdan
+42. TaiGa
+43. x_x
+44. 绅云Rex / Shenyun Rex / Gentleman Cloud Rex
+45. 宁静致远 / Ningjing Zhiyuan / Tranquility yields transcendence
+46. 蛇羽 / Sheyu / Snake Feather
+47. Memor.の忆惜 / Memor. Yi Xi / Recalling Memories
+48. 曙雀 / Shuque / Dawn Sparrow
+49. 学习使我超快乐 / Xuexi shi wo chao kuaile / Learning makes me super happy
+50. 浅印 / Qianyin / Shallow Print
+51. PIM
 52.'  Hope
-
-53.逗比兔
-
-54.响彻行云
-
-55.no picnic
-
-56.南小嘘
-
-57.小楼一夜听春雨
-
-58.连我的声音都要打上马赛
-
-59.乄 嘴角扯出的笑ر
-
-60.清秋冷
-
-61.争渡
-
-62.9d77v
-
-63.难知
-
-64.风往
-
-65.Forever蓝焰
-
-66.✪ ShroXd-iwnl-
-
-67.She-Ra
-
-68.理想主义终成现实- -
+53. 逗比兔 / Doubi Tu / Funny Rabbit
+54. 响彻行云 / Xiangche Xingyun / Resounding through the clouds
+55. no picnic
+56. 南小嘘 / Nan Xiaoxu / South Little Whisper
+57. 小楼一夜听春雨 / Xiaolou yiye ting chunyu / Listening to spring rain all night in the small building
+58. 连我的声音都要打上马赛 / Lian wo de shengyin dou yao dashang masai / Even my voice needs to be pixellated
+59. 乄 嘴角扯出的笑 / 嘴角扯出的笑 / A smile from the corner of the mouthر
+60. 清秋冷 / Qingqiu Leng / Cold Autumn
+61. 争渡 / Zhengdu / Struggling to cross
+62. 9d77v
+63. 难知 / Nanzhi / Hard to know
+64. 风往 / Fengwang / Wind goes
+65. Forever蓝焰 / Forever Lanyan / Forever Blue Flame
+66. ✪ ShroXd-iwnl- / ✪ ShroXd-iwnl-
+67. She-Ra
+68. 理想主义终成现实- - / Lixiangzhuyi zhongcheng xianshi / Idealism finally becomes reality
 
 ----
 
-### B 站的小伙伴们
+### Friends from Bilibili:
 
-1.Saikia丶
-
-2.从心猫
-
-3.secheng19191919
-
-4.四花何
-
-5.茶影
-
-6.我yi癫狂
-
-7.数组越界-指针漂移
-
-8.trueEnds
-
-9.墨眉无锋9
-
-10.学财管的泰迪熊
-
-11.史莱姆一只
-
-12.你好啊世界
-
-13.神马浮云
-
-14.半面邪
-
-15.sunshine小咸菜
-
-16.我不是钠盐
-
-17.多读书少瞎想的阿初
-
-18.Blaink
-
-19.校条祭大人灬Y
-
-20.洁baby888
-
-21.美波みなみ
-
-22.LitVeer
-
-23.Angle_Eyes
-
+1. Saikia丶
+2. 从心猫 / Congxin Mao / Heartfelt Cat
+3. secheng19191919
+4. 四花何 / Sihua He / Four Flowers He
+5. 茶影 / Chaying / Tea Shadow
+6. 我yi癫狂 / Woyi Diankuang / I am crazy
+7. 数组越界-指针漂移 / Shuzu yuejie - zhizhen piaoyi / Array out of bounds - pointer drift
+8. trueEnds
+9. 墨眉无锋9 / Momei Wufeng 9 / Ink eyebrow without edge 9
+10. 学财管的泰迪熊 / Xue caiguan de Taidixiong / Teddy bear studying financial management
+11. 史莱姆一只 / Shilaimu yizhi / A Slime
+12. 你好啊世界 / Nihao a shijie / Hello World
+13. 神马浮云 / Shenma fuyun / Everything is like a floating cloud
+14. 半面邪 / Banmian Xie / Half-faced Evil
+15. sunshine小咸菜 / sunshine Xiaoxiancai / sunshine Small Pickles
+16. 我不是钠盐 / Wo bushi nayan / I am not sodium salt
+17. 多读书少瞎想的阿初 / Duo dushu shao xiaxiang de Achu / Achu who reads more and imagines less
+18. Blaink
+19. 校条祭大人灬Y / Xiaotiaoji Daren / Lord Menjo Hare
+20. 洁baby888 / Jiebaby888
+21. 美波みなみ / Minami
+22. LitVeer
+23. Angle_Eyes
 24. Blaink
-25. -_-熊孩子-
+25. -_-熊孩子- / -_-Xionghaizi / -_-Brat
 
-> 感谢大家这半年的支持与陪伴，因为我记性也不是很好，有遗漏的还请见谅，主题虽然不更新了，但是博客还是会继续做下去的，新的一年还请大家多多指教了------2020.2.9
-
-
-
-
-
-
-
-
-
+> Thank you all for your support and companionship over the past six months. Theme updates have stopped, but the blog will continue. Happy New Year! ------ 2020.2.9

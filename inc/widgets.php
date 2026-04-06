@@ -7,7 +7,7 @@ function most_comm_posts($days=30,$nums=5){
     $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
     $output = '';
     if(empty($result)){
-        $output = '<li>暂时没有数据</li>';
+        $output = '<li>No data for now</li>';
     }else{
         foreach($result as $topten){
             $postid = $topten->ID;
@@ -29,15 +29,15 @@ function most_comm_posts($days=30,$nums=5){
 function timeago($ptime){
     $ptime = strtotime($ptime);
     $etime = time()-$ptime;
-    if($etime<1) return '刚刚';
+    if($etime<1) return 'Just now';
     $interval = array(
-        12*30*24*60*60 => ' 年前'.' ('.date('m月d日',$ptime).')',
-        30*24*60*60 => ' 个月前'.' ('.date('m月d日',$ptime).')',
-        7*24*60*60 => ' 周前'.' ('.date('m月d日',$ptime).')',
-        24*60*60 => ' 天前'.' ('.date('m月d日',$ptime).')',
-        60*60 =>' 小时前'.' ('.date('m月d日',$ptime).')',
-        60 =>' 分钟前'.' ('.date('m月d日',$ptime).')',
-        1 =>' 秒前'.' ('.date('m月d日',$ptime).')',
+        12*30*24*60*60 => ' years ago'.' ('.date('M j',$ptime).')',
+        30*24*60*60 => ' months ago'.' ('.date('M j',$ptime).')',
+        7*24*60*60 => ' weeks ago'.' ('.date('M j',$ptime).')',
+        24*60*60 => ' days ago'.' ('.date('M j',$ptime).')',
+        60*60 =>' hours ago'.' ('.date('M j',$ptime).')',
+        60 =>' minutes ago'.' ('.date('M j',$ptime).')',
+        1 =>' seconds ago'.' ('.date('M j',$ptime).')',
     );
     foreach($interval as $secs=>$str){
         $d=$etime/$secs;
@@ -71,7 +71,7 @@ function kratos_string_cut($string, $sublen, $start = 0, $code = 'UTF-8') {
 }
 function kratos_widgets_init(){
     register_sidebar(array(
-        'name'=>'侧边栏工具',
+        'name'=>'Sidebar Tools',
         'id'=>'sidebar_tool',
         'before_widget'=>'<aside id="%1$s" class="widget %2$s clearfix">',
         'after_widget'=>'</aside>',
@@ -99,8 +99,8 @@ class kratos_widget_ad extends WP_Widget {
     function __construct() {
         $widget_ops = array(
             'classname'  => 'widget_kratos_ad',
-            'name'       => '广告位',
-            'description'=> 'Kratos主题特色组件 - 广告位'
+            'name'       => 'Advertisement',
+            'description'=> 'Kratos theme feature component - Advertisement'
         );
         parent::__construct(false,false,$widget_ops);
     }
@@ -128,17 +128,17 @@ class kratos_widget_ad extends WP_Widget {
         @$aurl = esc_attr($instance['aurl']);
         @$imgurl = esc_attr($instance['imgurl']); ?>
             <p>
-                <label for="<?php echo $this->get_field_id('title'); ?>">标题(可留空)：
+                <label for="<?php echo $this->get_field_id('title'); ?>">Title (Optional):
                     <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
                 </label>
             </p>
             <p>
-                <label for="<?php echo $this->get_field_id('aurl'); ?>">链接：
+                <label for="<?php echo $this->get_field_id('aurl'); ?>">Link:
                     <input class="widefat" id="<?php echo $this->get_field_id('aurl'); ?>" name="<?php echo $this->get_field_name('aurl'); ?>" type="text" value="<?php echo $aurl; ?>" />
                 </label>
             </p>
             <p>
-                <label for="<?php echo $this->get_field_id('imgurl'); ?>">图片：
+                <label for="<?php echo $this->get_field_id('imgurl'); ?>">Image:
                     <input class="widefat" id="<?php echo $this->get_field_id('imgurl'); ?>" name="<?php echo $this->get_field_name('imgurl'); ?>" type="text" value="<?php echo $imgurl; ?>" />
                 </label>
             </p><?php
@@ -148,8 +148,8 @@ class kratos_widget_about extends WP_Widget {
     function __construct() {
         $widget_ops = array(
             'classname'  => 'widget_kratos_about',
-            'name'       =>'个人简介',
-            'description'=> 'Kratos主题特色组件 - 个人简介'
+            'name'       =>'Personal Profile',
+            'description'=> 'Kratos theme feature component - Personal Profile'
         );
         parent::__construct(false,false,$widget_ops);
     }
@@ -172,14 +172,14 @@ class kratos_widget_about extends WP_Widget {
         <div class="textwidget">
             <div class="widget-admin text-center">
                 <p>
-                    <a href="<?php echo admin_url('/post-new.php'); ?>"><i class="fa fa-pencil"></i>撰写文章</a>
-                    <a class="widget-admin-center" href="<?php echo admin_url('/post-new.php?post_type=page'); ?>"><i class="fa fa-plus"></i>新建页面</a>
-                    <a href="<?php echo admin_url('/edit-comments.php'); ?>"><i class="fa fa-comments"></i>查看评论</a>
+                    <a href="<?php echo admin_url('/post-new.php'); ?>"><i class="fa fa-pencil"></i>Write Post</a>
+                    <a class="widget-admin-center" href="<?php echo admin_url('/post-new.php?post_type=page'); ?>"><i class="fa fa-plus"></i>New Page</a>
+                    <a href="<?php echo admin_url('/edit-comments.php'); ?>"><i class="fa fa-comments"></i>View Comments</a>
                 </p>
                 <p>
-                    <a href="<?php echo admin_url('/options-general.php'); ?>"><i class="fa fa-cogs"></i>站点设置</a>
-                    <a class="widget-admin-center" href="<?php echo admin_url('/themes.php?page=kratos'); ?>"><i class="fa fa-cog"></i>主题设置</a>
-                    <a href="<?php echo wp_logout_url($redirect); ?>"><i class="fa fa-sign-out"></i>退出登录</a>
+                    <a href="<?php echo admin_url('/options-general.php'); ?>"><i class="fa fa-cogs"></i>Site Settings</a>
+                    <a class="widget-admin-center" href="<?php echo admin_url('/themes.php?page=kratos'); ?>"><i class="fa fa-cog"></i>Theme Settings</a>
+                    <a href="<?php echo wp_logout_url($redirect); ?>"><i class="fa fa-sign-out"></i>Logout</a>
                 </p>
             </div>
         </div>
@@ -192,16 +192,16 @@ class kratos_widget_about extends WP_Widget {
         <div class="textwidget">
             <div class="widget-admin text-center">
                 <p>
-                    <a href="<?php echo admin_url('/profile.php'); ?>"><i class="fa fa-pencil"></i>个人资料</a>
-                    <a href="<?php echo admin_url('/'); ?>"><i class="fa fa-dashboard"></i>仪表盘 </a>
-                    <a href="<?php echo wp_logout_url($redirect); ?>"><i class="fa fa-sign-out"></i> 退出登录</a>
+                    <a href="<?php echo admin_url('/profile.php'); ?>"><i class="fa fa-pencil"></i>Profile</a>
+                    <a href="<?php echo admin_url('/'); ?>"><i class="fa fa-dashboard"></i>Dashboard </a>
+                    <a href="<?php echo wp_logout_url($redirect); ?>"><i class="fa fa-sign-out"></i> Logout</a>
                 </p>
             </div>
         </div>
         <?php }else{ ?>
         <div class="photo-wrapper clearfix">
             <div class="photo-wrapper-tip text-center">
-                <a href="<?php echo wp_login_url($redirect); ?>" rel="nofollow"><img title="点击头像即可登录" class="about-photo" src="<?php if(!empty($imgurl)) echo $imgurl; else echo bloginfo('template_url')."/static/images/photo.jpg"; ?>" alt=""/></a>
+                <a href="<?php echo wp_login_url($redirect); ?>" rel="nofollow"><img title="Click avatar to login" class="about-photo" src="<?php if(!empty($imgurl)) echo $imgurl; else echo bloginfo('template_url')."/static/images/photo.jpg"; ?>" alt=""/></a>
             </div>
         </div>
         <div class="textwidget">
@@ -216,17 +216,17 @@ class kratos_widget_about extends WP_Widget {
         @$bkimgurl = esc_attr($instance['bkimgurl']);
         @$profile = esc_attr($instance['profile']); ?>
         <p>
-            <label for="<?php echo $this->get_field_id('imgurl'); ?>">头像地址：
+            <label for="<?php echo $this->get_field_id('imgurl'); ?>">Avatar URL:
                 <input class="widefat" id="<?php echo $this->get_field_id('imgurl'); ?>" name="<?php echo $this->get_field_name('imgurl'); ?>" type="text" value="<?php echo $imgurl; ?>" />
             </label>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('profile'); ?>">简介内容：
+            <label for="<?php echo $this->get_field_id('profile'); ?>">Intro Content:
                 <textarea class="widefat" rows="4" id="<?php echo $this->get_field_id('profile'); ?>" name="<?php echo $this->get_field_name('profile'); ?>" ><?php echo $profile; ?></textarea>
             </label>
         </p> 
         <p>
-            <label for="<?php echo $this->get_field_id('bkimgurl'); ?>">卡片背景：
+            <label for="<?php echo $this->get_field_id('bkimgurl'); ?>">Card Background:
                 <input class="widefat" id="<?php echo $this->get_field_id('bkimgurl'); ?>" name="<?php echo $this->get_field_name('bkimgurl'); ?>" type="text" value="<?php echo $bkimgurl; ?>" />
             </label>
         </p><?php 
@@ -235,8 +235,8 @@ class kratos_widget_about extends WP_Widget {
 class kratos_widget_tags extends WP_Widget {
     function __construct() {
         $widget_ops = array(
-            'name'       => '标签聚合',
-            'description'=>'Kratos主题特色组件 - 标签聚合'
+            'name'       => 'Tag Cloud',
+            'description'=>'Kratos theme feature component - Tag Cloud'
         );
         parent::__construct(false,false,$widget_ops);
     }
@@ -278,31 +278,31 @@ class kratos_widget_tags extends WP_Widget {
     }
     function form($instance){
         global $wpdb;
-        $instance = wp_parse_args((array) $instance,array('title'=>'标签聚合','number'=>'20','orderby'=>'count','order'=>'RAND'));
+        $instance = wp_parse_args((array) $instance,array('title'=>'Tag Cloud','number'=>'20','orderby'=>'count','order'=>'RAND'));
         $title =  esc_attr($instance['title']);
         $number = intval($instance['number']);
         $orderby =  esc_attr($instance['orderby']);
         $order =  esc_attr($instance['order']); ?>
         <p>
-            <label for='<?php echo $this->get_field_id("title"); ?>'>标题：<input type='text' class='widefat' name='<?php echo $this->get_field_name("title"); ?>' id='<?php echo $this->get_field_id("title"); ?>' value="<?php echo $title; ?>"/></label>
+            <label for='<?php echo $this->get_field_id("title"); ?>'>Title:<input type='text' class='widefat' name='<?php echo $this->get_field_name("title"); ?>' id='<?php echo $this->get_field_id("title"); ?>' value="<?php echo $title; ?>"/></label>
         </p>
         <p>
-            <label for='<?php echo $this->get_field_id("number"); ?>'>数量：<input type='text' name='<?php echo $this->get_field_name("number"); ?>' id='<?php echo $this->get_field_id("number"); ?>' value="<?php echo $number; ?>"/></label>
+            <label for='<?php echo $this->get_field_id("number"); ?>'>Count:<input type='text' name='<?php echo $this->get_field_name("number"); ?>' id='<?php echo $this->get_field_id("number"); ?>' value="<?php echo $number; ?>"/></label>
         </p>
         <p>
-            <label for='<?php echo $this->get_field_id("orderby"); ?>'>类型：
+            <label for='<?php echo $this->get_field_id("orderby"); ?>'>Type:
                 <select name="<?php echo $this->get_field_name("orderby"); ?>" id='<?php echo $this->get_field_id("orderby"); ?>'>
-                    <option value="count" <?php echo ($orderby=='count')?'selected':''; ?>>数量</option>
-                    <option value="name" <?php echo ($orderby=='name')?'selected':''; ?>>名字</option>
+                    <option value="count" <?php echo ($orderby=='count')?'selected':''; ?>>Count</option>
+                    <option value="name" <?php echo ($orderby=='name')?'selected':''; ?>>Name</option>
                 </select>
             </label>
         </p>
         <p>
-            <label for='<?php echo $this->get_field_id("order"); ?>'>排序：
+            <label for='<?php echo $this->get_field_id("order"); ?>'>Order:
                 <select name="<?php echo $this->get_field_name("order"); ?>" id='<?php echo $this->get_field_id("order"); ?>'>
-                    <option value="DESC" <?php echo ($order=='DESC')?'selected':''; ?>>降序</option>
-                    <option value="ASC" <?php echo ($order=='ASC')?'selected':''; ?>>升序</option>
-                    <option value="RAND" <?php echo ($order=='RAND')?'selected':''; ?>>随机</option>
+                    <option value="DESC" <?php echo ($order=='DESC')?'selected':''; ?>>DESC</option>
+                    <option value="ASC" <?php echo ($order=='ASC')?'selected':''; ?>>ASC</option>
+                    <option value="RAND" <?php echo ($order=='RAND')?'selected':''; ?>>Random</option>
                 </select>
             </label>
         </p>
@@ -313,8 +313,8 @@ class kratos_widget_posts extends WP_Widget {
     function __construct() {
         $widget_ops = array(
             'classname'  => 'kratos_widget_posts',
-            'name'       =>'文章聚合',
-            'description'=>'Kratos主题特色组件 - 文章聚合'
+            'name'       =>'Post Tab',
+            'description'=>'Kratos theme feature component - Post Tab'
         );
         parent::__construct(false,false,$widget_ops);
     }
@@ -324,14 +324,14 @@ class kratos_widget_posts extends WP_Widget {
         $number = (!empty($instance['number']))?intval($instance['number']):5; ?>
         <aside class="widget widget_kratos_poststab">
             <ul id="tabul" class="nav nav-tabs nav-justified visible-lg">
-                <li class="active"><span href="#newest" data-toggle="tab">最新文章</span></li>
-                <li><span href="#hot" data-toggle="tab">热点文章</span></li>
-                <li><span href="#rand" data-toggle="tab">随机文章</span></li>
+                <li class="active"><span href="#newest" data-toggle="tab">Recent Posts</span></li>
+                <li><span href="#hot" data-toggle="tab">Hot Posts</span></li>
+                <li><span href="#rand" data-toggle="tab">Random Post</span></li>
             </ul>
             <ul id="tabul" class="nav nav-tabs nav-justified visible-md">
-                <li class="active"><span href="#newest" data-toggle="tab">最新</span></li>
-                <li><span href="#hot" data-toggle="tab">热点</span></li>
-                <li><span href="#rand" data-toggle="tab">随机</span></li>
+                <li class="active"><span href="#newest" data-toggle="tab">Recent</span></li>
+                <li><span href="#hot" data-toggle="tab">Hot</span></li>
+                <li><span href="#rand" data-toggle="tab">Random</span></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="newest">
@@ -373,7 +373,7 @@ class kratos_widget_posts extends WP_Widget {
         $instance = wp_parse_args((array) $instance,array('number'=>'5'));
         $number = intval($instance['number']); ?>
         <p>
-            <label for='<?php echo $this->get_field_id("number"); ?>'>每项展示数量：<input type='text' name='<?php echo $this->get_field_name("number"); ?>' id='<?php echo $this->get_field_id("number"); ?>' value="<?php echo $number; ?>"/></label>
+            <label for='<?php echo $this->get_field_id("number"); ?>'>Items to display:<input type='text' name='<?php echo $this->get_field_name("number"); ?>' id='<?php echo $this->get_field_id("number"); ?>' value="<?php echo $number; ?>"/></label>
         </p>
         <input type="hidden" id="<?php echo $this->get_field_id('submit'); ?>" name="<?php echo $this->get_field_name('submit'); ?>" value="1" /><?php
     }
@@ -382,15 +382,15 @@ class kratos_widget_comments extends WP_Widget {
     function __construct() {
         $widget_ops = array(
             'classname'  => 'widget_kratos_comments',
-            'name'       =>'最近评论',
-            'description'=>'Kratos主题特色组件 - 最近评论'
+            'name'       =>'Recent Comments',
+            'description'=>'Kratos theme feature component - Recent Comments'
         );
         parent::__construct(false,false,$widget_ops);
     }
     function widget($args,$instance){
         if(!isset($args['widget_id'])) $args['widget_id'] = $this->id;
         $output = '';
-        $title = isset($instance['title'])?$instance['title']:'最近评论';
+        $title = isset($instance['title'])?$instance['title']:'Recent Comments';
         $number = isset($instance['number'])?absint($instance['number']):5;
         $show_admin = !empty($instance['show_admin'])?'1':'0';
         $comments = get_comments(apply_filters('widget_comments_args',array(
@@ -413,7 +413,7 @@ class kratos_widget_comments extends WP_Widget {
                 $photo=get_comment_meta($comment_ID,'photo',true);
                 $output .= '<li class="comment-listitem">';
                 $output .= '<div class="comment-user">';
-                if($photo=="无照片" || $photo=="")
+                if($photo=="No Photo" || $photo=="")
                     $output .= '<span class="comment-avatar">'.get_avatar($comment,50,null).'</span>';
                 else
                     $output .= '<span class="comment-avatar">'.'<img alt="" src="'.$photo.'" class="avatar avatar-50 photo" height="50" width="50">'.'</span>';
@@ -436,22 +436,22 @@ class kratos_widget_comments extends WP_Widget {
         return $instance;
     }
     public function form($instance){
-        $title = !empty($instance['title'])?$instance['title']:'最近评论';
+        $title = !empty($instance['title'])?$instance['title']:'Recent Comments';
         $number = !empty($instance['number'])?absint($instance['number']):5;
         $show_admin = isset($instance['show_admin'])?(bool)$instance['show_admin']:false; ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>">标题：
+            <label for="<?php echo $this->get_field_id('title'); ?>">Title:
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
             </label>
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('number'); ?>">显示数量：
+            <label for="<?php echo $this->get_field_id('number'); ?>">Display count:
                 <input class="tiny-text" id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="number" step="1" min="1" max="99" value="<?php echo $number; ?>" size="3" />
             </label>
         </p>
         <p>
             <input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('show_admin'); ?>" name="<?php echo $this->get_field_name('show_admin'); ?>"<?php checked($show_admin); ?> />
-            <label for="<?php echo $this->get_field_id('show_admin'); ?>">不显示管理员(用户ID为1)评论</label>
+            <label for="<?php echo $this->get_field_id('show_admin'); ?>">Do not show administrator (UID 1) comments</label>
         </p><?php
     }
 }
