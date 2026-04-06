@@ -9,12 +9,11 @@ if(!is_plugin_active('enlighter/Enlighter.php')) if(kratos_option('open_enlighte
 //字数统计
 function count_words ($text) {
     global $post;
-    $output = '';
     if ( '' == $text ) {
         $text = $post->post_content;
-        if (mb_strlen($output, 'UTF-8') < mb_strlen($text, 'UTF-8')) $output .= '共' . mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($post->post_content))),'UTF-8') . '个字&nbsp;&nbsp;';
-        return $output;
     }
+    $word_count = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($text))),'UTF-8');
+    return '共' . $word_count . '个字&nbsp;&nbsp;';
 }
 //首页过滤指定分类目录文章
 function excludeCat($query) {
@@ -120,7 +119,7 @@ function showSummary($content)
     $content=strip_tags($content);
     $content=trimall($content);
     //判断最前面的是不是信息框
-   if($content[0]=='[')
+   if(isset($content[0]) && $content[0]=='[')
    {
        /*如果是就返回信息框的内容*/
        $content=substr($content,strpos($content,']')+1);
