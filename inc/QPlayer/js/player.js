@@ -8,9 +8,9 @@
 		autoShowTimer,
 		isFirstPlay = localStorage.qplayer == undefined? true: false,
 		isShuffle = localStorage.qplayer == undefined? $('#randomstatus').attr('class') : localStorage.qplayer === 'true'? true: false;
-    	//(看一下是否开始随机播放)
+	//(Check if shuffle started)
 		if (isShuffle) {
-                $("#player .cover").attr("title","点击关闭随机播放");
+                $("#player .cover").attr("title","ClickCloseShuffle");
                 var temp = [];
                 for (var i = 0; i < playlist.length; i++) {
                     temp[i] = i;
@@ -42,13 +42,13 @@
 	if (isShuffle && shuffle_array != undefined && playlist.length === (shuffleArray=JSON.parse(shuffle_array)).length) {
 		currentTrack = shuffleArray[0];
 		shuffleIndex = 0;
-	    $('#QPlayer .cover').attr('title', '点击关闭随机播放');
+	    $('#QPlayer .cover').attr('title', 'ClickCloseShuffle');
 	} else {
 		isShuffle = false;
-	    $('#QPlayer .cover').attr('title', '点击开启随机播放');
+	    $('#QPlayer .cover').attr('title', 'Click to enable shuffle');
 	}
 
-	//判断是否显示滚动条
+	//Determine whether to display scroll bar
 	var totalHeight = 0;
 	for (var i = 0; i < playlist.length; i++){
 		totalHeight += ($('#playlist li').eq(i).height() + 6);
@@ -73,7 +73,7 @@
 	    }
 		$('.playback').addClass('playing');
 		timeout = setInterval(updateProgress, 500);
-		//超过显示栏运行跑马灯
+		//Run marquee if exceeds display bar
 		if(isExceedTag()) {
 			if (isInitMarquee) {
 				initMarquee();
@@ -121,17 +121,17 @@
 		loadMusic(track,1);
 	}
 
-	// 随机播放
+	// Shuffle
 	var shufflePlay = function(i){
 		if (i === 1) {
-		//下一首
+		//Next
 		    if (++shuffleIndex === shuffleArray.length) {
 		    	shuffleIndex = 0;
 		    }
 		    currentTrack = shuffleArray[shuffleIndex];
 
 		} else if (i === 0) {
-		//上一首
+		//Previous
 		    if (--shuffleIndex < 0) {
 		    	shuffleIndex = shuffleArray.length - 1;
 		    }
@@ -166,7 +166,7 @@
 		var item = playlist[i];
 		var music_addr="";
 		while (item.mp3 == "") {
-	        showNotification('歌曲地址为空，已自动跳过');
+	        showNotification('Song address is empty, Automatically skipped');
 			if (isShuffle) {
 				if (++shuffleIndex === shuffleArray.length) {
 			    	shuffleIndex = 0;
@@ -177,7 +177,7 @@
 			}
 			item = playlist[i];
 		}
-		/*发出ajax请求获取音乐地址*/
+		/*SendajaxRequest music address*/
         myajax=$.ajax({
             url:"//api.xiaoyou66.com/theme/music/?src="+item.mp3,
             type:'get',
@@ -187,7 +187,7 @@
                 music_addr=res;
             }
         });
-        /*等待ajax请求完毕*/
+        /*WaitingajaxRequest complete*/
         // $.when(myajax).done(function () {
 		var newaudio = $('<audio>').html('<source src="'+music_addr+'"><source src="'+item.ogg+'">').appendTo('#player');
 		$('.cover').html('<img src="'+item.cover+'" alt="'+item.album+'">');
@@ -205,7 +205,7 @@
 
 	}
 
-	//判断是否自动播放
+	//Determine if auto play
     if (autoplay == true)
 		loadMusic(currentTrack,1);
 	else
@@ -235,7 +235,7 @@
 		}
 	});
 
-	//标签列表点击事件
+	//Tag list click event
 	$('#playlist li').each(function(i){
 		$(this).on('click', function(){
 			if (isShuffle) {
@@ -253,7 +253,7 @@
 		});
 	});
 
-	//添加音量
+	//Add volume
     $('.upvolume').on('click', function(){
         volume=audio.volume;
         if(volume<1)
@@ -286,7 +286,7 @@
 		var mA = $("#QPlayer");
 		if ($('.ssBtn .adf').hasClass('on') === false) {
 			 if (isFirstPlay) {
-			     setTimeout("showTips('#player .cover','点击封面开启(关闭)随机播放', " + function(){setTimeout("showTips('#player .ctrl .musicTag','点击拖动标题栏快进(快退)')", 1000)} + ");", 500);
+			     setTimeout("showTips('#player .cover','Click cover to enable(Close)Shuffle', " + function(){setTimeout("showTips('#player .ctrl .musicTag','Click and drag title bar to fast forward(Rewind)')", 1000)} + ");", 500);
 			     isFirstPlay = !isFirstPlay;
                  if(localStorage.qplayer==undefined) localStorage.qplayer = 'false';
 			 }
@@ -301,8 +301,8 @@
 	$("#player .cover").on('click',function(){
 		isShuffle = !isShuffle;
 		if (isShuffle) {
-	        $("#player .cover").attr("title","点击关闭随机播放");
-	        showNotification('已开启随机播放');
+	        $("#player .cover").attr("title","ClickCloseShuffle");
+	        showNotification('Shuffle on');
 
 			var temp = [];
 			for (var i = 0; i < playlist.length; i++) {
@@ -317,8 +317,8 @@
 			}
 			localStorage.qplayer_shuffle_array = JSON.stringify(shuffleArray);
 		} else {
-	        $("#player .cover").attr("title","点击开启随机播放");
-	        showNotification('已关闭随机播放');
+	        $("#player .cover").attr("title","Click to enable shuffle");
+	        showNotification('Already CloseShuffle');
 	        localStorage.removeItem('qplayer_shuffle_array');
 		}
 		localStorage.qplayer = isShuffle;
@@ -329,7 +329,7 @@
     $('#player .ctrl .musicTag').mousedown(function(event){
     	startX = event.screenX;
     }).mousemove(function(event){
-    	//鼠标左键
+	//Left mouse button
     	if (event.which === 1) {
 	    	endX = event.screenX;
 	    	var seekRange = Math.round((endX - startX) / 678 * 100);
@@ -365,7 +365,7 @@ function initMarquee(){
 	});
 }
 
-//检测标题和作者信息总宽度是否超出播放器，超过则返回true开启跑马灯
+//Detect if total width of title and author info exceeds player, Return if exceededtrueEnable marquee
 function isExceedTag() {
 	var isExceedTag = false;
 	if ($('.musicTag strong').width() + $('.musicTag span').width() + $('.musicTag .artist').width() > $('.musicTag').width()) {
@@ -378,11 +378,11 @@ function isExceedTag() {
 function shuffle(array) {
     var m = array.length,
         t, i;
-    // 如果还剩有元素…
+    // If elements remain…
     while (m) {
-        // 随机选取一个元素…
+        // Randomly select an element…
         i = Math.floor(Math.random() * m--);
-        // 与当前元素进行交换
+        // Swap with current element
         t = array[m];
         array[m] = array[i];
         array[i] = t;
@@ -392,7 +392,7 @@ function shuffle(array) {
 
 function showNotification(info) {
 	isShowNotification = true;
-	//判断通知是否存在，存在就移除
+	//Check if notification exists, Remove if exists
     if ($('.qplayer-notification').length>0) {
     	$('.qplayer-notification').remove();
     	clearTimeout(autoClearTimer);
@@ -400,7 +400,7 @@ function showNotification(info) {
     }
 	$('body').append('<div class="qplayer-notification animation-target"><span class="qplayer-notification-icon">i</span><span class="body" style="box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 5px;"><span class="message"></span></span><a class="close" href="#" onclick="closeNotification();return false;">×</a><div style="clear: both"></div>');
 	$('.qplayer-notification .message').text(info);
-	//用width:auto来自动获取通知栏宽度
+	//Usewidth:autoTo automatically get notification bar width
 	var width = $('.qplayer-notification').css({"opacity":"0", "width":"auto"}).width() + 20;
 	$('.qplayer-notification').css({"width":"50px","opacity":"1"});
 
@@ -432,13 +432,13 @@ function closeNotification() {
 }
 
 /*
-*div: 要在其上面显示tip的div
-*info: tip内容
-*func: 不再提示按钮的click绑定函数
+*div: To be displayed above ittipdiv
+*info: tipContent
+*func: No more prompt for buttonclickBind function
 */
 function showTips(div, info, func) {
 	var box_height = 100;
-	$('body').append('<div class="qplayer_tips"><span class="tips_arrow"></span><span class="info" style="display:none">' + info + '</span><button class="tips_button" onclick="removeTips()">不再提示</button></div>');
+	$('body').append('<div class="qplayer_tips"><span class="tips_arrow"></span><span class="info" style="display:none">' + info + '</span><button class="tips_button" onclick="removeTips()">Do not prompt again</button></div>');
 	$('.qplayer_tips').css({"top":$(div).offset().top-box_height-30-15, "left": $(div).offset().left-28});
 	$('.qplayer_tips').css({"height":box_height,"transition":"all .5s ease-in-out"});
 	$('.qplayer_tips .info').delay(500).fadeIn();

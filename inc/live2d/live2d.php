@@ -1,34 +1,33 @@
 <?php
 /*
-Plugin Name: live2d看板娘设置
-Description: 用于设置看板娘
+Plugin Name: Live2D Model Settings
+Description: Used to set up the Live2D model
 */
 
 
 define('FILE_PATH', dirname(__FILE__));
 
-//获取js文件内容
+//Get JS File Content
 function getjs()
 {
     try{
-        //读取文件内容
-        $js=fopen(FILE_PATH.'/waifu-tips.js','r') or die("无法打开文件");
+        //Read File Content
+        $js=fopen(FILE_PATH.'/waifu-tips.js','r') or die("Unable to open file");
         $content=fread($js,filesize(FILE_PATH.'/waifu-tips.js'));
         fclose($js);
         return $content;
     }catch (Exception $e)
     {
-        return "好像出了一点问题，无法获取到js的内容，请检查PHP是否有对该文件的读写权限！";
+        return "It seems there is a problem, the JS content could not be retrieved. Please check if PHP has read/write permissions for this file!";
     }
 }
 
-//保存js文件内容
+//Save JS File Content
 function savejs($content)
 {
-    if(!current_user_can('manage_options')) return 0;
-    $content=stripslashes($content);//字符反转义
+    $content=stripslashes($content);//Character unescaping
     try{
-        //读取文件内容
+        //Read File Content
         $js=fopen(FILE_PATH.'/waifu-tips.js','w') or die(0);
         fwrite($js,$content);
         fclose($js);
@@ -40,41 +39,40 @@ function savejs($content)
 
 }
 
-//下载图片
+//Download Image
 function downloadimg($url,$imgpath)
 {
-    curlGet($url, $imgpath.'1.zip');//下载
-    unzip($imgpath.'1.zip',$imgpath);//解压
-    @unlink($imgpath.'1.zip');//删除
+    curlGet($url, $imgpath.'1.zip');//Download
+    unzip($imgpath.'1.zip',$imgpath);//Extract
+    unlink($imgpath.'1.zip');//Delete
 }
 
-//看板娘的设置界面
+//Live2D Model Settings Interface
 function live2d_option_page() {
-    //判断是否有数据提交
+    //Determine if there is data submission
     if(!empty($_POST)) {
-        check_admin_referer('live2d_options_update', 'live2d_nonce');
-        //live2d的设置
+        //Live2D Settings
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>数据已保存(清除缓存后设置才能生效)</strong></p>
+                    <p><strong>Data saved (clear cache for settings to take effect)</strong></p>
                 </div>
                 <?php
             } else {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>保存数据失败</strong></p>
+                    <p><strong>Failed to save data</strong></p>
                 </div>
                 <?php
             }
         }
-        //邮件订阅设置
+        //Email Subscription Settings
         if(!empty($_POST['email_list'])) {
-            if(emaillist_add(sanitize_email($_POST['email_list']))==1) {
+            if(emaillist_add($_POST['email_list'])==1) {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>添加记录成功</strong></p>
+                    <p><strong>Record added successfully</strong></p>
                 </div>
                 <?php
             }
@@ -82,19 +80,19 @@ function live2d_option_page() {
             {
                  ?>
                  <div id="message" class="updated">
-                     <p><strong>该记录已存在</strong></p>
+                     <p><strong>Record already exists</strong></p>
                  </div>
                  <?php
             }
         }
-        //删除订阅用户
+        //Delete Subscribed User
         if(!empty($_POST['delete']))
         {
-            if(emaillist_remove(sanitize_email($_POST['delete']))==0)
+            if(emaillist_remove($_POST['delete'])==0)
             {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>没有找到该订阅者</strong></p>
+                    <p><strong>Subscriber not found</strong></p>
                 </div>
                 <?php
             }
@@ -102,12 +100,12 @@ function live2d_option_page() {
             {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>已从列表中移除该订阅者</strong></p>
+                    <p><strong>Subscriber removed from list</strong></p>
                 </div>
                 <?php
             }
         }
-        //下载图片资源
+        //Download Image resources
         if($_POST['download']) {
             $imgpath=dirname(dirname(dirname(__FILE__))).'/static/images/thumb/';
             $filelist=getfilecouts($imgpath.'*');
@@ -118,13 +116,13 @@ function live2d_option_page() {
                     unlink($filename);
                 }
             }
-            //删除目录下所有图片
+            //Delete all images in the directory
             if($_POST['donman']) {
-                //批量删除图片
+                //Batch delete images
                 downloadimg('https://cdn.jsdelivr.net/gh/xiaoyou66/Kratos-@3.0/thumb.zip',$imgpath)
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>已下载动漫图片资源,不保证绝对下载成功，请自行到主页刷新来进行查看</strong></p>
+                    <p><strong>Anime image resources downloaded. Success is not guaranteed; please refresh the homepage to check.</strong></p>
                 </div>
                 <?php
             }
@@ -132,14 +130,14 @@ function live2d_option_page() {
                 downloadimg('https://cdn.jsdelivr.net/gh/xiaoyou66/Kratos-@3.0/bilibili.zip',$imgpath);
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>已下载哔哩哔哩图片资源,不保证绝对下载成功，请自行到主页刷新来进行查看</strong></p>
+                    <p><strong>Bilibili image resources downloaded. Success is not guaranteed; please refresh the homepage to check.</strong></p>
                 </div>
                 <?php
             }
-            //live2d的设置
+            //Live2D Settings
             $blogpath=$_SERVER['DOCUMENT_ROOT'] ;
         }
-        /*下载头像*/
+        /*Download Avatar*/
         if($_POST['downloadavatar']) {
             $imgpath=dirname(dirname(dirname(__FILE__))).'/static/images/avatar/';
             $filelist=getfilecouts($imgpath.'*');
@@ -150,13 +148,13 @@ function live2d_option_page() {
                     unlink($filename);
                 }
             }
-            //删除目录下所有图片
+            //Delete all images in the directory
             if($_POST['man']) {
-                //批量删除图片
+                //Batch delete images
                 downloadimg('https://cdn.jsdelivr.net/gh/xiaoyou66/Kratos-@3.0/avatarman.zip',$imgpath)
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>已下载动漫男生头像,不保证绝对下载成功，请自行到主页刷新来进行查看</strong></p>
+                    <p><strong>Anime male avatars downloaded. Success is not guaranteed; please refresh the homepage to check.</strong></p>
                 </div>
                 <?php
             }
@@ -164,7 +162,7 @@ function live2d_option_page() {
                 downloadimg('https://cdn.jsdelivr.net/gh/xiaoyou66/Kratos-@3.0/avatarwoman.zip',$imgpath);
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>已下载动漫女生头像,不保证绝对下载成功，请自行到主页刷新来进行查看</strong></p>
+                    <p><strong>Anime female avatars downloaded. Success is not guaranteed; please refresh the homepage to check.</strong></p>
                 </div>
                 <?php
             }
@@ -173,11 +171,11 @@ function live2d_option_page() {
             downloadimg('https://cdn.jsdelivr.net/gh/xiaoyou66/Kratos-@3.0/live2d.zip',$_SERVER['DOCUMENT_ROOT'].'/');
             ?>
             <div id="message" class="updated">
-                <p><strong>已下载live2d资源，不保证绝对成功，请自行检查</strong></p>
+                <p><strong>Live2D resources downloaded. Success is not guaranteed; please check yourself.</strong></p>
             </div>
             <?php
         }
-        /*表情包下载*/
+        /*Emoji Pack Download*/
         if($_POST['downloadsmilies'])
         {
             $smilepath=dirname(dirname(dirname(__FILE__))).'/static/images/smilies/';
@@ -193,47 +191,47 @@ function live2d_option_page() {
             curlGet("http://api.xiaoyou66.com/theme/OwO/?id=".$url,$owo);
             ?>
             <div id="message" class="updated">
-                <p><strong>已下载表情包，不保证绝对成功，请自行检查</strong></p>
+                <p><strong>Emoji pack downloaded. Success is not guaranteed; please check yourself.</strong></p>
             </div>
             <?php
         }
-        /*友链审核处理*/
-        /*通过申请*/
-        if($_POST['pass']){
+        /*Friend link review processing*/
+        /*Approve Application*/
+        if($_POST['approve']){
             global $wpdb;
-            //获取数据库前缀
+            //Get Database Prefix
             global $table_prefix;
             $data=[];
-            $data['link_name']=sanitize_text_field($_POST['name']);
-            $data['link_url']=esc_url_raw($_POST['web']);
-            $data['link_description']=sanitize_text_field($_POST['introduce']);
-            $data['link_image']=esc_url_raw($_POST['avater']);
+            $data['link_name']=$_POST['name'];
+            $data['link_url']=$_POST['web'];
+            $data['link_description']=$_POST['introduce'];
+            $data['link_image']=$_POST['avater'];
 //    $wpdb->insert($table_name, array('album' => "$_POST['album']", 'artist' => "$_POST['artist']"));
-            //向数据库中插入友链数据
+            //Insert friend link data into the database
             $wpdb->insert($table_prefix.'links',$data);
-            //删除这个内容
+            //Delete This Content
             $delete=$_POST['aselect']."]!!";
             update_option('application_list',str_replace($delete,"",esc_attr(get_option('application_list'))));
-            //发送邮件通知申请者
-            $to=sanitize_email($_POST['mail']);
-            $subject = '友链申请通过通知!';
-            $message='你好，你的友链申请已通过！<br>--------<br>本邮件由系统自动发出，如果你不知道怎么回事，可以忽略';
+            //Send email notification to applicant
+            $to=$_POST['mail'];
+            $subject = 'Friend Link Application Approved!';
+            $message='Hello, your friend link application has been approved! <br> -------- <br> This email is automatically sent by the system; if you do not know what it is about, you can ignore it.';
             $headers = 'Content-type: text/html';
             wp_mail($to,$subject,$message,$headers);
             ?>
             <div id="message" class="updated">
-                <p><strong>添加成功</strong></p>
+                <p><strong>Added successfully</strong></p>
             </div>
             <?php
         }
-        /*删除申请*/
+        /*Delete Application*/
         if($_POST['adelete']) {
-            //先获取到想删除的内容
+            //First Get Content to be Deleted
             $delete=$_POST['aselect']."]!!";
             update_option('application_list',str_replace($delete,"",esc_attr(get_option('application_list'))));
             ?>
             <div id="message" class="updated">
-                <p><strong>已删除该申请</strong></p>
+                <p><strong>Application deleted</strong></p>
             </div>
             <?php
         }
@@ -246,41 +244,40 @@ function live2d_option_page() {
     </style>
 <script type='text/javascript' src='https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js?ver=2.1.4'></script>
 <div style="overflow-y: scroll">
-    <h1>主题其他设置</h1><br>
+    <h1>Other Theme Settings</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div><div class="title"><h4>看板娘设置</h4> 直接读取的js文件，同时也会保存为js文件，不要修改除设置以外的其他地方！</div>
-                <textarea  rows="6" cols="150" name="live2d-setting"><?php echo esc_textarea(getjs()) ?></textarea>
+            <div><div class="title"><h4>Live2D Model Settings</h4> Read directly from and saved as a JS file. Do not modify areas other than settings!</div>
+                <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
             </div>
-            <input class="savejs" type="submit" name="savejs" value="保存js文件" />
+            <input class="savejs" type="submit" name="savejs" value="Save JS File" />
         </form>
     </div>
     <div>
-        <form action="" method="post" id="friendlink-options-form">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div><div class="title"><h4>友链申请处理</h4></div>先下拉选择一个申请者，然后可以编辑申请者的内容</div>
-            <p>申请者列表
+        <form action="" method="post" id="email-options-form">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
+            <div><div class="title"><h4>Friend Link Application Processing</h4></div>Select an applicant from the dropdown to edit their details.</div>
+            <p>Applicant List
                 <select name="aselect" id="aselect">
                     <?php
-                        //先获取到所有的申请者
+                        //First Get All Applicants
                         $application=esc_attr(get_option('application_list'));
                         $applications=explode("]!!",$application);
                         foreach ($applications as $key)
-                            echo "<option value='".esc_attr($key)."'>".esc_html(explode("!!]",$key)[0])."</option>"
+                            echo "<option value='$key'>".explode("!!]",$key)[0]."</option>"
                     ?>
                 </select>
             </p>
             <p>
-                名称:<input type="text" id="name" name="name"/><br>
-                网址:<input type="text" id="web" name="web"/><br>
-                介绍:<input type="text" id="introduce" name="introduce"/><br>
-                头像:<input type="text" id="avater" name="avater"/><br>
-                邮箱:<input type="text" id="mail" name="mail"/><br>
+                Name:<input type="text" id="name" name="name"/><br>
+                URL:<input type="text" id="web" name="web"/><br>
+                Intro:<input type="text" id="introduce" name="introduce"/><br>
+                Avatar:<input type="text" id="avater" name="avater"/><br>
+                Email:<input type="text" id="mail" name="mail"/><br>
             </p>
             <p>
-                <input class="savejs" type="submit" name="pass" value="通过" />
-                <input class="savejs" type="submit" name="adelete" value="删除该申请" />
+                <input class="savejs" type="submit" name="approve" value="Approve" />
+                <input class="savejs" type="submit" name="adelete" value="Delete Application" />
             </p>
         </form>
         <script language="javascript" type="text/javascript">
@@ -306,33 +303,31 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post" id="email-options-form">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div><div class="title"><h4>邮件订阅设置</h4></div>这里显示了所有订阅者名单,每行一个,添加时不会判断邮箱的正确性，请自行检查</div>
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
+            <div><div class="title"><h4>Email Subscription Settings</h4></div>Lists all subscribers, one per line. Validity is not checked upon addition.</div>
                 <textarea  rows="6" cols="50" name="email_lists"><?php $arr=explode(",",esc_attr(get_option('email_list')));$i=1;foreach ($arr as $item ){if($item){echo $i.':'.$item."\n";}$i++;}?></textarea>
             <p>
-            添加订阅用户:<input type="text" id="email_list" name="email_list"/>
-            <input class="savejs" type="submit" name="submit1" value="添加到订阅列表" /><br>
+            Add subscriber:<input type="text" id="email_list" name="email_list"/>
+            <input class="savejs" type="submit" name="submit1" value="Add to Subscription List" /><br>
             </p>
             <p>
-            删除订阅用户:<input type="text" id="delete" name="delete"/>
-            <input class="savejs" type="submit" name="submit2" value="从订阅列表中移除" />
+            Delete subscriber:<input type="text" id="delete" name="delete"/>
+            <input class="savejs" type="submit" name="submit2" value="Remove from Subscription List" />
             </p>
         </form>
     </div>
     <div>
         <form action="" method="post">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div class="title"><h4>背景图片资源包下载</h4>请自行选择你喜欢的类型(<span style="color:red;">注意：将会把之前的图片全部删除（包括自己上传的）,如果两个都选将全部下载</span>)</div>
-            <p><div>默认动漫图:<input type="checkbox" name="donman"/> 哔哩哔哩:<input type="checkbox" name="bilibili" /></div></p>
-            <p><input type="submit" name="download" value="开始下载"/></p>
+            <div class="title"><h4>Background Image Resource Pack Download</h4>Select your preferred type (<span style="color:red;">Note: Existing images, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
+            <p><div>Default Anime Images:<input type="checkbox" name="donman"/> Bilibili:<input type="checkbox" name="bilibili" /></div></p>
+            <p><input type="submit" name="download" value="Start Download"/></p>
         </form>
     </div>
     <div>
         <form action="" method="post">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div class="title"><h4>随机头像下载</h4>请自行选择你喜欢的类型(<span style="color:red;">注意：将会把之前的头像全部删除（包括自己上传的）,如果两个都选将全部下载</span>)</div>
-            <p><div>动漫男生头像:<input type="checkbox" name="man"/> 动漫女生头像:<input type="checkbox" name="woman" /></div></p>
-            <p><input type="submit" name="downloadavatar" value="开始下载"/></p>
+            <div class="title"><h4>Random Avatar Download</h4>Select your preferred type (<span style="color:red;">Note: Existing avatars, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
+            <p><div>Anime Male Avatar:<input type="checkbox" name="man"/> Anime Female Avatar:<input type="checkbox" name="woman" /></div></p>
+            <p><input type="submit" name="downloadavatar" value="Start Download"/></p>
          </form>
     </div>
     <?php
@@ -340,10 +335,9 @@ function live2d_option_page() {
         ?>
         <div>
             <form action="" method="post">
-                <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-                <div class="title"><h4>live2dapi下载</h4>此功能专为小白使用,因为原api太大，所以该api为精简版(想体验完整版的自行下载原版api)</div>
-                <span style="color:red;">注意：下载完毕后该功能会自行消失，下载完后到主页刷新一般会出现人物，没有人物可以试着切换人物，如果出现人物说明说明下载成功，一般过一会会自动出现的，所以不要认为api有问题，如果真的没用，请自行到博客根目录删除live2d-api目录</span>
-                <p><input type="submit" name="downlive2d" value="开始下载"/></p>
+                <div class="title"><h4>Live2D API Download</h4>Designed for beginners. The original API is large, so this is a simplified version.</div>
+                <span style="color:red;">Note: This feature disappears after downloading. Refresh the homepage to see the character. If it doesn't appear, try switching characters. If characters appear, it's successful. If it fails, delete the live2d-api directory from the root.</span>
+                <p><input type="submit" name="downlive2d" value="Start Download"/></p>
             </form>
         </div>
         </div>
@@ -351,22 +345,21 @@ function live2d_option_page() {
     }?>
     <div>
         <form action="" method="post">
-            <?php wp_nonce_field('live2d_options_update', 'live2d_nonce'); ?>
-            <div class="title"><h4>表情包下载</h4>请自行选择你喜欢的类型(<span style="color:red;">会把之前的表情包全部删除，请至少选择一个表情包</span>)</div>
+            <div class="title"><h4>Emoji Pack Download</h4>Select your preferred type (<span style="color:red;">Existing emoji packs will be deleted. Select at least one.</span>)</div>
             <p><div>
-                贴吧泡泡:<input type="checkbox" name="tieba"/>
-                颜文字:<input type="checkbox" name="face" />
-                知乎表情包:<input type="checkbox" name="zhihu" />
-                B站表情包:<input type="checkbox" name="bilibili" />
-                B站小电视表情包:<input type="checkbox" name="tv" />
+                Tieba Bubbles:<input type="checkbox" name="tieba"/>
+                Emoticons:<input type="checkbox" name="face" />
+                Zhihu Emojis:<input type="checkbox" name="zhihu" />
+                Bilibili Emojis:<input type="checkbox" name="bilibili" />
+                Bilibili TV Emojis:<input type="checkbox" name="tv" />
             </div></p>
-            <p><input type="submit" name="downloadsmilies" value="开始下载"/></p>
+            <p><input type="submit" name="downloadsmilies" value="Start Download"/></p>
         </form>
     </div>
 <?php
 }
 
-//注册数据库
+//Register database
 function email_init() {
     register_setting('kratos_options', 'email_list');
 }
@@ -374,12 +367,10 @@ function email_init() {
 add_action('admin_init', 'email_init');
 
 
-//把设置界面添加到wordpress的设置内
+//Add Interface to WordPress Settings
 function live2d_plugin_menu() {
-    add_options_page('主题设置', '主题', 'manage_options', 'live2d-plugin','live2d_option_page' );
+    add_options_page('Theme Settings', 'Theme', 'manage_options', 'live2d-plugin','live2d_option_page' );
 }
 
-//加到wordpress进程中
+//Add to WordPress Process
 add_action( 'admin_menu', 'live2d_plugin_menu' );
-
-

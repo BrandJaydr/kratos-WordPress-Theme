@@ -33,7 +33,7 @@ add_shortcode('music','wymusic');
 function ypbtn($atts,$content=null,$code=""){
     $return = '<a class="downbtn downcloud" href="';
     $return .= $content;
-    $return .= '" target="_blank"><i class="fa fa-cloud-download"></i>云盘下载</a>';
+    $return .= '" target="_blank"><i class="fa fa-cloud-download"></i>Cloud Download</a>';
     return $return;
 }
 add_shortcode('ypbtn','ypbtn');
@@ -54,7 +54,7 @@ function striped($atts,$content=null,$code=""){
 }
 add_shortcode('striped','striped');
 function xcollapse($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("title"=>'标题内容'),$atts));
+    extract(shortcode_atts(array("title"=>'Title Content'),$atts));
     $return = '<div class="xControl"><div class="xHeading"><div class="xIcon"><i class="fa fa-plus"></i></div><h5>';
     $return .= $title;
     $return .= '</h5></div><div class="xContent"><div class="inner">';
@@ -76,21 +76,21 @@ function hide($atts,$content=null,$code=""){
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_post_id='".$id."'and comment_approved = '1'");
         }
-        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>并在本文发表评论才能阅读隐藏内容',wp_login_url(get_permalink())).'</div>';
+        if(!$comments) $content = '<div class="hide_notice">'.sprintf('Sorry, you must <a href="%s" rel="nofollow">Login</a> and comment on this post to read the hidden content',wp_login_url(get_permalink())).'</div>';
     }else{
         if($email){
             global $wpdb;
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_approved = '1'");
         }
-        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>并在本站任一文章发表评论才能阅读隐藏内容',wp_login_url(get_permalink())).'</div>';
+        if(!$comments) $content = '<div class="hide_notice">'.sprintf('Sorry, you must <a href="%s" rel="nofollow">Login</a> and comment on any post on this site to read the hidden content',wp_login_url(get_permalink())).'</div>';
     }
-    if($comments) $content = '<div class="unhide"><div class="info">以下为隐藏内容：</div>'.$content.'</div>';
+    if($comments) $content = '<div class="unhide"><div class="info">The following is hidden content:</div>'.$content.'</div>';
     return $content;
 }
 add_shortcode('hide','hide');
 function successbox($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("title"=>'标题内容'),$atts));
+    extract(shortcode_atts(array("title"=>'Title Content'),$atts));
     $return = '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
@@ -100,7 +100,7 @@ function successbox($atts,$content=null,$code=""){
 }
 add_shortcode('successbox','successbox');
 function infobox($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("title"=>'标题内容'),$atts));
+    extract(shortcode_atts(array("title"=>'Title Content'),$atts));
     $return = '<div class="panel panel-info"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
@@ -111,14 +111,14 @@ function infobox($atts,$content=null,$code=""){
 add_shortcode('infobox','infobox');
 
 function highlight($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("lanaguage"=>'语言'),$atts));
+    extract(shortcode_atts(array("lanaguage"=>'language'),$atts));
     $return = '<pre class="line-numbers"><code class="language-';
     $return .= $lanaguage;
     $return .= '">';
-    //处理预格式化的内容
+    //Processpre-formattedContent
     $replace=array('<pre>','</pre>','<code>','</code>');
     $content=str_replace($replace,'',$content);
-    //处理<和>无法显示的问题
+    //Process<and>display issues
     $content=str_replace('<','&lt;',$content);
     $content=str_replace('>','&gt;',$content);
     $return .=trim($content);
@@ -130,10 +130,10 @@ add_shortcode('highlight','highlight');
 
 function block($atts,$content=null,$code=""){
     $return = '<pre class="hl"><code class="">';
-    //处理预格式化的内容
+    //Processpre-formattedContent
     $replace=array('<pre>','</pre>','<code>','</code>');
     $content=str_replace($replace,'',$content);
-    //处理<和>无法显示的问题
+    //Process<and>display issues
     $content=str_replace('<','&lt;',$content);
     $content=str_replace('>','&gt;',$content);
     $return .=trim($content);
@@ -145,7 +145,7 @@ add_shortcode('block','block');
 
 
 function dangerbox($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("title"=>'标题内容'),$atts));
+    extract(shortcode_atts(array("title"=>'Title Content'),$atts));
     $return = '<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title">';
     $return .= $title;
     $return .= '</h3></div><div class="panel-body">';
@@ -156,9 +156,9 @@ function dangerbox($atts,$content=null,$code=""){
 add_shortcode('dangerbox','dangerbox');
 
 function wxmusic($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("url"=>'地址'),$atts));
-    extract(shortcode_atts(array("author"=>'作者'),$atts));
-    extract(shortcode_atts(array("title"=>'标题'),$atts));
+    extract(shortcode_atts(array("url"=>'address'),$atts));
+    extract(shortcode_atts(array("author"=>'author'),$atts));
+    extract(shortcode_atts(array("title"=>'title'),$atts));
     $return = '<p class="weixinAudio"><audio src="';
     $return .=$url;
     $return .='" id="media" width="1" height="1" preload=""></audio><span id="audio_area" class="db audio_area"><span class="audio_wrp db"><span class="audio_play_area"><i class="icon_audio_default"></i><i class="icon_audio_playing"></i></span><span id="audio_length" class="audio_length tips_global">3:07</span><span class="db audio_info_area"><strong class="db audio_title">';
@@ -255,7 +255,7 @@ function add_more_buttons($buttons){
 }
 add_filter("mce_buttons_2","add_more_buttons");
 
-//显示表情
+//Display Emojis
 function fa_get_wpsmiliestrans(){
     global $wpsmiliestrans;
     $wpsmilies = array_unique($wpsmiliestrans);
@@ -266,10 +266,10 @@ function fa_get_wpsmiliestrans(){
     }
     return $output;
 }
-//添加表情
+//Add Emoji
 add_action('media_buttons_context','fa_smilies_custom_button');
 function fa_smilies_custom_button($context){
-    $context .= '<style>.smilies-wrap{background:#fff;border: 1px solid #ccc;box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.24);padding: 10px;position: absolute;top: 60px;width: 380px;display:none}.smilies-wrap img{height:24px;width:24px;cursor:pointer;margin-bottom:5px} .is-active.smilies-wrap{display:block}</style><a id="REPLACE-media-button" style="position:relative" class="button REPLACE-smilies add_smilies" title="添加表情" data-editor="content" href="javascript:;">添加表情</a><div class="smilies-wrap">'. fa_get_wpsmiliestrans() .'</div><script>jQuery(document).ready(function(){jQuery(document).on("click", ".REPLACE-smilies",function() { if(jQuery(".smilies-wrap").hasClass("is-active")){jQuery(".smilies-wrap").removeClass("is-active");}else{jQuery(".smilies-wrap").addClass("is-active");}});jQuery(document).on("click", ".add-smily",function() { send_to_editor(" " + jQuery(this).data("smilies") + " ");jQuery(".smilies-wrap").removeClass("is-active");return false;});});</script>';
+    $context .= '<style>.smilies-wrap{background:#fff;border: 1px solid #ccc;box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.24);padding: 10px;position: absolute;top: 60px;width: 380px;display:none}.smilies-wrap img{height:24px;width:24px;cursor:pointer;margin-bottom:5px} .is-active.smilies-wrap{display:block}</style><a id="REPLACE-media-button" style="position:relative" class="button REPLACE-smilies add_smilies" title="Add Emoji" data-editor="content" href="javascript:;">Add Emoji</a><div class="smilies-wrap">'. fa_get_wpsmiliestrans() .'</div><script>jQuery(document).ready(function(){jQuery(document).on("click", ".REPLACE-smilies",function() { if(jQuery(".smilies-wrap").hasClass("is-active")){jQuery(".smilies-wrap").removeClass("is-active");}else{jQuery(".smilies-wrap").addClass("is-active");}});jQuery(document).on("click", ".add-smily",function() { send_to_editor(" " + jQuery(this).data("smilies") + " ");jQuery(".smilies-wrap").removeClass("is-active");return false;});});</script>';
     return $context;
 }
 function appthemes_add_quicktags(){ ?>
@@ -277,20 +277,20 @@ function appthemes_add_quicktags(){ ?>
         try{
             QTags.addButton( 'pre', 'pre', '<pre>\n', '\n</pre>' );
             QTags.addButton( 'hr', 'hr', '\n\n<hr />\n\n', '' );
-            QTags.addButton( '代码高亮 ', '代码高亮 ', '[highlight lanaguage="语言"]', '[/highlight]' );
-            QTags.addButton( '内容标题 ', '内容标题 ', '[title]', '[/title]' );
-            QTags.addButton( '蓝色字体 ', '蓝色字体 ', '<span style="color: #0000ff;">', '</span>' );
-            QTags.addButton( ' 红色字体 ', '红色字体 ', '<span style="color: #ff0000;">', '</span>' );
-            QTags.addButton( '展开/收缩 ', '展开/收缩 ', '[collapse title="标题内容 "]', '[/collapse]' );
-            QTags.addButton( '回复可见 ', '回复可见 ', '[hide reply_to_this="true"]', '[/hide]' );
-            QTags.addButton( '云盘下载 ', '云盘下载 ', '[ypbtn]', '[/ypbtn]' );
-            QTags.addButton( '网易云音乐 ', '网易云音乐 ', '[music autoplay="0"]', '[/music]' );
-            QTags.addButton( '绿色背景栏 ', '绿色背景栏 ', '[success]', '[/success]' );
-            QTags.addButton( '蓝色背景栏 ', '蓝色背景栏 ', '[info]', '[/info]' );
-            QTags.addButton( '红色背景栏 ', '红色背景栏 ', '[danger]', '[/danger]' );
-            QTags.addButton( '绿色面板 ', '绿色面板 ', '[successbox title="标题内容 "]', '[/successbox]' );
-            QTags.addButton( '蓝色面板 ', '蓝色面板 ', '[infobox title="标题内容 "]', '[/infobox]' );
-            QTags.addButton( '红色面板 ', '红色面板 ', '[dangerbox title="标题内容 "]', '[/dangerbox]' );
+            QTags.addButton( 'Code Highlight ', 'Code Highlight ', '[highlight lanaguage="language"]', '[/highlight]' );
+            QTags.addButton( 'Contenttitle ', 'Contenttitle ', '[title]', '[/title]' );
+            QTags.addButton( 'Blue Font ', 'Blue Font ', '<span style="color: #0000ff;">', '</span>' );
+            QTags.addButton( ' Red Font ', 'Red Font ', '<span style="color: #ff0000;">', '</span>' );
+            QTags.addButton( 'Expand/Collapse ', 'Expand/Collapse ', '[collapse title="Title Content "]', '[/collapse]' );
+            QTags.addButton( 'Reply to View ', 'Reply to View ', '[hide reply_to_this="true"]', '[/hide]' );
+            QTags.addButton( 'Cloud Download ', 'Cloud Download ', '[ypbtn]', '[/ypbtn]' );
+            QTags.addButton( 'Netease Cloud Music ', 'Netease Cloud Music ', '[music autoplay="0"]', '[/music]' );
+            QTags.addButton( 'Green Background Bar ', 'Green Background Bar ', '[success]', '[/success]' );
+            QTags.addButton( 'Blue Background Bar ', 'Blue Background Bar ', '[info]', '[/info]' );
+            QTags.addButton( 'Red Background Bar ', 'Red Background Bar ', '[danger]', '[/danger]' );
+            QTags.addButton( 'Green Panel ', 'Green Panel ', '[successbox title="Title Content "]', '[/successbox]' );
+            QTags.addButton( 'Blue Panel ', 'Blue Panel ', '[infobox title="Title Content "]', '[/infobox]' );
+            QTags.addButton( 'Red Panel ', 'Red Panel ', '[dangerbox title="Title Content "]', '[/dangerbox]' );
         }catch(err){}
     </script>
     <?php

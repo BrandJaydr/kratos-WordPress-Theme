@@ -30,7 +30,7 @@ $(function(){
 var ajaxignore = ajaxignore_string.split(', ');
 function ajaxcheck_do(url){
     console.log(url);
-    if(url.indexOf("id=")!=-1){console.log("直接跳转");return true}
+    if(url.indexOf("id=")!=-1){console.log("Direct jump");return true}
     if(!url) return false;
     if(url.indexOf("style=")!=-1){return false}
     for(var i in ajaxignore){
@@ -38,7 +38,7 @@ function ajaxcheck_do(url){
             return false
         }
     }
-    //通过正则来获取参数(解决B博下无法刷新的问题)
+    // Get parameters via regex (solves refresh issues on Bilibili dynamic pages)
     return true
 }
 function ajax(reqUrl,msg,getData){

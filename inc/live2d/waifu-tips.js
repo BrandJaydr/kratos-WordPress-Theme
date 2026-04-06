@@ -2,16 +2,16 @@ window.live2d_settings = Array(); /*
 
     く__,.ヘヽ.　　　　/　,ー､ 〉
     　　　　　＼ ', !-─‐-i　/　/´
-    　　　 　 ／｀ｰ'　　　 L/／｀ヽ､            Live2D 看板娘 参数设置
+    　　　 　 ／｀ｰ'　　　 L/／｀ヽ､            Live2D model Parameter settings
     　　 　 /　 ／,　 /|　 ,　 ,　　　 ',                                           Version 1.4.2
     　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i                            Update 2018.11.12
     　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
     　　　　 !,/7 '0'　　 ´0iソ| 　 |　　　
-    　　　　 |.从"　　_　　 ,,,, / |./ 　 |             网页添加 Live2D 看板娘
+    　　　　 |.From"　　_　　 ,,,, / |./ 　 |             Web page added Live2D model
     　　　　 ﾚ'| i＞.､,,__　_,.イ / 　.i 　|                    https://www.fghrsh.net/post/123.html
     　　　　　 ﾚ'| | / k_７_/ﾚ'ヽ,　ﾊ.　|
     　　　　　　 | |/i 〈|/　 i　,.ﾍ |　i　|    Thanks
-    　　　　　　.|/ /　ｉ： 　 ﾍ!　　＼　|          journey-ad / https://github.com/journey-ad/live2d_src
+    　　　　　　.|/ /　ｉ:  　 ﾍ!　　＼　|          journey-ad / https://github.com/journey-ad/live2d_src
     　　　 　 　 kヽ>､ﾊ 　 _,.ﾍ､ 　 /､!            xiazeyu / https://github.com/xiazeyu/live2d-widget.js
     　　　　　　 !'〈//｀Ｔ´', ＼ ｀'7'ｰr'          Live2d Cubism SDK WebGL 2.1 Projrct & All model authors.
     　　　　　　 ﾚ'ヽL__|___i,___,ンﾚ|ノ
@@ -19,56 +19,56 @@ window.live2d_settings = Array(); /*
     　　　　　 　　　'ｰ'　　!_,.:*********************************************************************************/
 
 
-// 后端接口
-live2d_settings['modelAPI']             = '//'+window.location.host+'/live2d-api/';   // 自建 API 修改这里(注意:前面要加上自己的域名（前提是你把api文件放在网站根目录）)
-live2d_settings['tipsMessage']          = 'waifu-tips.json';            // 同目录下可省略路径
-live2d_settings['hitokotoAPI']          = 'jinrishici.com';                  // 一言 API，可选 'lwl12.com', 'hitokoto.cn', 'jinrishici.com'(古诗词)
+// Backend interface
+live2d_settings['modelAPI']             = '//'+window.location.host+'/live2d-api/';   // Self-built API Modify here(Note:Domain must be added in front(Assuming you putAPI file placed in website root directory))
+live2d_settings['tipsMessage']          = 'waifu-tips.json';            // Path can be omitted in the same directory
+live2d_settings['hitokotoAPI']          = 'jinrishici.com';                  // Hitokoto API, Optional 'lwl12.com', 'hitokoto.cn', 'jinrishici.com'(Classical poetry)
 
-// 默认模型
-live2d_settings['modelId']              =11;            // 默认模型 ID，可在 F12 控制台找到
-live2d_settings['modelTexturesId']      = 0;           // 默认材质 ID，可在 F12 控制台找到
+// Default Model
+live2d_settings['modelId']              =11;            // Default Model ID, Available in F12 Found in console
+live2d_settings['modelTexturesId']      = 0;           // Default texture ID, Available in F12 Found in console
 
-// 工具栏设置
-live2d_settings['showToolMenu']         = true;         // 显示 工具栏          ，可选 true(真), false(假)
-live2d_settings['canCloseLive2d']       = true;         // 显示 关闭看板娘  按钮，可选 true(真), false(假)
-live2d_settings['canSwitchModel']       = true;         // 显示 模型切换    按钮，可选 true(真), false(假)
-live2d_settings['canSwitchTextures']    = true;         // 显示 材质切换    按钮，可选 true(真), false(假)
-live2d_settings['canSwitchHitokoto']    = true;         // 显示 一言切换    按钮，可选 true(真), false(假)
-live2d_settings['canTakeScreenshot']    = true;         // 显示 看板娘截图  按钮，可选 true(真), false(假)
-live2d_settings['canTurnToHomePage']    = false;         // 显示 返回首页    按钮，可选 true(真), false(假)
-live2d_settings['canTurnToAboutPage']   = true;         // 显示 跳转关于页  按钮，可选 true(真), false(假)
-live2d_settings['canEyesCare']          = true;         // 显示 夜间模式    按钮，可选 true(真), false(假)
+// Toolbar settings
+live2d_settings['showToolMenu']         = true;         // Show Toolbar          , Optional true (True), false (False)
+live2d_settings['canCloseLive2d']       = true;         // Show CloseLive2D model  Button, Optional true (True), false (False)
+live2d_settings['canSwitchModel']       = true;         // Show Model switch    Button, Optional true (True), false (False)
+live2d_settings['canSwitchTextures']    = true;         // Show Texture switch    Button, Optional true (True), false (False)
+live2d_settings['canSwitchHitokoto']    = true;         // Show Hitokoto switch    Button, Optional true (True), false (False)
+live2d_settings['canTakeScreenshot']    = true;         // Show Live2D modelScreenshot  Button, Optional true (True), false (False)
+live2d_settings['canTurnToHomePage']    = false;         // Show Return to homepage    Button, Optional true (True), false (False)
+live2d_settings['canTurnToAboutPage']   = true;         // Show Jump to about page  Button, Optional true (True), false (False)
+live2d_settings['canEyesCare']          = true;         // Show Night mode    Button, Optional true (True), false (False)
 
-// 模型切换模式
-live2d_settings['modelStorage']         = true;         // 记录 ID (刷新后恢复)，可选 true(真), false(假)
-live2d_settings['modelRandMode']        = 'switch';     // 模型切换，可选 'rand'(随机), 'switch'(顺序)
-live2d_settings['modelTexturesRandMode']= 'rand';       // 材质切换，可选 'rand'(随机), 'switch'(顺序)
+// Model switch mode
+live2d_settings['modelStorage']         = true;         // Record ID (Restore after refresh), Optional true (True), false (False)
+live2d_settings['modelRandMode']        = 'switch';     // Model switch, Optional 'rand'(Random), 'switch'(Order)
+live2d_settings['modelTexturesRandMode']= 'rand';       // Texture switch, Optional 'rand'(Random), 'switch'(Order)
 
-// 提示消息选项
-live2d_settings['showHitokoto']         = true;         // 显示一言
-live2d_settings['showF12Status']        = true;         // 显示加载状态
-live2d_settings['showF12Message']       = false;        // 显示看板娘消息
-live2d_settings['showF12OpenMsg']       = true;         // 显示控制台打开提示
-live2d_settings['showCopyMessage']      = true;         // 显示 复制内容 提示
-live2d_settings['showWelcomeMessage']   = true;         // 显示进入面页欢迎词
+// Tips message options
+live2d_settings['showHitokoto']         = true;         // ShowHitokoto
+live2d_settings['showF12Status']        = true;         // ShowLoading status
+live2d_settings['showF12Message']       = false;        // ShowLive2D modelMessage
+live2d_settings['showF12OpenMsg']       = true;         // ShowConsole openTips
+live2d_settings['showCopyMessage']      = true;         // Show Copy content Tips
+live2d_settings['showWelcomeMessage']   = true;         // Show page entry welcome message
 
-//看板娘样式设置
-live2d_settings['waifuSize']            = '320x350';    // 看板娘大小，例如 '280x250', '600x535'
-live2d_settings['waifuTipsSize']        = '240x80';     // 提示框大小，例如 '250x70', '570x150'
-live2d_settings['waifuFontSize']        = '15px';       // 提示框字体，例如 '12px', '30px'
-live2d_settings['waifuToolFont']        = '20px';       // 工具栏字体，例如 '14px', '36px'
-live2d_settings['waifuToolLine']        = '30px';       // 工具栏行高，例如 '20px', '36px'
-live2d_settings['waifuToolTop']         = '-67px'         // 工具栏顶部边距，例如 '0px', '-60px'
-live2d_settings['waifuMinWidth']        = '768px';      // 面页小于 指定宽度 隐藏看板娘，例如 'disable'(禁用), '768px'
-live2d_settings['waifuDraggable']       = 'unlimited';    // 拖拽f样式，例如 'disable'(禁用), 'axis-x'(只能水平拖拽), 'unlimited'(自由拖拽)
-live2d_settings['waifuDraggableRevert'] = false;         // 松开鼠标还原拖拽位置，可选 true(真), false(假)
+//Live2D Model Style Settings
+live2d_settings['waifuSize']            = '320x350';    // Live2D modelSize, Example '280x250', '600x535'
+live2d_settings['waifuTipsSize']        = '240x80';     // Tips Box Size, Example '250x70', '570x150'
+live2d_settings['waifuFontSize']        = '15px';       // Tips Box font, Example '12px', '30px'
+live2d_settings['waifuToolFont']        = '20px';       // Toolbar font, Example '14px', '36px'
+live2d_settings['waifuToolLine']        = '30px';       // Toolbar line height, Example '20px', '36px'
+live2d_settings['waifuToolTop']         = '-67px'         // Toolbar top margin, Example '0px', '-60px'
+live2d_settings['waifuMinWidth']        = '768px';      // Page less than Specify width Hide Live2D model, Example 'disable'(Disable), '768px'
+live2d_settings['waifuDraggable']       = 'unlimited';    // Drag Style, Example 'disable'(Disable), 'axis-x'(Can only drag horizontally), 'unlimited'(Free Drag)
+live2d_settings['waifuDraggableRevert'] = false;         // Release mouse to restore drag position, Optional true (True), false (False)
 
-// 其他杂项设置
-live2d_settings['l2dVersion']           = '1.4.2';        // 当前版本
-live2d_settings['l2dVerDate']           = '2019.07.18'; // 版本更新日期
-live2d_settings['homePageUrl']          = 'https://www.xiaoyou66.com/';       // 主页地址，可选 'auto'(自动), '{URL 网址}'
-live2d_settings['aboutPageUrl']         = 'https://www.xiaoyou66.com/030500/';   // 关于页地址, '{URL 网址}'
-live2d_settings['screenshotCaptureName']= 'live2d.png'; // 看板娘截图文件名，例如 'live2d.png'
+// Other miscellaneous settings
+live2d_settings['l2dVersion']           = '1.4.2';        // Current version
+live2d_settings['l2dVerDate']           = '2019.07.18'; // Version update date
+live2d_settings['homePageUrl']          = 'https://www.xiaoyou66.com/';       // Homepage address, Optional 'auto'(Auto), '{URL Website}'
+live2d_settings['aboutPageUrl']         = 'https://www.xiaoyou66.com/030500/';   // About page address, '{URL Website}'
+live2d_settings['screenshotCaptureName']= 'live2d.png'; // Live2D modelScreenshot filename, Example 'live2d.png'
 
 /****************************************************************************************************/
 
@@ -122,13 +122,13 @@ function initModel(waifuPath, type) {
     /* console welcome message */
    // console.clear();
     console.log("%c ","background:url(https://img.xiaoyou66.com/images/2019/07/16/UMcH.jpg) no-repeat center;background-size:cover;padding-left:100%;padding-bottom:55%;overflow:hidden;border-radius:10px;margin:5px 0");
-    console.log("\n %c Kratos modified %c by \u5c0f\u6e38 xiaoyou66.com \n","color:#444;background:#eee;padding:5px 0;","color:#fff;background:#876;padding:5px 0;");
-    eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('8.d(" ");8.d("\\U,.\\y\\5.\\1\\1\\1\\1/\\1,\\u\\2 \\H\\n\\1\\1\\1\\1\\1\\b \', !-\\r\\j-i\\1/\\1/\\g\\n\\1\\1\\1 \\1 \\a\\4\\f\'\\1\\1\\1 L/\\a\\4\\5\\2\\n\\1\\1 \\1 /\\1 \\a,\\1 /|\\1 ,\\1 ,\\1\\1\\1 \',\\n\\1\\1\\1\\q \\1/ /-\\j/\\1\\h\\E \\9 \\5!\\1 i\\n\\1\\1\\1 \\3 \\6 7\\q\\4\\c\\1 \\3\'\\s-\\c\\2!\\t|\\1 |\\n\\1\\1\\1\\1 !,/7 \'0\'\\1\\1 \\X\\w| \\1 |\\1\\1\\1\\n\\1\\1\\1\\1 |.\\x\\"\\1\\l\\1\\1 ,,,, / |./ \\1 |\\n\\1\\1\\1\\1 \\3\'| i\\z.\\2,,A\\l,.\\B / \\1.i \\1|\\n\\1\\1\\1\\1\\1 \\3\'| | / C\\D/\\3\'\\5,\\1\\9.\\1|\\n\\1\\1\\1\\1\\1\\1 | |/i \\m|/\\1 i\\1,.\\6 |\\F\\1|\\n\\1\\1\\1\\1\\1\\1.|/ /\\1\\h\\G \\1 \\6!\\1\\1\\b\\1|\\n\\1\\1\\1 \\1 \\1 k\\5>\\2\\9 \\1 o,.\\6\\2 \\1 /\\2!\\n\\1\\1\\1\\1\\1\\1 !\'\\m//\\4\\I\\g\', \\b \\4\'7\'\\J\'\\n\\1\\1\\1\\1\\1\\1 \\3\'\\K|M,p,\\O\\3|\\P\\n\\1\\1\\1\\1\\1 \\1\\1\\1\\c-,/\\1|p./\\n\\1\\1\\1\\1\\1 \\1\\1\\1\'\\f\'\\1\\1!o,.:\\Q \\R\\S\\T v"+e.V+" / W "+e.N);8.d(" ");',60,60,'|u3000|uff64|uff9a|uff40|u30fd|uff8d||console|uff8a|uff0f|uff3c|uff84|log|live2d_settings|uff70|u00b4|uff49||u2010||u3000_|u3008||_|___|uff72|u2500|uff67|u30cf|u30fc||u30bd|u4ece|u30d8|uff1e|__|u30a4|k_|uff17_|u3000L_|u3000i|uff1a|u3009|uff34|uff70r|u30fdL__||___i|l2dVerDate|u30f3|u30ce|nLive2D|u770b|u677f|u5a18|u304f__|l2dVersion|FGHRSH|u00b40i'.split('|'),0,{}));
+    console.log("\n %c Kratos modified %c by Xiao You xiaoyou66.com \n","color:#444;background:#eee;padding:5px 0;","color:#fff;background:#876;padding:5px 0;");
+    eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('8.d(" ");8.d("\\U,.\\y\\5.\\1\\1\\1\\1/\\1,\\u\\2 \\H\\n\\1\\1\\1\\1\\1\\b \', !-\\r\\j-i\\1/\\1/\\g\\n\\1\\1\\1 \\1 \\a\\4\\f\'\\1\\1\\1 L/\\a\\4\\5\\2\\n\\1\\1 \\1 /\\1 \\a,\\1 /|\\1 ,\\1 ,\\1\\1\\1 \',\\n\\1\\1\\1\\q \\1/ /-\\j/\\1\\h\\E \\9 \\5!\\1 i\\n\\1\\1\\1 \\3 \\6 7\\q\\4\\c\\1 \\3\'\\s-\\c\\2!\\t|\\1 |\\n\\1\\1\\1\\1 !,/7 \'0\'\\1\\1 \\X\\w| \\1 |\\1\\1\\1\\n\\1\\1\\1\\1 |.\\x\\"\\1\\l\\1\\1 ,,,, / |./ \\1 |\\n\\1\\1\\1\\1 \\3\'| i\\z.\\2,,A\\l,.\\B / \\1.i \\1|\\n\\1\\1\\1\\1\\1 \\3\'| | / C\\D/\\3\'\\5,\\1\\9.\\1|\\n\\1\\1\\1\\1\\1\\1 | |/i \\m|/\\1 i\\1,.\\6 |\\F\\1|\\n\\1\\1\\1\\1\\1\\1.|/ /\\1\\h\\G \\1 \\6!\\1\\1\\b\\1|\\n\\1\\1\\1 \\1 \\1 k\\5>\\2\\9 \\1 o,.\\6\\2 \\1 /\\2!\\n\\1\\1\\1\\1\\1\\1 !\'\\m//\\4\\I\\g\', \\b \\4\'7\'\\J\'\\n\\1\\1\\1\\1\\1\\1 \\3\'\\K|M,p,\\O\\3|\\P\\n\\1\\1\\1\\1\\1 \\1\\1\\1\\c-,/\\1|p./\\n\\1\\1\\1\\1\\1 \\1\\1\\1\'\\f\'\\1\\1!o,.:\\Q \\R\\S\\T v"+e.V+" / W "+e.N);8.d(" ");',60,60,'|u3000|uff64|uff9a|uff40|u30fd|uff8d||console|uff8a|uff0f|uff3c|uff84|log|live2d_settings|uff70|u00b4|uff49||u2010||u3000_|u3008||_|___|uff72|u2500|uff67|u30cf|u30fc||u30bd|From|u30d8|uff1e|__|u30a4|k_|uff17_|u3000L_|u3000i|uff1a|u3009|uff34|uff70r|u30fdL__||___i|l2dVerDate|u30f3|u30ce|nLive2D|Poster|Girl||u304f__|l2dVersion|FGHRSH|u00b40i'.split('|'),0,{}));
 
-    /* 判断 JQuery */
+    /* Determine JQuery */
     if (typeof($.ajax) != 'function') typeof(jQuery.ajax) == 'function' ? window.$ = jQuery : console.log('[Error] JQuery is not defined.');
 
-    /* 加载看板娘样式 */
+    /* LoadLive2D modelStyle */
     live2d_settings.waifuSize = live2d_settings.waifuSize.split('x');
     live2d_settings.waifuTipsSize = live2d_settings.waifuTipsSize.split('x');
 
@@ -201,8 +201,8 @@ function loadModel(modelId, modelTexturesId=0) {
     } else {
         sessionStorage.setItem('modelId', modelId);
         sessionStorage.setItem('modelTexturesId', modelTexturesId);
-    } loadlive2d('live2d', live2d_settings.modelAPI+'get/?id='+modelId+'-'+modelTexturesId, (live2d_settings.showF12Status ? console.log('[Status]','live2d','模型',modelId+'-'+modelTexturesId,'加载完成'):null));
-//输出图片
+    } loadlive2d('live2d', live2d_settings.modelAPI+'get/?id='+modelId+'-'+modelTexturesId, (live2d_settings.showF12Status ? console.log('[Status]','live2d','Model',modelId+'-'+modelTexturesId,'Loading complete'):null));
+//Output image
 
 }
 
@@ -336,7 +336,7 @@ function loadTipsMessage(result) {
 
     function modelStorageGetItem(key) { return live2d_settings.modelStorage ? localStorage.getItem(key) : sessionStorage.getItem(key); }
 
-    /* 检测用户活动状态，并在空闲时显示一言 */
+    /* Detect user activity status, And when idleShowHitokoto */
     if (live2d_settings.showHitokoto) {
         window.getActed = false; window.hitokotoTimer = 0; window.hitokotoInterval = false;
         $(document).mousemove(function(e){getActed = true;}).keydown(function(){getActed = true;});
@@ -404,7 +404,7 @@ function loadTipsMessage(result) {
     }
 
     var brightness;
-    //显示遮罩
+    //ShowMask
     function cover(brightness) {
         if (typeof(div) == 'undefined') {
             div = document.createElement('div');
@@ -416,16 +416,16 @@ function loadTipsMessage(result) {
         div.style.outlineColor = 'rgba(0,0,0,' + brightness + ')';
     }
 
-    //事件监听
+    //Event listener
     window.addEventListener('keydown', function(e) {
-        if (e.altKey && e.keyCode == 88) { //Alt+X:关闭
+        if (e.altKey && e.keyCode == 88) { //Alt+X:Close
             cover(brightness = 0);
-            showMessage('感觉一切都亮起来了呢！',3000,true);
+            showMessage('Everything feels brighter now! ',3000,true);
         }
-        if (e.altKey && e.keyCode == 38) { //Alt+↑:增加亮度
+        if (e.altKey && e.keyCode == 38) { //Alt+↑:Increase brightness
             if (brightness - 0.05 > 0.05) cover(brightness -= 0.05);
         }
-        if (e.altKey && e.keyCode == 40) { //Alt+↓:降低亮度
+        if (e.altKey && e.keyCode == 40) { //Alt+↓:Decrease brightness
             if (brightness + 0.05 < 0.95) cover(brightness += 0.05);
         }
     }, false);
@@ -435,8 +435,8 @@ function loadTipsMessage(result) {
     $('.waifu-tool .fui-user').click(function (){loadRandTextures()});
     $('.waifu-tool .fui-chat').click(function (){showHitokoto()});
 
-    /*夜间模式*/
-    $('.waifu-tool .wifu-moon').click(function (){cover(0.3);showMessage('夜间模式开启成功!<br>按住alt+↑可以提高亮度<br>按住alt+↓可以降低亮度<br>按住alt+x可以取消夜间模式',5000,true)});
+    /*Night mode*/
+    $('.waifu-tool .wifu-moon').click(function (){cover(0.3);showMessage('Night mode enabled successfully!<br>Hold Alt+↑ to increase brightness<br>Hold Alt+↓ to decrease brightness<br>Hold Alt+x to cancel Night mode',5000,true)});
 
 
 

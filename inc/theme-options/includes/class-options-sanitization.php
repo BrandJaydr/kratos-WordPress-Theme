@@ -159,31 +159,31 @@ function of_sanitize_font_face( $value ) {
 add_filter( 'of_font_face', 'of_sanitize_font_face' );
 function of_recognized_background_repeat() {
     $default = array(
-        'no-repeat' =>'不重复',
-        'repeat-x'  =>'水平重复',
-        'repeat-y'  =>'垂直重复',
-        'repeat'    =>'全部重复',
+        'no-repeat' =>'No Repeat',
+        'repeat-x'  =>'Repeat Horizontal',
+        'repeat-y'  =>'Repeat Vertical',
+        'repeat'    =>'Repeat All',
         );
     return apply_filters( 'of_recognized_background_repeat', $default );
 }
 function of_recognized_background_position() {
     $default = array(
-        'top left'      =>'上部左边',
-        'top center'    =>'上部中间',
-        'top right'     =>'上部右边',
-        'center left'   =>'中部左边',
-        'center center' =>'中部中间',
-        'center right'  =>'中部右边',
-        'bottom left'   =>'下部左边',
-        'bottom center' =>'下部中间',
-        'bottom right'  =>'下部右边'
+        'top left'      =>'Top Left',
+        'top center'    =>'Top Center',
+        'top right'     =>'Top Right',
+        'center left'   =>'Middle Left',
+        'center center' =>'Middle Center',
+        'center right'  =>'Middle Right',
+        'bottom left'   =>'Bottom Left',
+        'bottom center' =>'Bottom Center',
+        'bottom right'  =>'Bottom Right'
         );
     return apply_filters( 'of_recognized_background_position', $default );
 }
 function of_recognized_background_attachment() {
     $default = array(
-        'scroll' => '正常滚动',
-        'fixed'  => '固定'
+        'scroll' => 'Scroll Normal',
+        'fixed'  => 'Fixed'
         );
     return apply_filters( 'of_recognized_background_attachment', $default );
 }
@@ -215,10 +215,10 @@ function of_recognized_font_faces() {
 }
 function of_recognized_font_styles() {
     $default = array(
-        'normal'      =>'常规',
-        'italic'      =>'斜体',
-        'bold'        => '粗体',
-        'bold italic' =>'斜粗体'
+        'normal'      =>'Normal',
+        'italic'      =>'Italic',
+        'bold'        => 'Bold',
+        'bold italic' =>'Bold'
         );
     return apply_filters( 'of_recognized_font_styles', $default );
 }
