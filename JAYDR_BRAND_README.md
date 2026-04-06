@@ -6,10 +6,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
+| `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
 | `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
 | `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 from BrandJaydr/security-hardening-patch |
 
 ## Improvements & Hardening
+
+### Documentation
+- **Repository Map (2026-04-08)**:
+    - **Action**: Created `REPO_MAP.md`, providing a comprehensive overview of the theme's directory structure and explains the purpose of each directory and file.
+- **Theme Configuration Guide (2026-04-07)**:
+    - **Action**: Created `THEME_CONFIGURATION.md`, providing a detailed reference for every theme setting, mapping configuration IDs to their functional impact in core files.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer (2025-05-14)**:
