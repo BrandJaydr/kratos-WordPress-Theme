@@ -5,7 +5,7 @@ Plugin URI: https://github.com/Jrohy/QPlayer-WordPress-Plugin
 Version: 1.3.4.2
 Author: Jrohy
 Author URI: https://32mb.space
-Description:简洁美观非常Qの悬浮音乐播放器，支持网易云音乐解析
+Description:A simple, beautiful, and cute floating music player that supports Netease Music parsing
 */
 
 define('QPlayer_URL', get_bloginfo('template_directory')."/inc/QPlayer");
@@ -26,7 +26,7 @@ function QPlayer_menu() {
     add_options_page('QPlayer', 'QPlayer','manage_options', 'QPlayer_page', 'QPlayer_page');
 }
 
-//设置link
+//Settingslink
 function QPlayer_plugin_setting( $links, $file )
 {
     if($file == 'QPlayer/QPlayer.php'){

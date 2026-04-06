@@ -6,7 +6,7 @@
 ?>
     <div id="wrapper"  class="theme" style="background:url(<?php echo kratos_option('bibo_background')?>) no-repeat top center; padding-top:50px;background-color: white;background-attachment:fixed;background-size:100%;">
         <header id="header" class="site-header">
-            <!-- 导航结束 -->
+            <!-- Navigation End -->
             <section class="banner bg" style="background-image: url(<?php echo $bilibililive->spacepicture?>)">
                 <div class="big-title">
                         <h1 class="big-title-h1" ><?php echo $bilibililive->usrname ?>
@@ -15,51 +15,51 @@
                             <?php
                             if($bilibililive->isvip){
                                 ?>
-                                <a href="//account.bilibili.com/account/big" target="_blank" class="h-vipType">年度大会员</a>
+                                <a href="//account.bilibili.com/account/big" target="_blank" class="h-vipType">Annual VIP</a>
                             <?php }?>
                         </h1>
                     <h3 class="big-title-h3 tips-top" aria-label="<?php echo $bilibililive->sign ?>" id="yiyan"><?php echo $bilibililive->sign ?>
                         <br></h3>
                 </div>
                 <div class="contactme">
-                    <a  target="_blank" href="https://space.bilibili.com/<?php echo $bilibilUid?>"><div class="weixin">关注</div></a>
-                    <a  target="_blank" class="qq" href="https://message.bilibili.com/#whisper/mid<?php echo $bilibilUid?>">发私信</a>
+                    <a  target="_blank" href="https://space.bilibili.com/<?php echo $bilibilUid?>"><div class="weixin">Follow</div></a>
+                    <a  target="_blank" class="qq" href="https://message.bilibili.com/#whisper/mid<?php echo $bilibilUid?>">Message</a>
                 </div>
             </section>
             <div class="touxiang">
                 <a href="https://space.bilibili.com/<?php echo $bilibilUid?>" target="_top">
-                    <img src="<?php echo $bilibililive->advanter ?>" alt="头像"></a>
+                    <img src="<?php echo $bilibililive->advanter ?>" alt="Avatar"></a>
                 <span class="renzheng" style="background-image:url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/icon2.png);"></span>
             </div>
             <div class="banner-item width">
-                <a target="_blank" class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">我的主页</a>
-                <a target="_blank" href="https://space.bilibili.com/<?php echo $bilibilUid?>/album">我的相册</a></div>
+                <a target="_blank" class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">Homepage</a>
+                <a target="_blank" href="https://space.bilibili.com/<?php echo $bilibilUid?>/album">Album</a></div>
         </header>
         <div id="kratos-blog-post">
         <div id="container" class="container">
         <section id="contents" class="width">
-            <!-- 侧边栏 -->
+            <!-- Sidebar -->
             <aside id="aside" class="left">
                 <div class="inner wow bounceInLeft">
                     <div class="sns web-info">
                         <li class="frinum">
                             <a href="https://space.bilibili.com/<?php echo $bilibilUid?>/fans/follow"><?php echo $bilibililive->attation?>
-                                <span>关注数</span></a>
+                                <span>Following</span></a>
                         </li>
                         <li class="vitnum">
                             <a href="https://space.bilibili.com/<?php echo $bilibilUid?>/fans/fans"><?php echo $bilibililive->fans?>
-                                <span>粉丝数</span></a>
+                                <span>Fans</span></a>
                         </li>
                         <li class="ptnum">
                             <?php echo $bilibililive->play?>
-                            <span>播放数</span>
+                            <span>Plays</span>
                         </li>
                     </div>
                     <div class="sns master-info">
                         <div class="person-info">
                             <li class="item">
-                                <div class="row user-auth"><span title="<?php echo kratos_option('bibo_auth');?>" class="auth-description"><a href="https://space.bilibili.com/<?php echo $bilibilUid?>" title="个人认证" target="_blank" class="auth-icon personal-auth"></a><!---->
-                            bilibili个人认证<br><?php echo kratos_option('bibo_auth');?>
+                                <div class="row user-auth"><span title="<?php echo kratos_option('bibo_auth');?>" class="auth-description"><a href="https://space.bilibili.com/<?php echo $bilibilUid?>" title="Personal Authentication" target="_blank" class="auth-icon personal-auth"></a><!---->
+                            Bilibili Authentication<br><?php echo kratos_option('bibo_auth');?>
                           </span></div>
                             </li>
                         </div>
@@ -71,30 +71,30 @@
                             <?php }?>
                             <li class="item">
                                 <i class="icon louie-time-o"></i>
-                                <span class="tips-right" aria-label="我的生日：<?php echo $bilibililive->birthday ?>">生日：<?php echo $bilibililive->birthday ?></span></li>
+                                <span class="tips-right" aria-label="My birthday: <?php echo $bilibililive->birthday ?>">Birthday: <?php echo $bilibililive->birthday ?></span></li>
                             <?php if(kratos_option('bibo_descript')){?>
                                 <li class="item">
                                     <i class="icon louie-smiling"></i>
-                                    <span class="tips-right" aria-label="<?php echo kratos_option('bibo_descript');?>">简介：<?php echo kratos_option('bibo_descript');?></span></li>
+                                    <span class="tips-right" aria-label="<?php echo kratos_option('bibo_descript');?>">Intro: <?php echo kratos_option('bibo_descript');?></span></li>
                             <?php }?>
                             <li class="item last">
                                 <i class="icon louie-link-o"></i>
-                                <a class="tips-right" aria-label="个性域名" href="<?php echo kratos_option('bibo_pushlink');?>" target="_blank"><?php echo kratos_option('bibo_push');?></a></li>
+                                <a class="tips-right" aria-label="Personalized Domain" href="<?php echo kratos_option('bibo_pushlink');?>" target="_blank"><?php echo kratos_option('bibo_push');?></a></li>
                         </ul>
                         <div class="sns readmore">
-                            <a href="<?php echo kratos_option('bibo_more');?>">查看更多&nbsp;&gt;</a></div>
+                            <a href="<?php echo kratos_option('bibo_more');?>">View More&nbsp;&gt;</a></div>
                     </div>
                     <?php if(kratos_option('bibo_post')){?>}
                     <div class="alteration">
                         <div class="widget">
                             <h3 class="widget-title">
-                                <i class="icon louie-notice"></i>公告</h3>
+                                <i class="icon louie-notice"></i>Announcement</h3>
                             <div class="textwidget">
-                                <!-- 评论 -->
+                                <!-- Comments -->
                                 <div class="info">
                                     <?php echo kratos_option('bibo_post');?>
                                 </div>
-                                <!-- 评论结束 -->
+                                <!-- End of Comments -->
                             </div>
                         </div>
                     </div>
@@ -102,9 +102,9 @@
                     <?php if(kratos_option('bibo_post')){?>
                             <div class="widget">
                                 <h3 class="widget-title">
-                                    <i class="icon icon louie-smile"></i>友情链接(随机10个)</h3>
+                                    <i class="icon icon louie-smile"></i>Friend Links (Random 10)</h3>
                                 <ul class="items links-bar">
-                                    <!-- 友链 -->
+                                    <!-- Friend Links -->
                                     <?php
                                     $bookmarks = get_bookmarks(array('orderby'=>'rand'));
                                     if(!empty($bookmarks)){
@@ -115,19 +115,19 @@
                                             if($i==10) break;
                                         }
                                     } ?>
-                                    <!-- 友链结束 -->
+                                    <!-- End of Friend Links -->
                                 </ul>
                             </div>
                         <?php }?>
                         <?php if(kratos_option('bibo_hot')){?>
                             <div class="widget">
                                 <h3 class="widget-title">
-                                    <i class="icon louie-trend"></i>热门文章</h3>
+                                    <i class="icon louie-trend"></i>Hot Articles</h3>
                                 <ul class="items hot-views">
                                     <li class="item">
-                                        <!-- 文章排行榜 -->
+                                        <!-- Article Rankings -->
                                         <?php most_hot_posts(180,10); ?>
-                                        <!-- 结束 -->
+                                        <!-- End -->
                                     </li>
                                 </ul>
                             </div>
@@ -135,7 +135,7 @@
                     </div>
             </aside>
     <div id="loop" class="right">
-            <!-- 实现看板娘的灵活切换-->
+            <!-- Enable flexible switching of Live2D model -->
             <style><?php
                 $style=kratos_option('wifuside');
                 $position=substr($style,0,strripos($style,':'));
@@ -154,20 +154,20 @@
                     elseif(is_category()){
                         if(kratos_option('show_head_cat')){ ?>
                             <div class="kratos-hentry clearfix">
-                                <h1 class="kratos-post-header-title">分类<?php echo single_cat_title('',false); ?></h1>
+                                <h1 class="kratos-post-header-title">Category: <?php echo single_cat_title('',false); ?></h1>
                                 <h1 class="kratos-post-header-title"><?php echo category_description(); ?></h1>
                             </div>
                         <?php }
                     }elseif(is_tag()){
                         if(kratos_option('show_head_tag')){ ?>
                             <div class="kratos-hentry clearfix">
-                                <h1 class="kratos-post-header-title">标签：<?php echo single_cat_title('',false); ?></h1>
+                                <h1 class="kratos-post-header-title">Tag: <?php echo single_cat_title('',false); ?></h1>
                                 <h1 class="kratos-post-header-title"><?php echo category_description(); ?></h1>
                             </div>
                         <?php }
                     }elseif(is_search()){ ?>
                         <div class="kratos-hentry clearfix">
-                            <h1 class="kratos-post-header-title">搜索结果：<?php the_search_query(); ?></h1>
+                            <h1 class="kratos-post-header-title">Search Results: <?php the_search_query(); ?></h1>
                         </div>
                     <?php }
                     if(have_posts()){
@@ -177,7 +177,7 @@
                         }
                     }else{ ?>
                         <div class="kratos-hentry clearfix">
-                            <h1 class="kratos-post-header-title">很抱歉，没有找到任何内容。</h1>
+                            <h1 class="kratos-post-header-title">Sorry, no content found.</h1>
                         </div>
                     <?php }
                     kratos_pages(3);wp_reset_query(); ?>
@@ -189,7 +189,7 @@
             <script type="text/javascript">
                 $('.weixinAudio').weixinAudio({
                 });
-                //    动画脚本
+                // Animation Script
                 new WOW().init();
             </script>
     </div>
@@ -198,7 +198,7 @@
     </div>
  <?php }else{ ?>
     <div id="container" class="container">
-<!-- 实现看板娘的灵活切换-->
+<!-- Enable flexible switching of Live2D model -->
         <style><?php
             $style=kratos_option('wifuside');
             $position=substr($style,0,strripos($style,':'));
@@ -219,20 +219,20 @@
                 elseif(is_category()){
             if(kratos_option('show_head_cat')){ ?>
                 <div class="kratos-hentry clearfix">
-                    <h1 class="kratos-post-header-title">分类：<?php echo single_cat_title('',false); ?></h1>
+                    <h1 class="kratos-post-header-title">Category: <?php echo single_cat_title('',false); ?></h1>
                     <h1 class="kratos-post-header-title"><?php echo category_description(); ?></h1>
                 </div>    
             <?php }
                 }elseif(is_tag()){
             if(kratos_option('show_head_tag')){ ?>
                 <div class="kratos-hentry clearfix">
-                    <h1 class="kratos-post-header-title">标签： <?php echo single_cat_title('',false); ?></h1>
+                    <h1 class="kratos-post-header-title">Tag: <?php echo single_cat_title('',false); ?></h1>
                     <h1 class="kratos-post-header-title"><?php echo category_description(); ?></h1>
                 </div>
             <?php }
                 }elseif(is_search()){ ?>
                 <div class="kratos-hentry clearfix">
-                    <h1 class="kratos-post-header-title">搜索结果：<?php the_search_query(); ?></h1>
+                    <h1 class="kratos-post-header-title">Search Results: <?php the_search_query(); ?></h1>
                 </div>                
             <?php }
                 if(have_posts()){
@@ -242,7 +242,7 @@
                     }
                 }else{ ?>
             <div class="kratos-hentry clearfix">
-                    <h1 class="kratos-post-header-title">很抱歉，没有找到任何内容。</h1>
+                    <h1 class="kratos-post-header-title">Sorry, no content found.</h1>
             </div>
             <?php }
                 kratos_pages(3);wp_reset_query(); ?>
@@ -257,14 +257,14 @@
             <?php }?>
         </div>
         <script src="<?php echo  bloginfo('template_url').'/static/js/weixinAudio.js';?>"></script>
-        <!--音乐播放器-->
+        <!-- Music Player -->
         <?php if(kratos_option('animal_load')){?>
             <script src = "<?php echo  bloginfo('template_url').'/static/js/wow.min.js';?>" ></script >
         <?php }?>
         <script type="text/javascript">
             $('.weixinAudio').weixinAudio({
             });
-        //    动画脚本
+        // Animation Script
             new WOW().init();
         </script>
     </div>

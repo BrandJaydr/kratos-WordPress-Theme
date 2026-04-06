@@ -262,18 +262,18 @@ to {
 }
 
 
-/* 设置滚动条的样式 */
+/* Set scrollbar style */
 #QPlayer ::-webkit-scrollbar {
     width: 3px !important;
 }
 
-/* 滚动槽 */
+/* Scroll trough */
 #QPlayer ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
     border-radius: 10px !important;
 }
 
-/* 滚动条滑块 */
+/* Scrollbar slider */
 #QPlayer ::-webkit-scrollbar-thumb {
     border-radius: 10px !important;
     background: rgba(0,0,0,0.1) !important;
@@ -460,7 +460,7 @@ to {
   z-index: 9999999;
 }
 
-/*箭頭下-邊框*/
+/*Arrow down-Border*/
 .qplayer_tips .tips_arrow{
   border-width:0;
   border-style:solid;

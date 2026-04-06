@@ -6,7 +6,7 @@
  ?>
     <div id="wrapper"  class="theme" style="background:url(<?php echo kratos_option('bibo_background')?>) no-repeat top center; padding-top:50px;background-color: white;background-attachment:fixed;background-size:100%;">
     <header id="header" class="site-header">
-        <!-- 导航结束 -->
+        <!-- Navigation End -->
         <section class="banner bg" style="background-image: url(<?php echo $bilibililive->spacepicture?>)">
             <div class="big-title">
                 <h1 class="big-title-h1" ><?php echo $bilibililive->usrname ?>
@@ -15,25 +15,25 @@
                     <?php
                     if($bilibililive->isvip){
                         ?>
-                        <a href="//account.bilibili.com/account/big" target="_blank" class="h-vipType">年度大会员</a>
+                        <a href="//account.bilibili.com/account/big" target="_blank" class="h-vipType">Annual VIP</a>
                     <?php }?>
                 </h1>
                 <h3 class="big-title-h3 tips-top" aria-label="<?php echo $bilibililive->sign ?>" id="yiyan"><?php echo $bilibililive->sign ?>
                     <br></h3>
             </div>
             <div class="contactme">
-                <a href="https://space.bilibili.com/<?php echo $bilibilUid?>"><div class="weixin">关注</div></a>
-                <a class="qq" href="https://message.bilibili.com/#whisper/mid<?php echo $bilibilUid?>">发私信</a>
+                <a href="https://space.bilibili.com/<?php echo $bilibilUid?>"><div class="weixin">Follow</div></a>
+                <a class="qq" href="https://message.bilibili.com/#whisper/mid<?php echo $bilibilUid?>">Message</a>
             </div>
         </section>
         <div class="touxiang">
             <a href="https://space.bilibili.com/<?php echo $bilibilUid?>" target="_top">
-                <img src="<?php echo $bilibililive->advanter ?>" alt="头像"></a>
+                <img src="<?php echo $bilibililive->advanter ?>" alt="Avatar"></a>
             <span class="renzheng" style="background-image:url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/icon2.png);"></span>
         </div>
         <div class="banner-item width">
-            <a class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">我的主页</a>
-            <a href="https://space.bilibili.com/<?php echo $bilibilUid?>/album">我的相册</a></div>
+            <a class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">Homepage</a>
+            <a href="https://space.bilibili.com/<?php echo $bilibilUid?>/album">Album</a></div>
     </header>
     <div id="kratos-blog-post">
 <?php }?>
@@ -60,15 +60,15 @@
                         <div class="kratos-post-content"><?php the_content(); ?></div>
                         <?php if(kratos_option('page_cc')){ ?>
                         <div class="kratos-copyright text-center clearfix">
-                            <h5>本作品采用 <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+                            <h5>This work is licensed under a <a rel="license nofollow" target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</h5>
                         </div>
                         <?php } ?>
                         <?php if(kratos_option('page_like_donate')||kratos_option('page_share')){ ?>
                         <footer class="kratos-entry-footer clearfix">
                             <div class="post-like-donate text-center clearfix" id="post-like-donate"><?php
-                                if(kratos_option('page_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i>打赏</a>';
+                                if(kratos_option('page_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i>Donate</a>';
                                 if(kratos_option('page_share')){
-                                    echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>分享</a>';
+                                    echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>Share</a>';
                                     require_once(get_template_directory().'/inc/share.php');
                                 } ?>
                             </div>

@@ -638,7 +638,7 @@ user agent stylesheet h2{display:block;font-size:1.5em;margin-block-start:.83em;
 .comments-area .comment-awaiting-moderation,.comments-area .comment-meta,.comments-area .fn{margin-left:63px}
 .comments-area .fn a{color:#343a40}
 .comments-area .fn a:hover{color:#1d2124}
-.comments-area .comment-list .bypostauthor>div>div>.fn:before{margin-left:-36px;margin-right: 15px;padding:1.5px 4px;border-radius:2px;background:#00a4ff;color:#fff;content:"作者";font-size:11px;top:-1px;position:relative}
+.comments-area .comment-list .bypostauthor>div>div>.fn:before{margin-left:-36px;margin-right: 15px;padding:1.5px 4px;border-radius:2px;background:#00a4ff;color:#fff;content:"Author";font-size:11px;top:-1px;position:relative}
 .comments-area .says{display:none}
 .comments-area .comment-awaiting-moderation{font-size:15px}
 .comments-area .comment-meta{margin-bottom:5px;color:#777;font-size:13px;}
@@ -700,7 +700,7 @@ a.comment-reply-link,a.comment-reply-login{text-decoration:none;padding:2px 5px;
 .affix{position:fixed;top:92px}
 .affix,.affix-bottom{width:293.31px}
 .affix-bottom{position:absolute}
-/*新添加的样式*/
+/*Newly added styles*/
 #post-panel>div.blog-post>.panel:not(.b-a):hover, #post-panel>div.blog-post>.panel-small:hover {
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.3)!important;
 }
@@ -709,7 +709,7 @@ a.comment-reply-link,a.comment-reply-login{text-decoration:none;padding:2px 5px;
     box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2)!important;
 }
 
-/*背景虚化*/
+/*Background blur*/
 .kratos-entry-content-new {
     transition: background-color 0.2s;
     background-color: rgba(0,0,0,.3);
@@ -718,12 +718,12 @@ a.comment-reply-link,a.comment-reply-login{text-decoration:none;padding:2px 5px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-/*文字优化*/
+/*Text optimization*/
 .kratos-entry-header-new{transition: margin-top 0.2s;text-align: center;}
 
 .kratos-entry-header-new h2 {text-shadow: 0 0 8px #fff;}
 
-/*鼠标悬停样式优化*/
+/*Mouse hover style optimization*/
 .kratos-entry-content-new:hover{background-color: rgba(0,0,0,.6);}
 .kratos-entry-content-new p {cursor:default;transition: margin-top 0.2s,padding-top 0.4s;visibility: hidden;color: #ffffff;}
 .kratos-entry-header-new a{color: #ffffff;}
@@ -767,7 +767,7 @@ a.comment-reply-link,a.comment-reply-login{text-decoration:none;padding:2px 5px;
 
 
 
-/*头像部分代码*/
+/*Avatar section code*/
 
 .show{display:block!important;background:#3a3f51;height:190px;width:240px;z-index:1000;position: fixed;}
 .text-center{text-align:center}
@@ -785,7 +785,7 @@ aside-wrap .line{height:1px!important}
 
 li.OwO-item a {color: #000000;}
 
-/*追番界面模板*/
+/*Anime tracking template*/
 .theme-dark .yue a:not([data-fancybox=gallery]):not(.post-like):not(.edit-button){border-color:#aaa}
 .yue a:not([data-fancybox=gallery]):not(.post-like):not(.edit-button){border-bottom:1px solid rgba(0,0,0,.2)}
 .yue a{word-wrap:break-word;word-break:break-all}
@@ -811,7 +811,7 @@ li.OwO-item a {color: #000000;}
 #article-index {border-radius: 7px;;max-width: 250px;max-height:290px;border: 1px solid #DEDFE1;position:fixed;line-height: 23px;background: #ffffff;left: 0px;}
 #article-index strong{font-size: 16px;padding-left: 15px;border-bottom:1px dashed #DDDDDD;display:block;}
 #index-ul{height: auto;overflow-y: auto;max-height: 250px;font-size: 15px;margin-left: -27px;padding-right:20px}
-/*二级标题*/
+/*Secondary title*/
 .index-ul-li{margin-left: 15px;}
 #article-index-move{cursor: move;padding: 5px;border-bottom: 1px dotted;}
 #category-close{font-weight: 800;padding-right: 10px;color:#848484;float:right;cursor: pointer}
@@ -819,7 +819,7 @@ li.OwO-item a {color: #000000;}
 #index-ul li:hover{color: #51aded;}
 #index-ul li {cursor: pointer;color: #366ed8;list-style: none}
 
-/*表格样式*/
+/*Table style*/
 table{border-collapse:collapse;margin:0 auto;text-align:center}
 table td,table th{border:1px solid #cad9ea;color:#666;height:30px}
 table thead th{background-color:#cce8eb;width:100px}
@@ -829,16 +829,16 @@ table tr:nth-child(even){background:#f5fafa}
 blockquote p {color: #848484 !important;}
 thead td {background-color: #cce8eb;width: 100px;}
 
-/*哔哩哔哩页面*/
+/*Bilibili page*/
 .bilbili-box {cursor: pointer;bottom: 30px;right: 72px!important;background: #848484;display: table;opacity: .7;}
 
-/*新日记页面*/
+/*New diary page*/
 #primary-new{margin-top:16px;margin-bottom:27px;padding-left:13px;padding-right:15px}
 .item-diary{border-top:1px solid #e1e8ed;display:inline-block;cursor:pointer;line-height:36px;width:50%;float:left;height:43px;background:#fff;text-align:center;padding-top:4px;border-right:1px solid #e1e8ed}
 .pull-left img{width:50px;height:50px;bottom:7px}
 
 
-/*B站uid头像*/
+/*BSiteuidAvatar*/
 .user-head[bilibili]{display:block;position:absolute;width:50px;height:50px;background-size:cover;background-position:center center;background-repeat:no-repeat}
 .user-head .user-decorator[bilibili]{position:absolute;width:80px;height:80px;top:-12px;left:-16px;background:transparent center/contain no-repeat}
 .entry-header .h-level{position:absolute;left:64px;top:4px}
@@ -847,10 +847,10 @@ cite.fn{padding-left:39px}
 .comment-avatar div{visibility:hidden}
 .vcard .pull-left{position:absolute}
 .entry-content a:hover{color: #000000!important;}
-/*不该显示的，不显示*/
+/*Should not display，Do not display*/
 .entry-header >.level {visibility: hidden;}
 .photo-wrapper-tip>.level {visibility: hidden;}
-/*优化主页B博显示*/
+/*Optimize homepageBBlog display*/
 .title-index{
     display: inline;
     font-size: 17px;
@@ -863,7 +863,7 @@ cite.fn{padding-left:39px}
 .btn-primary a {color: #ffffff;}
 
 
-/*文字说明*/
+/*Text description*/
 .wp-caption {
     background: none repeat scroll 0 0 #F7F7F7;
     border: 1px solid #CCCCCC;
@@ -892,7 +892,7 @@ cite.fn{padding-left:39px}
 .tag_clouds a:hover{background: #474C50!important;}
 
 
-/*代码高亮*/
+/*Code highlighting*/
 .hljs{display:block;overflow-x:auto;padding:.5em;background:#F0F0F0}
 .hljs,.hljs-subst{color:#444}
 .hljs-comment{color:#888888}
@@ -907,7 +907,7 @@ cite.fn{padding-left:39px}
 .hljs-strong{font-weight:bold}
 
 
-/*轮播图修复*/
+/*Carousel fix*/
 #slide {
     margin-left: 15px;
     margin-right: 15px;
@@ -1040,7 +1040,7 @@ cite.fn{padding-left:39px}
     .title-h2{padding:0 15px;font-size:18px}
 }
 @media(max-width:768px){h1{font-size:25px!important}
-    /*手机的转态*/
+    /*Mobile status*/
     .menu-button{visibility: visible}
     .kratos-post-inner-new{height:250px;}
     .kratos-entry-content-new p {font-size: 15px;margin-left: 40px;margin-right: 40px;margin-top: 10px;}
@@ -1090,8 +1090,8 @@ cite.fn{padding-left:39px}
     .hidden-xs{display:none!important}
 }
 @media(max-width:530px){.container{padding:0}
-    /*手机*/
-    /*顶部*/
+    /*Mobile*/
+    /*Top*/
     /*.big-title{top: 111px;left: 16%;}*/
     /*header#header{max-width: 98%;margin-left: 12px;}*/
     /*section.banner.bg{max-width: 99%}*/
@@ -1135,7 +1135,7 @@ cite.fn{padding-left:39px}
     .downbtn{padding:8px 13px}
 }
 @media(min-width:768px){.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{margin-top:-10px;width:30px;height:30px;font-size:30px}
-    /*电脑状态*/
+    /*PC status*/
     .menu-button{visibility:hidden}
     .kratos-post-inner-new{height:300px;}
     .kratos-entry-content-new p {font-size: 15px;margin-left: 40px;margin-right: 40px;margin-top: 10px;}

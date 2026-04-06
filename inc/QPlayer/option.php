@@ -9,11 +9,11 @@ function QPlayer_add_jquery() {
 }
 
 /**
- * 从netease中获取歌曲信息
+ * Get song information from Netease
  * 
  * @link https://github.com/webjyh/WP-Player/blob/master/include/player.php
  * @param unknown $id 
- * @param unknown $type 获取的id的类型，song:歌曲,album:专辑,artist:艺人,collect:歌单
+ * @param unknown $type Type of the acquired ID: song, album, artist, collect (playlist)
  */
 
 function get_netease_music($id, $type = 'song'){
@@ -29,7 +29,7 @@ function get_netease_music($id, $type = 'song'){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        //发送请求头
+        //Send request headers
         "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36",
         "Referer: https://music.163.com/",
         "cookie:player1.0"
@@ -49,7 +49,7 @@ function get_netease_music($id, $type = 'song'){
                 default : $data = $result[$key]; break;
             }
 
-            //列表
+            //List
             $list = array();
             foreach ( $data as $keys => $data ){
 
@@ -60,7 +60,7 @@ function get_netease_music($id, $type = 'song'){
                         'pic' =>str_replace("http://","https://",$data['album']['blurPicUrl']) .'?param=106x106'
                 );
             }
-            //修复一次添加多个id的乱序问题
+            //Fix the out-of-order issue when adding multiple IDs at once
             if ($type = 'song' && strpos($id, ',')) {
                 $ids = explode(',', $id);
                 $r = array();
@@ -71,11 +71,11 @@ function get_netease_music($id, $type = 'song'){
                 }
                 $list = $r;
             }
-            //最终播放列表
+            //Final playbackList
             $return = $list;
         }
     } else {
-        $return = array('status' =>  false, 'message' =>  '非法请求');
+        $return = array('status' =>  false, 'message' =>  'Illegal request');
     }
     return $return;
 }
@@ -123,7 +123,7 @@ function QPlayer_page() {
         update_option('neteaseID', sanitize_text_field($_POST['neteaseID']));
         update_option('musicList',stripcslashes(sanitize_text_field($_POST['musicList'])));
         echo '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
-<p><strong>设置已保存。</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">忽略此通知。</span></button></div>';
+<p><strong>Settings saved.</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Ignore this notification.</span></button></div>';
     } 
     if (isset($_POST['addMusic']) && $_SERVER['REQUEST_METHOD']=='POST') {
         check_admin_referer('qplayer_options_update', 'qplayer_nonce');
@@ -136,7 +136,7 @@ function QPlayer_page() {
     	}
     	update_option('musicList', $deal.$musicResult);
     	echo '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
-<p><strong>音乐已添加到音乐列表。</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">忽略此通知。</span></button></div>';
+<p><strong>Music added to musicList. </strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Ignore this notification.</span></button></div>';
     }
 ?>
     <style>
@@ -172,46 +172,45 @@ function QPlayer_page() {
         }
     </style>
     <div class="QPlayer">  
-      <h1>QPlayer设置</h1><br>
+      <h1>QPlayer Settings</h1><br>
         <form method="post">  
-            <?php wp_nonce_field('qplayer_options_update', 'qplayer_nonce'); ?>
-			<div><div class="title">自动播放</div>
-			  <input type="radio" name="autoPlay" value="0" <?php if (!get_option('autoPlay')) echo "checked";?>>否
-  			  <input type="radio" name="autoPlay" value="1" <?php if (get_option('autoPlay')) echo "checked";?>>是
+			<div><div class="title">Auto Play</div>
+			  <input type="radio" name="autoPlay" value="0" <?php if (!get_option('autoPlay')) echo "checked";?>>No
+			  <input type="radio" name="autoPlay" value="1" <?php if (get_option('autoPlay')) echo "checked";?>>Yes
 			</div><br>
-			<div><div class="title">封面旋转</div>
-			  <input type="radio" name="rotate" value="0" <?php if (!get_option('rotate')) echo "checked";?>>否
-  			  <input type="radio" name="rotate" value="1" <?php if (get_option('rotate')) echo "checked";?>>是
+			<div><div class="title">Cover Rotation</div>
+			  <input type="radio" name="rotate" value="0" <?php if (!get_option('rotate')) echo "checked";?>>No
+			  <input type="radio" name="rotate" value="1" <?php if (get_option('rotate')) echo "checked";?>>Yes
 			</div><br>
-            <div><div class="title">开启随机播放</div>
-                <input type="radio" name="random" value="0" <?php if (!get_option('random')) echo "checked";?>>否
-                <input type="radio" name="random" value="1" <?php if (get_option('random')) echo "checked";?>>是
+            <div><div class="title">Enable Shuffle</div>
+                <input type="radio" name="random" value="0" <?php if (!get_option('random')) echo "checked";?>>No
+                <input type="radio" name="random" value="1" <?php if (get_option('random')) echo "checked";?>>Yes
             </div><br>
-			<div><div class="title">自定义主色调</div>
+			<div><div class="title">Custom Main Color</div>
 			  <input type="text" name="color" value="<?php echo get_option('color'); ?>">
-  			  <p class="tip">默认为<span style="color: #1abc9c;">#1abc9c</span>, 你可以自定义任何你喜欢的颜色作为播放器主色调。自定义主色调支持css的设置格式，如: `#233333`,"rgb(255,255,255)","rgba(255,255,255,1)","hsl(0, 0%, 100%)","hsla(0, 0%, 100%,1)"。填写其他错误的格式可能不会生效。</p>
+			  <p class="tip">Default is <span style="color: #1abc9c;">#1abc9c</span>, You can customize any color you like as the main color of the player. Custom Main ColorSupportcss settings format, e.g.: `#233333`,"rgb(255,255,255)","rgba(255,255,255,1)","hsl(0, 0%, 100%)","hsla(0, 0%, 100%,1)". Filling in other incorrect formats may not take effect.</p>
 			</div><br>
-			<div><div class="title">自定义CSS</div>
+			<div><div class="title">Custom CSS</div>
 			  <textarea rows="6" cols="100" name="css"><?php echo get_option('css') ?></textarea>
 			</div><br>
-			<div><div class="title">自定义JS</div>
+			<div><div class="title">Custom JS</div>
 			  <textarea rows="6" cols="100" name="js"><?php echo get_option('js') ?></textarea>
 			</div><br>
-            <div class="title">添加网易云音乐(需主机支持curl扩展)</div>
-            <div>id类型
-                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>歌单
-                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>专辑
-                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>艺人
-                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>单曲
+            <div class="title">Add Netease Music (Requires host to support curl extension)</div>
+            <div>ID Type
+                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>Playlist
+                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>Album
+                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Artist
+                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Song
             </div>
-            <div>id输入
-                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="多个id用英文,分隔开" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">请自行去网易云音乐网页版获取音乐id(具体在每个音乐项目的网址最后会有个id)。有版权的音乐无法解析!</p>
+            <div>ID Input
+                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
+                <p class="tip" style="margin-bottom: 0;">Please go to the Netease Music web version to get the music ID (specifically, there will be an ID at the end of the URL of each music item). Copyrighted music cannot be parsed!</p>
             </div>
-			<input type="submit" name="addMusic" id="addMusic" value="添加到歌曲列表"  /><br><br>
-			<div><div class="title">歌曲列表</div>
+			<input type="submit" name="addMusic" id="addMusic" value="Add to songList"  /><br><br>
+			<div><div class="title">songList</div>
 			  <textarea rows="8" cols="100" name="musicList"><?php echo get_option('musicList') ?></textarea>
-  			  <p class="tip">格式: {title:"xxx", artist:"xxx", cover:"http:xxxx", mp3:"http:xxxx"} ，每个歌曲之间用英文,隔开。请保证歌曲列表里至少有一首歌！</p>
+			  <p class="tip">format: {title:"xxx", artist:"xxx", cover:"http:xxxx", mp3:"http:xxxx"} , Eachsongbetween use English,separated. Please ensuresongList contains at least one song! </p>
 			</div>
 			<input type="submit" name="submit" id="submit" value="<?php _e('Save Changes') ?>"  />  
             </p>  

@@ -14,11 +14,11 @@
 			this.$audio_area = $context.find('#audio_area');
 			this.$audio_length = $context.find('#audio_length');
 			this.$audio_progress = $context.find('#audio_progress');
-			//属性
+			// Properties
 			this.currentState = 'pause';
 			this.time = null;
 			this.settings = $.extend(true, defaultoptions, options);
-			//执行初始化
+			// Execute initialization
 			this.init();
 		}
 		Plugin.prototype = {
@@ -26,11 +26,11 @@
 				var self = this;
 				self.updateTotalTime();
 				self.events();
-				// 设置src
+				// Set src
 				if(self.settings.src !== ''){
 						self.changeSrc(self.settings.src);
 				}
-				// 设置自动播放
+				// Set autoplay
 				if(self.settings.autoplay){
 					self.play();
 				}
@@ -68,7 +68,7 @@
 					}
 				});
 			},
-			//正在播放
+			// Playing
 			run: function() {
 				var self = this;
 				self.animateProgressBarPosition();
@@ -76,7 +76,7 @@
 					self.pause();
 				}
 			},
-			//进度条
+			// Progress bar
 			animateProgressBarPosition: function() {
 				var self = this,
 					percentage = (self.Audio.currentTime * 100 / self.Audio.duration) + '%';
@@ -88,7 +88,7 @@
 				};
 				self.$audio_progress.css(styles);
 			},
-			//获取时间秒
+			// Get time seconds
 			getAudioSeconds: function(string) {
 				var self = this,
 					string = string % 60;
@@ -96,7 +96,7 @@
 				(string < 60) ? string = string: string = "00";
 				return string;
 			},
-			//获取时间分
+			// Get time minutes
 			getAudioMinutes: function(string) {
 				var self = this,
 					string = string / 60;
@@ -104,13 +104,13 @@
 				(string < 60) ? string = string: string = "00";
 				return string;
 			},
-			//时间+0
+			// Time +0
 			addZero: function(word, howManyZero) {
 				var word = String(word);
 				while (word.length < howManyZero) word = "0" + word;
 				return word;
 			},
-			//更新总时间
+			// Update total time
 			updateTotalTime: function() {
 				var self = this,
 					time = self.Audio.duration,
@@ -119,7 +119,7 @@
 					audioTime = minutes + ":" + seconds;
 				self.$audio_length.text(audioTime);
 			},
-			//改变音频源
+			// Change audio source
 			changeSrc:function(src,callback){
 				var self = this;
 				self.pause();
@@ -134,7 +134,7 @@
 		// }
 		$this.each(function(index,element){
 			obj['weixinAudio'+index] = new Plugin($(this));
-		}); //多个执行返回对象
+		}); // Multiple execution returns objects
 
 		return obj
 	}

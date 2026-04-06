@@ -17,15 +17,15 @@ if(!function_exists('optionsframework_init')){
 }
 function kratos_options_menu_filter($menu){
   $menu['mode'] = 'menu';
-  $menu['page_title'] ='主题设置';
-  $menu['menu_title'] ='主题设置';
+  $menu['page_title'] ='Theme Settings';
+  $menu['menu_title'] ='Theme Settings';
   $menu['menu_slug'] = 'kratos';
   return $menu;
 }
 add_filter('optionsframework_menu','kratos_options_menu_filter');
 //The menu navigation registration
 function kratos_register_nav_menu(){
-    register_nav_menus(array('header_menu'=>'顶部菜单'));
+    register_nav_menus(array('header_menu'=>'Top Menu'));
     add_theme_support('title-tag');
 }
 add_action('after_setup_theme','kratos_register_nav_menu');
@@ -216,9 +216,9 @@ function kratos_description(){
         if(get_the_excerpt()){echo esc_attr(get_the_excerpt());}
         else{global $post;$description = trim(str_replace(array("\r\n","\r","\n","　"," ")," ",str_replace("\"","'",strip_tags(do_shortcode($post->post_content)))));echo esc_attr(mb_substr($description,0,220,'utf-8'));}
     }
-    elseif(is_search()){echo '“';echo esc_attr(get_search_query());global $wp_query;echo '”'.esc_html(sprintf('为您找到结果 %s 个',$wp_query->found_posts));}
-    elseif(is_tag()){$description = strip_tags(tag_description());echo esc_attr(trim($description));}
-    else{$description = strip_tags(term_description());echo esc_attr(trim($description));}
+    elseif(is_search()){echo '“';the_search_query();global $wp_query;echo '”'.sprintf(' found %s results for you',$wp_query->found_posts);}
+    elseif(is_tag()){$description = strip_tags(tag_description());echo trim($description);}
+    else{$description = strip_tags(term_description());echo trim($description);}
 }
 //Article outside chain optimization
 function imgnofollow($content){
@@ -279,11 +279,11 @@ function insert_last_login($login){
 }
 add_filter('manage_users_columns','add_user_additional_column');
 function add_user_additional_column($columns){
-    $columns['user_nickname'] = '昵称';
-    $columns['user_url'] ='网站';
-    $columns['reg_time'] ='注册时间';
-    $columns['last_login'] ='上次登录';
-    $columns['last_login_ip'] ='登录IP';
+    $columns['user_nickname'] = 'Nickname';
+    $columns['user_url'] ='Website';
+    $columns['reg_time'] ='Registration Time';
+    $columns['last_login'] ='Last Login';
+    $columns['last_login_ip'] ='Login IP';
     unset($columns['name']);
     return $columns;
 }
@@ -358,7 +358,7 @@ function kratos_comment_callback(){
 <!--                <a href="//www.bilibili.com/html/help.html#k" target="_blank" lvl="3" class="h-level m-level"></a>-->
             </div>
             <?php if('0'==$comment->comment_approved): ?>
-            <em class="comment-awaiting-moderation">您的评论正在等待审核。</em>
+            <em class="comment-awaiting-moderation">Your comment is awaiting moderation.</em>
             <br />
             <?php endif; ?>
             <div class="comment-meta commentmetadata">
@@ -435,13 +435,13 @@ function kratos_get_html_sitemap(){
     <meta name="generator" content="KodCloud">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="description" content="<?php bloginfo('name'); ?>站点地图">
-    <meta name="keywords" content="<?php bloginfo('name'); ?>,站点地图,sitemap">
-    <title><?php bloginfo('name'); ?> | 站点地图 ?></title>
+    <meta name="description" content="<?php bloginfo('name'); ?>Sitemap">
+    <meta name="keywords" content="<?php bloginfo('name'); ?>,Sitemap,sitemap">
+    <title><?php bloginfo('name'); ?> | Sitemap ?></title>
     <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
     <link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed" href="<?php bloginfo('atom_url'); ?>" />
     <style>
-    *{margin:0;padding:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:Microsoft Yahei,"微软雅黑","Helvetica Neue",Helvetica,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif}
+    *{margin:0;padding:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:Microsoft Yahei,"Microsoft Yahei","Helvetica Neue",Helvetica,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif}
     html,body{width:100%;height:100%}
     a{text-decoration:none;color:#333;-webkit-transition:.3s ease all;-moz-transition:.3s ease all;-o-transition:.3s ease all;transition:.3s ease all}
     a:focus{outline:none}
@@ -469,7 +469,7 @@ function kratos_get_html_sitemap(){
     <h1 class="page-title"><a href="<?php echo get_option('home').'/sitemap.xml'; ?>" target="_blank">Sitemap</a></h1><?php
     $posts = get_posts('numberposts=-1&orderby=post_date&order=DESC');
     if(count($posts)): ?>
-    <h2 class="section-title">文章 / Article</h2>
+    <h2 class="section-title">Article</h2>
     <ul class="sitemap-lists post-lists clear-fix">
         <?php foreach($posts as $post) : 
                 $title = $post->post_title;
@@ -480,7 +480,7 @@ function kratos_get_html_sitemap(){
     endif;
     $pages = get_pages('numberposts=-1&orderby=post_date&order=DESC');
     if(count($pages)): ?>
-    <h2 class="section-title">页面 / Page</h2>
+    <h2 class="section-title">Page</h2>
     <ul class="sitemap-lists post-lists clear-fix">
         <?php foreach($pages as $page) : 
                 $title = $page->post_title;
@@ -491,7 +491,7 @@ function kratos_get_html_sitemap(){
     endif;
     $categorys = get_terms('category','orderby=name&hide_empty=0');
     if(count($categorys)): ?>
-    <h2 class="section-title">分类 / Category</h2>
+    <h2 class="section-title">Category</h2>
     <ul class="sitemap-lists category-lists clear-fix">
         <?php foreach ($categorys as $category) : 
                 $title = $category->name;
@@ -502,7 +502,7 @@ function kratos_get_html_sitemap(){
     endif;
     $tags = get_terms('post_tag','orderby=name&hide_empty=0');
     if(count($tags)): ?>
-    <h2 class="section-title">标签 / Tag</h2>
+    <h2 class="section-title">Tag</h2>
     <ul class="sitemap-lists tag-lists clear-fix">
         <?php foreach ($tags as $tag) : 
                 $title = $tag->name;
@@ -513,8 +513,8 @@ function kratos_get_html_sitemap(){
     <?php endif; ?>
 </div><!-- .container -->
 <footer class="page-footer">
-    最后更新于  <?php echo get_lastpostdate('blog'); ?>
-    <!-- 本页基于 mk-sitemap 插件 - https://mkblog.cn/ -->
+    Last updated on  <?php echo get_lastpostdate('blog'); ?>
+    <!-- This page is based on mk-sitemap Plugin - https://mkblog.cn/ -->
 </footer>
 </body>
 </html><?php
@@ -546,7 +546,7 @@ function comment_author_link_window(){
     return $return;
 }
 add_filter('get_comment_author_link','comment_author_link_window');
-//Notice ***PLEASE DO NOT EDIT THIS 请不要修改此内容***
+//Notice ***PLEASE DO NOT EDIT THIS Please do not modify this content***
 
 function kratos_welcome_notice(){
     global $noticeinfo;
