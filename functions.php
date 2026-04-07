@@ -1,7 +1,7 @@
 <?php
 
 
-define('KRATOS_VERSION','1.0');
+define('KRATOS_VERSION','2.3');
 
 require_once(get_template_directory().'/inc/core.php');
 require_once(get_template_directory().'/inc/shortcode.php');

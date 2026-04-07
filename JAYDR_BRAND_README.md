@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `a9e1f2b` | 2026-04-09 | google-labs-jules[bot] | Bump version to 2.3 and update theme metadata |
 | `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
 | `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
 | `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
