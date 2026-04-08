@@ -6,10 +6,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
-| `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
-| `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
-| `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 from BrandJaydr/security-hardening-patch |
+| `afc3a6a` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
+| `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
+| `bc3a010` | 2026-04-06 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
+| `8de0284` | 2026-04-05 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
 
 ## Improvements & Hardening
 
@@ -18,6 +18,17 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Created `REPO_MAP.md`, providing a comprehensive overview of the theme's directory structure and explains the purpose of each directory and file.
 - **Theme Configuration Guide (2026-04-07)**:
     - **Action**: Created `THEME_CONFIGURATION.md`, providing a detailed reference for every theme setting, mapping configuration IDs to their functional impact in core files.
+- **Funding Configuration (2026-04-06)**:
+    - **Action**: Created `.github/FUNDING.yml` to facilitate community support and sponsorship.
+
+### Compatibility & Modernization
+- **WordPress 6.7 & PHP 8.4 Support (2026-04-06)**:
+    - **Action**: Modernized deprecated functions and refactored logic for modern environments.
+    - **Details**:
+        - Replaced `wp_title()` with `wp_get_document_title()` or `get_the_title()`.
+        - Replaced `image_resize()` with `WP_Image_Editor`.
+        - Refactored `count_words()` and added null-safe checks in `inc/myfunction.php`.
+    - **Reference**: See `WORDPRESS_UPDATE.md` for full details.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer (2025-05-14)**:
