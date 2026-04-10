@@ -6,12 +6,20 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `e5f6g7h` | 2026-04-10 | google-labs-jules[bot] | Add international social feeds (YouTube, Bluesky) and expand cloud music options |
+| `a1b2c3d` | 2026-04-10 | google-labs-jules[bot] | Refactor core services for internationalization and add SoundCloud support |
 | `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
 | `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
 | `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
 | `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 from BrandJaydr/security-hardening-patch |
 
 ## Improvements & Hardening
+
+### Internationalization & Service Integration
+- **Core Service Refactor (2026-04-10)**:
+    - **Action**: Refactored Bilibili-centric services to support international alternatives including AniList (Anime Tracking), Mastodon, YouTube, and Bluesky (Social Dynamics), and Audius and Jamendo (Music).
+    - **SoundCloud Integration**: Implemented a new `[soundcloud]` shortcode and editor button for seamless track embedding.
+    - **Video Generalization**: Generalized the `[bilibili]` shortcode into a polymorphic `[video]` shortcode that auto-detects YouTube, Vimeo, and Bilibili content.
 
 ### Documentation
 - **Repository Map (2026-04-08)**:

@@ -16,6 +16,46 @@ function QPlayer_add_jquery() {
  * @param unknown $type Type of the acquired ID: song, album, artist, collect (playlist)
  */
 
+function get_jamendo_music($id) {
+    $url = "https://api.jamendo.com/v3.0/tracks/?client_id=56d30c95&format=json&id=" . urlencode($id);
+    $response = wp_remote_get($url, array('timeout' => 15));
+    if (!is_wp_error($response)) {
+        $result = json_decode(wp_remote_retrieve_body($response), true);
+        if ($result && isset($result['results'][0])) {
+            $data = $result['results'][0];
+            return array(
+                array(
+                    'title' => $data['name'],
+                    'artist' => $data['artist_name'],
+                    'location' => $data['audio'],
+                    'pic' => $data['image']
+                )
+            );
+        }
+    }
+    return false;
+}
+
+function get_audius_music($id) {
+    $url = "https://api.audius.co/v1/tracks/" . urlencode($id) . "?app_name=KratosTheme";
+    $response = wp_remote_get($url, array('timeout' => 15, 'headers' => array('Accept' => 'application/json')));
+    if (!is_wp_error($response)) {
+        $result = json_decode(wp_remote_retrieve_body($response), true);
+        if ($result && isset($result['data'])) {
+            $data = $result['data'];
+            return array(
+                array(
+                    'title' => $data['title'],
+                    'artist' => $data['user']['name'],
+                    'location' => "https://api.audius.co/v1/tracks/" . urlencode($id) . "/stream?app_name=KratosTheme",
+                    'pic' => $data['artwork']['150x150'] ?: $data['artwork']['480x480']
+                )
+            );
+        }
+    }
+    return false;
+}
+
 function get_netease_music($id, $type = 'song'){
     $return = false;
     switch ( $type ) {
@@ -85,22 +125,30 @@ function parse($id, $type) {
     $resultList = explode(",", $id);
     $result="\n";
     foreach ($resultList as $key => $value) {
-        $musicList = get_netease_music($value,$type);
-        foreach($musicList as $x=>$x_value) {
-            $result .= "{";
-            foreach ($x_value as $key => $value) {
-                if ($key == 'location') {
-                    $key = 'mp3';
+        if ($type == 'audius') {
+            $musicList = get_audius_music($value);
+        } elseif ($type == 'jamendo') {
+            $musicList = get_jamendo_music($value);
+        } else {
+            $musicList = get_netease_music($value,$type);
+        }
+        if ($musicList) {
+            foreach($musicList as $x=>$x_value) {
+                $result .= "{";
+                foreach ($x_value as $key => $value) {
+                    if ($key == 'location') {
+                        $key = 'mp3';
+                    }
+                    if ($key == 'pic') {
+                        $key = 'cover';
+                    }
+                    if (strpos($value, '"') !== false) {
+                        $value = addcslashes($value, '"');
+                    }
+                    $result .= "$key:\"". $value."\",";
                 }
-                if ($key == 'pic') {
-                    $key = 'cover';
-                }
-                if (strpos($value, '"') !== false) {
-                    $value = addcslashes($value, '"');
-                }
-                $result .= "$key:\"". $value."\",";
+                $result .= "},\n";
             }
-            $result .= "},\n";
         }
     }
     return $result;
@@ -196,16 +244,18 @@ function QPlayer_page() {
 			<div><div class="title">Custom JS</div>
 			  <textarea rows="6" cols="100" name="js"><?php echo get_option('js') ?></textarea>
 			</div><br>
-            <div class="title">Add Netease Music (Requires host to support curl extension)</div>
-            <div>ID Type
-                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>Playlist
-                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>Album
-                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Artist
-                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Song
+            <div class="title">Add Music (Requires host to support curl extension)</div>
+            <div>Source / Type
+                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>Netease Playlist
+                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>Netease Album
+                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Netease Artist
+                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Netease Song
+                <input type="radio" name="musicType" value="audius" <?php if (get_option('musicType') == 'audius') echo "checked";?>>Audius Track
+                <input type="radio" name="musicType" value="jamendo" <?php if (get_option('musicType') == 'jamendo') echo "checked";?>>Jamendo Track
             </div>
             <div>ID Input
                 <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">Please go to the Netease Music web version to get the music ID (specifically, there will be an ID at the end of the URL of each music item). Copyrighted music cannot be parsed!</p>
+                <p class="tip" style="margin-bottom: 0;">For Netease, get the ID from the URL. For Audius and Jamendo, use the Track ID. Multiple IDs can be separated by commas.</p>
             </div>
 			<input type="submit" name="addMusic" id="addMusic" value="Add to songList"  /><br><br>
 			<div><div class="title">songList</div>

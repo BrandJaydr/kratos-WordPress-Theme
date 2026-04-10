@@ -172,19 +172,79 @@ add_shortcode('wxmusic','wxmusic');
 
 
 
-function bilibili($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("cid"=>'0'),$atts));
-    extract(shortcode_atts(array("page"=>'1'),$atts));
-    $return = '<div class="video-container"><iframe src="//player.bilibili.com/player.html?aid=';
-    $return .= $content;
-    $return .= '&cid=';
-    $return .= $cid;
-    $return .= '&page=';
-    $return .= $page;
-    $return .= '" allowtransparency="true" width="100%" height="498" scrolling="no" frameborder="0" ></iframe></div>';
-    return $return;
+function soundcloud_shortcode($atts, $content = null, $code = "") {
+    extract(shortcode_atts(array(
+        "width" => '100%',
+        "height" => '166',
+        "auto_play" => 'false',
+        "hide_related" => 'false',
+        "show_comments" => 'true',
+        "show_user" => 'true',
+        "show_reposts" => 'false',
+        "show_teaser" => 'true',
+        "color" => '#ff5500'
+    ), $atts));
+
+    $content = trim($content);
+    $src = "https://w.soundcloud.com/player/?url=" . urlencode($content) . "&color=" . urlencode(str_replace('#', '', $color)) . "&auto_play=" . esc_attr($auto_play) . "&hide_related=" . esc_attr($hide_related) . "&show_comments=" . esc_attr($show_comments) . "&show_user=" . esc_attr($show_user) . "&show_reposts=" . esc_attr($show_reposts) . "&show_teaser=" . esc_attr($show_teaser);
+
+    return '<div class="soundcloud-container"><iframe width="' . esc_attr($width) . '" height="' . esc_attr($height) . '" scrolling="no" frameborder="no" allow="autoplay" src="' . esc_url($src) . '"></iframe></div>';
 }
-add_shortcode('bilibili','bilibili');
+add_shortcode('soundcloud', 'soundcloud_shortcode');
+
+function video_shortcode($atts,$content=null,$code=""){
+    extract(shortcode_atts(array(
+        "site" => 'auto',
+        "cid" => '0',
+        "page" => '1',
+        "width" => '100%',
+        "height" => '498'
+    ), $atts));
+
+    $content = trim($content);
+    $video_url = '';
+
+    if ($site == 'auto') {
+        if (strpos($content, 'youtube.com') !== false || strpos($content, 'youtu.be') !== false) {
+            $site = 'youtube';
+        } elseif (strpos($content, 'vimeo.com') !== false) {
+            $site = 'vimeo';
+        } elseif (strpos($content, 'bilibili.com') !== false || is_numeric($content)) {
+            $site = 'bilibili';
+        }
+    }
+
+    switch ($site) {
+        case 'youtube':
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $content, $match)) {
+                $id = $match[1];
+            } else {
+                $id = $content;
+            }
+            $video_url = 'https://www.youtube.com/embed/' . $id;
+            break;
+        case 'vimeo':
+            if (preg_match('%vimeo\.com/(?:video/)?([0-9]+)%i', $content, $match)) {
+                $id = $match[1];
+            } else {
+                $id = $content;
+            }
+            $video_url = 'https://player.vimeo.com/video/' . $id;
+            break;
+        case 'bilibili':
+        default:
+            $id = $content;
+            if (preg_match('%bilibili\.com/video/av([0-9]+)%i', $content, $match)) {
+                $id = $match[1];
+            }
+            $video_url = '//player.bilibili.com/player.html?aid=' . $id . '&cid=' . $cid . '&page=' . $page;
+            break;
+    }
+
+    return '<div class="video-container"><iframe src="' . esc_url($video_url) . '" allowtransparency="true" width="' . esc_attr($width) . '" height="' . esc_attr($height) . '" scrolling="no" frameborder="0" allowfullscreen></iframe></div>';
+}
+add_shortcode('video','video_shortcode');
+add_shortcode('bilibili','video_shortcode');
 
 add_action('init','more_button_a');
 function more_button_a(){
@@ -211,7 +271,8 @@ function register_button($buttons){
     array_push($buttons," ","striped");
     array_push($buttons," ","ypbtn");
     array_push($buttons," ","music");
-    array_push($buttons," ","bilibili");
+    array_push($buttons," ","soundcloud");
+    array_push($buttons," ","video");
     array_push($buttons," ","wxmusic");
     return $buttons;
 }
@@ -233,7 +294,8 @@ function add_plugin($plugin_array){
     $plugin_array['striped'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['ypbtn'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['music'] = get_bloginfo('template_url').'/inc/buttons/more.js';
-    $plugin_array['bilibili'] = get_bloginfo('template_url').'/inc/buttons/more.js';
+    $plugin_array['soundcloud'] = get_bloginfo('template_url').'/inc/buttons/more.js';
+    $plugin_array['video'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['wxmusic'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     return $plugin_array;
 }
@@ -285,6 +347,7 @@ function appthemes_add_quicktags(){ ?>
             QTags.addButton( 'Reply to View ', 'Reply to View ', '[hide reply_to_this="true"]', '[/hide]' );
             QTags.addButton( 'Cloud Download ', 'Cloud Download ', '[ypbtn]', '[/ypbtn]' );
             QTags.addButton( 'Netease Cloud Music ', 'Netease Cloud Music ', '[music autoplay="0"]', '[/music]' );
+            QTags.addButton( 'SoundCloud ', 'SoundCloud ', '[soundcloud]', '[/soundcloud]' );
             QTags.addButton( 'Green Background Bar ', 'Green Background Bar ', '[success]', '[/success]' );
             QTags.addButton( 'Blue Background Bar ', 'Blue Background Bar ', '[info]', '[/info]' );
             QTags.addButton( 'Red Background Bar ', 'Red Background Bar ', '[danger]', '[/danger]' );

@@ -27,6 +27,7 @@ The root directory contains the core WordPress theme templates and essential doc
 | `JAYDR_BRAND_README.md` | Record of changes, hardening, and performance improvements for this fork. |
 | `WORDPRESS_UPDATE.md` | Compatibility notes for modern WordPress (6.7+) and PHP (8.3+) environments. |
 | `SERVICE_ALTERNATIVES.md` | Analysis and recommendations for internationalizing theme services. |
+| `INTERNATIONAL_INTEGRATION.md`| User guide for configuring international alternatives for theme services. |
 | `screenshot.png` | The theme's preview image shown in the WordPress admin panel. |
 
 ---
@@ -41,6 +42,10 @@ This directory houses the functional "guts" of the theme, organized into logical
 | `live2d/` | Logic and assets for the "Waifu" (Live2D) animated character feature. |
 | `theme-options/` | The underlying framework that powers the theme's settings panel. |
 | `tinymce-advanced/` | Enhancements for the WordPress Classic Editor (TinyMCE). |
+| `anilist.php` | **New:** Integration with the AniList GraphQL API for anime tracking. |
+| `mastodon.php` | **New:** Integration with the Mastodon API for social dynamic feeds. |
+| `youtube.php` | **New:** Integration with the YouTube API for latest video updates. |
+| `bluesky.php` | **New:** Integration with the Bluesky public API for social posts. |
 | `avatars.php` | Manages local avatar uploads and Gravatar server mirrors. |
 | `core.php` | Theme initialization, script/style enqueuing, and sitemap generation logic. |
 | `imgcfg.php` | Handles homepage banners (carousels) and post thumbnail logic. |
@@ -61,8 +66,11 @@ This directory houses the functional "guts" of the theme, organized into logical
 ## `pages/` - Custom Templates
 Specific layouts for unique site features.
 
-- `page-bibo.php`: A template that mimics the Bilibili "Dynamic" (Bibo) wall layout.
-- `page-bilibili.php`: Displays anime watch progress fetched from Bilibili.
+- `page-bibo.php`: A template that mimics the Bilibili "Dynamic" (Bibo) wall layout. Now supports Mastodon, YouTube, and Bluesky.
+- `page-mastodon.php`: **New:** Layout for displaying Mastodon status feeds.
+- `page-youtube.php`: **New:** Layout for displaying latest YouTube uploads.
+- `page-bluesky.php`: **New:** Layout for displaying Bluesky social feeds.
+- `page-bilibili.php`: Displays anime watch progress. Supports both Bilibili and AniList.
 - `page-archives.php`: A comprehensive site archive/history page.
 - `page-link.php`: A dedicated "Links" or "Blogroll" page for sharing friends' sites.
 - `page-notitle.php`: A simple page template that hides the page title.

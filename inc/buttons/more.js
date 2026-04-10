@@ -215,6 +215,21 @@
         },
     });
     tinymce.PluginManager.add('music', tinymce.plugins.music);
+    tinymce.create('tinymce.plugins.soundcloud', {
+        init : function(ed, url) {
+            ed.addButton('soundcloud', {
+                title : 'SoundCloud',
+                image : url+'/images/music.png',
+                onclick : function() {
+                     ed.selection.setContent('[soundcloud]' + ed.selection.getContent() + '[/soundcloud]');
+                }
+            });
+        },
+        createControl : function(n, cm) {
+            return null;
+        },
+    });
+    tinymce.PluginManager.add('soundcloud', tinymce.plugins.soundcloud);
     tinymce.create('tinymce.plugins.wxmusic', {
         init : function(ed, url) {
             ed.addButton('wxmusic', {
@@ -230,14 +245,14 @@
         },
     });
     tinymce.PluginManager.add('wxmusic', tinymce.plugins.wxmusic);
-    tinymce.create('tinymce.plugins.bilibili', {
+    tinymce.create('tinymce.plugins.video', {
         init : function(ed, url) {
  
-            ed.addButton('bilibili', {
-                title : 'Bilibili',
+            ed.addButton('video', {
+                title : 'Video Embed',
                 image : url+'/images/bilibili.png',
                 onclick : function() {
-                     ed.selection.setContent('[bilibili cid="" page="1"]' + ed.selection.getContent() + '[/bilibili]');
+                     ed.selection.setContent('[video site="auto"]' + ed.selection.getContent() + '[/video]');
                 }
             });
         },
@@ -245,7 +260,7 @@
             return null;
         },
     });
-    tinymce.PluginManager.add('bilibili', tinymce.plugins.bilibili);
+    tinymce.PluginManager.add('video', tinymce.plugins.video);
 
 
 

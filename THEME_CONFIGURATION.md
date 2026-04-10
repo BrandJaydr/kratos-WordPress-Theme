@@ -133,6 +133,8 @@ Toggles for functional extensions and interactive features.
     - **Entrance Animation** (`animal_load`): Enables WOW.js/Animate.css effects as elements enter the viewport.
     - **Tab Title**: Changes browser tab title when user leaves (`title_change`) and returns (`title_back`).
     - **Click Content**: Comma-separated quoted strings (e.g., `"Wow", "Cool"`) that pop up on mouse clicks.
+- **International Service Integration**:
+    - `anilist_username`: Used for international anime tracking (overrides Bilibili settings).
 - **Bilibili Integration**:
     - `bilibili_uid`: Used in Bibo layout to show follower/play stats.
     - `bilibili_cookie`: Required for fetching advanced Bilibili data.
@@ -140,9 +142,15 @@ Toggles for functional extensions and interactive features.
 
 ---
 
-## 12. Bibo Layout Settings (B博界面设置)
-A specialized layout mode mimicking Bilibili's "Dynamic" (Bibo) wall.
+## 12. Social Dynamics Settings (动态界面设置)
+A specialized layout mode that supports Bilibili, Mastodon, YouTube, and Bluesky.
 
-- **Bibo Open**: Toggles the overall style switch button in the footer.
-- **Direct Jump** (`bibo_gotobibo`): Automatically defaults the homepage to the Bibo layout if a link is provided.
-- **Implementation**: Managed via a `goto_bibo` cookie and template logic in `index.php` and `header.php`.
+- **Enable Social Dynamics**: Toggles the overall style switch button in the footer.
+- **Mastodon Instance URL** (`mastodon_instance`): e.g., `mastodon.social`. Used for the Mastodon dynamics feed.
+- **Mastodon User ID** (`mastodon_user_id`): Numeric ID of your Mastodon account.
+- **YouTube API Key** (`youtube_api_key`): Required for YouTube Dynamics.
+- **YouTube Channel ID** (`youtube_channel_id`): Your unique YouTube Channel ID.
+- **Bluesky Handle** (`bluesky_handle`): e.g., `user.bsky.social`. Used for the Bluesky dynamics feed.
+- **Dynamics Page URL** (`bibo_pagelink`): Link to the page using the Dynamics template.
+- **Direct Jump** (`bibo_gotobibo`): Automatically defaults the homepage to the Dynamics layout if a link is provided.
+- **Implementation**: Managed via a `goto_bibo` cookie and polymorphic template logic in `pages/page-bibo.php`.
