@@ -71,7 +71,7 @@ function get_netease_music($id, $type = 'song'){
                 }
                 $list = $r;
             }
-            //最终播放列表
+            //Final Playlist
             $return = $list;
         }
     } else {
@@ -122,7 +122,7 @@ function QPlayer_page() {
         update_option('neteaseID', sanitize_text_field($_POST['neteaseID']));
         update_option('musicList',stripcslashes(sanitize_text_field($_POST['musicList'])));
         echo '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
-<p><strong>设置已保存。</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">忽略此通知。</span></button></div>';
+<p><strong>Settings Saved。</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">忽略此通知。</span></button></div>';
     } 
     if (isset($_POST['addMusic']) && $_SERVER['REQUEST_METHOD']=='POST') {
     	update_option('musicType',sanitize_text_field($_POST['musicType']));
@@ -172,21 +172,21 @@ function QPlayer_page() {
     <div class="QPlayer">  
       <h1>QPlayer设置</h1><br>
         <form method="post">  
-			<div><div class="title">自动播放</div>
+			<div><div class="title">Auto Play</div>
 			  <input type="radio" name="autoPlay" value="0" <?php if (!get_option('autoPlay')) echo "checked";?>>否
   			  <input type="radio" name="autoPlay" value="1" <?php if (get_option('autoPlay')) echo "checked";?>>是
 			</div><br>
-			<div><div class="title">封面旋转</div>
+			<div><div class="title">Cover Rotation</div>
 			  <input type="radio" name="rotate" value="0" <?php if (!get_option('rotate')) echo "checked";?>>否
   			  <input type="radio" name="rotate" value="1" <?php if (get_option('rotate')) echo "checked";?>>是
 			</div><br>
-            <div><div class="title">开启随机播放</div>
+            <div><div class="title">Enable Shuffle</div>
                 <input type="radio" name="random" value="0" <?php if (!get_option('random')) echo "checked";?>>否
                 <input type="radio" name="random" value="1" <?php if (get_option('random')) echo "checked";?>>是
             </div><br>
-			<div><div class="title">自定义主色调</div>
+			<div><div class="title">Custom Theme Color</div>
 			  <input type="text" name="color" value="<?php echo get_option('color'); ?>">
-  			  <p class="tip">默认为<span style="color: #1abc9c;">#1abc9c</span>, 你可以自定义任何你喜欢的颜色作为播放器主色调。自定义主色调支持css的设置格式，如: `#233333`,"rgb(255,255,255)","rgba(255,255,255,1)","hsl(0, 0%, 100%)","hsla(0, 0%, 100%,1)"。填写其他错误的格式可能不会生效。</p>
+			  <p class="tip">默认为<span style="color: #1abc9c;">#1abc9c</span>, You can customize any color as the player theme color。Custom Theme Color支持css的设置格式，如: `#233333`,"rgb(255,255,255)","rgba(255,255,255,1)","hsl(0, 0%, 100%)","hsla(0, 0%, 100%,1)"。填写其他错误的格式可能不会生效。</p>
 			</div><br>
 			<div><div class="title">自定义CSS</div>
 			  <textarea rows="6" cols="100" name="css"><?php echo get_option('css') ?></textarea>
@@ -194,7 +194,7 @@ function QPlayer_page() {
 			<div><div class="title">自定义JS</div>
 			  <textarea rows="6" cols="100" name="js"><?php echo get_option('js') ?></textarea>
 			</div><br>
-            <div class="title">添加网易云音乐(需主机支持curl扩展)</div>
+            <div class="title">Add NetEase Music(需主机支持curl扩展)</div>
             <div>id类型
                 <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>歌单
                 <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>专辑
@@ -203,12 +203,12 @@ function QPlayer_page() {
             </div>
             <div>id输入
                 <input type="text" id="inputID" onclick="clickAnimation()" placeholder="多个id用英文,分隔开" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">请自行去网易云音乐网页版获取音乐id(具体在每个音乐项目的网址最后会有个id)。有版权的音乐无法解析!</p>
+                <p class="tip" style="margin-bottom: 0;">请自行去网易云音乐网页版获取音乐id(具体在每个音乐项目的网址最后会有个id)。Copyrighted music cannot be parsed!</p>
             </div>
-			<input type="submit" name="addMusic" id="addMusic" value="添加到歌曲列表"  /><br><br>
-			<div><div class="title">歌曲列表</div>
+			<input type="submit" name="addMusic" id="addMusic" value="添加到Song List"  /><br><br>
+			<div><div class="title">Song List</div>
 			  <textarea rows="8" cols="100" name="musicList"><?php echo get_option('musicList') ?></textarea>
-  			  <p class="tip">格式: {title:"xxx", artist:"xxx", cover:"http:xxxx", mp3:"http:xxxx"} ，每个歌曲之间用英文,隔开。请保证歌曲列表里至少有一首歌！</p>
+			  <p class="tip">格式: {title:"xxx", artist:"xxx", cover:"http:xxxx", mp3:"http:xxxx"} ，每个歌曲之间用英文,隔开。请保证Song List里至少有一首歌！</p>
 			</div>
 			<input type="submit" name="submit" id="submit" value="<?php _e('Save Changes') ?>"  />  
             </p>  

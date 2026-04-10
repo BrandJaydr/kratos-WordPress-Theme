@@ -33,7 +33,7 @@ add_shortcode('music','wymusic');
 function ypbtn($atts,$content=null,$code=""){
     $return = '<a class="downbtn downcloud" href="';
     $return .= $content;
-    $return .= '" target="_blank"><i class="fa fa-cloud-download"></i>云盘下载</a>';
+    $return .= '" target="_blank"><i class="fa fa-cloud-download"></i>Cloud Download</a>';
     return $return;
 }
 add_shortcode('ypbtn','ypbtn');
@@ -76,16 +76,16 @@ function hide($atts,$content=null,$code=""){
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_post_id='".$id."'and comment_approved = '1'");
         }
-        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>并在本文发表评论才能阅读隐藏内容',wp_login_url(get_permalink())).'</div>';
+        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>Comment on this post to see hidden content',wp_login_url(get_permalink())).'</div>';
     }else{
         if($email){
             global $wpdb;
             global $id;
             $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_approved = '1'");
         }
-        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>并在本站任一文章发表评论才能阅读隐藏内容',wp_login_url(get_permalink())).'</div>';
+        if(!$comments) $content = '<div class="hide_notice">'.sprintf('抱歉，只有<a href="%s" rel="nofollow">登录</a>Comment on any post to see hidden content',wp_login_url(get_permalink())).'</div>';
     }
-    if($comments) $content = '<div class="unhide"><div class="info">以下为隐藏内容：</div>'.$content.'</div>';
+    if($comments) $content = '<div class="unhide"><div class="info">Below is hidden content：</div>'.$content.'</div>';
     return $content;
 }
 add_shortcode('hide','hide');
@@ -111,7 +111,7 @@ function infobox($atts,$content=null,$code=""){
 add_shortcode('infobox','infobox');
 
 function highlight($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("lanaguage"=>'语言'),$atts));
+    extract(shortcode_atts(array("lanaguage"=>'Language'),$atts));
     $return = '<pre class="line-numbers"><code class="language-';
     $return .= $lanaguage;
     $return .= '">';
@@ -277,20 +277,20 @@ function appthemes_add_quicktags(){ ?>
         try{
             QTags.addButton( 'pre', 'pre', '<pre>\n', '\n</pre>' );
             QTags.addButton( 'hr', 'hr', '\n\n<hr />\n\n', '' );
-            QTags.addButton( '代码高亮 ', '代码高亮 ', '[highlight lanaguage="语言"]', '[/highlight]' );
+            QTags.addButton( 'Code Highlight ', 'Code Highlight ', '[highlight lanaguage="Language"]', '[/highlight]' );
             QTags.addButton( '内容标题 ', '内容标题 ', '[title]', '[/title]' );
             QTags.addButton( '蓝色字体 ', '蓝色字体 ', '<span style="color: #0000ff;">', '</span>' );
             QTags.addButton( ' 红色字体 ', '红色字体 ', '<span style="color: #ff0000;">', '</span>' );
             QTags.addButton( '展开/收缩 ', '展开/收缩 ', '[collapse title="标题内容 "]', '[/collapse]' );
-            QTags.addButton( '回复可见 ', '回复可见 ', '[hide reply_to_this="true"]', '[/hide]' );
-            QTags.addButton( '云盘下载 ', '云盘下载 ', '[ypbtn]', '[/ypbtn]' );
+            QTags.addButton( 'Reply to see ', 'Reply to see ', '[hide reply_to_this="true"]', '[/hide]' );
+            QTags.addButton( 'Cloud Download ', 'Cloud Download ', '[ypbtn]', '[/ypbtn]' );
             QTags.addButton( '网易云音乐 ', '网易云音乐 ', '[music autoplay="0"]', '[/music]' );
-            QTags.addButton( '绿色背景栏 ', '绿色背景栏 ', '[success]', '[/success]' );
-            QTags.addButton( '蓝色背景栏 ', '蓝色背景栏 ', '[info]', '[/info]' );
-            QTags.addButton( '红色背景栏 ', '红色背景栏 ', '[danger]', '[/danger]' );
-            QTags.addButton( '绿色面板 ', '绿色面板 ', '[successbox title="标题内容 "]', '[/successbox]' );
-            QTags.addButton( '蓝色面板 ', '蓝色面板 ', '[infobox title="标题内容 "]', '[/infobox]' );
-            QTags.addButton( '红色面板 ', '红色面板 ', '[dangerbox title="标题内容 "]', '[/dangerbox]' );
+            QTags.addButton( 'Green Background Bar ', 'Green Background Bar ', '[success]', '[/success]' );
+            QTags.addButton( 'Blue Background Bar ', 'Blue Background Bar ', '[info]', '[/info]' );
+            QTags.addButton( 'Red Background Bar ', 'Red Background Bar ', '[danger]', '[/danger]' );
+            QTags.addButton( 'Green Panel ', 'Green Panel ', '[successbox title="标题内容 "]', '[/successbox]' );
+            QTags.addButton( 'Blue Panel ', 'Blue Panel ', '[infobox title="标题内容 "]', '[/infobox]' );
+            QTags.addButton( 'Red Panel ', 'Red Panel ', '[dangerbox title="标题内容 "]', '[/dangerbox]' );
         }catch(err){}
     </script>
     <?php

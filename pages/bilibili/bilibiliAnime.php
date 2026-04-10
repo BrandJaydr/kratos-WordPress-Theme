@@ -1,39 +1,39 @@
 <?php
 class bilibiliAnime
 {
-    public $title=array();//标题
-    public $image_url=array();//图片链接
-    public $total=array();//总集数
-    public $progress=array();//我的进度
+    public $title=array();//Title
+    public $image_url=array();//Image Link
+    public $total=array();//Total episodes
+    public $progress=array();//My progress
     public $evaluate=array();//介绍
-    public $season_id=array();//ID号，用于番剧跳转
-    public $sum;//番剧数目
-//    这个是处理我观看记录的函数
+    public $season_id=array();//ID No.，Used for anime jump
+    public $sum;//Number of anime
+//    This function handles my watch records
     private function process($content)
     {
-        $start=stripos($content,"第");
+        $start=stripos($content,"Episode ");
         if($start)
         {
-            $end=stripos($content,"话");
+            $end=stripos($content,"");
             return substr($content,$start+3,$end-$start-3);
         }
         else
         {
-            $start=stripos($content,"到");
+            $start=stripos($content," to ");
             if($start)
             {
                 return substr($content,$start+3);
             }
             else
             {
-                $start=stripos($content,"完");
+                $start=stripos($content," Finished");
                 if($start)
                 {
                     return substr($content,$start+3);
                 }
                 else
                 {
-                    return "没有记录!";
+                    return "No records!";
                 }
             }
         }
@@ -41,17 +41,17 @@ class bilibiliAnime
     private function getpage($uid)
     {
         $url="https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=1&ps=15&vmid=$uid";
-        $ch = curl_init(); //初始化curl模块
-        curl_setopt($ch, CURLOPT_URL, $url); //登录提交的地址
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);//这个很关键就是把获取到的数据以文件流的方式返回，而不是直接输出
+        $ch = curl_init(); //InitializecurlModule
+        curl_setopt($ch, CURLOPT_URL, $url); //Login submission URL
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);//This is key: fetched  to  data returned as file stream，rather than direct output
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            //发送请求头
+            //Send request header
             "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36",
             "Referer: https://www.bilibili.com/",
         ));
 
         $info=json_decode(curl_exec($ch),true);
-        curl_close($ch);//关闭连接
+        curl_close($ch);//Close connection
         return $info['data']['total'];
     }
     public function __construct($uid,$cookie)
@@ -60,17 +60,17 @@ class bilibiliAnime
         for($i=1;$i<=ceil($this->sum/15);$i++)
         {
             $url="https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=$i&ps=15&vmid=$uid";
-            $ch = curl_init(); //初始化curl模块
-            curl_setopt($ch, CURLOPT_URL, $url); //登录提交的地址
-            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);//这个很关键就是把获取到的数据以文件流的方式返回，而不是直接输出
+            $ch = curl_init(); //InitializecurlModule
+            curl_setopt($ch, CURLOPT_URL, $url); //Login submission URL
+            curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);//This is key: fetched  to  data returned as file stream，rather than direct output
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                //发送请求头
+                //Send request header
                 "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.90 Safari/537.36",
                 "Referer: https://www.bilibili.com/",
                 "Cookie: $cookie",
             ));
             $info=json_decode(curl_exec($ch),true);
-            curl_close($ch);//关闭连接
+            curl_close($ch);//Close connection
             foreach ($info['data']['list'] as $data) {
                 array_push($this->title, $data['title']);
                 array_push($this->image_url, $data['cover']);

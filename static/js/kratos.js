@@ -37,11 +37,11 @@
     var showlove = function(){
         $.fn.postLike = function(){
             if($(this).hasClass('done')){
-                layer.msg('您已经支持过了',function(){});
+                layer.msg('You have already liked this',function(){});
                 return false;
             }else{
                 $(this).addClass('done');
-                layer.msg('感谢您的支持');
+                layer.msg('Thanks for your support');
                 var id = $(this).data('id'),
                     action = $(this).data('action'),
                     rateHolder = $(this).children('.count');
@@ -177,10 +177,10 @@
             layer.open({
                 type:1,
                 area:['300px', '370px'],
-                title:'打赏作者',
+                title:'Donate to Author',
                 resize:false,
                 scrollbar:false,
-                content:'<div class="donate-box"><div class="meta-pay text-center"><strong>扫一扫支付</strong></div><div class="qr-pay text-center"><img class="pay-img" id="alipay_qr" src="'+xb.alipay+'"><img class="pay-img d-none" id="wechat_qr" src="'+xb.wechat+'"></div><div class="choose-pay text-center mt-2"><input id="alipay" type="radio" name="pay-method" checked><label for="alipay" class="pay-button"><img src="'+xb.thome+'/static/images/alipay.png"></label><input id="wechatpay" type="radio" name="pay-method"><label for="wechatpay" class="pay-button"><img src="'+xb.thome+'/static/images/wechat.png"></label></div></div>'
+                content:'<div class="donate-box"><div class="meta-pay text-center"><strong>Scan to Pay</strong></div><div class="qr-pay text-center"><img class="pay-img" id="alipay_qr" src="'+xb.alipay+'"><img class="pay-img d-none" id="wechat_qr" src="'+xb.wechat+'"></div><div class="choose-pay text-center mt-2"><input id="alipay" type="radio" name="pay-method" checked><label for="alipay" class="pay-button"><img src="'+xb.thome+'/static/images/alipay.png"></label><input id="wechatpay" type="radio" name="pay-method"><label for="wechatpay" class="pay-button"><img src="'+xb.thome+'/static/images/wechat.png"></label></div></div>'
             });
             $('.choose-pay input[type="radio"]').click(function(){
                 var id= $(this).attr('id');
@@ -327,14 +327,14 @@ jQuery(document).ready(function(jQuery) {
         uid=$('#uid').val();
         if(uid)
         {
-            /*发出ajax请求获B站信息*/
+            /* Request Bilibili info via AJAX */
             myajax=$.ajax({
                 url:"//api.xiaoyou66.com/theme/bilibili/?uid="+uid,
                 type:'get',
                 success:function(res){
                     if(!res)
                     {
-                        window.alert("uid错误,请重新填写！");
+                        window.alert("Invalid UID, please re-enter!");
                         return false;
                     }
                     var list=res.split(",");
@@ -354,7 +354,7 @@ jQuery(document).ready(function(jQuery) {
                         url:xb.ajax_url,
                         data:jQuery(that).serialize()+'&photo='+photo+'&hang='+hang+'&level='+level+'&action=ajax_comment',
                         type:jQuery(that).attr('method'),
-                        beforeSend:addComment.createButterbar('正在提交'),
+                        beforeSend:addComment.createButterbar('Submitting...'),
                         error:function(request){
                             var t = addComment;
                             t.createButterbar(request.responseText)
@@ -373,7 +373,7 @@ jQuery(document).ready(function(jQuery) {
                                     jQuery('.'+__list).prepend(data)
                                 }
                             }
-                            t.createButterbar('提交成功');
+                            t.createButterbar('Submitted successfully');
                             cancel.style.display = 'none';
                             cancel.onclick = null;
                             t.I('comment_parent').value = '0';
@@ -391,7 +391,7 @@ jQuery(document).ready(function(jQuery) {
                 url:xb.ajax_url,
                 data:jQuery(this).serialize()+'&action=ajax_comment',
                 type:jQuery(this).attr('method'),
-                beforeSend:addComment.createButterbar('正在提交'),
+                beforeSend:addComment.createButterbar('Submitting...'),
                 error:function(request){
                     var t = addComment;
                     t.createButterbar(request.responseText)
@@ -410,7 +410,7 @@ jQuery(document).ready(function(jQuery) {
                             jQuery('.'+__list).prepend(data)
                         }
                     }
-                    t.createButterbar('提交成功');
+                    t.createButterbar('Submitted successfully');
                     cancel.style.display = 'none';
                     cancel.onclick = null;
                     t.I('comment_parent').value = '0';
@@ -465,31 +465,38 @@ jQuery(document).ready(function(jQuery) {
 
 
 //time
-var now = new Date();
 var timerElement = document.getElementById('span_dt_dt');
+var birthDate = xb.ctime ? new Date(xb.ctime) : null;
 function createtime(){
-    var grt = new Date(xb.ctime);
-    now.setTime(now.getTime()+250);
-    days = (now-grt)/1000/60/60/24;dnum = Math.floor(days);
-    hours = (now-grt)/1000/60/60-(24*dnum);hnum = Math.floor(hours);
-    if(String(hnum).length==1){hnum = '0'+hnum;}
-    minutes = (now-grt)/1000/60-(24*60*dnum)-(60*hnum);mnum = Math.floor(minutes);
-    if(String(mnum).length==1){mnum = '0'+mnum;}
-    seconds = (now-grt)/1000-(24*60*60*dnum)-(60*60*hnum)-(60*mnum);snum = Math.round(seconds);
-    if(String(snum).length==1){snum = '0'+snum;}
-    if(timerElement) timerElement.innerHTML = dnum+'天'+hnum+'小时'+mnum+'分'+snum+'秒';
+    if (!birthDate) return;
+    var now = new Date();
+    var diff = now - birthDate;
+    var seconds = Math.floor(diff / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+
+    hours %= 24;
+    minutes %= 60;
+    seconds %= 60;
+
+    var hstr = hours < 10 ? '0' + hours : hours;
+    var mstr = minutes < 10 ? '0' + minutes : minutes;
+    var sstr = seconds < 10 ? '0' + seconds : seconds;
+
+    if(timerElement) timerElement.innerHTML = days + ' days ' + hstr + ' hours ' + mstr + ' minutes ' + sstr + ' seconds';
 }
 
-setInterval(createtime, 250);
+if(birthDate) setInterval(createtime, 1000);
 //copy
-if(xb.copy) document.body.oncopy=function(){alert('已复制所选内容。请务必遵守本站条约！');}
+if(xb.copy) document.body.oncopy=function(){alert('Content copied. Please abide by the site terms!');}
 
 
 //*********************************************************
 //*********************************************************
-// 目的：    设置Cookie
-// 输入：    sName, sValue,iExpireDays
-// 返回：    无
+// Purpose: Set Cookie
+// Input: sName, sValue, iExpireDays
+// Return: None
 //*********************************************************
 function SetCookie(sName, sValue,iExpireDays) {
     if (iExpireDays){
@@ -504,9 +511,9 @@ function SetCookie(sName, sValue,iExpireDays) {
 
 //*********************************************************
 //*********************************************************
-// 目的：    返回Cookie
-// 输入：    Name
-// 返回：    Cookie值
+// Purpose: Return Cookie
+// Input: Name
+// Return: Cookie Value
 //*********************************************************
 function GetCookie(sName) {
     var arr = document.cookie.match(new RegExp("(^| )"+sName+"=([^;]*)(;|$)"));

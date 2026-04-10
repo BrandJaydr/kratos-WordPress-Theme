@@ -12,7 +12,7 @@ function count_words ($text) {
     $output = '';
     if ( '' == $text ) {
         $text = $post->post_content;
-        if (mb_strlen($output, 'UTF-8') < mb_strlen($text, 'UTF-8')) $output .= '共' . mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($post->post_content))),'UTF-8') . '个字&nbsp;&nbsp;';
+        if (mb_strlen($output, 'UTF-8') < mb_strlen($text, 'UTF-8')) $output .= '' . mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($post->post_content))),'UTF-8') . ' words&nbsp;&nbsp;';
         return $output;
     }
 }
@@ -59,11 +59,11 @@ function article_index($content) {
                 };';
         }
         if($_COOKIE['goto_bibo']==1){
-            $content = "<div id=\"article-index\"><div id=\"article-index-move\">文章目录<a id=\"category-close\">[x]</a></div>
+            $content = "<div id=\"article-index\"><div id=\"article-index-move\">Table of Contents<a id=\"category-close\">[x]</a></div>
 <ol id=\"index-ul\">" . $ul_li . "</ol>
 </div>".'<script type="text/javascript">'.$js.'</script>'.$content;
         }else{
-            $content = "<div class='wow shake' id=\"article-index\"><div id=\"article-index-move\">文章目录<a id=\"category-close\">[x]</a></div>
+            $content = "<div class='wow shake' id=\"article-index\"><div id=\"article-index-move\">Table of Contents<a id=\"category-close\">[x]</a></div>
 <ol id=\"index-ul\">" . $ul_li . "</ol>
 </div>".'<script type="text/javascript">'.$js.'</script>'.$content;
         }
@@ -107,9 +107,9 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
 }
 add_filter( 'get_avatar' , 'local_random_avatar' , 1 , 5 );
 
-//去除回车换行
+// Remove carriage returns and line breaks
 function trimall($str){
-    $qian=array(" ","　","\t","\n","\r");
+    $qian=array(" "," ","\t","\n","\r");
     return str_replace($qian, '', $str);
 }
 
@@ -119,7 +119,7 @@ function showSummary($content)
     //先清除html注释和回车换行
     $content=strip_tags($content);
     $content=trimall($content);
-    //判断最前面的是不是信息框
+    // Check if the beginning is an information box
    if($content[0]=='[')
    {
        /*如果是就返回信息框的内容*/
@@ -127,7 +127,7 @@ function showSummary($content)
        $content=substr($content,0,strpos($content,'['));
        return $content;
    }
-   else //如果不是信息框那么就直接截取字符
+   else // If not an information box, just truncate characters
    {
        return wp_trim_words($content,kratos_option('w_num'));
    }
@@ -140,7 +140,7 @@ function send_email($new,$old,$post)
     if($new=="publish" && ($old=="auto-draft" || $old=="draft") && $post->post_title!="")
     {
         $to=explode(",",esc_attr(get_option('email_list')));
-        $subject = '你关注的博主有新文章发布啦！φ(>ω<*)--'.$post->post_title;
+        $subject = 'A new article has been published by the blogger you follow!--'.$post->post_title;
         $permalink = get_permalink($post->ID);
         $message='
                     <style>.qmbox img.wp-smiley{width:auto!important;height:auto!important;max-height:8em!important;margin-top:-4px;display:inline}
@@ -150,16 +150,16 @@ function send_email($new,$old,$post)
                     <div style="zoom:1;padding:25px 40px;background:#518bcb; border-bottom:1px solid #467ec3;">
                         <h1 style="color:#fff;font-size:25px;line-height:30px;margin:0"><a href="'.home_url().'" style="text-decoration:none;color:#FFF">'.get_bloginfo('name').'</a></h1>
                         <img style="position: relative;left: 423px;top:25px;" src="">
-                        <h3 style="position: relative;color:#FFF;left: 263px;bottom: -25px;">(〃\'▽\'〃)你关注的博主有文章更新啦( • ̀ω•́ )✧--</h3>
+                        <h3 style="position: relative;color:#FFF;left: 263px;bottom: -25px;">(〃\'▽\'〃)The blogger you follow has updated an article--</h3>
                     </div>
                     <div style="padding:35px 40px 30px">
-                        <h2 style="font-size:18px;margin:5px 0">文章标题:'.$post->post_title.'</h2>
+                        <h2 style="font-size:18px;margin:5px 0">Article Title:'.$post->post_title.'</h2>
                         <hr>
-						<h3 style="font-size:18px;margin:5px 0">摘要：</h3>
+						<h3 style="font-size:18px;margin:5px 0">Summary:</h3>
                         <p style="color:#313131;line-height:20px;font-size:15px;margin:20px 0">'.showSummary($post->post_content).'</p>
-						<h4><a href="'.$permalink.'">点击查看原文</a></h4>
+						<h4><a href="'.$permalink.'">Click to view original</a></h4>
                         <br  />
-                        <div style="font-size:13px;color:#a0a0a0;padding-top:10px">该邮件由系统自动发出，如果不是您本人操作，请忽略此邮件。</div>
+                        <div style="font-size:13px;color:#a0a0a0;padding-top:10px">This email is automatically sent by the system. If it is not your operation, please ignore this email.</div>
                         <div class="qmSysSign" style="padding-top:20px;font-size:12px;color:#a0a0a0">
                             <p style="color:#a0a0a0;line-height:18px;font-size:12px;margin:5px 0">'.get_bloginfo('name').'</p>
                             <p style="color:#a0a0a0;line-height:18px;font-size:12px;margin:5px 0"><span style="border-bottom:1px dashed #ccc" t="5" times="">'.date("Y-m-d",time()).'</span></p>
@@ -179,15 +179,15 @@ function open_email($user) {
     if(strpos($content,$user->user_email)===false)
     {
         ?>
-        <h3>开启邮件订阅</h3>
-        <input type="checkbox" name="openemail[]" />开启后当站长发布新文章后会通知你哦！
+        <h3>Enable Email Subscription</h3>
+        <input type="checkbox" name="openemail[]" />You will be notified when new articles are published!
         <?php
     }
     else
     {
         ?>
-        <h3>开启邮件订阅</h3>
-        <input type="checkbox" name="openemail[]" checked="checked" />开启后当站长发布新文章后会通知你哦！
+        <h3>Enable Email Subscription</h3>
+        <input type="checkbox" name="openemail[]" checked="checked" />You will be notified when new articles are published!
         <?php
     }
 }
@@ -234,7 +234,7 @@ function emaillist_remove($email)
     }
 }
 
-//更新后进行的操作
+// Operations after update
 function update_email_setting($id)
 {
     //判断是否有数据提交
@@ -258,7 +258,7 @@ if(kratos_option('openpassage'))
 //获取文件夹下文件并返回为文件名数组
 function getfilecouts($url)
 {
-    $sl=array();//造一个变量，让他默认值为0;
+    $sl=array();// Create a variable and set its default value to 0
     $arr = glob($url);//把该路径下所有的文件存到一个数组里面;
     foreach ($arr as $v)//循环遍历一下，把数组$arr赋给$v;
     {
@@ -340,7 +340,7 @@ function most_hot_posts($days=30,$nums=5){
     $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
     $output = '';
     if(empty($result)){
-        $output = '<li>'.__('暂时没有数据','moedog').'</li>';
+        $output = '<li>'.__('No data available','moedog').'</li>';
     }else{
         foreach($result as $topten){
             $postid = $topten->ID;
@@ -383,15 +383,15 @@ function wp_insert_weibo($comment_ID,$commmentdata) {
     update_comment_meta($comment_ID,'hang',$avatarshang);
     update_comment_meta($comment_ID,'level',$level);
 }
-//后台显示uid
+// Display UID in backend
 add_filter( 'manage_edit-comments_columns', 'my_comments_columns' );
 add_action( 'manage_comments_custom_column', 'output_my_comments_columns', 10, 2 );
 function my_comments_columns( $columns ){
     $columns[ 'uid' ] = __( 'uid' );        //uid是代表列的名字
 //    $columns[ 'nickname' ] = __( '昵称' );
-    $columns[ 'photo' ] = __( '照片地址' );
-    $columns[ 'hang' ] = __( '头像挂件' );
-    $columns[ 'level' ] = __( '等级' );
+    $columns[ 'photo' ] = __( 'Photo URL' );
+    $columns[ 'hang' ] = __( 'Avatar Decor' );
+    $columns[ 'level' ] = __( 'Level' );
     return $columns;
 }
 function output_my_comments_columns( $column_name, $comment_id ){
@@ -432,7 +432,7 @@ function colorCloudCallback($matches) {
     $text = preg_replace($pattern, "style=\"background:#{$color};\"", $text);
     return "<a $text>";
 }
-//把php代码挂载到wp_tag_cloud钩子上
+// Hook PHP code to wp_tag_cloud
 add_filter('wp_tag_cloud', 'colorCloud', 1);
 
 

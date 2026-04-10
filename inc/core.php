@@ -17,15 +17,15 @@ if(!function_exists('optionsframework_init')){
 }
 function kratos_options_menu_filter($menu){
   $menu['mode'] = 'menu';
-  $menu['page_title'] ='主题设置';
-  $menu['menu_title'] ='主题设置';
+  $menu['page_title'] ='Theme Settings';
+  $menu['menu_title'] ='Theme Settings';
   $menu['menu_slug'] = 'kratos';
   return $menu;
 }
 add_filter('optionsframework_menu','kratos_options_menu_filter');
 //The menu navigation registration
 function kratos_register_nav_menu(){
-    register_nav_menus(array('header_menu'=>'顶部菜单'));
+    register_nav_menus(array('header_menu'=>'Header Menu'));
     add_theme_support('title-tag');
 }
 add_action('after_setup_theme','kratos_register_nav_menu');

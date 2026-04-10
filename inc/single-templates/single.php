@@ -7,11 +7,11 @@
                     <div class="kratos-post-meta text-center">
                     <span>
                     <i class="fa fa-calendar"></i> <?php echo get_the_date(); ?>
-                        <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();echo '次阅读'; ?>
+                        <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();echo ' views'; ?>
                         <i class="fa fa-bar-chart" aria-hidden="true"></i><?php echo count_words($text);?>
                         <span class="hd">
-                    <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%');echo '条评论'; ?>
-                            <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }echo '人点赞'; ?>
+                    <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%');echo ' comments'; ?>
+                            <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }echo ' likes'; ?>
                             <i class="fa fa-user"></i> <?php the_author(); ?>
                     </span>
                     </span>
@@ -25,10 +25,10 @@
                 <?php } ?>
                 <footer class="kratos-entry-footer clearfix">
                     <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                        <?php if(kratos_option('post_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> 打赏</a>'; ?>
-                        <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID() ?>" class="Love<?php if(isset($_COOKIE['love_'.$post->ID])) echo ' done';?>"><i class="fa fa-thumbs-o-up"></i> <?php echo '点赞'; ?></a>
+                        <?php if(kratos_option('post_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> Donate</a>'; ?>
+                        <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID() ?>" class="Love<?php if(isset($_COOKIE['love_'.$post->ID])) echo ' done';?>"><i class="fa fa-thumbs-o-up"></i> <?php echo 'Like'; ?></a>
                         <?php if(kratos_option('post_share')) {
-                            echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>分享</a>';
+                            echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>Share</a>';
                             require_once(get_template_directory().'/inc/share.php');
                         } ?>
                     </div>
@@ -38,7 +38,7 @@
                             <?php if(get_the_tags()){the_tags('',' ','');}else{echo '<a>No Tag</a>';}?>
                         </div>
                         <div class="pull-date">
-                            <span><?php echo '最后编辑';the_modified_date();?></span>
+                            <span><?php echo 'Last edited';the_modified_date();?></span>
                         </div>
                     </div>
                 </footer>
@@ -48,13 +48,13 @@
                 $prev_post = get_previous_post();
                 if(!empty($prev_post)){ ?>
                     <div class="nav-previous clearfix">
-                        <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo '上一篇'; ?></a>
+                        <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo 'Previous'; ?></a>
                     </div>
                 <?php }
                 $next_post = get_next_post();
                 if(!empty($next_post)){ ?>
                     <div class="nav-next">
-                        <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo '下一篇'; ?> &gt;</a>
+                        <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo 'Next'; ?> &gt;</a>
                     </div>
                 <?php } ?>
             </nav>
@@ -83,11 +83,11 @@
                 <div class="kratos-post-meta text-center">
                     <span>
                     <i class="fa fa-calendar"></i> <?php echo get_the_date(); ?>
-                    <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();echo '次阅读'; ?>
+                    <i class="fa fa-eye"></i> <?php echo kratos_get_post_views();echo ' views'; ?>
                     <i class="fa fa-bar-chart" aria-hidden="true"></i><?php echo count_words($text);?>
                     <span class="hd">
-                    <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%');echo '条评论'; ?>
-                    <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }echo '人点赞'; ?>
+                    <i class="fa fa-commenting-o"></i> <?php comments_number('0','1','%');echo ' comments'; ?>
+                    <i class="fa fa-thumbs-o-up"></i> <?php if(get_post_meta($post->ID,'love',true)){echo get_post_meta($post->ID,'love',true);}else{echo '0'; }echo ' likes'; ?>
                     <i class="fa fa-user"></i> <?php the_author(); ?>
                     </span>
                     </span>
@@ -104,10 +104,10 @@
             <?php } ?>
             <footer class="kratos-entry-footer clearfix">
                 <div class="post-like-donate text-center clearfix" id="post-like-donate">
-                <?php if(kratos_option('post_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> '.'打赏'.'</a>'; ?>
-                   <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID() ?>" class="Love<?php if(isset($_COOKIE['love_'.$post->ID])) echo ' done';?>"><i class="fa fa-thumbs-o-up"></i> <?php echo '点赞'; ?></a>
+                <?php if(kratos_option('post_like_donate')) echo '<a href="javascript:;" class="Donate"><i class="fa fa-bitcoin"></i> '.'Donate'.'</a>'; ?>
+                   <a href="javascript:;" id="btn" data-action="love" data-id="<?php the_ID() ?>" class="Love<?php if(isset($_COOKIE['love_'.$post->ID])) echo ' done';?>"><i class="fa fa-thumbs-o-up"></i> <?php echo 'Like'; ?></a>
                 <?php if(kratos_option('post_share')) {
-                    echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>分享</a>';
+                    echo '<a href="javascript:;" class="Share"><i class="fa fa-share-alt"></i>Share</a>';
                     require_once(get_template_directory().'/inc/share.php');
                 } ?>
                 </div>
@@ -117,7 +117,7 @@
                     <?php if(get_the_tags()){the_tags('',' ','');}else{echo '<a>No Tag</a>';}?>
                     </div>
                     <div class="pull-date">
-                    <span><?php echo '最后编辑：';the_modified_date();?></span>
+                    <span><?php echo 'Last edited: ';the_modified_date();?></span>
                     </div>
                 </div>
             </footer>
@@ -127,13 +127,13 @@
             $prev_post = get_previous_post();
             if(!empty($prev_post)){ ?>
             <div class="nav-previous clearfix">
-                <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo '上一篇'; ?></a>
+                <a title="<?php echo $prev_post->post_title;?>" href="<?php echo get_permalink($prev_post->ID); ?>">&lt; <?php echo 'Previous'; ?></a>
             </div>
             <?php }
             $next_post = get_next_post();
             if(!empty($next_post)){ ?>
             <div class="nav-next">
-                <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo '下一篇'; ?> &gt;</a>
+                <a title="<?php echo $next_post->post_title; ?>" href="<?php echo get_permalink($next_post->ID); ?>"><?php echo 'Next'; ?> &gt;</a>
             </div>
             <?php } ?>
         </nav>
