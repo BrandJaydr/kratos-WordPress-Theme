@@ -6,6 +6,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
+| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
+| `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
+| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
+| `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
 | `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history and compatibility improvements |
 | `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
 | `afc3a6a` | 2026-04-07 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
@@ -21,8 +26,26 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Created `REPO_MAP.md`, providing a comprehensive overview of the theme's directory structure and explaining the purpose of each directory and file.
 - **Theme Configuration Guide**:
     - **Action**: Created `THEME_CONFIGURATION.md`, providing a detailed reference for every theme setting, mapping configuration IDs to their functional impact in core files.
+- **Translation Log**:
+    - **Action**: Created `TRANSLATION_LOG.md` to track full English localization efforts across PHP, JS, and JSON configuration files.
+- **International Integration Guide**:
+    - **Action**: Created `INTERNATIONAL_INTEGRATION.md` to provide a user guide for configuring new services like AniList, Mastodon, and Audius.
 - **Funding Configuration**:
     - **Action**: Created `.github/FUNDING.yml` to manage repository funding.
+
+### Internationalization & Service Alternatives
+- **Social & Media Integrations**:
+    - **Action**: Implemented native integrations for **AniList** (Anime Tracking), **Mastodon**, **Bluesky**, and **YouTube** (Social Dynamics) as international alternatives to Bilibili.
+- **Music Streaming**:
+    - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
+- **Polymorphic Feed Loader**:
+    - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
+
+### Typography & UI Customization
+- **Global Typography Controls**:
+    - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
+- **Per-Page Customization**:
+    - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
 - **Title Handling**:
@@ -32,19 +55,27 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
-    - **Issue**: The snow animation in `static/js/kratos.js` had multiple performance issues: repetitive DOM/attribute lookups in a high-frequency animation loop, expensive `Math.sqrt` calculations for every particle, and use of string-based `setInterval`.
-    - **Action**: Hoisted DOM lookups, used squared distance comparison for distance checks, pre-calculated constant strings, and used function references for timers.
+    - **Issue**: High-frequency animation loops and timers in `static/js/kratos.js` were causing CPU spikes due to redundant DOM operations and expensive calculations.
+    - **Action**:
+        - Optimized snow animation to **60fps** by hoisting DOM/attribute lookups and replacing `Math.sqrt` with squared distance comparisons.
+        - Optimized the site timer by using direct function references in `setInterval` and hoisting the birth date object outside the interval.
+        - Documented these patterns in `.jules/bolt.md`.
 
 ### Security Hardening
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
     - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
     - Restricted sensitive PHP file operations behind capability and nonce checks.
+- **External Integration Hardening**:
+    - Implemented strict XSS escaping (`esc_html`, `esc_attr`, `esc_url`) for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
+    - Integrated **Transients API** caching for external requests to improve performance and prevent rate-limiting.
 
 ## Error & Vulnerability Log
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
+| 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
@@ -53,6 +84,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
 - **Fix**: Refactored the logic to ensure proper string handling and accurate word counting in modern PHP versions.
 - **Prevention**: Use robust string manipulation functions and verify logic against edge cases (empty strings, special characters).
+
+### Aggressive Whitespace Stripping (2026-04-10)
+- **Error**: The `trimall()` function was being applied to post summaries, removing all spaces and making the text unreadable for English content.
+- **Fix**: Removed `trimall()` from `showSummary()` in `inc/myfunction.php` to preserve natural spacing.
+- **Prevention**: Do not use `trimall()` on blocks of text where readability depends on whitespace.
+
+### UI Content Bleed (2026-04-10)
+- **Error**: Long titles or URLs without break points were bleeding out of post cards on narrow viewports.
+- **Fix**: Implemented `word-wrap: break-word` and adjusted padding in the theme's core CSS.
+- **Prevention**: Always test responsive layouts with long, unbreakable strings.
 
 ### PHP 8.x Null/Empty String Access (2026-04-07)
 - **Error**: Potential null or empty string access in `inc/myfunction.php` (e.g., `showSummary`) which could trigger warnings or errors in PHP 8.x.
