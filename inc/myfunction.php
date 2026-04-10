@@ -117,7 +117,6 @@ function showSummary($content)
 {
     //First clear HTML comments and carriage returns/line breaks
     $content=strip_tags($content);
-    $content=trimall($content);
     //Check if the beginning is an information box
    if($content[0]=='[')
    {
