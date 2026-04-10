@@ -2,8 +2,14 @@
 /**
 template name: Bilibili Dynamics Template
  */
-include "bilibililive/BilibiliLive.php";
 setcookie('goto_bibo', 1);
+
+if (kratos_option('mastodon_instance') && kratos_option('mastodon_user_id')) {
+    include (get_template_directory() . "/pages/page-mastodon.php");
+    return;
+}
+
+include "bilibililive/BilibiliLive.php";
 ?>
 <?php get_header();
 $bilibilUid=kratos_option('bilibili_uid');

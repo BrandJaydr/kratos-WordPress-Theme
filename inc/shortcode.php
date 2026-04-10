@@ -172,19 +172,59 @@ add_shortcode('wxmusic','wxmusic');
 
 
 
-function bilibili($atts,$content=null,$code=""){
-    extract(shortcode_atts(array("cid"=>'0'),$atts));
-    extract(shortcode_atts(array("page"=>'1'),$atts));
-    $return = '<div class="video-container"><iframe src="//player.bilibili.com/player.html?aid=';
-    $return .= $content;
-    $return .= '&cid=';
-    $return .= $cid;
-    $return .= '&page=';
-    $return .= $page;
-    $return .= '" allowtransparency="true" width="100%" height="498" scrolling="no" frameborder="0" ></iframe></div>';
-    return $return;
+function video_shortcode($atts,$content=null,$code=""){
+    extract(shortcode_atts(array(
+        "site" => 'auto',
+        "cid" => '0',
+        "page" => '1',
+        "width" => '100%',
+        "height" => '498'
+    ), $atts));
+
+    $content = trim($content);
+    $video_url = '';
+
+    if ($site == 'auto') {
+        if (strpos($content, 'youtube.com') !== false || strpos($content, 'youtu.be') !== false) {
+            $site = 'youtube';
+        } elseif (strpos($content, 'vimeo.com') !== false) {
+            $site = 'vimeo';
+        } elseif (strpos($content, 'bilibili.com') !== false || is_numeric($content)) {
+            $site = 'bilibili';
+        }
+    }
+
+    switch ($site) {
+        case 'youtube':
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $content, $match)) {
+                $id = $match[1];
+            } else {
+                $id = $content;
+            }
+            $video_url = 'https://www.youtube.com/embed/' . $id;
+            break;
+        case 'vimeo':
+            if (preg_match('%vimeo\.com/(?:video/)?([0-9]+)%i', $content, $match)) {
+                $id = $match[1];
+            } else {
+                $id = $content;
+            }
+            $video_url = 'https://player.vimeo.com/video/' . $id;
+            break;
+        case 'bilibili':
+        default:
+            $id = $content;
+            if (preg_match('%bilibili\.com/video/av([0-9]+)%i', $content, $match)) {
+                $id = $match[1];
+            }
+            $video_url = '//player.bilibili.com/player.html?aid=' . $id . '&cid=' . $cid . '&page=' . $page;
+            break;
+    }
+
+    return '<div class="video-container"><iframe src="' . $video_url . '" allowtransparency="true" width="' . $width . '" height="' . $height . '" scrolling="no" frameborder="0" allowfullscreen></iframe></div>';
 }
-add_shortcode('bilibili','bilibili');
+add_shortcode('video','video_shortcode');
+add_shortcode('bilibili','video_shortcode');
 
 add_action('init','more_button_a');
 function more_button_a(){
@@ -211,7 +251,7 @@ function register_button($buttons){
     array_push($buttons," ","striped");
     array_push($buttons," ","ypbtn");
     array_push($buttons," ","music");
-    array_push($buttons," ","bilibili");
+    array_push($buttons," ","video");
     array_push($buttons," ","wxmusic");
     return $buttons;
 }
@@ -233,7 +273,7 @@ function add_plugin($plugin_array){
     $plugin_array['striped'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['ypbtn'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['music'] = get_bloginfo('template_url').'/inc/buttons/more.js';
-    $plugin_array['bilibili'] = get_bloginfo('template_url').'/inc/buttons/more.js';
+    $plugin_array['video'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['wxmusic'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     return $plugin_array;
 }

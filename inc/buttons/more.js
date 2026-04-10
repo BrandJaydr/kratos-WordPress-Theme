@@ -230,14 +230,14 @@
         },
     });
     tinymce.PluginManager.add('wxmusic', tinymce.plugins.wxmusic);
-    tinymce.create('tinymce.plugins.bilibili', {
+    tinymce.create('tinymce.plugins.video', {
         init : function(ed, url) {
  
-            ed.addButton('bilibili', {
-                title : 'Bilibili',
+            ed.addButton('video', {
+                title : 'Video Embed',
                 image : url+'/images/bilibili.png',
                 onclick : function() {
-                     ed.selection.setContent('[bilibili cid="" page="1"]' + ed.selection.getContent() + '[/bilibili]');
+                     ed.selection.setContent('[video site="auto"]' + ed.selection.getContent() + '[/video]');
                 }
             });
         },
@@ -245,7 +245,7 @@
             return null;
         },
     });
-    tinymce.PluginManager.add('bilibili', tinymce.plugins.bilibili);
+    tinymce.PluginManager.add('video', tinymce.plugins.video);
 
 
 

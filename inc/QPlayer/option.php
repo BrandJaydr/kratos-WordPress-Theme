@@ -16,6 +16,31 @@ function QPlayer_add_jquery() {
  * @param unknown $type Type of the acquired ID: song, album, artist, collect (playlist)
  */
 
+function get_audius_music($id) {
+    $url = "https://api.audius.co/v1/tracks/$id?app_name=KratosTheme";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
+    $cexecute = curl_exec($ch);
+    curl_close($ch);
+    if ($cexecute) {
+        $result = json_decode($cexecute, true);
+        if ($result && isset($result['data'])) {
+            $data = $result['data'];
+            return array(
+                array(
+                    'title' => $data['title'],
+                    'artist' => $data['user']['name'],
+                    'location' => "https://api.audius.co/v1/tracks/$id/stream?app_name=KratosTheme",
+                    'pic' => $data['artwork']['150x150'] ?: $data['artwork']['480x480']
+                )
+            );
+        }
+    }
+    return false;
+}
+
 function get_netease_music($id, $type = 'song'){
     $return = false;
     switch ( $type ) {
@@ -85,22 +110,28 @@ function parse($id, $type) {
     $resultList = explode(",", $id);
     $result="\n";
     foreach ($resultList as $key => $value) {
-        $musicList = get_netease_music($value,$type);
-        foreach($musicList as $x=>$x_value) {
-            $result .= "{";
-            foreach ($x_value as $key => $value) {
-                if ($key == 'location') {
-                    $key = 'mp3';
+        if ($type == 'audius') {
+            $musicList = get_audius_music($value);
+        } else {
+            $musicList = get_netease_music($value,$type);
+        }
+        if ($musicList) {
+            foreach($musicList as $x=>$x_value) {
+                $result .= "{";
+                foreach ($x_value as $key => $value) {
+                    if ($key == 'location') {
+                        $key = 'mp3';
+                    }
+                    if ($key == 'pic') {
+                        $key = 'cover';
+                    }
+                    if (strpos($value, '"') !== false) {
+                        $value = addcslashes($value, '"');
+                    }
+                    $result .= "$key:\"". $value."\",";
                 }
-                if ($key == 'pic') {
-                    $key = 'cover';
-                }
-                if (strpos($value, '"') !== false) {
-                    $value = addcslashes($value, '"');
-                }
-                $result .= "$key:\"". $value."\",";
+                $result .= "},\n";
             }
-            $result .= "},\n";
         }
     }
     return $result;
@@ -196,16 +227,17 @@ function QPlayer_page() {
 			<div><div class="title">Custom JS</div>
 			  <textarea rows="6" cols="100" name="js"><?php echo get_option('js') ?></textarea>
 			</div><br>
-            <div class="title">Add Netease Music (Requires host to support curl extension)</div>
-            <div>ID Type
-                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>Playlist
-                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>Album
-                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Artist
-                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Song
+            <div class="title">Add Music (Requires host to support curl extension)</div>
+            <div>Source / Type
+                <input type="radio" name="musicType"  value="collect"  <?php if (get_option('musicType') == 'collect') echo "checked";?>>Netease Playlist
+                <input type="radio" name="musicType" value="album" <?php if (get_option('musicType') == 'album') echo "checked";?>>Netease Album
+                <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Netease Artist
+                <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Netease Song
+                <input type="radio" name="musicType" value="audius" <?php if (get_option('musicType') == 'audius') echo "checked";?>>Audius Track
             </div>
             <div>ID Input
                 <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">Please go to the Netease Music web version to get the music ID (specifically, there will be an ID at the end of the URL of each music item). Copyrighted music cannot be parsed!</p>
+                <p class="tip" style="margin-bottom: 0;">For Netease, get the ID from the URL. For Audius, use the Track ID. Multiple IDs can be separated by commas.</p>
             </div>
 			<input type="submit" name="addMusic" id="addMusic" value="Add to songList"  /><br><br>
 			<div><div class="title">songList</div>
