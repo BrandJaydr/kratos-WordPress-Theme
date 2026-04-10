@@ -213,7 +213,18 @@
                     </div>
                 </aside>
             <?php } ?>
-            <section id="main" class="<?php echo (kratos_option('home_side_bar')=='center')?'col-md-12':'col-md-8'; ?>">
+            <?php
+            $layout = is_singular() ? get_post_meta(get_the_ID(), '_kratos_page_layout', true) : 'default';
+            if(!$layout || $layout == 'default') $layout = kratos_option('home_side_bar');
+            ?>
+            <?php if($layout == 'left_side'){ ?>
+                <aside class="col-md-4 hidden-xs hidden-sm scrollspy">
+                    <div id="sidebar" class="affix-top">
+                        <?php dynamic_sidebar('sidebar_tool'); ?>
+                    </div>
+                </aside>
+            <?php } ?>
+            <section id="main" class="<?php echo ($layout=='center')?'col-md-12':'col-md-8'; ?>">
             <?php
                 if(is_home()){kratos_banner();}
                 elseif(is_category()){
@@ -247,7 +258,7 @@
             <?php }
                 kratos_pages(3);wp_reset_query(); ?>
             </section>
-        <?php if(kratos_option('home_side_bar')=='right_side'){ ?>
+        <?php if($layout == 'right_side'){ ?>
             <aside class="col-md-4 hidden-xs hidden-sm scrollspy">
 <!--                id="kratos-widget-area"-->
                 <div id="sidebar" class="affix-top wow bounceInRight">

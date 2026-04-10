@@ -39,7 +39,11 @@
 <?php }?>
     <div id="container" class="container">
         <div class="row">
-            <?php if(kratos_option('page_side_bar')=='left_side'){ ?>
+            <?php
+            $layout = get_post_meta(get_the_ID(), '_kratos_page_layout', true);
+            if(!$layout || $layout == 'default') $layout = kratos_option('page_side_bar');
+            ?>
+            <?php if($layout == 'left_side'){ ?>
                 <aside id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
                     <div id="sidebar" class="affix-top">
                         <?php dynamic_sidebar('sidebar_tool'); ?>
@@ -49,7 +53,7 @@
             <?php if($_COOKIE['goto_bibo']==1){?>
                 <section id="main" class='col-md-12'>
             <?php }else{?>
-                <section id="main" class='<?php echo (kratos_option('page_side_bar')=='center')?'col-md-12':'col-md-8'; ?>'>
+                <section id="main" class='<?php echo ($layout=='center')?'col-md-12':'col-md-8'; ?>'>
             <?php }?>
             <?php if(have_posts()){the_post(); ?>
                 <article>
@@ -81,7 +85,7 @@
             <?php } ?>
             </section>
             <?php if($_COOKIE['goto_bibo']!=1){?>
-                <?php if(kratos_option('page_side_bar')=='right_side'){ ?>
+                <?php if($layout == 'right_side'){ ?>
                 <aside id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
                     <div id="sidebar" class="affix-top">
                         <?php dynamic_sidebar('sidebar_tool'); ?>

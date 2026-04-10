@@ -553,3 +553,65 @@ function kratos_welcome_notice(){
     if(current_user_can('manage_options')) echo $noticeinfo;
 }
 
+/**
+ * Add Page Options Meta Box
+ */
+function kratos_add_page_options_metabox() {
+    add_meta_box(
+        'kratos_page_options',
+        'Kratos Page Options',
+        'kratos_page_options_callback',
+        array('post', 'page'),
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'kratos_add_page_options_metabox');
+
+function kratos_page_options_callback($post) {
+    wp_nonce_field('kratos_page_options_save', 'kratos_page_options_nonce');
+    $layout = get_post_meta($post->ID, '_kratos_page_layout', true);
+    $show_header = get_post_meta($post->ID, '_kratos_show_header', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="kratos_page_layout">Page Layout</label></th>
+            <td>
+                <select name="kratos_page_layout" id="kratos_page_layout">
+                    <option value="default" <?php selected($layout, 'default'); ?>>Default (From Theme Options)</option>
+                    <option value="left_side" <?php selected($layout, 'left_side'); ?>>Left Sidebar</option>
+                    <option value="center" <?php selected($layout, 'center'); ?>>No Sidebar</option>
+                    <option value="right_side" <?php selected($layout, 'right_side'); ?>>Right Sidebar</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="kratos_show_header">Show Header Hero</label></th>
+            <td>
+                <input type="checkbox" name="kratos_show_header" id="kratos_show_header" value="1" <?php checked($show_header, '1'); ?>>
+                <span class="description">Check to show the hero header on this page/post.</span>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+function kratos_save_page_options($post_id) {
+    if (!isset($_POST['kratos_page_options_nonce']) || !wp_verify_nonce($_POST['kratos_page_options_nonce'], 'kratos_page_options_save')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['kratos_page_layout'])) {
+        update_post_meta($post_id, '_kratos_page_layout', sanitize_text_field($_POST['kratos_page_layout']));
+    }
+
+    $show_header = isset($_POST['kratos_show_header']) ? '1' : '0';
+    update_post_meta($post_id, '_kratos_show_header', $show_header);
+}
+add_action('save_post', 'kratos_save_page_options');

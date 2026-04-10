@@ -695,6 +695,38 @@ function optionsframework_options(){
         'std'=>'2',
         'type'=>'text');
     $options[] = array(
+        'name' => 'Typography',
+        'type' => 'heading'
+    );
+    $options[] = array(
+        'name' => 'Global Font Family',
+        'desc' => 'Enter the font family for the site (e.g., "Open Sans", sans-serif).',
+        'id'   => 'site_font_family',
+        'std'  => '',
+        'type' => 'text'
+    );
+    $options[] = array(
+        'name' => 'Google Fonts',
+        'desc' => 'Enter Google Fonts name to load (e.g., Roboto|Open+Sans). Leave empty to use default.',
+        'id'   => 'google_fonts',
+        'std'  => '',
+        'type' => 'text'
+    );
+    $options[] = array(
+        'name' => 'Font Size',
+        'desc' => 'Global font size (e.g., 16px).',
+        'id'   => 'site_font_size',
+        'std'  => '15px',
+        'type' => 'text'
+    );
+    $options[] = array(
+        'name' => 'Line Height',
+        'desc' => 'Global line height (e.g., 1.6).',
+        'id'   => 'site_line_height',
+        'std'  => '1.8',
+        'type' => 'text'
+    );
+    $options[] = array(
         'name'=>'Other Settings',
         'type'=>'heading');
     $options[] = array(

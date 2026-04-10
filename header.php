@@ -135,6 +135,9 @@ if($_COOKIE['goto_bibo']==1){
     <!-- Allow access to external resources -->
     <meta name="referrer" content="same-origin">
     <link rel="icon" type="image/x-icon" href="<?php echo kratos_option('site_ico'); ?>">
+    <?php if($google_fonts = kratos_option('google_fonts')): ?>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<?php echo esc_attr(str_replace(' ', '+', $google_fonts)); ?>">
+    <?php endif; ?>
     <!-- Bootstrap Core CSS File -->
     <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/bootstrap.min.css';?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/style.css">
@@ -142,7 +145,20 @@ if($_COOKIE['goto_bibo']==1){
     <?php wp_head();wp_print_scripts('theme-jq'); ?>
     <style><?php
         echo '#offcanvas-menu{background:#3a3f51}';
-        if(kratos_option('head_mode')=='pic'){
+        if(is_singular()){
+            $show_header = get_post_meta(get_the_ID(), '_kratos_show_header', true);
+            if($show_header == '1') {
+                $head_mode = 'pic';
+            } elseif ($show_header == '0') {
+                $head_mode = 'color';
+            } else {
+                $head_mode = kratos_option('head_mode');
+            }
+        } else {
+            $head_mode = kratos_option('head_mode');
+        }
+
+        if($head_mode=='pic'){
             echo '.affix{top:61px}.kratos-cover.kratos-cover_2{background-image:url('.kratos_option('background_image').')}';
             if(kratos_option('background_image_mobi')) echo '@media(max-width:768px){.kratos-cover.kratos-cover_2{background-image:url('.kratos_option('background_image_mobi').')}}';
             if(kratos_option('mobi_mode')=='side') echo '@media(max-width:768px){#kratos-header-section{display:none}nav#offcanvas-menu{top:0;padding-top:190px;}.kratos-cover .desc.desc2{margin-top:-55px}}';
@@ -150,8 +166,27 @@ if($_COOKIE['goto_bibo']==1){
 //        Background Image
         if(kratos_option('background_mode')=='image') echo '@media(min-width:768px){.pagination>li>a{background-color:rgba(255,255,255,.9)}.comment-list .children li{background-color:rgba(255,253,232,.7)!important}.theme-bg{background-image:url('.kratos_option('background_index_image').');background-size:cover;background-attachment:fixed}}';
         if(kratos_option('openphoneimg')) echo'@media(max-width:768px){.theme-bg{background-image:url('.kratos_option('phone_img').');background-position: center center;top:0;}}';
+
+        $site_font_family = kratos_option('site_font_family');
+        $site_font_size = kratos_option('site_font_size');
+        $site_line_height = kratos_option('site_line_height');
+        if($site_font_family || $site_font_size || $site_line_height) {
+            echo 'body {';
+            if($site_font_family) echo 'font-family:' . esc_attr($site_font_family) . ';';
+            if($site_font_size) echo 'font-size:' . esc_attr($site_font_size) . ';';
+            if($site_line_height) echo 'line-height:' . esc_attr($site_line_height) . ';';
+            echo '}';
+        }
+
         if(kratos_option('add_css')) echo kratos_option('add_css');
         ?>
+        .kratos-entry-content-new p {
+            word-wrap: break-word;
+            word-break: break-word;
+            white-space: normal;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
     </style>
       <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/prism.css';?>"/>
       <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/inc/live2d/waifu.css';?>"/>
@@ -201,7 +236,20 @@ if($_COOKIE['goto_bibo']==1){
                         </div>
                     </header>
                 </div>
-                <?php if(kratos_option('head_mode')=='pic'){ ?>
+                <?php
+                if(is_singular()){
+                    $show_header = get_post_meta(get_the_ID(), '_kratos_show_header', true);
+                    if($show_header == '1') {
+                        $current_head_mode = 'pic';
+                    } elseif ($show_header == '0') {
+                        $current_head_mode = 'color';
+                    } else {
+                        $current_head_mode = kratos_option('head_mode');
+                    }
+                } else {
+                    $current_head_mode = kratos_option('head_mode');
+                }
+                if($current_head_mode=='pic'){ ?>
                 <div class="kratos-start kratos-hero-2">
                     <div class="kratos-overlay"></div>
                     <div class="kratos-cover kratos-cover_2 text-center">
