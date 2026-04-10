@@ -66,4 +66,5 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Prevention**: Enforce strict input sanitization and output escaping across all metadata handling functions.
 
 ---
+
 *Note: This file is maintained to ensure a clear record of modifications since the repository was forked.*
