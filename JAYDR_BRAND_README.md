@@ -6,38 +6,52 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
-| `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
-| `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
-| `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 from BrandJaydr/security-hardening-patch |
+| `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
+| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
+| `8de0284` | 2026-04-06 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
 
 ## Improvements & Hardening
 
 ### Documentation
-- **Repository Map (2026-04-08)**:
-    - **Action**: Created `REPO_MAP.md`, providing a comprehensive overview of the theme's directory structure and explains the purpose of each directory and file.
-- **Theme Configuration Guide (2026-04-07)**:
-    - **Action**: Created `THEME_CONFIGURATION.md`, providing a detailed reference for every theme setting, mapping configuration IDs to their functional impact in core files.
+- **Repository Map (`REPO_MAP.md`)**:
+    - Provides a comprehensive overview of the theme's directory structure and explains the purpose of each directory and file.
+- **Theme Configuration Guide (`THEME_CONFIGURATION.md`)**:
+    - A detailed reference for every theme setting, mapping configuration IDs to their functional impact.
+- **Translation Log (`TRANSLATION_LOG.md`)**:
+    - Comprehensive record of the localization process from Chinese to English across templates, logic, and assets.
+- **WordPress/PHP Compatibility Update (`WORDPRESS_UPDATE.md`)**:
+    - Documentation for ensuring compatibility with WordPress 6.7+ and PHP 8.3/8.4, including modernization of deprecated functions.
 
 ### Performance Improvements
-- **Inefficient Snow Animation and Timer (2025-05-14)**:
-    - **Issue**: The snow animation in `static/js/kratos.js` had multiple performance issues: repetitive DOM/attribute lookups in a high-frequency animation loop, expensive `Math.sqrt` calculations for every particle, and use of string-based `setInterval`.
-    - **Action**: Hoisted DOM lookups, used squared distance comparison for distance checks, pre-calculated constant strings, and used function references for timers.
+- **Inefficient Snow Animation and Timer**:
+    - **Issue**: The snow animation in `static/js/kratos.js` had multiple performance issues: repetitive DOM/attribute lookups in a high-frequency animation loop, expensive `Math.sqrt` calculations, and string-based `setInterval`.
+    - **Action**: Hoisted DOM lookups, implemented squared distance comparison to avoid expensive square root calls, and converted string-based timers to function references.
 
 ### Security Hardening
-- **Neutralized Vulnerabilities**:
-    - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
-    - Replaced deprecated WordPress and PHP functions with modern, secure alternatives.
-    - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
-    - Restricted sensitive PHP file operations behind capability and nonce checks.
+- **Modernization & Standards**:
+    - **Deprecated Function Removal**: Replaced `wp_title()` with `wp_get_document_title()` in `header.php` and `inc/core.php`.
+    - **Image Processing**: Migrated from deprecated `image_resize()` to the `WP_Image_Editor` class in `inc/avatars.php`.
+    - **PHP 8.x Robustness**: Refactored `count_words()` and `showSummary()` in `inc/myfunction.php` to handle null/empty strings safely in modern PHP versions.
+- **Vulnerability Neutralization**:
+    - **AJAX Nonce Verification**: Implemented `check_ajax_referer` in `kratos_love` (`inc/post.php`) to prevent CSRF.
+    - **Input Sanitization**: Ensured Bilibili-related metadata is sanitized with `sanitize_text_field()` before storage.
+    - **Output Escaping**: Applied `esc_html()`, `esc_attr()`, and `esc_url()` to all metadata rendered in frontend/admin templates.
+    - **Capability Checks**: Restricted administrative functions behind strict `current_user_can('manage_options')` checks.
+    - **SQL Injection Prevention**: All dynamic database queries now utilize `$wpdb->prepare()`.
 
 ## Error & Vulnerability Log
 
-### XSS in Bilibili Comment Metadata (2025-01-24)
+### XSS in Bilibili Comment Metadata (Identified 2025-01-24)
 - **Vulnerability**: Cross-Site Scripting (XSS) via unsanitized Bilibili-related comment metadata (`uid`, `photo`, `hang`, `level`).
-- **Details**: The theme allowed saving raw user input from `$_POST` and `$_REQUEST` directly into comment metadata. This data was then rendered in the frontend and admin dashboard without escaping.
-- **Fix**: Always sanitize user input before saving to the database using `sanitize_text_field()` and `esc_url_raw()`. When displaying stored data, use `esc_html()`, `esc_attr()`, and `esc_url()`.
-- **Prevention**: Enforce input sanitization and output escaping across all metadata handling functions.
+- **Details**: Raw user input from `$_POST` was saved directly into comment metadata and rendered without escaping.
+- **Fix**: Sanitize inputs with `sanitize_text_field()` and `esc_url_raw()`. Escape outputs with `esc_html()`, `esc_attr()`, and `esc_url()`.
+- **Status**: Fixed in versions 2.3+.
+
+### CSRF in "Love" AJAX Handler (Identified 2025-02-10)
+- **Vulnerability**: Cross-Site Request Forgery (CSRF) in the `kratos_love` AJAX handler.
+- **Details**: The handler lacked a nonce check, allowing unauthorized "likes" to be triggered.
+- **Fix**: Added `wp_create_nonce` in `inc/core.php` and verified it using `check_ajax_referer` in `inc/post.php`.
+- **Status**: Fixed in versions 2.3+.
 
 ---
 *Note: This file is maintained to ensure a clear record of modifications since the repository was forked.*
