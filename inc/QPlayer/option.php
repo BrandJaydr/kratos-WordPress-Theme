@@ -17,14 +17,10 @@ function QPlayer_add_jquery() {
  */
 
 function get_jamendo_music($id) {
-    $url = "https://api.jamendo.com/v3.0/tracks/?client_id=56d30c95&format=json&id=$id";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $cexecute = curl_exec($ch);
-    curl_close($ch);
-    if ($cexecute) {
-        $result = json_decode($cexecute, true);
+    $url = "https://api.jamendo.com/v3.0/tracks/?client_id=56d30c95&format=json&id=" . urlencode($id);
+    $response = wp_remote_get($url, array('timeout' => 15));
+    if (!is_wp_error($response)) {
+        $result = json_decode(wp_remote_retrieve_body($response), true);
         if ($result && isset($result['results'][0])) {
             $data = $result['results'][0];
             return array(
@@ -41,22 +37,17 @@ function get_jamendo_music($id) {
 }
 
 function get_audius_music($id) {
-    $url = "https://api.audius.co/v1/tracks/$id?app_name=KratosTheme";
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json"));
-    $cexecute = curl_exec($ch);
-    curl_close($ch);
-    if ($cexecute) {
-        $result = json_decode($cexecute, true);
+    $url = "https://api.audius.co/v1/tracks/" . urlencode($id) . "?app_name=KratosTheme";
+    $response = wp_remote_get($url, array('timeout' => 15, 'headers' => array('Accept' => 'application/json')));
+    if (!is_wp_error($response)) {
+        $result = json_decode(wp_remote_retrieve_body($response), true);
         if ($result && isset($result['data'])) {
             $data = $result['data'];
             return array(
                 array(
                     'title' => $data['title'],
                     'artist' => $data['user']['name'],
-                    'location' => "https://api.audius.co/v1/tracks/$id/stream?app_name=KratosTheme",
+                    'location' => "https://api.audius.co/v1/tracks/" . urlencode($id) . "/stream?app_name=KratosTheme",
                     'pic' => $data['artwork']['150x150'] ?: $data['artwork']['480x480']
                 )
             );

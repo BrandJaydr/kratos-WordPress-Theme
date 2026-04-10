@@ -6,57 +6,58 @@ class Mastodon {
     public function __construct($instance, $userId) {
         if (empty($instance) || empty($userId)) return;
 
-        $this->fetchUser($instance, $userId);
-        $this->fetchStatuses($instance, $userId);
-    }
+        $transient_key = 'mastodon_data_' . md5($instance . $userId);
+        $cached_data = get_transient($transient_key);
 
-    private function fetchUser($instance, $userId) {
-        $url = "https://{$instance}/api/v1/accounts/{$userId}";
-        $response = $this->query($url);
-        if ($response) {
+        if ($cached_data !== false) {
+            $this->user = $cached_data['user'];
+            $this->statuses = $cached_data['statuses'];
+            return;
+        }
+
+        $user_response = $this->query("https://{$instance}/api/v1/accounts/{$userId}");
+        if (is_wp_error($user_response)) return;
+
+        $user_body = json_decode(wp_remote_retrieve_body($user_response), true);
+        if ($user_body && isset($user_body['username'])) {
             $this->user = [
-                'username' => $response['display_name'] ?: $response['username'],
-                'avatar' => $response['avatar'],
-                'header' => $response['header'],
-                'note' => $response['note'],
-                'url' => $response['url'],
-                'followers_count' => $response['followers_count'],
-                'following_count' => $response['following_count'],
-                'statuses_count' => $response['statuses_count'],
-                'fields' => $response['fields']
+                'username' => $user_body['display_name'] ?: $user_body['username'],
+                'avatar' => $user_body['avatar'],
+                'header' => $user_body['header'],
+                'note' => $user_body['note'],
+                'url' => $user_body['url'],
+                'followers_count' => $user_body['followers_count'],
+                'following_count' => $user_body['following_count'],
+                'statuses_count' => $user_body['statuses_count'],
+                'fields' => $user_body['fields']
             ];
         }
-    }
 
-    private function fetchStatuses($instance, $userId) {
-        $url = "https://{$instance}/api/v1/accounts/{$userId}/statuses?exclude_reblogs=false&limit=20";
-        $response = $this->query($url);
-        if ($response && is_array($response)) {
-            foreach ($response as $status) {
-                $this->statuses[] = [
-                    'id' => $status['id'],
-                    'created_at' => $status['created_at'],
-                    'content' => $status['content'],
-                    'url' => $status['url'],
-                    'replies_count' => $status['replies_count'],
-                    'reblogs_count' => $status['reblogs_count'],
-                    'favourites_count' => $status['favourites_count'],
-                    'media_attachments' => $status['media_attachments'],
-                    'reblog' => $status['reblog']
-                ];
+        $statuses_response = $this->query("https://{$instance}/api/v1/accounts/{$userId}/statuses?exclude_reblogs=false&limit=20");
+        if (!is_wp_error($statuses_response)) {
+            $statuses_body = json_decode(wp_remote_retrieve_body($statuses_response), true);
+            if (is_array($statuses_body)) {
+                foreach ($statuses_body as $status) {
+                    $this->statuses[] = [
+                        'id' => $status['id'],
+                        'created_at' => $status['created_at'],
+                        'content' => $status['content'],
+                        'url' => $status['url'],
+                        'replies_count' => $status['replies_count'],
+                        'reblogs_count' => $status['reblogs_count'],
+                        'favourites_count' => $status['favourites_count'],
+                        'media_attachments' => $status['media_attachments']
+                    ];
+                }
             }
+        }
+
+        if ($this->user) {
+            set_transient($transient_key, ['user' => $this->user, 'statuses' => $this->statuses], HOUR_IN_SECONDS);
         }
     }
 
     private function query($url) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Accept: application/json',
-        ]);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($response, true);
+        return wp_remote_get($url, array('timeout' => 15, 'headers' => array('Accept' => 'application/json')));
     }
 }

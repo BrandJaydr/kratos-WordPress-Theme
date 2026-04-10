@@ -6,55 +6,60 @@ class Bluesky {
     public function __construct($handle) {
         if (empty($handle)) return;
 
-        $this->fetchProfile($handle);
-        $this->fetchFeed($handle);
-    }
+        $transient_key = 'bluesky_data_' . md5($handle);
+        $cached_data = get_transient($transient_key);
 
-    private function fetchProfile($handle) {
-        $url = "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=" . urlencode($handle);
-        $response = $this->query($url);
-        if ($response && !isset($response['error'])) {
-            $this->profile = [
-                'did' => $response['did'],
-                'handle' => $response['handle'],
-                'displayName' => $response['displayName'] ?: $response['handle'],
-                'description' => $response['description'],
-                'avatar' => $response['avatar'],
-                'banner' => $response['banner'],
-                'followersCount' => $response['followersCount'],
-                'followsCount' => $response['followsCount'],
-                'postsCount' => $response['postsCount']
-            ];
+        if ($cached_data !== false) {
+            $this->profile = $cached_data['profile'];
+            $this->posts = $cached_data['posts'];
+            return;
         }
-    }
 
-    private function fetchFeed($handle) {
-        $url = "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=" . urlencode($handle) . "&limit=10";
-        $response = $this->query($url);
-        if ($response && isset($response['feed'])) {
-            foreach ($response['feed'] as $item) {
-                $post = $item['post'];
-                $this->posts[] = [
-                    'uri' => $post['uri'],
-                    'cid' => $post['cid'],
-                    'author' => $post['author'],
-                    'record' => $post['record'],
-                    'embed' => $post['embed'],
-                    'replyCount' => $post['replyCount'],
-                    'repostCount' => $post['repostCount'],
-                    'likeCount' => $post['likeCount'],
-                    'indexedAt' => $post['indexedAt']
+        $profile_url = "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=" . urlencode($handle);
+        $profile_response = wp_remote_get($profile_url, array('timeout' => 15));
+
+        if (!is_wp_error($profile_response)) {
+            $body = json_decode(wp_remote_retrieve_body($profile_response), true);
+            if ($body && !isset($body['error'])) {
+                $this->profile = [
+                    'did' => $body['did'],
+                    'handle' => $body['handle'],
+                    'displayName' => $body['displayName'] ?: $body['handle'],
+                    'description' => $body['description'],
+                    'avatar' => $body['avatar'],
+                    'banner' => $body['banner'],
+                    'followersCount' => $body['followersCount'],
+                    'followsCount' => $body['followsCount'],
+                    'postsCount' => $body['postsCount']
                 ];
             }
         }
-    }
 
-    private function query($url) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($response, true);
+        $feed_url = "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=" . urlencode($handle) . "&limit=10";
+        $feed_response = wp_remote_get($feed_url, array('timeout' => 15));
+
+        if (!is_wp_error($feed_response)) {
+            $body = json_decode(wp_remote_retrieve_body($feed_response), true);
+            if (isset($body['feed'])) {
+                foreach ($body['feed'] as $item) {
+                    $post = $item['post'];
+                    $this->posts[] = [
+                        'uri' => $post['uri'],
+                        'cid' => $post['cid'],
+                        'author' => $post['author'],
+                        'record' => $post['record'],
+                        'embed' => $post['embed'],
+                        'replyCount' => $post['replyCount'],
+                        'repostCount' => $post['repostCount'],
+                        'likeCount' => $post['likeCount'],
+                        'indexedAt' => $post['indexedAt']
+                    ];
+                }
+            }
+        }
+
+        if ($this->profile) {
+            set_transient($transient_key, ['profile' => $this->profile, 'posts' => $this->posts], HOUR_IN_SECONDS);
+        }
     }
 }

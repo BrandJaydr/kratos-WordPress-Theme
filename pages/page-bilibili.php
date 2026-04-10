@@ -20,7 +20,7 @@ get_header(); ?>
                  $ani = new AniList(kratos_option('anilist_username'));
                  echo "<small>Currently following ".$ani->sum." series, keep it up!</small></h1></div><div class=\"bilibili\">";
                  for ($i = 0; $i < $ani->sum; $i++) {
-                     echo "<a class=\"bgm-item\" href=\"https://anilist.co/anime/".$ani->media_id[$i]."\" target=\"_blank\"><div class=\"bgm-item-thumb\" style=\"background-image:url(".$ani->image_url[$i].")\"></div><div class=\"bgm-item-info\"><span class=\"bgm-item-titlemain\">".$ani->title[$i]."</span><span class=\"bgm-item-title\">".$ani->evaluate[$i]."</span></div><div class=\"bgm-item-statusBar-container\"><div class=\"bgm-item-statusBar\" style=\"width:".kratos_progress_precentage($ani->progress[$i],$ani->total[$i])."%\"></div>Progress ".$ani->progress[$i]."/". $ani->total[$i]."</div></a>";
+                     echo "<a class=\"bgm-item\" href=\"".esc_url("https://anilist.co/anime/".$ani->media_id[$i])."\" target=\"_blank\"><div class=\"bgm-item-thumb\" style=\"background-image:url(".esc_url($ani->image_url[$i]).")\"></div><div class=\"bgm-item-info\"><span class=\"bgm-item-titlemain\">".esc_html($ani->title[$i])."</span><span class=\"bgm-item-title\">".esc_html($ani->evaluate[$i])."</span></div><div class=\"bgm-item-statusBar-container\"><div class=\"bgm-item-statusBar\" style=\"width:".esc_attr(kratos_progress_precentage($ani->progress[$i],$ani->total[$i]))."%\"></div>Progress ".esc_html($ani->progress[$i])."/". esc_html($ani->total[$i])."</div></a>";
                  }
              } else {
                  require_once ("bilibili/bilibiliAnime.php");

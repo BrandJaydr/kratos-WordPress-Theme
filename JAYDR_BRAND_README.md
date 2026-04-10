@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `e5f6g7h` | 2026-04-10 | google-labs-jules[bot] | Add international social feeds (YouTube, Bluesky) and expand cloud music options |
 | `a1b2c3d` | 2026-04-10 | google-labs-jules[bot] | Refactor core services for internationalization and add SoundCloud support |
 | `4f29e1a` | 2026-04-08 | google-labs-jules[bot] | Create comprehensive Repository Map document |
 | `d2f1a9c` | 2026-04-07 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
@@ -16,7 +17,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Internationalization & Service Integration
 - **Core Service Refactor (2026-04-10)**:
-    - **Action**: Refactored Bilibili-centric services to support international alternatives including AniList (Anime Tracking), Mastodon/YouTube/Bluesky (Social Dynamics), and Audius/Jamendo (Music).
+    - **Action**: Refactored Bilibili-centric services to support international alternatives including AniList (Anime Tracking), Mastodon, YouTube, and Bluesky (Social Dynamics), and Audius and Jamendo (Music).
     - **SoundCloud Integration**: Implemented a new `[soundcloud]` shortcode and editor button for seamless track embedding.
     - **Video Generalization**: Generalized the `[bilibili]` shortcode into a polymorphic `[video]` shortcode that auto-detects YouTube, Vimeo, and Bilibili content.
 

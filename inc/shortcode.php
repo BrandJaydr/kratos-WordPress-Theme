@@ -186,10 +186,9 @@ function soundcloud_shortcode($atts, $content = null, $code = "") {
     ), $atts));
 
     $content = trim($content);
-    // If it's a full URL, we use the oEmbed-style iframe src
-    $src = "https://w.soundcloud.com/player/?url=" . urlencode($content) . "&color=" . str_replace('#', '', $color) . "&auto_play=" . $auto_play . "&hide_related=" . $hide_related . "&show_comments=" . $show_comments . "&show_user=" . $show_user . "&show_reposts=" . $show_reposts . "&show_teaser=" . $show_teaser;
+    $src = "https://w.soundcloud.com/player/?url=" . urlencode($content) . "&color=" . urlencode(str_replace('#', '', $color)) . "&auto_play=" . esc_attr($auto_play) . "&hide_related=" . esc_attr($hide_related) . "&show_comments=" . esc_attr($show_comments) . "&show_user=" . esc_attr($show_user) . "&show_reposts=" . esc_attr($show_reposts) . "&show_teaser=" . esc_attr($show_teaser);
 
-    return '<div class="soundcloud-container"><iframe width="' . $width . '" height="' . $height . '" scrolling="no" frameborder="no" allow="autoplay" src="' . $src . '"></iframe></div>';
+    return '<div class="soundcloud-container"><iframe width="' . esc_attr($width) . '" height="' . esc_attr($height) . '" scrolling="no" frameborder="no" allow="autoplay" src="' . esc_url($src) . '"></iframe></div>';
 }
 add_shortcode('soundcloud', 'soundcloud_shortcode');
 
@@ -242,7 +241,7 @@ function video_shortcode($atts,$content=null,$code=""){
             break;
     }
 
-    return '<div class="video-container"><iframe src="' . $video_url . '" allowtransparency="true" width="' . $width . '" height="' . $height . '" scrolling="no" frameborder="0" allowfullscreen></iframe></div>';
+    return '<div class="video-container"><iframe src="' . esc_url($video_url) . '" allowtransparency="true" width="' . esc_attr($width) . '" height="' . esc_attr($height) . '" scrolling="no" frameborder="0" allowfullscreen></iframe></div>';
 }
 add_shortcode('video','video_shortcode');
 add_shortcode('bilibili','video_shortcode');

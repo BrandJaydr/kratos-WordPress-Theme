@@ -146,9 +146,11 @@ Toggles for functional extensions and interactive features.
 A specialized layout mode that supports Bilibili, Mastodon, YouTube, and Bluesky.
 
 - **Enable Social Dynamics**: Toggles the overall style switch button in the footer.
-- **Mastodon Instance/ID**: Configure for a Mastodon-powered dynamics feed (overrides Bilibili).
-- **YouTube API Key/Channel ID**: Configure to show latest YouTube uploads as dynamics.
-- **Bluesky Handle**: Configure for a Bluesky-powered dynamics feed.
+- **Mastodon Instance URL** (`mastodon_instance`): e.g., `mastodon.social`. Used for the Mastodon dynamics feed.
+- **Mastodon User ID** (`mastodon_user_id`): Numeric ID of your Mastodon account.
+- **YouTube API Key** (`youtube_api_key`): Required for YouTube Dynamics.
+- **YouTube Channel ID** (`youtube_channel_id`): Your unique YouTube Channel ID.
+- **Bluesky Handle** (`bluesky_handle`): e.g., `user.bsky.social`. Used for the Bluesky dynamics feed.
 - **Dynamics Page URL** (`bibo_pagelink`): Link to the page using the Dynamics template.
 - **Direct Jump** (`bibo_gotobibo`): Automatically defaults the homepage to the Dynamics layout if a link is provided.
 - **Implementation**: Managed via a `goto_bibo` cookie and polymorphic template logic in `pages/page-bibo.php`.
