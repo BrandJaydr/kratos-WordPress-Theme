@@ -227,16 +227,27 @@
     var SnowF = function(){
         var requestAnimationFrame=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame||function(callback){window.setTimeout(callback,1000/60);};
         window.requestAnimationFrame=requestAnimationFrame;
-        var flakes=[],canvas=document.getElementById("Snow"),ctx=canvas.getContext("2d"),flakeCount=parseInt($('#Snow').attr('data-count')),mX=-100,mY=-100;
+        var flakes=[],canvas=document.getElementById("Snow"),ctx=canvas.getContext("2d"),mX=-100,mY=-100;
+        // Hoist data attribute lookups to avoid repetitive DOM/jQuery access in animation frames
+        var $snow = $('#Snow'),
+            flakeCount = parseInt($snow.attr('data-count')),
+            minDist = parseInt($snow.attr('data-dist')),
+            minDistSq = minDist * minDist,
+            snowColorPrefix = "rgba(" + $snow.attr('data-color') + ",",
+            dataSize = parseInt($snow.attr('data-size')),
+            dataSpeed = parseInt($snow.attr('data-speed')),
+            dataOpacity = parseFloat($snow.attr('data-opacity')),
+            dataStep = parseInt($snow.attr('data-step'));
         canvas.width=window.innerWidth;
         canvas.height=window.innerHeight;
         function snow(){
             ctx.clearRect(0,0,canvas.width,canvas.height);
             for(var i=0;i<flakeCount;i++){
-                var flake=flakes[i],x=mX,y=mY,minDist=parseInt($('#Snow').attr('data-dist')),x2=flake.x,y2=flake.y;
-                var dist=Math.sqrt((x2-x)*(x2-x)+(y2-y)*(y2-y)),dx=x2-x,dy=y2-y;
-                if(dist<minDist){
-                    var force=minDist/(dist*dist),xcomp=(x-x2)/dist,ycomp=(y-y2)/dist,deltaV=force/2;
+                var flake=flakes[i],x=mX,y=mY,x2=flake.x,y2=flake.y;
+                var dx=x2-x,dy=y2-y,distSq=dx*dx+dy*dy;
+                // Use squared distance comparison to skip expensive Math.sqrt when out of range
+                if(distSq<minDistSq){
+                    var dist=Math.sqrt(distSq),force=minDist/distSq,xcomp=-dx/dist,ycomp=-dy/dist,deltaV=force/2;
                     flake.velX-=deltaV*xcomp;
                     flake.velY-=deltaV*ycomp;
                 }else{
@@ -244,7 +255,8 @@
                     if(flake.velY<=flake.speed){flake.velY = flake.speed;}
                     flake.velX+=Math.cos(flake.step+=.05)*flake.stepSize;
                 }
-                ctx.fillStyle="rgba("+$('#Snow').attr('data-color')+","+flake.opacity+")";
+                // Pre-calculate style string prefix to reduce concatenation overhead
+                ctx.fillStyle=snowColorPrefix+flake.opacity+")";
                 flake.y+=flake.velY;
                 flake.x+=flake.velX;
                 if(flake.y>=canvas.height||flake.y<=0){reset(flake);}
@@ -258,16 +270,16 @@
         function reset(flake){
             flake.x=Math.floor(Math.random()*canvas.width);
             flake.y=0;
-            flake.size=(Math.random()*3)+parseInt($('#Snow').attr('data-size'));
-            flake.speed=(Math.random()*1)+parseInt($('#Snow').attr('data-speed'));
+            flake.size=(Math.random()*3)+dataSize;
+            flake.speed=(Math.random()*1)+dataSpeed;
             flake.velY=flake.speed;
             flake.velX=0;
-            flake.opacity=(Math.random()*0.5)+parseInt($('#Snow').attr('data-opacity'));
+            flake.opacity=(Math.random()*0.5)+dataOpacity;
         }
         function init(){
             for(var i=0;i<flakeCount;i++){
-                var x=Math.floor(Math.random()*canvas.width),y=Math.floor(Math.random()*canvas.height),size=(Math.random()*3)+parseInt($('#Snow').attr('data-size')),speed=(Math.random()*1)+parseInt($('#Snow').attr('data-speed')),opacity=(Math.random()*0.5)+parseInt($('#Snow').attr('data-opacity'));
-                flakes.push({speed:speed,velY:speed,velX:0,x:x,y:y,size:size,stepSize:(Math.random())/30*parseInt($('#Snow').attr('data-step')),step:0,angle:180,opacity:opacity});
+                var x=Math.floor(Math.random()*canvas.width),y=Math.floor(Math.random()*canvas.height),size=(Math.random()*3)+dataSize,speed=(Math.random()*1)+dataSpeed,opacity=(Math.random()*0.5)+dataOpacity;
+                flakes.push({speed:speed,velY:speed,velX:0,x:x,y:y,size:size,stepSize:(Math.random())/30*dataStep,step:0,angle:180,opacity:opacity});
             }
             snow();
         };
@@ -454,6 +466,7 @@ jQuery(document).ready(function(jQuery) {
 
 //time
 var now = new Date();
+var timerElement = document.getElementById('span_dt_dt');
 function createtime(){
     var grt = new Date(xb.ctime);
     now.setTime(now.getTime()+250);
@@ -464,10 +477,10 @@ function createtime(){
     if(String(mnum).length==1){mnum = '0'+mnum;}
     seconds = (now-grt)/1000-(24*60*60*dnum)-(60*60*hnum)-(60*mnum);snum = Math.round(seconds);
     if(String(snum).length==1){snum = '0'+snum;}
-    document.getElementById('span_dt_dt').innerHTML = dnum+'天'+hnum+'小时'+mnum+'分'+snum+'秒';
+    if(timerElement) timerElement.innerHTML = dnum+'天'+hnum+'小时'+mnum+'分'+snum+'秒';
 }
 
-setInterval('createtime()',250);
+setInterval(createtime, 250);
 //copy
 if(xb.copy) document.body.oncopy=function(){alert('已复制所选内容。请务必遵守本站条约！');}
 
