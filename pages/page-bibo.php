@@ -9,6 +9,16 @@ if (kratos_option('mastodon_instance') && kratos_option('mastodon_user_id')) {
     return;
 }
 
+if (kratos_option('youtube_api_key') && kratos_option('youtube_channel_id')) {
+    include (get_template_directory() . "/pages/page-youtube.php");
+    return;
+}
+
+if (kratos_option('bluesky_handle')) {
+    include (get_template_directory() . "/pages/page-bluesky.php");
+    return;
+}
+
 include "bilibililive/BilibiliLive.php";
 ?>
 <?php get_header();

@@ -215,6 +215,21 @@
         },
     });
     tinymce.PluginManager.add('music', tinymce.plugins.music);
+    tinymce.create('tinymce.plugins.soundcloud', {
+        init : function(ed, url) {
+            ed.addButton('soundcloud', {
+                title : 'SoundCloud',
+                image : url+'/images/music.png',
+                onclick : function() {
+                     ed.selection.setContent('[soundcloud]' + ed.selection.getContent() + '[/soundcloud]');
+                }
+            });
+        },
+        createControl : function(n, cm) {
+            return null;
+        },
+    });
+    tinymce.PluginManager.add('soundcloud', tinymce.plugins.soundcloud);
     tinymce.create('tinymce.plugins.wxmusic', {
         init : function(ed, url) {
             ed.addButton('wxmusic', {

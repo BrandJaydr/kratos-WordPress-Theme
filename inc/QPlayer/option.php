@@ -16,6 +16,30 @@ function QPlayer_add_jquery() {
  * @param unknown $type Type of the acquired ID: song, album, artist, collect (playlist)
  */
 
+function get_jamendo_music($id) {
+    $url = "https://api.jamendo.com/v3.0/tracks/?client_id=56d30c95&format=json&id=$id";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $cexecute = curl_exec($ch);
+    curl_close($ch);
+    if ($cexecute) {
+        $result = json_decode($cexecute, true);
+        if ($result && isset($result['results'][0])) {
+            $data = $result['results'][0];
+            return array(
+                array(
+                    'title' => $data['name'],
+                    'artist' => $data['artist_name'],
+                    'location' => $data['audio'],
+                    'pic' => $data['image']
+                )
+            );
+        }
+    }
+    return false;
+}
+
 function get_audius_music($id) {
     $url = "https://api.audius.co/v1/tracks/$id?app_name=KratosTheme";
     $ch = curl_init();
@@ -112,6 +136,8 @@ function parse($id, $type) {
     foreach ($resultList as $key => $value) {
         if ($type == 'audius') {
             $musicList = get_audius_music($value);
+        } elseif ($type == 'jamendo') {
+            $musicList = get_jamendo_music($value);
         } else {
             $musicList = get_netease_music($value,$type);
         }
@@ -234,10 +260,11 @@ function QPlayer_page() {
                 <input type="radio" name="musicType" value="artist" <?php if (get_option('musicType') == 'artist') echo "checked";?>>Netease Artist
                 <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Netease Song
                 <input type="radio" name="musicType" value="audius" <?php if (get_option('musicType') == 'audius') echo "checked";?>>Audius Track
+                <input type="radio" name="musicType" value="jamendo" <?php if (get_option('musicType') == 'jamendo') echo "checked";?>>Jamendo Track
             </div>
             <div>ID Input
                 <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">For Netease, get the ID from the URL. For Audius, use the Track ID. Multiple IDs can be separated by commas.</p>
+                <p class="tip" style="margin-bottom: 0;">For Netease, get the ID from the URL. For Audius and Jamendo, use the Track ID. Multiple IDs can be separated by commas.</p>
             </div>
 			<input type="submit" name="addMusic" id="addMusic" value="Add to songList"  /><br><br>
 			<div><div class="title">songList</div>

@@ -172,6 +172,27 @@ add_shortcode('wxmusic','wxmusic');
 
 
 
+function soundcloud_shortcode($atts, $content = null, $code = "") {
+    extract(shortcode_atts(array(
+        "width" => '100%',
+        "height" => '166',
+        "auto_play" => 'false',
+        "hide_related" => 'false',
+        "show_comments" => 'true',
+        "show_user" => 'true',
+        "show_reposts" => 'false',
+        "show_teaser" => 'true',
+        "color" => '#ff5500'
+    ), $atts));
+
+    $content = trim($content);
+    // If it's a full URL, we use the oEmbed-style iframe src
+    $src = "https://w.soundcloud.com/player/?url=" . urlencode($content) . "&color=" . str_replace('#', '', $color) . "&auto_play=" . $auto_play . "&hide_related=" . $hide_related . "&show_comments=" . $show_comments . "&show_user=" . $show_user . "&show_reposts=" . $show_reposts . "&show_teaser=" . $show_teaser;
+
+    return '<div class="soundcloud-container"><iframe width="' . $width . '" height="' . $height . '" scrolling="no" frameborder="no" allow="autoplay" src="' . $src . '"></iframe></div>';
+}
+add_shortcode('soundcloud', 'soundcloud_shortcode');
+
 function video_shortcode($atts,$content=null,$code=""){
     extract(shortcode_atts(array(
         "site" => 'auto',
@@ -251,6 +272,7 @@ function register_button($buttons){
     array_push($buttons," ","striped");
     array_push($buttons," ","ypbtn");
     array_push($buttons," ","music");
+    array_push($buttons," ","soundcloud");
     array_push($buttons," ","video");
     array_push($buttons," ","wxmusic");
     return $buttons;
@@ -273,6 +295,7 @@ function add_plugin($plugin_array){
     $plugin_array['striped'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['ypbtn'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['music'] = get_bloginfo('template_url').'/inc/buttons/more.js';
+    $plugin_array['soundcloud'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['video'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     $plugin_array['wxmusic'] = get_bloginfo('template_url').'/inc/buttons/more.js';
     return $plugin_array;
@@ -325,6 +348,7 @@ function appthemes_add_quicktags(){ ?>
             QTags.addButton( 'Reply to View ', 'Reply to View ', '[hide reply_to_this="true"]', '[/hide]' );
             QTags.addButton( 'Cloud Download ', 'Cloud Download ', '[ypbtn]', '[/ypbtn]' );
             QTags.addButton( 'Netease Cloud Music ', 'Netease Cloud Music ', '[music autoplay="0"]', '[/music]' );
+            QTags.addButton( 'SoundCloud ', 'SoundCloud ', '[soundcloud]', '[/soundcloud]' );
             QTags.addButton( 'Green Background Bar ', 'Green Background Bar ', '[success]', '[/success]' );
             QTags.addButton( 'Blue Background Bar ', 'Blue Background Bar ', '[info]', '[/info]' );
             QTags.addButton( 'Red Background Bar ', 'Red Background Bar ', '[danger]', '[/danger]' );
