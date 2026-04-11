@@ -77,14 +77,15 @@ The "Dynamics" (Bibo) layout can now pull from various international social plat
 
 ---
 
-## 5. Music Player (Audius & Jamendo)
+## 5. Music Player (Audius, Jamendo, SoundCloud)
 
-Add decentralized and royalty-free music to the site-wide QPlayer.
+Add decentralized and international music to the site-wide QPlayer.
 
 ### Configuration
 1. Go to **Appearance > QPlayer Settings**.
-2. Select **Audius Track** or **Jamendo Track** from the Source list.
-3. **ID Input**:
-   - **Audius**: Enter the Track ID (found in the "Share" info or URL).
+2. Select the Source from the radio list (**Audius Track**, **Jamendo Track**, or **SoundCloud URL**).
+3. **ID/URL Input**:
+   - **Audius**: Enter the Track ID (found in the track URL or share data).
    - **Jamendo**: Enter the Jamendo Track ID.
+   - **SoundCloud**: Enter the **full track URL** (e.g., `https://soundcloud.com/user/track-name`).
 4. Click **Add to songList**.

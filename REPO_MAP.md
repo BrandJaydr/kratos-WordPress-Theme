@@ -26,8 +26,7 @@ The root directory contains the core WordPress theme templates and essential doc
 | `THEME_CONFIGURATION.md` | Detailed guide explaining every setting in the theme options panel. |
 | `JAYDR_BRAND_README.md` | Record of changes, hardening, and performance improvements for this fork. |
 | `WORDPRESS_UPDATE.md` | Compatibility notes for modern WordPress (6.7+) and PHP (8.3+) environments. |
-| `SERVICE_ALTERNATIVES.md` | Analysis and recommendations for internationalizing theme services. |
-| `INTERNATIONAL_INTEGRATION.md`| User guide for configuring international alternatives for theme services. |
+| `Cloud music and Services Integration Planning Docs/` | **New:** Directory containing implementation plans and user guides for international services. |
 | `screenshot.png` | The theme's preview image shown in the WordPress admin panel. |
 
 ---

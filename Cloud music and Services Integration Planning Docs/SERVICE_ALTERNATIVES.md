@@ -46,13 +46,16 @@ To improve the theme for US/International audiences, we recommend transitioning 
 
 ---
 
-## 3. Implementation Recommendations
+## 3. Implementation Status (Updated April 2026)
 
-### Technical Strategy
-1.  **Transition to Structured Data:** Replace the current Bilibili parsing logic (which looks for Chinese markers like "第" and "话") with numeric fields provided by AniList or Simkl.
-2.  **Public API Access:** Prioritize services like Audius and Mastodon that allow **read-only public access** without forcing the user through a complex OAuth login flow on the frontend.
-3.  **Shortcode Generalization:** Update the `[bilibili]` shortcode in `inc/shortcode.php` to a more generic `[video]` shortcode that can detect and embed content from YouTube, Vimeo, or Bilibili based on the URL.
+The recommendations outlined in this document have been **fully implemented**.
 
-### UI Improvements
-*   Replace Bilibili-specific metadata (like "Annual VIP") with generic "Verified" badges or community-relevant metrics (e.g., "Mastodon Followers" or "YouTube Subscribers").
-*   Translate hardcoded Chinese strings in the Bibo layout to ensure accessibility for English speakers.
+### Technical Strategy & Status
+1.  **Transition to Structured Data:** ✅ **Complete.** The AniList integration (`inc/anilist.php`) uses GraphQL to fetch numeric progress data, bypassing the need for Chinese string parsing.
+2.  **Public API Access:** ✅ **Complete.** Integrations for Mastodon, YouTube, Bluesky, Audius, and Jamendo utilize public API endpoints to ensure seamless data fetching without complex OAuth requirements for end-users.
+3.  **Shortcode Generalization:** ✅ **Complete.** The `[video]` shortcode in `inc/shortcode.php` now automatically detects and embeds content from YouTube, Vimeo, and Bilibili.
+
+### UI Improvements & Status
+*   **Service-Specific Metadata:** ✅ **Complete.** Templates for Mastodon, YouTube, and Bluesky now display relevant metrics (Followers, Subscribers, Post Counts) instead of Bilibili-specific badges.
+*   **English Localization:** ✅ **Complete.** All hardcoded Chinese strings in the dynamics and anime tracking layouts have been translated to English.
+*   **Expanded Cloud Music:** ✅ **Added.** SoundCloud support has been integrated both as a shortcode and as a source for the QPlayer.

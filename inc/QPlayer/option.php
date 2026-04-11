@@ -36,6 +36,27 @@ function get_jamendo_music($id) {
     return false;
 }
 
+function get_soundcloud_music($url) {
+    // SoundCloud requires a client_id which is hard to get nowadays for new apps.
+    // However, some public ones exist or we can use their oEmbed to get metadata.
+    $oembed_url = "https://soundcloud.com/oembed?format=json&url=" . urlencode($url);
+    $response = wp_remote_get($oembed_url);
+    if (!is_wp_error($response)) {
+        $data = json_decode(wp_remote_retrieve_body($response), true);
+        if ($data) {
+            return array(
+                array(
+                    'title' => $data['title'],
+                    'artist' => $data['author_name'],
+                    'location' => $url, // We'll store the URL, the player might need a specialized handler or we just use it as a link
+                    'pic' => $data['thumbnail_url']
+                )
+            );
+        }
+    }
+    return false;
+}
+
 function get_audius_music($id) {
     $url = "https://api.audius.co/v1/tracks/" . urlencode($id) . "?app_name=KratosTheme";
     $response = wp_remote_get($url, array('timeout' => 15, 'headers' => array('Accept' => 'application/json')));
@@ -127,6 +148,8 @@ function parse($id, $type) {
     foreach ($resultList as $key => $value) {
         if ($type == 'audius') {
             $musicList = get_audius_music($value);
+        } elseif ($type == 'soundcloud') {
+            $musicList = get_soundcloud_music($value);
         } elseif ($type == 'jamendo') {
             $musicList = get_jamendo_music($value);
         } else {
@@ -252,10 +275,11 @@ function QPlayer_page() {
                 <input type="radio" name="musicType" value="song" <?php if (get_option('musicType') == 'song') echo "checked";?>>Netease Song
                 <input type="radio" name="musicType" value="audius" <?php if (get_option('musicType') == 'audius') echo "checked";?>>Audius Track
                 <input type="radio" name="musicType" value="jamendo" <?php if (get_option('musicType') == 'jamendo') echo "checked";?>>Jamendo Track
+                <input type="radio" name="musicType" value="soundcloud" <?php if (get_option('musicType') == 'soundcloud') echo "checked";?>>SoundCloud URL
             </div>
             <div>ID Input
-                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
-                <p class="tip" style="margin-bottom: 0;">For Netease, get the ID from the URL. For Audius and Jamendo, use the Track ID. Multiple IDs can be separated by commas.</p>
+                <input type="text" id="inputID" onclick="clickAnimation()" placeholder="Multiple IDs/URLs separated by English commas" name="neteaseID" value="<?php echo get_option('neteaseID') ?>">
+                <p class="tip" style="margin-bottom: 0;">For Netease/Audius/Jamendo, use IDs. For SoundCloud, use the full track URL.</p>
             </div>
 			<input type="submit" name="addMusic" id="addMusic" value="Add to songList"  /><br><br>
 			<div><div class="title">songList</div>
