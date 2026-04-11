@@ -727,6 +727,16 @@ function optionsframework_options(){
         'type' => 'text'
     );
     $options[] = array(
+        'name' => 'Anime Avatar Picker',
+        'type' => 'heading'
+    );
+    $options[] = array(
+        'name' => 'Pick an Anime Avatar',
+        'desc' => 'Browse and select an anime avatar from Alpha Coders. Once selected, it will be downloaded to your media library and set as your local avatar.',
+        'id'   => 'anime_avatar_picker',
+        'type' => 'avatar_picker'
+    );
+    $options[] = array(
         'name'=>'Other Settings',
         'type'=>'heading');
     $options[] = array(
