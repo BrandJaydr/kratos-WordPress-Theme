@@ -73,36 +73,39 @@ if(kratos_option('opencontent')) add_filter( 'the_content', 'article_index');
 
 //Display random avatars
 function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
-//    var_dump($avatar);
-    $comment_ID=$id_or_email->comment_ID;
-    $photo=get_comment_meta($comment_ID,'photo',true);
-    $hang=get_comment_meta($comment_ID,'hang',true);
-    $uid=get_comment_meta($comment_ID,'uid',true);
-    $level=get_comment_meta($comment_ID,'level',true);
-    if($uid) {
-        $avatar ='<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.$uid.'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.$photo.'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.$hang.');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="'.$level.'" class="h-level m-level"></a></div>';
+    if (is_numeric($id_or_email) || (is_string($id_or_email) && strpos($id_or_email, '@'))) {
+        return $avatar;
     }
-    else{
-        /*Below is the display of local random and custom avatars*/
-        if(kratos_option('random_avatar'))
-        {
-            $images=explode("\r\n",kratos_option('random_avatar'));
-            $random = mt_rand(0,count($images)-1);
-            $avatar=$images[$random];
+    if (is_object($id_or_email) && (isset($id_or_email->user_id) && $id_or_email->user_id != 0)) {
+        return $avatar;
+    }
+    if (is_object($id_or_email) && isset($id_or_email->comment_ID)) {
+        $comment_ID = $id_or_email->comment_ID;
+        $photo = get_comment_meta($comment_ID, 'photo', true);
+        $hang = get_comment_meta($comment_ID, 'hang', true);
+        $uid = get_comment_meta($comment_ID, 'uid', true);
+        $level = get_comment_meta($comment_ID, 'level', true);
+        if ($uid) {
+            return '<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.$uid.'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.$photo.'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.$hang.');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="'.$level.'" class="h-level m-level"></a></div>';
         }
-        else
-        {
-            $imgs=getfilecouts(dirname(dirname(__FILE__)).'/static/images/avatar/*');
-            $random = mt_rand(0,count($imgs)-1);
-            $avatar = get_bloginfo('template_url') . "/static/images/avatar/" . substr($imgs[$random], strripos($imgs[$random], '/') + 1);
-         }
-        $avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}'/><div style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='0' class='n-level m-level'></a></div>";
-
     }
-//    }else{
-//        $avatar.="<div style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='6' class='n-level m-level'></a></div>";
-//    }
-    return $avatar;
+
+    if (is_object($id_or_email) && !isset($id_or_email->comment_ID)) {
+        return $avatar;
+    }
+
+    /*Below is the display of local random and custom avatars for anonymous comments*/
+    if (kratos_option('random_avatar')) {
+        $images = explode("\r\n", kratos_option('random_avatar'));
+        $random = mt_rand(0, count($images) - 1);
+        $avatar_url = $images[$random];
+    } else {
+        $imgs = getfilecouts(dirname(dirname(__FILE__)).'/static/images/avatar/*');
+        if (empty($imgs)) return $avatar;
+        $random = mt_rand(0, count($imgs) - 1);
+        $avatar_url = get_bloginfo('template_url') . "/static/images/avatar/" . substr($imgs[$random], strripos($imgs[$random], '/') + 1);
+    }
+    return "<img alt='".esc_attr($alt)."' src='".esc_url($avatar_url)."' class='avatar avatar-".esc_attr($size)." photo' height='".esc_attr($size)."' width='".esc_attr($size)."'/><div style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='0' class='n-level m-level'></a></div>";
 }
 add_filter( 'get_avatar' , 'local_random_avatar' , 1 , 5 );
 
