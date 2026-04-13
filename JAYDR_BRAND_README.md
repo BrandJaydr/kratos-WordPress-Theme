@@ -6,6 +6,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Avatar and Profile fixes) |
+| `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
+| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
 | `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
 | `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
@@ -38,6 +41,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented native integrations for **AniList** (Anime Tracking), **Mastodon**, **Bluesky**, and **YouTube** (Social Dynamics) as international alternatives to Bilibili.
 - **Music Streaming**:
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
+- **Anime Avatar Picker**:
+    - **Action**: Integrated with **Alpha Coders API** to allow users to browse and select anime avatars directly from the theme settings. Selected avatars are automatically downloaded to the Media Library and set as the user's local avatar.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
 
@@ -74,11 +79,23 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
+| 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### Local Random Avatar Override (2026-04-11)
+- **Error**: The `local_random_avatar` function was overriding avatars for registered users who had not yet set a custom avatar, preventing them from seeing their Gravatar or default avatar.
+- **Fix**: Restricted `local_random_avatar` to only apply to guest commenters by checking for the absence of a user ID.
+- **Prevention**: Ensure fallback functions for guest features do not accidentally intercept data for authenticated users.
+
+### Profile Multipart Form Missing (2026-04-11)
+- **Error**: Local avatar uploads from the WordPress profile page were failing because the form lacked the `enctype="multipart/form-data"` attribute.
+- **Fix**: Used the `user_edit_form_tag` hook to inject the necessary attribute into the profile form.
+- **Prevention**: Always verify that forms intended for file uploads have the correct encoding type set via WordPress hooks.
 
 ### Illogical Word Count Comparison (2026-04-07)
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
