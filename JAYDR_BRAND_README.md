@@ -6,6 +6,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
+| `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 from BrandJaydr/fix-avatar-profile-issues-15658743060621139685 |
+| `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
+| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support and documentation |
+| `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
 | `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
 | `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
@@ -52,6 +58,22 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
+- **PHP 8.5 Compatibility**:
+    - **Action**: Implemented conditional `curl_close()` in `inc/myfunction.php` and `inc/QPlayer/option.php` to avoid deprecation warnings in PHP 8.5.
+- **WordPress 7.0 Modernization**:
+    - **Action**: Removed all legacy filters and references to `wp_title()` in `inc/core.php` to fully align with WordPress 7.0 standards.
+
+### Anime Avatar Picker & Profile Enhancements
+- **Anime Avatar Picker**:
+    - **Action**: Integrated Alpha Coders API to allow users to browse and select anime avatars directly from the WordPress profile page.
+- **Automated Media Library Integration**:
+    - **Action**: Implemented logic to automatically download selected anime avatars to the local WordPress Media Library, ensuring persistent storage and local serving.
+- **Profile Form Hardening**:
+    - **Action**: Fixed an issue where local avatar uploads failed due to missing `enctype` on the profile form by utilizing the `user_edit_form_tag` hook.
+
+### QPlayer SoundCloud Support
+- **SoundCloud Integration**:
+    - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
@@ -75,6 +97,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
+| 2026-04-11 | Security | Potential SSRF in Anime Avatar Picker (URL validation) | Fixed |
+| 2026-04-11 | Logic Error | Profile avatar upload failing due to missing form multipart encoding | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
@@ -99,6 +123,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Potential null or empty string access in `inc/myfunction.php` (e.g., `showSummary`) which could trigger warnings or errors in PHP 8.x.
 - **Fix**: Added null-safe robustness checks to handle potential null or empty strings safely.
 - **Prevention**: Always validate variable state before performing operations that expect specific data types (e.g., strings).
+
+### Profile Avatar Upload Failure (2026-04-11)
+- **Error**: The local avatar upload feature on the WordPress profile page was failing because the form lacked the `enctype="multipart/form-data"` attribute.
+- **Fix**: Added the `user_edit_form_tag` action hook in `inc/avatars.php` to inject the correct encoding attribute into the profile form.
+- **Prevention**: Always ensure forms handling file uploads have the correct `enctype` attribute set.
+
+### Anime Avatar Picker SSRF Protection (2026-04-11)
+- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) when fetching external avatar images from the Alpha Coders API.
+- **Fix**: Implemented strict URL validation and ensured images are processed and sanitized before being saved to the local media library.
+- **Prevention**: Never trust external URLs; always validate and sanitize them before performing server-side requests.
 
 ### XSS in Bilibili Comment Metadata (2025-01-24)
 - **Vulnerability**: Cross-Site Scripting (XSS) via unsanitized Bilibili-related comment metadata (`uid`, `photo`, `hang`, `level`).
