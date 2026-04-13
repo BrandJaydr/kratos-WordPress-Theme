@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `[current]` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
 | `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
 | `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
@@ -48,6 +49,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **PHP 8.5 Deprecation Handling**:
+    - **Action**: Conditionally executed `curl_close()` only for PHP versions earlier than 8.0 in `inc/myfunction.php` and `inc/QPlayer/option.php` to avoid deprecation warnings.
+- **WordPress 7.0 Modernization**:
+    - **Action**: Removed all filtering and references to the deprecated `wp_title()` function in `inc/core.php`, fully adopting `title-tag` theme support.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:

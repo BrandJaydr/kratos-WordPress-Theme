@@ -172,7 +172,7 @@ if(!kratos_option('use_gutenberg')){
     remove_action('wp_enqueue_scripts','wp_common_block_scripts_and_styles');
 }
 //Prohibit character escaping
-$qmr_work_tags = array('the_title','the_excerpt','single_post_title','comment_author','comment_text','link_description','bloginfo','wp_title','term_description','category_description','widget_title','widget_text');
+$qmr_work_tags = array('the_title','the_excerpt','single_post_title','comment_author','comment_text','link_description','bloginfo','term_description','category_description','widget_title','widget_text');
 foreach($qmr_work_tags as $qmr_work_tag){remove_filter ($qmr_work_tag,'wptexturize');}
 remove_filter('the_content','wptexturize');
 //Add the page html
