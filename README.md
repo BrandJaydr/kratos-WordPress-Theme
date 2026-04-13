@@ -7,6 +7,11 @@
 
 # Theme Update Log
 
+
+## 2026.4.01 --- Forked By Jay☠fSp4d3s♠ @JAYDR.COM 
+For latest development info please read the seperate readme called Jaydr_brand_readme.md located here: https://github.com/BrandJaydr/kratos-WordPress-Theme/blob/master/JAYDR_BRAND_README.md
+This readme will remain preserved for documentation, liscence and credit purposes. After all...it is "Open Source". 
+
 ## 2019.6.25 --- Theme Officially Open Sourced
 
 > Update Content
