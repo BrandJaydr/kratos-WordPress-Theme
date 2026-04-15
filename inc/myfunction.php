@@ -281,7 +281,7 @@ function curlGet($url, $file)
     curl_setopt($ch,CURLOPT_URL,$url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $file_content = curl_exec($ch);
-    curl_close($ch);
+    if (PHP_VERSION_ID < 80000) curl_close($ch);
     $downloaded_file = fopen($file, 'w');
     fwrite($downloaded_file, $file_content);
     fclose($downloaded_file);

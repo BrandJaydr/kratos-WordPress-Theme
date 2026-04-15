@@ -6,6 +6,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
+| `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
 | `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Avatar and Profile fixes) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
@@ -53,6 +55,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **WordPress 7.0 & PHP 8.5 Compatibility (April 2026)**:
+    - **Action**: Verified and hardened the theme for WordPress 7.0 and PHP 8.5. Handled the `curl_close()` deprecation in PHP 8.5 by wrapping it in a version check (`PHP_VERSION_ID < 80000`) in `inc/myfunction.php` and `inc/QPlayer/option.php`.
+    - **Action**: Removed all legacy filters and references to the deprecated `wp_title()` function in `inc/core.php`, fully transitioning to modern `title-tag` theme support.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
@@ -79,6 +84,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-04-13 | Compatibility | `curl_close()` deprecation warning in PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
