@@ -6,17 +6,14 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
-| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
-| `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
+| `[Current]` | 2026-04-11 | google-labs-jules[bot] | Refactor word count logic for English localization and update documentation |
+| `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 from BrandJaydr/scribe-jaydr-brand-readme-update |
+| `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
+| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 from BrandJaydr/international-services-refactor |
 | `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
-| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history and compatibility improvements |
-| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
 | `afc3a6a` | 2026-04-07 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
-| `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
-| `6f2a902` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into wordpress-php-compatibility-update |
-| `273012e` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into translate-chinese-to-english |
+| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
 | `8de0284` | 2026-04-06 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
 
 ## Improvements & Hardening
@@ -28,8 +25,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Created `THEME_CONFIGURATION.md`, providing a detailed reference for every theme setting, mapping configuration IDs to their functional impact in core files.
 - **Translation Log**:
     - **Action**: Created `TRANSLATION_LOG.md` to track full English localization efforts across PHP, JS, and JSON configuration files.
-- **International Integration Guide**:
-    - **Action**: Created `INTERNATIONAL_INTEGRATION.md` to provide a user guide for configuring new services like AniList, Mastodon, and Audius.
 - **Funding Configuration**:
     - **Action**: Created `.github/FUNDING.yml` to manage repository funding.
 
@@ -74,21 +69,27 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
+| 2026-04-11 | Logic Error | Incorrect word count for English text in `inc/myfunction.php` | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
+| 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### Incorrect Word Count (2026-04-11)
+- **Error**: The `count_words()` function was counting characters instead of words, which is incorrect for English content.
+- **Fix**: Refactored `count_words()` to use `preg_split` for accurate English word counting and localized labels to English.
+- **Prevention**: Use word-based splitting logic for non-logographic languages.
+
+### Aggressive Whitespace Stripping (2026-04-10)
+- **Error**: The `trimall()` function was being applied to post summaries in `showSummary()`, removing all spaces and making English text unreadable.
+- **Fix**: Removed the `trimall()` call from the `showSummary()` pipeline to preserve natural word spacing.
+- **Prevention**: Do not use "strip all whitespace" functions on text blocks where readability depends on spaces.
 
 ### Illogical Word Count Comparison (2026-04-07)
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
 - **Fix**: Refactored the logic to ensure proper string handling and accurate word counting in modern PHP versions.
 - **Prevention**: Use robust string manipulation functions and verify logic against edge cases (empty strings, special characters).
-
-### Aggressive Whitespace Stripping (2026-04-10)
-- **Error**: The `trimall()` function was being applied to post summaries, removing all spaces and making the text unreadable for English content.
-- **Fix**: Removed `trimall()` from `showSummary()` in `inc/myfunction.php` to preserve natural spacing.
-- **Prevention**: Do not use `trimall()` on blocks of text where readability depends on whitespace.
 
 ### UI Content Bleed (2026-04-10)
 - **Error**: Long titles or URLs without break points were bleeding out of post cards on narrow viewports.
