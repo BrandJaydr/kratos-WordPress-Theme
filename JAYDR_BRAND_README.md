@@ -6,11 +6,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
+| `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
+| `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
+| `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
 | `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
-| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Avatar and Profile fixes) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
@@ -97,6 +98,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
@@ -106,6 +108,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### Regression: Lost Compatibility Fixes (2026-04-15)
+- **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
+- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php`.
+- **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
 
 ### curl_close() Deprecation (2026-04-13)
 - **Error**: PHP 8.5 deprecates `curl_close()`. In versions 8.0+, `CurlHandle` objects are automatically closed, and the function is a no-op that now triggers warnings.
