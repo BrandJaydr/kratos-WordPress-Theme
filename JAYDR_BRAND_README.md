@@ -6,8 +6,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
-| `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
+| `9f0931f` | 2026-04-18 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `e968437` | 2026-04-17 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `905cb45` | 2026-04-16 | google-labs-jules[bot] | Resolve merge conflicts and synchronize modernization improvements |
+| `aa22a43` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix English localization issues |
+| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-15-7347432482780167729 |
+| `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
@@ -48,6 +52,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
+- **Full English Localization**:
+    - **Action**: Completed comprehensive translation of all theme files, including internal technical comments and hidden UI strings.
 
 ### Typography & UI Customization
 - **Global Typography Controls**:
@@ -58,6 +64,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 ### WordPress & PHP Compatibility Modernization
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
+    - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
 - **PHP 8.5 Deprecation Handling**:
     - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
@@ -73,9 +80,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Profile Form Hardening**:
     - **Action**: Fixed an issue where local avatar uploads failed due to missing `enctype` on the profile form by utilizing the `user_edit_form_tag` hook.
 
-### QPlayer SoundCloud Support
-- **SoundCloud Integration**:
-    - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
+### Asset Management & Synchronization
+- **Comprehensive Asset Restoration**:
+    - **Action**: Restored over 480 theme assets, including CSS, JS, fonts, and images (UA icons, smilies, etc.), ensuring full functional parity and visual consistency across all components.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
@@ -98,7 +105,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
+| 2026-04-16 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
@@ -109,9 +116,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
 
-### Regression: Lost Compatibility Fixes (2026-04-15)
+### Regression: Lost Compatibility Fixes (2026-04-16)
 - **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
-- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php`.
+- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php` in commit `e916f1a`.
 - **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
 
 ### curl_close() Deprecation (2026-04-13)
