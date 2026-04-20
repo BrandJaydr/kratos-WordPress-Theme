@@ -49,7 +49,7 @@ class BilibiliLive{
         curl_setopt($ch, CURLOPT_URL, $url4); //Address to submit login
         $info4=json_decode(curl_exec($ch),true);
 
-        curl_close($ch);//Close connection
+        if (PHP_VERSION_ID < 80000) curl_close($ch); //Close connection
 
         $this->usrname=$info["data"]["name"];
         $this->sign=$info["data"]["sign"];
@@ -79,7 +79,7 @@ class BilibiliLive{
             "Referer: https://www.bilibili.com/",
         ));
         $info=json_decode(curl_exec($ch),true);
-        curl_close($ch);//Close connection
+        if (PHP_VERSION_ID < 80000) curl_close($ch); //Close connection
         $this->hangpicture=$info["data"]["cards"][0]['desc']['user_profile']['pendant']['image'];
         $this->hangpicture=substr($this->hangpicture,stripos($this->hangpicture,":")+1);
         $this->next_url=$info["data"]["cards"][9]['desc']['dynamic_id'];

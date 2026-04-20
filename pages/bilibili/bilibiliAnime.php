@@ -51,7 +51,7 @@ class bilibiliAnime
         ));
 
         $info=json_decode(curl_exec($ch),true);
-        curl_close($ch);//Close connection
+        if (PHP_VERSION_ID < 80000) curl_close($ch); //Close connection
         return $info['data']['total'];
     }
     public function __construct($uid,$cookie)
@@ -70,7 +70,7 @@ class bilibiliAnime
                 "Cookie: $cookie",
             ));
             $info=json_decode(curl_exec($ch),true);
-            curl_close($ch);//Close connection
+            if (PHP_VERSION_ID < 80000) curl_close($ch); //Close connection
             foreach ($info['data']['list'] as $data) {
                 array_push($this->title, $data['title']);
                 array_push($this->image_url, $data['cover']);

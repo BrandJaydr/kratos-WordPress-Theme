@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `d2f4a1e` | 2026-04-20 | google-labs-jules[bot] | Complete site-wide PHP 8.5 compatibility for `curl_close()` |
 | `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
 | `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
@@ -59,7 +60,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
 - **PHP 8.5 Deprecation Handling**:
-    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
+    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php`, `inc/QPlayer/option.php`, `pages/bilibili/bilibiliAnime.php`, and `pages/bilibililive/BilibiliLive.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
