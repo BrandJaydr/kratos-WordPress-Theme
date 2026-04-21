@@ -6,6 +6,14 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
+| `04648f3` | 2026-04-19 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `9f0931f` | 2026-04-18 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `e968437` | 2026-04-17 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `905cb45` | 2026-04-16 | google-labs-jules[bot] | Resolve merge conflicts and synchronize modernization improvements |
+| `aa22a43` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix English localization issues |
+| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 (Readme updates and compatibility restoration) |
+| `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
 | `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
 | `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
@@ -48,6 +56,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
+- **English Localization Refactor**:
+    - **Action**: Refactored `count_words()` in `inc/myfunction.php` to correctly count English words (using regex word boundaries) and return localized English labels.
 
 ### Typography & UI Customization
 - **Global Typography Controls**:
@@ -58,12 +68,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 ### WordPress & PHP Compatibility Modernization
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
-- **PHP 8.5 Deprecation Handling**:
-    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
+- **Site-Wide PHP 8.5 Compatibility**:
+    - **Action**: Completed comprehensive site-wide implementation of conditional `curl_close()` calls to handle the deprecation of the function in PHP 8.5, ensuring no warnings are triggered in modern environments.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
+
+### Asset Restoration & Optimization
+- **Theme Asset Restoration**:
+    - **Action**: Performed a major restoration of over 480 theme assets—including CSS, JS, fonts, and icons—and implemented comprehensive English localization across the restored files (Commit `aa22a43`).
+- **Performance Optimization**:
+    - **Action**: Optimized snow animation to **60fps** and refined the site timer in `static/js/kratos.js` to minimize CPU usage and improve battery life on mobile devices.
 
 ### Anime Avatar Picker & Profile Enhancements
 - **Anime Avatar Picker**:
@@ -76,14 +92,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 ### QPlayer SoundCloud Support
 - **SoundCloud Integration**:
     - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
-
-### Performance Improvements
-- **Inefficient Snow Animation and Timer**:
-    - **Issue**: High-frequency animation loops and timers in `static/js/kratos.js` were causing CPU spikes due to redundant DOM operations and expensive calculations.
-    - **Action**:
-        - Optimized snow animation to **60fps** by hoisting DOM/attribute lookups and replacing `Math.sqrt` with squared distance comparisons.
-        - Optimized the site timer by using direct function references in `setInterval` and hoisting the birth date object outside the interval.
-        - Documented these patterns in `.jules/bolt.md`.
 
 ### Security Hardening
 - **Neutralized Vulnerabilities**:
