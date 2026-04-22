@@ -77,6 +77,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented native integrations for **AniList** (Anime Tracking), **Mastodon**, **Bluesky**, and **YouTube** (Social Dynamics) as international alternatives to Bilibili.
 - **Music Streaming**:
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
+- **Anime Avatar Picker**:
+    - **Action**: Integrated with **Alpha Coders API** to allow users to browse and select anime avatars directly from the theme settings. Selected avatars are automatically downloaded to the Media Library and set as the user's local avatar.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
 
@@ -96,18 +98,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
-
-### Anime Avatar Picker & Profile Enhancements
-- **Anime Avatar Picker**:
-    - **Action**: Integrated Alpha Coders API to allow users to browse and select anime avatars directly from the WordPress profile page.
-- **Automated Media Library Integration**:
-    - **Action**: Implemented logic to automatically download selected anime avatars to the local WordPress Media Library, ensuring persistent storage and local serving.
-- **Profile Form Hardening**:
-    - **Action**: Fixed an issue where local avatar uploads failed due to missing `enctype` on the profile form by utilizing the `user_edit_form_tag` hook.
-
-### QPlayer SoundCloud Support
-- **SoundCloud Integration**:
-    - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
@@ -134,7 +124,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
-| 2026-04-11 | Security | Potential SSRF in Anime Avatar Picker (URL validation) | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
@@ -160,11 +149,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Local avatar uploads from the WordPress profile page were failing because the form lacked the `enctype="multipart/form-data"` attribute.
 - **Fix**: Used the `user_edit_form_tag` hook to inject the necessary attribute into the profile form.
 - **Prevention**: Always verify that forms intended for file uploads have the correct encoding type set via WordPress hooks.
-
-### Anime Avatar Picker SSRF Protection (2026-04-11)
-- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) when fetching external avatar images from the Alpha Coders API.
-- **Fix**: Implemented strict URL validation and ensured images are processed and sanitized before being saved to the local media library.
-- **Prevention**: Never trust external URLs; always validate and sanitize them before performing server-side requests.
 
 ### Illogical Word Count Comparison (2026-04-07)
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
