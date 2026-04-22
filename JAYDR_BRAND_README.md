@@ -6,9 +6,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 (Readme update and compatibility fixes) |
+| `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
+| `04648f3` | 2026-04-19 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `9f0931f` | 2026-04-18 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `e968437` | 2026-04-17 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
+| `905cb45` | 2026-04-16 | google-labs-jules[bot] | Resolve merge conflicts and synchronize modernization improvements |
+| `aa22a43` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix English localization issues |
+| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-15-7347432482780167729 |
 | `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
-| `4556db9` | 2026-04-15 | Jaydr Brand | Merge pull request #21 (Readme update and security fixes) |
 | `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
@@ -89,6 +96,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul**:
+    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
@@ -107,6 +116,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
         - Optimized the site timer by using direct function references in `setInterval` and hoisting the birth date object outside the interval.
         - Documented these patterns in `.jules/bolt.md`.
 
+### Asset Restoration & Localization
+- **Major Theme Asset Restoration**:
+    - **Action**: Restored over 480 critical theme assets, including CSS, JS, fonts, and icons, following a major repository corruption or accidental deletion.
+- **English Localization of Restored Assets**:
+    - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
+
 ### Security Hardening
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
@@ -120,7 +135,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-16 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
+| 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
@@ -130,7 +147,17 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
 
-### Regression: Lost Compatibility Fixes (2026-04-16)
+### Word Count Regression (2026-04-20)
+- **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
+- **Fix**: Pending restoration of the English-localized `preg_split` implementation.
+- **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+
+### Modernization Synchronization (2026-04-16)
+- **Error**: Complex merge conflicts led to a loss of synchronization between modernization efforts across different branches.
+- **Fix**: Commit `905cb45` resolved these conflicts and manually synchronized improvements for PHP 8.5 and WP 7.0.
+- **Prevention**: Perform regular cross-branch rebasing and document conflict resolution strategies for core compatibility logic.
+
+### Regression: Lost Compatibility Fixes (2026-04-15)
 - **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
 - **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php` in commit `e916f1a`.
 - **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
