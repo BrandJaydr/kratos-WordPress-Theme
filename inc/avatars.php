@@ -15,6 +15,10 @@ class kratos_local_avatars{
         add_action('personal_options_update',array($this,'edit_user_profile_update'));
         add_action('edit_user_profile_update',array($this,'edit_user_profile_update'));
         add_filter('avatar_defaults',array($this,'avatar_defaults'));
+        add_action('user_edit_form_tag', array($this, 'user_edit_form_tag'));
+    }
+    public function user_edit_form_tag(){
+        echo ' enctype="multipart/form-data"';
     }
     public function get_avatar($avatar='',$id_or_email,$size=96,$default='',$alt=false){
         if(is_numeric($id_or_email)) $user_id = (int)$id_or_email;
@@ -67,7 +71,15 @@ class kratos_local_avatars{
             </td>
         </tr>
     </table>
-    <script type="text/javascript">var form=document.getElementById('your-profile');form.encoding='multipart/form-data';form.setAttribute('enctype','multipart/form-data');</script><?php
+    <script type="text/javascript">
+        (function() {
+            var form = document.getElementById('your-profile');
+            if (form) {
+                form.setAttribute('enctype', 'multipart/form-data');
+                form.setAttribute('encoding', 'multipart/form-data');
+            }
+        })();
+    </script><?php
     }
     public function edit_user_profile_update($user_id){
         if(!empty($_FILES['kratos-local-avatar']['name'])){

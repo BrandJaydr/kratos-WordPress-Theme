@@ -36,7 +36,7 @@ function get_netease_music($id, $type = 'song'){
     ));
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
     $cexecute = curl_exec($ch);
-    curl_close($ch);
+    if (PHP_VERSION_ID < 80000) curl_close($ch);
     if ( $cexecute ) {
         $result = json_decode($cexecute, true);
         if ( $result['code'] == 200 && $result[$key] ){
