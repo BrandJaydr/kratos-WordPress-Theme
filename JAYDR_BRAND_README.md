@@ -6,12 +6,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
-| `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
-| `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
-| `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
-| `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Avatar and Profile fixes) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
@@ -46,6 +43,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented native integrations for **AniList** (Anime Tracking), **Mastodon**, **Bluesky**, and **YouTube** (Social Dynamics) as international alternatives to Bilibili.
 - **Music Streaming**:
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
+- **Anime Avatar Picker**:
+    - **Action**: Integrated with **Alpha Coders API** to allow users to browse and select anime avatars directly from the theme settings. Selected avatars are automatically downloaded to the Media Library and set as the user's local avatar.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
 
@@ -56,26 +55,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
-- **WordPress 7.0 & PHP 8.5 Stable Support**:
-    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
-- **PHP 8.5 Deprecation Handling**:
-    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
+- **WordPress 7.0 & PHP 8.5 Compatibility (April 2026)**:
+    - **Action**: Verified and hardened the theme for WordPress 7.0 and PHP 8.5. Handled the `curl_close()` deprecation in PHP 8.5 by wrapping it in a version check (`PHP_VERSION_ID < 80000`) in `inc/myfunction.php` and `inc/QPlayer/option.php`.
+    - **Action**: Removed all legacy filters and references to the deprecated `wp_title()` function in `inc/core.php`, fully transitioning to modern `title-tag` theme support.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
-
-### Anime Avatar Picker & Profile Enhancements
-- **Anime Avatar Picker**:
-    - **Action**: Integrated Alpha Coders API to allow users to browse and select anime avatars directly from the WordPress profile page.
-- **Automated Media Library Integration**:
-    - **Action**: Implemented logic to automatically download selected anime avatars to the local WordPress Media Library, ensuring persistent storage and local serving.
-- **Profile Form Hardening**:
-    - **Action**: Fixed an issue where local avatar uploads failed due to missing `enctype` on the profile form by utilizing the `user_edit_form_tag` hook.
-
-### QPlayer SoundCloud Support
-- **SoundCloud Integration**:
-    - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
@@ -98,26 +84,14 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
-| 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
+| 2026-04-13 | Compatibility | `curl_close()` deprecation warning in PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
-| 2026-04-11 | Security | Potential SSRF in Anime Avatar Picker (URL validation) | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
-
-### Regression: Lost Compatibility Fixes (2026-04-15)
-- **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
-- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php`.
-- **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
-
-### curl_close() Deprecation (2026-04-13)
-- **Error**: PHP 8.5 deprecates `curl_close()`. In versions 8.0+, `CurlHandle` objects are automatically closed, and the function is a no-op that now triggers warnings.
-- **Fix**: Wrapped `curl_close()` in a version check: `if (PHP_VERSION_ID < 80000) curl_close($ch);`.
-- **Prevention**: Regularly review PHP deprecation logs and adjust resource management logic for newer versions.
 
 ### Local Random Avatar Override (2026-04-11)
 - **Error**: The `local_random_avatar` function was overriding avatars for registered users who had not yet set a custom avatar, preventing them from seeing their Gravatar or default avatar.
@@ -128,11 +102,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Local avatar uploads from the WordPress profile page were failing because the form lacked the `enctype="multipart/form-data"` attribute.
 - **Fix**: Used the `user_edit_form_tag` hook to inject the necessary attribute into the profile form.
 - **Prevention**: Always verify that forms intended for file uploads have the correct encoding type set via WordPress hooks.
-
-### Anime Avatar Picker SSRF Protection (2026-04-11)
-- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) when fetching external avatar images from the Alpha Coders API.
-- **Fix**: Implemented strict URL validation and ensured images are processed and sanitized before being saved to the local media library.
-- **Prevention**: Never trust external URLs; always validate and sanitize them before performing server-side requests.
 
 ### Illogical Word Count Comparison (2026-04-07)
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
