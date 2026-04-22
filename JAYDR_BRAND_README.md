@@ -6,23 +6,57 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 (Readme update and compatibility fixes) |
+| `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
+| `4556db9` | 2026-04-15 | Jaydr Brand | Merge pull request #21 (Readme update and security fixes) |
+| `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
+| `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
+| `4c71b92` | 2026-04-13 | Jaydr Brand | Update README with link to Jaydr brand readme |
+| `4d281dd` | 2026-04-13 | Jaydr Brand | Merge pull request #18 (Readme and log updates) |
+| `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
-| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Avatar and Profile fixes) |
+| `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Fix avatar/profile issues) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
+| `e6ccada` | 2026-04-11 | google-labs-jules[bot] | Fix avatar and profile update issues |
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
-| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
-| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
-| `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
-| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
+| `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 (README and Log updates) |
+| `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
+| `bd2e627` | 2026-04-10 | google-labs-jules[bot] | docs: analyze Bilibili/Netease intent and suggest international alternatives |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
-| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history and compatibility improvements |
-| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
+| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
+| `8b5e3e4` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-09 |
+| `9bf8508` | 2026-04-09 | Jaydr Brand | Merge pull request #11 (Readme update) |
+| `0a2da02` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-v2 |
+| `2608f9f` | 2026-04-09 | Jaydr Brand | Merge pull request #13 (Typography fixes) |
+| `d2edcdf` | 2026-04-09 | Jaydr Brand | Merge pull request #10 (Readme update) |
+| `743cbbb` | 2026-04-09 | Jaydr Brand | Merge pull request #14 (Service alternatives analysis) |
+| `d644ac3` | 2026-04-09 | google-labs-jules[bot] | Update Jaydr Brand's Readme with commit history and error logs |
+| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history |
 | `afc3a6a` | 2026-04-07 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
+| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
 | `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
+| `6655fed` | 2026-04-06 | Jaydr Brand | Merge pull request #6 (WP/PHP compatibility) |
 | `6f2a902` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into wordpress-php-compatibility-update |
+| `4a80783` | 2026-04-06 | Jaydr Brand | Merge pull request #8 (Translation) |
 | `273012e` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into translate-chinese-to-english |
+| `65ba056` | 2026-04-06 | Jaydr Brand | Merge pull request #9 (Theme config docs) |
+| `9a80431` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Repository Map and Theme Configuration guides |
+| `972262b` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
+| `47eafea` | 2026-04-06 | google-labs-jules[bot] | Translate all non-English text to English across the Kratos theme |
+| `b44e1a5` | 2026-04-06 | Jaydr Brand | Merge pull request #7 (Readme setup) |
 | `8de0284` | 2026-04-06 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
+| `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
+| `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 (Security hardening) |
+| `294a865` | 2026-04-05 | google-labs-jules[bot] | Security Hardening: Patching high-impact vulnerabilities |
+| `0348eaa` | 2026-04-05 | Jaydr Brand | Merge pull request #3 (Performance optimization) |
+| `55eecfe` | 2026-04-05 | Jaydr Brand | Merge pull request #2 (XSS fix) |
+| `4764892` | 2026-04-05 | google-labs-jules[bot] | ⚡ Bolt: Optimize snow animation and site timer performance |
+| `43f4ad9` | 2026-04-05 | google-labs-jules[bot] | 🛡️ Sentinel: [HIGH] Fix XSS vulnerability in Bilibili comment metadata |
+| `912e107` | 2026-04-05 | Jaydr Brand | Merge pull request #1 (WP/PHP compatibility) |
+| `5223a19` | 2026-04-05 | google-labs-jules[bot] | Further improvements for WordPress and PHP 8.x compatibility |
+| `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
 
@@ -55,9 +89,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
-- **WordPress 7.0 & PHP 8.5 Compatibility (April 2026)**:
-    - **Action**: Verified and hardened the theme for WordPress 7.0 and PHP 8.5. Handled the `curl_close()` deprecation in PHP 8.5 by wrapping it in a version check (`PHP_VERSION_ID < 80000`) in `inc/myfunction.php` and `inc/QPlayer/option.php`.
-    - **Action**: Removed all legacy filters and references to the deprecated `wp_title()` function in `inc/core.php`, fully transitioning to modern `title-tag` theme support.
+- **WordPress 7.0 & PHP 8.5 Stable Support**:
+    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
+    - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
+- **PHP 8.5 Deprecation Handling**:
+    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
@@ -84,7 +120,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-13 | Compatibility | `curl_close()` deprecation warning in PHP 8.5+ | Fixed |
+| 2026-04-16 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
+| 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
@@ -92,6 +129,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### Regression: Lost Compatibility Fixes (2026-04-16)
+- **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
+- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php` in commit `e916f1a`.
+- **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
+
+### curl_close() Deprecation (2026-04-13)
+- **Error**: PHP 8.5 deprecates `curl_close()`. In versions 8.0+, `CurlHandle` objects are automatically closed, and the function is a no-op that now triggers warnings.
+- **Fix**: Wrapped `curl_close()` in a version check: `if (PHP_VERSION_ID < 80000) curl_close($ch);`.
+- **Prevention**: Regularly review PHP deprecation logs and adjust resource management logic for newer versions.
 
 ### Local Random Avatar Override (2026-04-11)
 - **Error**: The `local_random_avatar` function was overriding avatars for registered users who had not yet set a custom avatar, preventing them from seeing their Gravatar or default avatar.
