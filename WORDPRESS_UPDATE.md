@@ -5,11 +5,11 @@ This document provides information about the compatibility of the Kratos theme w
 ## Latest Versions (as of April 2026)
 
 - **WordPress:** 7.0 (Stable)
-- **PHP:** 8.5 (Stable)
+- **PHP:** 8.4/8.5 (Stable)
 
 ## Compatibility Status
 
-The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0) and PHP (8.5).
+The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0) and PHP (8.4/8.5).
 
 ## Recent Improvements and Fixes
 

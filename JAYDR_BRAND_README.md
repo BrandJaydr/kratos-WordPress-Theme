@@ -17,25 +17,53 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-15-7347432482780167729 |
 | `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
 | `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
-| `4556db9` | 2026-04-15 | Jaydr Brand | Update Jaydr Brand's Readme with latest fork improvements and security fixes |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
+| `4c71b92` | 2026-04-13 | Jaydr Brand | Update README with link to Jaydr brand readme |
+| `4d281dd` | 2026-04-13 | Jaydr Brand | Merge pull request #18 (Readme and log updates) |
 | `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
 | `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
+| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Fix avatar/profile issues) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
+| `e6ccada` | 2026-04-11 | google-labs-jules[bot] | Fix avatar and profile update issues |
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
-| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
-| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 (International services refactor) |
-| `8700096` | 2026-04-10 | google-labs-jules[bot] | Finalize internationalization with hardening, caching, and documentation |
-| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
+| `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 (README and Log updates) |
+| `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
+| `bd2e627` | 2026-04-10 | google-labs-jules[bot] | docs: analyze Bilibili/Netease intent and suggest international alternatives |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
-| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history and compatibility improvements |
-| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
+| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
+| `8b5e3e4` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-09 |
+| `9bf8508` | 2026-04-09 | Jaydr Brand | Merge pull request #11 (Readme update) |
+| `0a2da02` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-v2 |
+| `2608f9f` | 2026-04-09 | Jaydr Brand | Merge pull request #13 (Typography fixes) |
+| `d2edcdf` | 2026-04-09 | Jaydr Brand | Merge pull request #10 (Readme update) |
+| `743cbbb` | 2026-04-09 | Jaydr Brand | Merge pull request #14 (Service alternatives analysis) |
+| `d644ac3` | 2026-04-09 | google-labs-jules[bot] | Update Jaydr Brand's Readme with commit history and error logs |
+| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history |
 | `afc3a6a` | 2026-04-07 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
+| `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
 | `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
+| `6655fed` | 2026-04-06 | Jaydr Brand | Merge pull request #6 (WP/PHP compatibility) |
 | `6f2a902` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into wordpress-php-compatibility-update |
+| `4a80783` | 2026-04-06 | Jaydr Brand | Merge pull request #8 (Translation) |
 | `273012e` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into translate-chinese-to-english |
+| `65ba056` | 2026-04-06 | Jaydr Brand | Merge pull request #9 (Theme config docs) |
+| `9a80431` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Repository Map and Theme Configuration guides |
+| `972262b` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
+| `47eafea` | 2026-04-06 | google-labs-jules[bot] | Translate all non-English text to English across the Kratos theme |
+| `b44e1a5` | 2026-04-06 | Jaydr Brand | Merge pull request #7 (Readme setup) |
 | `8de0284` | 2026-04-06 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
+| `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
+| `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 (Security hardening) |
+| `294a865` | 2026-04-05 | google-labs-jules[bot] | Security Hardening: Patching high-impact vulnerabilities |
+| `0348eaa` | 2026-04-05 | Jaydr Brand | Merge pull request #3 (Performance optimization) |
+| `55eecfe` | 2026-04-05 | Jaydr Brand | Merge pull request #2 (XSS fix) |
+| `4764892` | 2026-04-05 | google-labs-jules[bot] | ⚡ Bolt: Optimize snow animation and site timer performance |
+| `43f4ad9` | 2026-04-05 | google-labs-jules[bot] | 🛡️ Sentinel: [HIGH] Fix XSS vulnerability in Bilibili comment metadata |
+| `912e107` | 2026-04-05 | Jaydr Brand | Merge pull request #1 (WP/PHP compatibility) |
+| `5223a19` | 2026-04-05 | google-labs-jules[bot] | Further improvements for WordPress and PHP 8.x compatibility |
+| `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
 
@@ -56,6 +84,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented native integrations for **AniList** (Anime Tracking), **Mastodon**, **Bluesky**, and **YouTube** (Social Dynamics) as international alternatives to Bilibili.
 - **Music Streaming**:
     - **Action**: Added support for **Audius**, **Jamendo**, and **SoundCloud** within QPlayer, providing region-free alternatives to Netease Music.
+- **Anime Avatar Picker**:
+    - **Action**: Integrated with **Alpha Coders API** to allow users to browse and select anime avatars directly from the theme settings. Selected avatars are automatically downloaded to the Media Library and set as the user's local avatar.
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
 
@@ -70,24 +100,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
+    - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
 - **PHP 8.5 Deprecation Handling**:
     - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
-
-### Anime Avatar Picker & Profile Enhancements
-- **Anime Avatar Picker**:
-    - **Action**: Integrated Alpha Coders API to allow users to browse and select anime avatars directly from the WordPress profile page.
-- **Automated Media Library Integration**:
-    - **Action**: Implemented logic to automatically download selected anime avatars to the local WordPress Media Library, ensuring persistent storage and local serving.
-- **Profile Form Hardening**:
-    - **Action**: Fixed an issue where local avatar uploads failed due to missing `enctype` on the profile form by utilizing the `user_edit_form_tag` hook.
-
-### QPlayer SoundCloud Support
-- **SoundCloud Integration**:
-    - **Action**: Added a dedicated `[soundcloud]` shortcode and integrated SoundCloud API support into QPlayer, expanding international music streaming options.
 
 ### Performance Improvements
 - **Inefficient Snow Animation and Timer**:
@@ -122,7 +141,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
 | 2026-04-11 | Logic Error | Local random avatar overriding registered user avatars | Fixed |
 | 2026-04-11 | UI/UX | Local avatar upload failing due to missing multipart form attribute | Fixed |
-| 2026-04-11 | Security | Potential SSRF in Anime Avatar Picker (URL validation) | Fixed |
 | 2026-04-10 | UI/UX | Content bleeding off post cards on mobile | Fixed |
 | 2026-04-10 | Logic Error | Post summaries unreadable due to aggressive whitespace stripping | Fixed |
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
@@ -141,7 +159,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Regression: Lost Compatibility Fixes (2026-04-15)
 - **Error**: WordPress 7.0 and PHP 8.5 compatibility fixes (removal of `wp_title` filter and conditional `curl_close`) were lost during recent merges.
-- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php`.
+- **Fix**: Manually re-applied the fixes to `inc/core.php`, `inc/myfunction.php`, and `inc/QPlayer/option.php` in commit `e916f1a`.
 - **Prevention**: Strictly monitor merge conflicts in core files and perform regression testing on compatibility-critical features.
 
 ### curl_close() Deprecation (2026-04-13)
@@ -158,11 +176,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Local avatar uploads from the WordPress profile page were failing because the form lacked the `enctype="multipart/form-data"` attribute.
 - **Fix**: Used the `user_edit_form_tag` hook to inject the necessary attribute into the profile form.
 - **Prevention**: Always verify that forms intended for file uploads have the correct encoding type set via WordPress hooks.
-
-### Anime Avatar Picker SSRF Protection (2026-04-11)
-- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) when fetching external avatar images from the Alpha Coders API.
-- **Fix**: Implemented strict URL validation and ensured images are processed and sanitized before being saved to the local media library.
-- **Prevention**: Never trust external URLs; always validate and sanitize them before performing server-side requests.
 
 ### Illogical Word Count Comparison (2026-04-07)
 - **Error**: The `count_words()` function in `inc/myfunction.php` contained illogical comparison checks that could lead to incorrect return values.
