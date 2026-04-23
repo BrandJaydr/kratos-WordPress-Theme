@@ -6,6 +6,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `129b51f` | 2026-04-22 | Jaydr Brand | Merge pull request #31 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
+| `0e0a7c5` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
+| `27c2c41` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-11-9869165968175424990 |
+| `004e709` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-20-8979347884893328532 |
+| `fc00937` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-18-13370730320136213642 |
+| `2804a30` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-17-17444911089078576382 |
+| `f47bcf1` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14-12763179741709912690 |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -30,7 +37,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
 | `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 (README and Log updates) |
 | `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
+| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 from BrandJaydr/international-services-refactor-16677824139598441472 |
 | `bd2e627` | 2026-04-10 | google-labs-jules[bot] | docs: analyze Bilibili/Netease intent and suggest international alternatives |
+| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
 | `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
 | `8b5e3e4` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-09 |
@@ -96,13 +105,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
-- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul**:
-    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0.
-- **WordPress 7.0 & PHP 8.5 Stable Support**:
-    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
+- **Full PHP 8.4/8.5 & WordPress 7.0 Compatibility Overhaul**:
+    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.4/8.5 and WordPress 7.0.
+- **WordPress 7.0 & PHP 8.4/8.5 Stable Support**:
+    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.4/8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
-- **PHP 8.5 Deprecation Handling**:
-    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
+- **PHP 8.4/8.5 Deprecation Handling**:
+    - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.4/8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
     - **Action**: Replaced the deprecated `wp_title()` function with modern alternatives (`wp_get_document_title()` or `get_the_title()`) across `header.php` and `inc/core.php`.
 - **Image Resizing**:
