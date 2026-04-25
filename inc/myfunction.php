@@ -12,8 +12,9 @@ function count_words ($text) {
     if ( '' == $text ) {
         $text = $post->post_content;
     }
-    $word_count = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($text))),'UTF-8');
-    return '共' . $word_count . '个字&nbsp;&nbsp;';
+    $text = html_entity_decode(strip_tags($text));
+    $word_count = count(preg_split('/\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY));
+    return $word_count . ' words&nbsp;&nbsp;';
 }
 //Filter specific category posts on homepage
 function excludeCat($query) {
