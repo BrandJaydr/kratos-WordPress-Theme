@@ -16,6 +16,9 @@ The Kratos theme is fully compatible with the latest stable releases of WordPres
 To ensure seamless operation on modern environments, the following updates have been implemented:
 
 ### April 2026 Update
+- **Late April 2026 Fixes:**
+    - **PHP 8.5 Compatibility:** Expanded conditional `curl_close()` wrappers to all remaining integration templates including `pages/bilibili/bilibiliAnime.php` and `pages/bilibililive/BilibiliLive.php`.
+    - **Localization Maintenance:** Restored the English word count logic (`preg_split` implementation) in `inc/myfunction.php` following a regression to character-based counting.
 - **PHP 8.5 Deprecation Handling:** Conditionally executed `curl_close()` only for PHP versions earlier than 8.0 in `inc/myfunction.php` and `inc/QPlayer/option.php`. In PHP 8.0+, `CurlHandle` objects are automatically cleaned up, and `curl_close()` is a no-op that is deprecated in PHP 8.5.
 - **WordPress 7.0 Modernization:** Removed all filtering and references to the deprecated `wp_title()` function in `inc/core.php`. The theme fully utilizes the `title-tag` theme support introduced in WordPress 4.1.
 
