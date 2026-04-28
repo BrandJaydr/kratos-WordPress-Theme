@@ -12,8 +12,9 @@ function count_words ($text) {
     if ( '' == $text ) {
         $text = $post->post_content;
     }
-    $word_count = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($text))),'UTF-8');
-    return '共' . $word_count . '个字&nbsp;&nbsp;';
+    $text = html_entity_decode(strip_tags($text));
+    $word_count = count(preg_split('/[\s\p{P}]+/u', $text, -1, PREG_SPLIT_NO_EMPTY));
+    return $word_count . ' words ';
 }
 //Filter specific category posts on homepage
 function excludeCat($query) {
@@ -86,7 +87,7 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
         $uid = get_comment_meta($comment_ID, 'uid', true);
         $level = get_comment_meta($comment_ID, 'level', true);
         if ($uid) {
-            return '<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.$uid.'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.$photo.'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.$hang.');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="'.$level.'" class="h-level m-level"></a></div>';
+            return '<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.esc_attr($uid).'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.esc_url($photo).'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.esc_url($hang).');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="'.esc_attr($level).'" class="h-level m-level"></a></div>';
         }
     }
 
@@ -338,7 +339,7 @@ function most_hot_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>'.__('No data for now','moedog').'</li>';
@@ -373,13 +374,11 @@ function most_hot_posts($days=30,$nums=5){
 //Store data
 add_action('wp_insert_comment','wp_insert_weibo',10,2);
 function wp_insert_weibo($comment_ID,$commmentdata) {
-    $uid= isset($_POST['uid']) ? $_POST['uid'] : false;
-//    $nickname= isset($_REQUEST['nickname']) ? $_REQUEST['nickname'] : "Anonymous";
-    $bilibiliphoto= isset($_REQUEST['photo']) ? $_REQUEST['photo'] : "";
-    $avatarshang= isset($_REQUEST['hang']) ? $_REQUEST['hang'] : "";
-    $level= isset($_REQUEST['level']) ? $_REQUEST['level'] : "0";
+    $uid= isset($_POST['uid']) ? sanitize_text_field($_POST['uid']) : false;
+    $bilibiliphoto= isset($_REQUEST['photo']) ? esc_url_raw($_REQUEST['photo']) : "";
+    $avatarshang= isset($_REQUEST['hang']) ? esc_url_raw($_REQUEST['hang']) : "";
+    $level= isset($_REQUEST['level']) ? sanitize_text_field($_REQUEST['level']) : "0";
     update_comment_meta($comment_ID,'uid',$uid);
-//    update_comment_meta($comment_ID,'nickname',$nickname);
     update_comment_meta($comment_ID,'photo',$bilibiliphoto);
     update_comment_meta($comment_ID,'hang',$avatarshang);
     update_comment_meta($comment_ID,'level',$level);
@@ -400,9 +399,6 @@ function output_my_comments_columns( $column_name, $comment_id ){
         case "uid" :
             echo esc_html( get_comment_meta( $comment_id, 'uid', true ) );
             break;
-//        case "nickname" :
-//            echo esc_html( get_comment_meta( $comment_id, 'nickname', true ) );
-//            break;
         case "photo" :
             echo esc_html( get_comment_meta( $comment_id, 'photo', true ) );
             break;

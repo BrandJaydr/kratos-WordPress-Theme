@@ -135,7 +135,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-22 | Vulnerability | SQL Injection in `[hide]` shortcode and widgets | Fixed |
+| 2026-04-22 | Vulnerability | CSRF in Live2D/Theme Settings module | Fixed |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
@@ -149,8 +151,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
-- **Fix**: Pending restoration of the English-localized `preg_split` implementation.
+- **Fix**: Restored the English-localized `preg_split` implementation in April 2026.
 - **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+
+### SQL Injection & CSRF Hardening (2026-04-22)
+- **Vulnerability**: Potential SQL Injection in shortcodes/widgets and CSRF in Live2D settings.
+- **Fix**: Implemented `$wpdb->prepare()` for all dynamic queries and added nonce verification to administrative forms.
+- **Prevention**: Enforce Zero Trust principles by validating all inputs and verifying every administrative request via nonces.
 
 ### Modernization Synchronization (2026-04-16)
 - **Error**: Complex merge conflicts led to a loss of synchronization between modernization efforts across different branches.
