@@ -6,6 +6,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `8bde3dd` | 2026-05-01 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and restore security hardening |
+| `a98b8b1` | 2026-04-30 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `0e2e735` | 2026-04-29 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `24fa7ee` | 2026-04-28 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `c25d788` | 2026-04-28 | google-labs-jules[bot] | 🛡️ Red Ranger: Security hardening and logic restoration |
+| `2a1b2b3` | 2026-04-27 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix word count regression |
+| `f5316f6` | 2026-04-27 | google-labs-jules[bot] | Update WordPress 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `3890d5b` | 2026-04-26 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `eea258b` | 2026-04-25 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `72cde76` | 2026-04-24 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `0269e72` | 2026-04-23 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `129b51f` | 2026-04-22 | Jaydr Brand | Merge pull request #31 (Maintain Jaydr Brand's Readme with latest fork history and logs) |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -123,19 +135,25 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
-- **Neutralized Vulnerabilities**:
-    - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
-    - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
-    - Restricted sensitive PHP file operations behind capability and nonce checks.
+- **Red Ranger Initiative**:
+    - **SQL Injection Protection**: Implemented `$wpdb->prepare()` for all dynamic database queries across `inc/myfunction.php`, `inc/shortcode.php`, and `inc/widgets.php` to neutralize SQLi risks.
+    - **XSS Neutralization**: Enforced strict output escaping (`esc_html`, `esc_attr`, `esc_url`) and input sanitization (`sanitize_text_field`, `esc_url_raw`) for third-party metadata and Bilibili comment integrations.
+    - **CSRF Protection**: Implemented nonce verification (`check_admin_referer`) for sensitive operations, including Live2D setting updates in `inc/live2d/live2d.php`.
+    - **Secure AJAX Handlers**: Audited and secured publicly accessible AJAX handlers with capability and nonce checks.
 - **External Integration Hardening**:
-    - Implemented strict XSS escaping (`esc_html`, `esc_attr`, `esc_url`) for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
+    - Implemented strict XSS escaping for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
     - Integrated **Transients API** caching for external requests to improve performance and prevent rate-limiting.
+
+### Localization & Logic Restoration
+- **English Word Count Restoration**:
+    - **Action**: Restored the English-localized `preg_split` implementation in `inc/myfunction.php`, ensuring accurate word counting and "X words" return strings for English content.
 
 ## Error & Vulnerability Log
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-28 | Vulnerability | SQL Injection and CSRF vulnerabilities in core handlers | Fixed |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
@@ -147,9 +165,15 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
 
+### SQL Injection & CSRF Vulnerabilities (2026-04-28)
+- **Vulnerability**: Multiple endpoints were vulnerable to SQL Injection due to raw variable interpolation in `$wpdb` queries. Live2D settings were vulnerable to CSRF.
+- **Details**: Resolved during the **Red Ranger** security audit.
+- **Fix**: Implemented `$wpdb->prepare()` for all dynamic queries and added `check_admin_referer` nonce validation to the Live2D handler.
+- **Prevention**: Enforce mandatory use of `$wpdb->prepare()` and CSRF nonces for all database and sensitive settings operations.
+
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
-- **Fix**: Pending restoration of the English-localized `preg_split` implementation.
+- **Fix**: Restored the English-localized `preg_split` implementation in commit `c25d788`.
 - **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
 
 ### Modernization Synchronization (2026-04-16)
