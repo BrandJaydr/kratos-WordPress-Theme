@@ -6,6 +6,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `70c2307` | 2026-05-02 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `8bde3dd` | 2026-05-01 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and restore security hardening |
+| `a98b8b1` | 2026-04-30 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `0e2e735` | 2026-04-29 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `24fa7ee` | 2026-04-28 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `c25d788` | 2026-04-28 | google-labs-jules[bot] | 🛡️ Red Ranger: Security hardening and logic restoration |
+| `2a1b2b3` | 2026-04-27 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix word count regression |
+| `f5316f6` | 2026-04-27 | google-labs-jules[bot] | Update WordPress 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `3890d5b` | 2026-04-26 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `eea258b` | 2026-04-25 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `72cde76` | 2026-04-24 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `0269e72` | 2026-04-23 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -109,6 +121,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Replaced the deprecated `image_resize()` function in `inc/avatars.php` with the modern `WP_Image_Editor` class.
 
 ### Performance Improvements
+- **English Word Count Restoration**:
+    - **Action**: Restored the `preg_split` implementation for English word counting in `inc/myfunction.php`, resolving a regression that had defaulted to Chinese character counting (`mb_strlen`).
+    - **Verification**: Validated the fix using a standalone test script to ensure correct counting of English words and proper handling of HTML/entities.
 - **Inefficient Snow Animation and Timer**:
     - **Issue**: High-frequency animation loops and timers in `static/js/kratos.js` were causing CPU spikes due to redundant DOM operations and expensive calculations.
     - **Action**:
@@ -123,6 +138,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
+- **"Red Ranger" Security Initiative**:
+    - **Action**: Implemented a comprehensive security hardening pass across the entire theme.
+    - **Key Fixes**:
+        - **SQL Injection**: Neutralized potential SQL injection vulnerabilities in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` by ensuring all dynamic queries use `$wpdb->prepare()`.
+        - **Stored XSS**: Hardened Bilibili comment metadata handling in `inc/myfunction.php` to prevent Stored XSS.
+        - **CSRF Protection**: Added nonce verification to Live2D settings and avatar management in `inc/live2d/live2d.php` and `inc/avatars.php`.
+    - **Asset Restoration**: Restored over 480 critical theme assets (JS, CSS, fonts) that were missing or corrupted.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
     - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
@@ -135,7 +157,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-28 | Vulnerability | SQL Injection in shortcodes and widgets | Fixed |
+| 2026-04-28 | Vulnerability | Stored XSS in Bilibili comment metadata | Fixed |
+| 2026-04-28 | Vulnerability | CSRF in Live2D settings and avatar management | Fixed |
+| 2026-04-27 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
@@ -147,10 +172,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
 
-### Word Count Regression (2026-04-20)
+### Word Count Regression (2026-04-27)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
-- **Fix**: Pending restoration of the English-localized `preg_split` implementation.
+- **Fix**: Restored the English-localized `preg_split` implementation in commit `f5316f6`. Verified with `test_word_count.php`.
 - **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+
+### Red Ranger: Security Vulnerabilities (2026-04-28)
+- **Vulnerabilities**: Multiple critical security gaps identified including SQL Injection in database-interactive widgets and shortcodes, Stored XSS in Bilibili metadata, and CSRF in administrative settings.
+- **Fix**:
+    - Implemented `$wpdb->prepare()` for all SQL queries in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`.
+    - Added comprehensive output escaping and input sanitization for Bilibili comment metadata.
+    - Implemented `check_admin_referer()` and `check_ajax_referer()` for Live2D and Avatar management.
+- **Prevention**: Strictly follow the SCAN, PRIORITIZE, SECURE, VERIFY flow for all security tasks. Enforce site-wide use of `wp_nonce` and `$wpdb->prepare()`.
 
 ### Modernization Synchronization (2026-04-16)
 - **Error**: Complex merge conflicts led to a loss of synchronization between modernization efforts across different branches.
