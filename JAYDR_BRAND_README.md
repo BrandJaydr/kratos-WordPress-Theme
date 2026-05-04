@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `a2b4c8d` | 2026-05-02 | google-labs-jules[bot] | Update WP 7.0 and PHP 8.5 compatibility and fix word count regression |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -135,7 +136,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
