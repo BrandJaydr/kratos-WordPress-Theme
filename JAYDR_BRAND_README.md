@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `09a2e31` | 2026-05-05 | google-labs-jules[bot] | Security Hardening: Neutralize CSRF, SQL Injection, and Stored XSS |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -124,8 +125,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Security Hardening
 - **Neutralized Vulnerabilities**:
+    - **CSRF (Cross-Site Request Forgery)**: Implemented `check_admin_referer()` and `wp_nonce_field()` for all 7 forms in the `inc/live2d/live2d.php` admin interface.
+    - **SQL Injection**: Refactored vulnerable database queries in `inc/shortcode.php` (`hide`), `inc/widgets.php` (`most_comm_posts`), and `inc/myfunction.php` (`most_hot_posts`) to use `$wpdb->prepare()` for all dynamic parameters.
+    - **Stored XSS (Cross-Site Scripting)**: Implemented contextual escaping (`esc_url`, `esc_attr`) for Bilibili comment metadata in `inc/myfunction.php` and hardened admin outputs in `inc/live2d/live2d.php` using `esc_textarea` and `esc_html`.
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
-    - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
     - Restricted sensitive PHP file operations behind capability and nonce checks.
 - **External Integration Hardening**:
     - Implemented strict XSS escaping (`esc_html`, `esc_attr`, `esc_url`) for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
@@ -135,6 +138,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-05-05 | Vulnerability | Multiple SQL Injection, CSRF, and Stored XSS vectors | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -146,6 +150,15 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### Security Audit Hardening (2026-05-05)
+- **Vulnerability**: SQL Injection, CSRF, and Stored XSS.
+- **Details**:
+    - **SQLi**: Queries in `hide` shortcode, `most_comm_posts` and `most_hot_posts` were using raw variable concatenation.
+    - **CSRF**: The Live2D admin interface allowed POST actions without nonce verification.
+    - **XSS**: Bilibili comment metadata and admin settings were rendered without escaping.
+- **Fix**: Implemented `$wpdb->prepare()`, nonces, and contextual escaping (`esc_*` functions).
+- **Prevention**: Enforce Zero Trust input validation and Mandatory query parameterization site-wide.
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.

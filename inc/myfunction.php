@@ -86,7 +86,7 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
         $uid = get_comment_meta($comment_ID, 'uid', true);
         $level = get_comment_meta($comment_ID, 'level', true);
         if ($uid) {
-            return '<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/'.$uid.'/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url('.$photo.'); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url('.$hang.');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="'.$level.'" class="h-level m-level"></a></div>';
+            return '<div class="entry-header pull-left"><a bilibili="" href="//space.bilibili.com/' . esc_attr($uid) . '/dynamic" target="_blank" class="user-head c-pointer" style="background-image: url(' . esc_url($photo) . '); border-radius: 50%;" data-userinfo-popup-inited="true"><div data-v-4077d7b8="" class="user-decorator" style="background-image: url(' . esc_url($hang) . ');"></div></a><a href="//www.bilibili.com/blackboard/help.html#Member level related" target="_blank" lvl="' . esc_attr($level) . '" class="h-level m-level"></a></div>';
         }
     }
 
@@ -338,7 +338,7 @@ function most_hot_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>'.__('No data for now','moedog').'</li>';
