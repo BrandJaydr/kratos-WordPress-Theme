@@ -51,6 +51,7 @@ function downloadimg($url,$imgpath)
 function live2d_option_page() {
     //Determine if there is data submission
     if(!empty($_POST)) {
+        check_admin_referer('live2d_options_update');
         //Live2D Settings
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
@@ -247,24 +248,27 @@ function live2d_option_page() {
     <h1>Other Theme Settings</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div><div class="title"><h4>Live2D Model Settings</h4> Read directly from and saved as a JS file. Do not modify areas other than settings!</div>
-                <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
+                <textarea  rows="6" cols="150" name="live2d-setting"><?php echo esc_textarea(getjs()); ?></textarea>
             </div>
             <input class="savejs" type="submit" name="savejs" value="Save JS File" />
         </form>
     </div>
     <div>
         <form action="" method="post" id="email-options-form">
-            <?php wp_nonce_field('kratos_admin_options-update'); ?>
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div><div class="title"><h4>Friend Link Application Processing</h4></div>Select an applicant from the dropdown to edit their details.</div>
             <p>Applicant List
                 <select name="aselect" id="aselect">
                     <?php
                         //First Get All Applicants
-                        $application=esc_attr(get_option('application_list'));
+                        $application=get_option('application_list');
                         $applications=explode("]!!",$application);
-                        foreach ($applications as $key)
-                            echo "<option value='$key'>".explode("!!]",$key)[0]."</option>"
+                        foreach ($applications as $key) {
+                            if (empty($key)) continue;
+                            echo "<option value='".esc_attr($key)."'>".esc_html(explode("!!]",$key)[0])."</option>";
+                        }
                     ?>
                 </select>
             </p>
@@ -303,9 +307,9 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post" id="email-options-form">
-            <?php wp_nonce_field('kratos_admin_options-update'); ?>
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div><div class="title"><h4>Email Subscription Settings</h4></div>Lists all subscribers, one per line. Validity is not checked upon addition.</div>
-                <textarea  rows="6" cols="50" name="email_lists"><?php $arr=explode(",",esc_attr(get_option('email_list')));$i=1;foreach ($arr as $item ){if($item){echo $i.':'.$item."\n";}$i++;}?></textarea>
+                <textarea  rows="6" cols="50" name="email_lists" readonly><?php $arr=explode(",",get_option('email_list'));$i=1;foreach ($arr as $item ){if($item){echo esc_html($i.':'.$item."\n");}$i++;}?></textarea>
             <p>
             Add subscriber:<input type="text" id="email_list" name="email_list"/>
             <input class="savejs" type="submit" name="submit1" value="Add to Subscription List" /><br>
@@ -318,6 +322,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div class="title"><h4>Background Image Resource Pack Download</h4>Select your preferred type (<span style="color:red;">Note: Existing images, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Default Anime Images:<input type="checkbox" name="donman"/> Bilibili:<input type="checkbox" name="bilibili" /></div></p>
             <p><input type="submit" name="download" value="Start Download"/></p>
@@ -325,6 +330,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div class="title"><h4>Random Avatar Download</h4>Select your preferred type (<span style="color:red;">Note: Existing avatars, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Anime Male Avatar:<input type="checkbox" name="man"/> Anime Female Avatar:<input type="checkbox" name="woman" /></div></p>
             <p><input type="submit" name="downloadavatar" value="Start Download"/></p>
@@ -335,6 +341,7 @@ function live2d_option_page() {
         ?>
         <div>
             <form action="" method="post">
+                <?php wp_nonce_field('live2d_options_update'); ?>
                 <div class="title"><h4>Live2D API Download</h4>Designed for beginners. The original API is large, so this is a simplified version.</div>
                 <span style="color:red;">Note: This feature disappears after downloading. Refresh the homepage to see the character. If it doesn't appear, try switching characters. If characters appear, it's successful. If it fails, delete the live2d-api directory from the root.</span>
                 <p><input type="submit" name="downlive2d" value="Start Download"/></p>
@@ -345,6 +352,7 @@ function live2d_option_page() {
     }?>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div class="title"><h4>Emoji Pack Download</h4>Select your preferred type (<span style="color:red;">Existing emoji packs will be deleted. Select at least one.</span>)</div>
             <p><div>
                 Tieba Bubbles:<input type="checkbox" name="tieba"/>
