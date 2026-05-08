@@ -174,6 +174,7 @@ function QPlayer_page() {
     <div class="QPlayer">  
       <h1>QPlayer Settings</h1><br>
         <form method="post">  
+            <?php wp_nonce_field('qplayer_options_update', 'qplayer_nonce'); ?>
 			<div><div class="title">Auto Play</div>
 			  <input type="radio" name="autoPlay" value="0" <?php if (!get_option('autoPlay')) echo "checked";?>>No
 			  <input type="radio" name="autoPlay" value="1" <?php if (get_option('autoPlay')) echo "checked";?>>Yes

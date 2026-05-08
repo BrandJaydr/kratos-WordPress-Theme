@@ -51,6 +51,7 @@ function downloadimg($url,$imgpath)
 function live2d_option_page() {
     //Determine if there is data submission
     if(!empty($_POST)) {
+        check_admin_referer('live2d_options_update');
         //Live2D Settings
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
@@ -247,6 +248,7 @@ function live2d_option_page() {
     <h1>Other Theme Settings</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
+            <?php wp_nonce_field('live2d_options_update'); ?>
             <div><div class="title"><h4>Live2D Model Settings</h4> Read directly from and saved as a JS file. Do not modify areas other than settings!</div>
                 <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
             </div>

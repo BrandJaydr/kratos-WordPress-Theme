@@ -12,8 +12,10 @@ function count_words ($text) {
     if ( '' == $text ) {
         $text = $post->post_content;
     }
-    $word_count = mb_strlen(preg_replace('/\s/','',html_entity_decode(strip_tags($text))),'UTF-8');
-    return '共' . $word_count . '个字&nbsp;&nbsp;';
+    $text = strip_tags($text);
+    $text = html_entity_decode($text);
+    $word_count = count(preg_split('/\s+/u', trim($text), -1, PREG_SPLIT_NO_EMPTY));
+    return $word_count . ' words&nbsp;&nbsp;';
 }
 //Filter specific category posts on homepage
 function excludeCat($query) {
@@ -338,7 +340,7 @@ function most_hot_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>'.__('No data for now','moedog').'</li>';

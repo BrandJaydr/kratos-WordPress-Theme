@@ -74,14 +74,14 @@ function hide($atts,$content=null,$code=""){
         if($email){
             global $wpdb;
             global $id;
-            $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_post_id='".$id."'and comment_approved = '1'");
+            $comments = $wpdb->get_results($wpdb->prepare("SELECT * FROM $wpdb->comments WHERE comment_author_email = %s and comment_post_id = %d and comment_approved = '1'", $email, $id));
         }
         if(!$comments) $content = '<div class="hide_notice">'.sprintf('Sorry, you must <a href="%s" rel="nofollow">Login</a> and comment on this post to read the hidden content',wp_login_url(get_permalink())).'</div>';
     }else{
         if($email){
             global $wpdb;
             global $id;
-            $comments = $wpdb->get_results("SELECT * FROM $wpdb->comments WHERE comment_author_email = '".$email."' and comment_approved = '1'");
+            $comments = $wpdb->get_results($wpdb->prepare("SELECT * FROM $wpdb->comments WHERE comment_author_email = %s and comment_approved = '1'", $email));
         }
         if(!$comments) $content = '<div class="hide_notice">'.sprintf('Sorry, you must <a href="%s" rel="nofollow">Login</a> and comment on any post on this site to read the hidden content',wp_login_url(get_permalink())).'</div>';
     }
