@@ -135,6 +135,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-05-12 | Vulnerability | Site-wide SQL Injection in `most_hot_posts`, `most_comm_posts`, and `hide` shortcode | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -196,6 +197,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Potential null or empty string access in `inc/myfunction.php` (e.g., `showSummary`) which could trigger warnings or errors in PHP 8.x.
 - **Fix**: Added null-safe robustness checks to handle potential null or empty strings safely.
 - **Prevention**: Always validate variable state before performing operations that expect specific data types (e.g., strings).
+
+### Site-wide SQL Injection (2026-05-12)
+- **Vulnerability**: SQL Injection in multiple functions interacting with `$wpdb`.
+- **Details**: `most_hot_posts()` in `inc/myfunction.php`, `most_comm_posts()` in `inc/widgets.php`, and the `hide` shortcode in `inc/shortcode.php` were using direct string concatenation for user-controlled variables in SQL queries.
+- **Fix**: Implemented `$wpdb->prepare()` to parameterize all dynamic SQL queries.
+- **Prevention**: Never concatenate variables directly into SQL strings; always use `$wpdb->prepare()`.
 
 ### XSS in Bilibili Comment Metadata (2025-01-24)
 - **Vulnerability**: Cross-Site Scripting (XSS) via unsanitized Bilibili-related comment metadata (`uid`, `photo`, `hang`, `level`).
