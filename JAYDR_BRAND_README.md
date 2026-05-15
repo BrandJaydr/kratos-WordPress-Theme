@@ -6,6 +6,35 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `a9e7530` | 2026-05-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `834f5b5` | 2026-05-13 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `34c6ebf` | 2026-05-12 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `6701dcf` | 2026-05-12 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQL Injection vulnerabilities |
+| `14570f5` | 2026-05-11 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `e225389` | 2026-05-11 | google-labs-jules[bot] | Update WordPress 7.0 & PHP 8.5 Compatibility |
+| `67b4f8f` | 2026-05-10 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `8d49ce2` | 2026-05-09 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `faf895b` | 2026-05-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme and restore security/localization |
+| `49d0752` | 2026-05-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global fork history |
+| `f899314` | 2026-05-06 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme and fix word count regression |
+| `2a02eb8` | 2026-05-05 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with comprehensive fork history and security logs |
+| `50fa884` | 2026-05-05 | google-labs-jules[bot] | Security Hardening: Neutralize CSRF, SQL Injection, and Stored XSS |
+| `dc22315` | 2026-05-04 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with comprehensive fork history and security logs |
+| `0401a95` | 2026-05-04 | google-labs-jules[bot] | chore: update WP 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `98b302b` | 2026-05-03 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `70c2307` | 2026-05-02 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `8bde3dd` | 2026-05-01 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and restore security hardening |
+| `a98b8b1` | 2026-04-30 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `0e2e735` | 2026-04-29 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `24fa7ee` | 2026-04-28 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `c25d788` | 2026-04-28 | google-labs-jules[bot] | 🛡️ Red Ranger: Security hardening and logic restoration |
+| `2a1b2b3` | 2026-04-27 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix word count regression |
+| `f5316f6` | 2026-04-27 | google-labs-jules[bot] | Update WordPress 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `3890d5b` | 2026-04-26 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `eea258b` | 2026-04-25 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `72cde76` | 2026-04-24 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `0269e72` | 2026-04-23 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `129b51f` | 2026-04-22 | Jaydr Brand | Merge pull request #31 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -78,6 +107,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Created `INTERNATIONAL_INTEGRATION.md` to provide a user guide for configuring new services like AniList, Mastodon, and Audius.
 - **Funding Configuration**:
     - **Action**: Created `.github/FUNDING.yml` to manage repository funding.
+- **Jaydr Brand's Readme Reconciliation**:
+    - **Action**: Periodically reconciled `JAYDR_BRAND_README.md` with the global repository history (latest sync: May 14, 2026) to ensure accurate documentation across divergent branches.
 
 ### Internationalization & Service Alternatives
 - **Social & Media Integrations**:
@@ -115,6 +146,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
         - Optimized snow animation to **60fps** by hoisting DOM/attribute lookups and replacing `Math.sqrt` with squared distance comparisons.
         - Optimized the site timer by using direct function references in `setInterval` and hoisting the birth date object outside the interval.
         - Documented these patterns in `.jules/bolt.md`.
+- **Transients API Caching**:
+    - **Action**: Implemented WordPress Transients API for all external service integrations (AniList, Mastodon) to reduce remote API overhead and improve load times.
 
 ### Asset Restoration & Localization
 - **Major Theme Asset Restoration**:
@@ -122,20 +155,29 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **English Localization of Restored Assets**:
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
-### Security Hardening
+### Security Hardening (Red Ranger Initiative)
+- **Neutralized SQL Injection**:
+    - **Action**: Restored `$wpdb->prepare()` for all dynamic SQL in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`, neutralizing high-impact regressions.
+- **Neutralized CSRF**:
+    - **Action**: Implemented `check_admin_referer` and `wp_nonce_field` for admin forms in `inc/live2d/live2d.php` and `inc/QPlayer/option.php`.
+- **Neutralized Stored XSS**:
+    - **Action**: Implemented strict contextual escaping (`esc_html`, `esc_attr`, `esc_url`) for Bilibili comment metadata and external API responses.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
     - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
     - Restricted sensitive PHP file operations behind capability and nonce checks.
 - **External Integration Hardening**:
     - Implemented strict XSS escaping (`esc_html`, `esc_attr`, `esc_url`) for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
-    - Integrated **Transients API** caching for external requests to improve performance and prevent rate-limiting.
 
 ## Error & Vulnerability Log
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-05-13 | Security | SSRF and insecure file handling risks identified in `inc/avatar-picker.php` and `inc/avatars.php` | Pending |
+| 2026-05-12 | Vulnerability | SQL Injection regression in dynamic post/comment queries | Fixed |
+| 2026-05-05 | Vulnerability | CSRF in Live2D settings enabling arbitrary file writes to `waifu-tips.js` | Fixed |
+| 2026-05-04 | Regression | English word count logic reverted to Chinese character counting | Fixed |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
@@ -146,6 +188,26 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### SQL Injection Regression (May 2026)
+- **Error**: High-impact SQL injection regressions were detected in `inc/shortcode.php`, `inc/myfunction.php`, and `inc/widgets.php` due to the use of unescaped dynamic queries.
+- **Fix**: Neutralized by enforcing `$wpdb->prepare()` site-wide as part of the 'Red Ranger' initiative.
+- **Prevention**: Enforce a strict linting rule requiring `$wpdb->prepare()` for all dynamic SQL.
+
+### Live2D CSRF / Arbitrary File Write (May 2026)
+- **Error**: CSRF nonces were present in the frontend but not verified in the `live2d_option_page` handler, enabling arbitrary file writes via the `savejs` function.
+- **Fix**: Implemented `check_admin_referer()` verification in the option processing logic.
+- **Prevention**: Ensure all admin-side data processing is gated by capability and nonce checks.
+
+### SSRF and File Handling Risks (May 2026)
+- **Issue**: Identified potential Server-Side Request Forgery (SSRF) in remote avatar fetching and insecure local file handling in callbacks.
+- **Status**: Pending.
+- **Resolution Path**: Implement URL validation for remote fetches and restrict file system operations to the WordPress media library using core APIs.
+
+### Word Count Regression (Recurring)
+- **Error**: Re-introduced multiple times during merges; English word counting was replaced by `mb_strlen`.
+- **Fix**: Restored the `preg_split` implementation: `preg_split('/\s+/u', ...)` in `inc/myfunction.php`.
+- **Prevention**: Documented as a known recurring issue; verify word count logic during every compatibility update.
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
