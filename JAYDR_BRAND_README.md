@@ -135,7 +135,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |

@@ -2,18 +2,22 @@
 
 This document provides information about the compatibility of the Kratos theme with the latest versions of WordPress and PHP.
 
-## Latest Versions (as of April 2026)
+## Latest Versions (as of May 2026)
 
-- **WordPress:** 7.0 (Stable)
-- **PHP:** 8.4/8.5 (Stable)
+- **WordPress:** 7.0 (RC3; Final release scheduled for May 20, 2026)
+- **PHP:** 8.5 (Stable Support)
 
 ## Compatibility Status
 
-The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0) and PHP (8.4/8.5).
+The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0 RC3) and PHP (8.5).
 
 ## Recent Improvements and Fixes
 
 To ensure seamless operation on modern environments, the following updates have been implemented:
+
+### May 2026 Update
+- **English Word Count Restoration:** Fixed a regression in `inc/myfunction.php` where the `count_words()` function was incorrectly using Chinese character-counting logic. Restored the English word-counting implementation using `preg_split` and updated the output format to "X words".
+- **Complete PHP 8.5 compatibility:** Extended the conditional `curl_close()` version check to all Bilibili integration files (`pages/bilibili/bilibiliAnime.php` and `pages/bilibililive/BilibiliLive.php`), ensuring site-wide suppression of deprecation warnings on PHP 8.5+.
 
 ### April 2026 Update
 - **PHP 8.5 Deprecation Handling:** Conditionally executed `curl_close()` only for PHP versions earlier than 8.0 in `inc/myfunction.php` and `inc/QPlayer/option.php`. In PHP 8.0+, `CurlHandle` objects are automatically cleaned up, and `curl_close()` is a no-op that is deprecated in PHP 8.5.
