@@ -6,6 +6,45 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
+| `b61f146` | 2026-05-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `ef85929` | 2026-05-16 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `4260c8f` | 2026-05-15 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `a9e7530` | 2026-05-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `834f5b5` | 2026-05-13 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `34c6ebf` | 2026-05-12 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `6701dcf` | 2026-05-12 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQL Injection vulnerabilities |
+| `14570f5` | 2026-05-11 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `e225389` | 2026-05-11 | google-labs-jules[bot] | Update WordPress 7.0 & PHP 8.5 Compatibility |
+| `67b4f8f` | 2026-05-10 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `8d49ce2` | 2026-05-09 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
+| `faf895b` | 2026-05-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme and restore security/localization |
+| `49d0752` | 2026-05-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global fork history |
+| `f899314` | 2026-05-06 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme and fix word count regression |
+| `2a02eb8` | 2026-05-05 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with comprehensive fork history and security logs |
+| `50fa884` | 2026-05-05 | google-labs-jules[bot] | Security Hardening: Neutralize CSRF, SQL Injection, and Stored XSS |
+| `dc22315` | 2026-05-04 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with comprehensive fork history and security logs |
+| `0401a95` | 2026-05-04 | google-labs-jules[bot] | chore: update WP 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `98b302b` | 2026-05-03 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `70c2307` | 2026-05-02 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `8bde3dd` | 2026-05-01 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and restore security hardening |
+| `a98b8b1` | 2026-04-30 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `0e2e735` | 2026-04-29 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `24fa7ee` | 2026-04-28 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with latest fork history and security logs |
+| `c25d788` | 2026-04-28 | google-labs-jules[bot] | 🛡️ Red Ranger: Security hardening and logic restoration |
+| `2a1b2b3` | 2026-04-27 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix word count regression |
+| `f5316f6` | 2026-04-27 | google-labs-jules[bot] | Update WordPress 7.0 and PHP 8.5 compatibility and fix word count regression |
+| `3890d5b` | 2026-04-26 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `eea258b` | 2026-04-25 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
+| `72cde76` | 2026-04-24 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `0269e72` | 2026-04-23 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
+| `129b51f` | 2026-04-22 | Jaydr Brand | Merge pull request #31 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
+| `0e0a7c5` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
+| `27c2c41` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-11-9869165968175424990 |
+| `004e709` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-20-8979347884893328532 |
+| `fc00937` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-18-13370730320136213642 |
+| `2804a30` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-17-17444911089078576382 |
+| `f47bcf1` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14-12763179741709912690 |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
@@ -97,7 +136,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### WordPress & PHP Compatibility Modernization
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul**:
-    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0.
+    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0 (Final Release: May 20, 2026).
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
@@ -123,9 +162,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
+- **Red Ranger Security Initiative**:
+    - **Action**: Neutralized site-wide high-impact vulnerabilities, including SQL Injection, CSRF, and Stored XSS, as part of a comprehensive security hardening cycle.
+    - **SQL Injection**: Implemented `$wpdb->prepare()` for all dynamic queries in `inc/myfunction.php`, `inc/shortcode.php`, and `inc/widgets.php` to neutralize potential injection vectors in post and comment queries.
+    - **CSRF Protection**: Added nonce verification (`check_admin_referer` and `wp_nonce_field`) to all admin-facing forms and AJAX handlers, specifically in `inc/live2d/live2d.php` and `inc/QPlayer/option.php`.
+    - **Contextual Escaping**: Enforced strict output escaping (`esc_attr`, `esc_url`, `esc_html`) across all templates, neutralizing Stored XSS in Bilibili comment metadata.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
-    - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
     - Restricted sensitive PHP file operations behind capability and nonce checks.
 - **External Integration Hardening**:
     - Implemented strict XSS escaping (`esc_html`, `esc_attr`, `esc_url`) for all data fetched from third-party APIs (AniList, Mastodon, YouTube).
@@ -135,7 +178,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
+| 2026-05-12 | Vulnerability | Site-wide SQL Injection in `inc/myfunction.php`, `inc/shortcode.php`, and `inc/widgets.php` | Fixed |
+| 2026-05-05 | Vulnerability | CSRF in `inc/live2d/live2d.php` and `inc/QPlayer/option.php` | Fixed |
+| 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
 | 2026-04-13 | PHP 8.5 Bug | `curl_close()` deprecation warnings on PHP 8.5+ | Fixed |
@@ -149,8 +194,18 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
-- **Fix**: Pending restoration of the English-localized `preg_split` implementation.
-- **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+- **Fix**: Restored the English-localized `preg_split` implementation in `inc/myfunction.php`. Verified that it correctly handles English words, Chinese characters, and HTML tags.
+- **Prevention**: Use automated tests (`test_wordcount.php`) to verify string manipulation functions during major compatibility overhauls.
+
+### Site-wide SQL Injection (2026-05-12)
+- **Vulnerability**: High-impact SQL injection vulnerabilities in `inc/myfunction.php`, `inc/shortcode.php`, and `inc/widgets.php` due to unsanitized dynamic queries.
+- **Fix**: Neutralized by wrapping all dynamic database queries in `$wpdb->prepare()`, ensuring proper parameterization of post IDs and comment data.
+- **Prevention**: Enforce a strict policy of using `$wpdb->prepare()` for all dynamic SQL operations; use static analysis tools to detect raw query string concatenation.
+
+### CSRF in Admin Pages (2026-05-05)
+- **Vulnerability**: Cross-Site Request Forgery (CSRF) vulnerabilities in theme settings pages (Live2D and QPlayer) allowed unauthorized modification of configuration files and potential arbitrary file writes.
+- **Fix**: Implemented WordPress nonce verification using `check_admin_referer` in form processing logic and `wp_nonce_field` in admin templates.
+- **Prevention**: Ensure all state-changing actions in the WordPress admin dashboard are protected by nonces.
 
 ### Modernization Synchronization (2026-04-16)
 - **Error**: Complex merge conflicts led to a loss of synchronization between modernization efforts across different branches.
