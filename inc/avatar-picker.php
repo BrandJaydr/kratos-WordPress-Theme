@@ -154,6 +154,9 @@ function kratos_avatar_picker_field($option_name, $value, $val) {
 // AJAX Handler for fetching avatars
 add_action('wp_ajax_kratos_fetch_avatars', 'kratos_fetch_avatars_callback');
 function kratos_fetch_avatars_callback() {
+    if (!current_user_can('upload_files')) {
+        wp_send_json_error('Permission denied');
+    }
     check_ajax_referer('kratos_avatar_picker_nonce', 'nonce');
 
     $search = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
@@ -200,8 +203,8 @@ function kratos_fetch_avatars_callback() {
             $full_url = preg_replace('/thumb-/', '', $full_url);
 
             $images[] = array(
-                'thumb' => $thumb_url,
-                'full'  => $full_url
+                'thumb' => esc_url_raw($thumb_url),
+                'full'  => esc_url_raw($full_url)
             );
         }
     }
@@ -218,10 +221,19 @@ function kratos_fetch_avatars_callback() {
 // AJAX Handler for setting avatar from URL
 add_action('wp_ajax_kratos_set_avatar_from_url', 'kratos_set_avatar_from_url_callback');
 function kratos_set_avatar_from_url_callback() {
+    if (!current_user_can('upload_files')) {
+        wp_send_json_error('Permission denied');
+    }
     check_ajax_referer('kratos_avatar_picker_nonce', 'nonce');
 
     $img_url = isset($_POST['img_url']) ? esc_url_raw($_POST['img_url']) : '';
     if (!$img_url) wp_send_json_error('Invalid image URL.');
+
+    // SSRF Protection: Whitelist Alpha Coders host
+    $url_parts = wp_parse_url($img_url);
+    if (!isset($url_parts['host']) || $url_parts['host'] !== 'avatarfiles.alphacoders.com') {
+        wp_send_json_error('Security check failed: Unauthorized host.');
+    }
 
     require_once(ABSPATH . 'wp-admin/includes/media.php');
     require_once(ABSPATH . 'wp-admin/includes/file.php');

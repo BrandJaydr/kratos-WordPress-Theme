@@ -44,10 +44,11 @@ class kratos_local_avatars{
             update_user_meta($user_id,'kratos_local_avatar',$local_avatars);
         }elseif(substr($local_avatars[$size],0,4)!='http') $local_avatars[$size] = home_url($local_avatars[$size]);
         $author_class = is_author($user_id)?' current-author':'';
+        $avatar_url = esc_url($local_avatars[$size]);
         if($id_or_email->user_id==1)
-            $avatar = "<img alt='".esc_attr($alt)."' src='".$local_avatars[$size]."' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}'/>";
+            $avatar = "<img alt='".esc_attr($alt)."' src='".$avatar_url."' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}'/>";
         else
-            $avatar = "<img alt='".esc_attr($alt)."' src='".$local_avatars[$size]."' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}'/><div class='level' style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='6' class='n-level m-level'></a></div>";
+            $avatar = "<img alt='".esc_attr($alt)."' src='".$avatar_url."' class='avatar avatar-{$size}{$author_class} photo' height='{$size}' width='{$size}'/><div class='level' style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='6' class='n-level m-level'></a></div>";
         return apply_filters('kratos_local_avatar',$avatar);
     }
     public function edit_user_profile($profileuser){ ?>
@@ -82,6 +83,9 @@ class kratos_local_avatars{
     </script><?php
     }
     public function edit_user_profile_update($user_id){
+        if (!current_user_can('edit_user', $user_id)) {
+            return;
+        }
         if(!empty($_FILES['kratos-local-avatar']['name'])){
             $mimes = array(
                 'jpg|jpeg|jpe' => 'image/jpeg',
@@ -118,7 +122,9 @@ class kratos_local_avatars{
         if(is_array($old_avatars)){
             foreach($old_avatars as $old_avatar){
                 $old_avatar_path = str_replace($upload_path['baseurl'],$upload_path['basedir'],$old_avatar);
-                @unlink($old_avatar_path);    
+                if (file_exists($old_avatar_path) && 0 === strpos(realpath($old_avatar_path), realpath($upload_path['basedir']))) {
+                    @unlink($old_avatar_path);
+                }
             }
         }
         delete_user_meta($user_id,'kratos_local_avatar');

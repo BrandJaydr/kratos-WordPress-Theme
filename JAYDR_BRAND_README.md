@@ -135,6 +135,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-05-24 | Vulnerability | SSRF, Path Traversal, and Broken Access Control in Avatar Module | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Pending |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -196,6 +197,19 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Potential null or empty string access in `inc/myfunction.php` (e.g., `showSummary`) which could trigger warnings or errors in PHP 8.x.
 - **Fix**: Added null-safe robustness checks to handle potential null or empty strings safely.
 - **Prevention**: Always validate variable state before performing operations that expect specific data types (e.g., strings).
+
+### Avatar Module Security Hardening (2026-05-24)
+- **Vulnerability**: Server-Side Request Forgery (SSRF), Arbitrary File Deletion (Path Traversal), and Broken Access Control.
+- **Details**:
+    - `kratos_set_avatar_from_url_callback` allowed downloading images from arbitrary hosts.
+    - `avatar_delete` lacked path validation before calling `unlink()`.
+    - AJAX handlers and profile updates lacked sufficient capability checks.
+- **Fix**:
+    - Implemented host whitelisting for Alpha Coders in `inc/avatar-picker.php`.
+    - Added `realpath` validation against the uploads directory in `inc/avatars.php`.
+    - Enforced `upload_files` and `edit_user` capabilities site-wide.
+    - Applied `esc_url()` to avatar outputs.
+- **Prevention**: Use host allowlists for remote fetches and validate all file paths against a base directory before deletion.
 
 ### XSS in Bilibili Comment Metadata (2025-01-24)
 - **Vulnerability**: Cross-Site Scripting (XSS) via unsanitized Bilibili-related comment metadata (`uid`, `photo`, `hang`, `level`).
