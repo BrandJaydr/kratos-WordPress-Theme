@@ -87,8 +87,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
-- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul**:
-    - **Action**: Completed site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and WordPress 7.0.
+- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
+    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
@@ -151,6 +151,21 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Vulnerability**: Critical site-wide exposure to CSRF (admin forms), SQL Injection (widgets/shortcodes), and Stored XSS (metadata).
 - **Fix**: Implemented nonces, `$wpdb->prepare()`, and contextual escaping across all affected core files in commit `50fa884`.
 - **Prevention**: Follow the SCAN-PRIORITIZE-SECURE-VERIFY-PRESENT flow for all security tasks and use automated vulnerability scanners.
+
+### SQL Injection Vulnerabilities (May 2026)
+- **Vulnerability**: High-impact SQL injection regressions identified in `inc/shortcode.php`, `inc/myfunction.php`, and `inc/widgets.php` where dynamic queries were not using `$wpdb->prepare()`.
+- **Fix**: Restored `$wpdb->prepare()` for all dynamic post and comment queries to sanitize user-supplied data before database interaction.
+- **Prevention**: Enforce a strict "Prepare Before Query" policy and use static analysis tools to detect raw SQL concatenations.
+
+### SSRF and Path Traversal in Avatar Module (2026-05-19)
+- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) during remote avatar downloads and Path Traversal during file deletions.
+- **Fix**: Implemented host whitelisting for `avatarfiles.alphacoders.com` and used `realpath()` to validate deletion paths against the allowed uploads directory.
+- **Prevention**: Always validate remote URLs against a whitelist and enforce strict path canonicalization for file system operations.
+
+### CSRF in Admin Settings (2026-05-05)
+- **Vulnerability**: Lack of nonce verification in administrative pages (e.g., Live2D settings) allowed for Cross-Site Request Forgery attacks.
+- **Fix**: Implemented `check_admin_referer()` and `wp_nonce_field()` across all admin configuration forms.
+- **Prevention**: Ensure every state-changing administrative action is protected by a unique cryptographic nonce.
 
 ### Modernization Synchronization (2026-04-16)
 - **Error**: Complex merge conflicts led to a loss of synchronization between modernization efforts across different branches.
