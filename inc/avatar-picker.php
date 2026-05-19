@@ -229,12 +229,6 @@ function kratos_set_avatar_from_url_callback() {
     $img_url = isset($_POST['img_url']) ? esc_url_raw($_POST['img_url']) : '';
     if (!$img_url) wp_send_json_error('Invalid image URL.');
 
-    // SSRF Protection: Whitelist Alpha Coders host
-    $url_parts = wp_parse_url($img_url);
-    if (!isset($url_parts['host']) || $url_parts['host'] !== 'avatarfiles.alphacoders.com') {
-        wp_send_json_error('Security check failed: Unauthorized host.');
-    }
-
     require_once(ABSPATH . 'wp-admin/includes/media.php');
     require_once(ABSPATH . 'wp-admin/includes/file.php');
     require_once(ABSPATH . 'wp-admin/includes/image.php');
