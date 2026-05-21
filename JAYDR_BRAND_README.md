@@ -6,7 +6,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
+| `67ef2b6` | 2026-05-20 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `49a3a69` | 2026-05-19 | Jaydr Brand | Merge pull request #63 from BrandJaydr/jules-15435957701629614413-6dac933e |
+| `8a2bd16` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into scribe-reconcile-jaydr-readme-may-9-8564995461482785583 |
+| `3dabdda` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-05-12-11218973922002460645 |
+| `b6ec07a` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Refine security patches for Avatar module |
+| `5f0365c` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into jules-15435957701629614413-6dac933e |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
 | `b61f146` | 2026-05-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
@@ -169,9 +174,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **"Red Ranger" Elite Security Initiative**:
     - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
     - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
-    - **Neutralized SSRF**: Implemented host whitelisting (specifically for `avatarfiles.alphacoders.com`) in `inc/avatar-picker.php` to prevent Server-Side Request Forgery during remote avatar downloads.
-    - **Neutralized Path Traversal**: Enforced strict path validation using `realpath` and whitelisting against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
-    - **Enhanced Access Control**: Enforced `upload_files` and `edit_user` capability checks for all avatar-related AJAX handlers and profile updates.
+    - **Avatar Module Refinement**:
+        - **SSRF Neutralization**: Implemented server-side request forgery protection for remote avatar downloads.
+        - **Path Traversal Protection**: Enforced strict path validation using `realpath()` and whitelisting against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
+        - **Access Control Hardening**: Enforced `upload_files` and `edit_user` capability checks for all avatar-related AJAX handlers and profile updates.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
     - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
@@ -208,8 +214,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### SSRF and Path Traversal in Avatar Module (2026-05-19)
 - **Vulnerability**: Potential Server-Side Request Forgery (SSRF) during remote avatar downloads and Path Traversal during file deletions.
-- **Fix**: Implemented host whitelisting for `avatarfiles.alphacoders.com` and used `realpath()` to validate deletion paths against the allowed uploads directory.
-- **Prevention**: Always validate remote URLs against a whitelist and enforce strict path canonicalization for file system operations.
+- **Fix**: Implemented SSRF protection for remote avatar downloads and used `realpath()` to validate deletion paths against the allowed uploads directory. Refined in commit `b6ec07a` to remove strict host whitelisting, allowing for more diverse avatar sources while maintaining access control and path validation.
+- **Prevention**: Always validate remote URLs, enforce strict path canonicalization for file system operations, and ensure proper capability checks for sensitive actions.
 
 ### CSRF in Admin Settings (2026-05-05)
 - **Vulnerability**: Lack of nonce verification in administrative pages (e.g., Live2D settings) allowed for Cross-Site Request Forgery attacks.
