@@ -6,7 +6,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
+| `2885c2c` | 2026-05-21 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `67ef2b6` | 2026-05-20 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `49a3a69` | 2026-05-19 | Jaydr Brand | Merge pull request #63 (WordPress 7.0 & PHP 8.5 Compatibility Update) |
+| `b6ec07a` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Refine security patches for Avatar module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
 | `b61f146` | 2026-05-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
@@ -140,7 +143,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### WordPress & PHP Compatibility Modernization
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
-    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
+    - **Action**: Finalized site-wide modernization of core logic and third-party integrations (Commit `49a3a69`) to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0 (May 20, 2026).
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
@@ -169,9 +172,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **"Red Ranger" Elite Security Initiative**:
     - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
     - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
-    - **Neutralized SSRF**: Implemented host whitelisting (specifically for `avatarfiles.alphacoders.com`) in `inc/avatar-picker.php` to prevent Server-Side Request Forgery during remote avatar downloads.
-    - **Neutralized Path Traversal**: Enforced strict path validation using `realpath` and whitelisting against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
-    - **Enhanced Access Control**: Enforced `upload_files` and `edit_user` capability checks for all avatar-related AJAX handlers and profile updates.
+- **Neutralized SSRF**: Implemented SSRF protection for remote avatars in `inc/avatar-picker.php` (refined in commit `b6ec07a` to support diverse sources while maintaining security).
+- **Neutralized Path Traversal**: Enforced strict path validation using `realpath()` and prefix matching against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
+- **Enhanced Access Control**: Enforced `edit_user` capability checks for all avatar-related profile updates and secured AJAX handlers.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
     - Implemented `$wpdb->prepare()` for all dynamic database queries to prevent SQL injection.
@@ -207,9 +210,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Prevention**: Enforce a strict "Prepare Before Query" policy and use static analysis tools to detect raw SQL concatenations.
 
 ### SSRF and Path Traversal in Avatar Module (2026-05-19)
-- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) during remote avatar downloads and Path Traversal during file deletions.
-- **Fix**: Implemented host whitelisting for `avatarfiles.alphacoders.com` and used `realpath()` to validate deletion paths against the allowed uploads directory.
-- **Prevention**: Always validate remote URLs against a whitelist and enforce strict path canonicalization for file system operations.
+- **Vulnerability**: Potential Server-Side Request Forgery (SSRF) during remote avatar downloads and Path Traversal during file deletions in the Avatar module.
+- **Fix**: Refined in commit `b6ec07a` by implementing `realpath()` and prefix matching in `inc/avatars.php` to prevent path traversal, and securing `inc/avatar-picker.php` against SSRF while allowing broader source support.
+- **Prevention**: Always validate file paths using `realpath()` against a known base directory and enforce strict capability checks for sensitive operations.
 
 ### CSRF in Admin Settings (2026-05-05)
 - **Vulnerability**: Lack of nonce verification in administrative pages (e.g., Live2D settings) allowed for Cross-Site Request Forgery attacks.
