@@ -6,6 +6,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `6e2d8a4` | 2026-05-25 | google-labs-jules[bot] | Update WordPress 7.0 and PHP 8.5 compatibility and documentation |
+| `49a3a69` | 2026-05-19 | google-labs-jules[bot] | Merge pull request #63 (SSRF and Path Traversal Fix) |
 | `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
@@ -140,10 +142,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### WordPress & PHP Compatibility Modernization
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
-    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
+    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0 (May 20, 2026).
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
-    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
-    - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
+    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php` and `get_currentuserinfo()` in `inc/shortcode.php`.
+    - **Note**: Compatibility fixes were specifically restored in commit `e916f1a` after being lost in a previous merge and finalized in `6e2d8a4`.
 - **PHP 8.5 Deprecation Handling**:
     - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
@@ -184,6 +186,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-05-25 | Modernization | Deprecated `get_currentuserinfo()` in `inc/shortcode.php` | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -195,6 +198,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### get_currentuserinfo() Modernization (2026-05-25)
+- **Error**: The theme was using `get_currentuserinfo()`, which has been deprecated since WordPress 4.5.
+- **Fix**: Replaced with `wp_get_current_user()` in `inc/shortcode.php`.
+- **Prevention**: Use modern WordPress core functions and stay updated with the official deprecation list.
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
