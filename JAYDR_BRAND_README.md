@@ -6,15 +6,21 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
+| `dab68c5` | 2026-05-26 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi in Shortcodes/Widgets and CSRF in Live2D Settings |
+| `bbdb1a5` | 2026-05-25 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
+| `65ce729` | 2026-05-25 | google-labs-jules[bot] | chore: update WP 7.0 and PHP 8.5 compatibility and documentation |
+| `f2326e4` | 2026-05-24 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `7f006e0` | 2026-05-23 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `5bc40d8` | 2026-05-22 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `2885c2c` | 2026-05-21 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `67ef2b6` | 2026-05-20 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `b6ec07a` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Refine security patches for Avatar module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
-| `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
 | `b61f146` | 2026-05-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `ef85929` | 2026-05-16 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `4260c8f` | 2026-05-15 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `a9e7530` | 2026-05-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `834f5b5` | 2026-05-13 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
-| `34c6ebf` | 2026-05-12 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `6701dcf` | 2026-05-12 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQL Injection vulnerabilities |
 | `14570f5` | 2026-05-11 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `e225389` | 2026-05-11 | google-labs-jules[bot] | Update WordPress 7.0 & PHP 8.5 Compatibility |
@@ -68,10 +74,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Fix avatar/profile issues) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
 | `e6ccada` | 2026-04-11 | google-labs-jules[bot] | Fix avatar and profile update issues |
-| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
+| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support and documentation |
 | `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 from BrandJaydr/international-services-refactor-16677824139598441472 |
 | `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
-| `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 (README and Log updates) |
 | `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
 | `bd2e627` | 2026-04-10 | google-labs-jules[bot] | docs: analyze Bilibili/Netease intent and suggest international alternatives |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
@@ -140,10 +145,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### WordPress & PHP Compatibility Modernization
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
-    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
+    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0 (released May 20, 2026).
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
-    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
-    - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
+    - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php` and replacing `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+    - **Note**: These fixes were specifically restored in commit `e916f1a` and further refined in commit `dab68c5` (May 26, 2026).
 - **PHP 8.5 Deprecation Handling**:
     - **Action**: Implemented conditional `curl_close()` calls across the theme (e.g., in `inc/myfunction.php` and `inc/QPlayer/option.php`) to handle the deprecation of the function in PHP 8.5 and the transition to `CurlHandle` objects in PHP 8.0+.
 - **Title Handling**:
@@ -167,10 +172,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 ### Security Hardening
 - **"Red Ranger" Elite Security Initiative**:
-    - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
-    - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
-    - **Neutralized SSRF**: Implemented host whitelisting (specifically for `avatarfiles.alphacoders.com`) in `inc/avatar-picker.php` to prevent Server-Side Request Forgery during remote avatar downloads.
-    - **Neutralized Path Traversal**: Enforced strict path validation using `realpath` and whitelisting against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
+    - **Neutralized SQL Injection (May 2026)**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php` (hide shortcode), `inc/widgets.php` (most_comm_posts), and `inc/myfunction.php` (most_hot_posts) to secure dynamic post and comment queries.
+    - **Neutralized CSRF (May 2026)**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes (e.g., in `live2d_option_page`).
+    - **Neutralized SSRF & Path Traversal (May 2026 Refinement)**: Initially implemented host allowlists for remote avatar downloads; refined in commit `b6ec07a` to support diverse sources while maintaining strict path validation via `realpath()` in `inc/avatars.php` and enforcing `edit_user` capability checks for all profile updates.
     - **Enhanced Access Control**: Enforced `upload_files` and `edit_user` capability checks for all avatar-related AJAX handlers and profile updates.
 - **Neutralized Vulnerabilities**:
     - Addressed publicly accessible AJAX handlers and frontend templates lacking nonce verification and input sanitization.
@@ -184,6 +188,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-05-26 | Vulnerability | SQL Injection in `hide` shortcode and popular post widgets/functions | Fixed |
+| 2026-05-26 | Vulnerability | CSRF in Live2D settings page and JS-saving AJAX handlers | Fixed |
+| 2026-05-19 | Vulnerability | SSRF and Path Traversal risks in refined Avatar module | Fixed |
+| 2026-05-06 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
