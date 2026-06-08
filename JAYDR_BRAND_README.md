@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `8436c6a` | 2026-06-01 | google-labs-jules[bot] | chore: finalize WordPress 7.0 stable and PHP 8.5 compatibility |
 | `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
@@ -139,6 +140,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **Finalized WordPress 7.0 & PHP 8.5 Stability (June 2026)**:
+    - **Action**: Confirmed full compatibility with the stable release of WordPress 7.0 (May 20, 2026) and PHP 8.5.
+    - **Update**: Replaced the deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php` to resolve long-standing deprecation warnings and align with WordPress 7.0 standards.
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
     - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
