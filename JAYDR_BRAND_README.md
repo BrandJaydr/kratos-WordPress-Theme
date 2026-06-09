@@ -184,6 +184,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-06-09 | Vulnerability | SQL Injection and CSRF/Arbitrary File Write in multiple theme core files | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -200,6 +201,15 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
 - **Fix**: Restored the English-localized `preg_split` implementation: `preg_split('/\s+/u', ...)` to properly count words and handle HTML content.
 - **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+
+### SQL Injection and CSRF/Arbitrary File Write (June 2026)
+- **Vulnerability**: High-impact SQL injection in `inc/shortcode.php`, `inc/myfunction.php`, and `inc/widgets.php`, and CSRF-based arbitrary file write/resource manipulation in `inc/live2d/live2d.php`.
+- **Details**: Unparameterized database queries were present in post/comment retrieval functions. Theme administration pages lacked nonce verification and capability checks for sensitive file and database operations.
+- **Fix**:
+    - Implemented `$wpdb->prepare()` for all dynamic queries.
+    - Added `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` checks to administration forms.
+    - Updated deprecated `get_currentuserinfo()` to `wp_get_current_user()` for WordPress 7.0 stability.
+- **Prevention**: Enforce Zero Trust for all admin actions; never trust user-controlled POST data without explicit nonce and capability verification.
 
 ### SQL Injection Vulnerabilities (May 2026)
 - **Vulnerability**: High-impact SQL injection regressions identified in `inc/shortcode.php`, `inc/myfunction.php`, and `inc/widgets.php` where dynamic queries were not using `$wpdb->prepare()`.

@@ -51,6 +51,8 @@ function downloadimg($url,$imgpath)
 function live2d_option_page() {
     //Determine if there is data submission
     if(!empty($_POST)) {
+        check_admin_referer('kratos_admin_options-update');
+        if(!current_user_can('manage_options')) wp_die('Unauthorized access');
         //Live2D Settings
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
@@ -247,6 +249,7 @@ function live2d_option_page() {
     <h1>Other Theme Settings</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div><div class="title"><h4>Live2D Model Settings</h4> Read directly from and saved as a JS file. Do not modify areas other than settings!</div>
                 <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
             </div>
@@ -318,6 +321,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Background Image Resource Pack Download</h4>Select your preferred type (<span style="color:red;">Note: Existing images, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Default Anime Images:<input type="checkbox" name="donman"/> Bilibili:<input type="checkbox" name="bilibili" /></div></p>
             <p><input type="submit" name="download" value="Start Download"/></p>
@@ -325,6 +329,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Random Avatar Download</h4>Select your preferred type (<span style="color:red;">Note: Existing avatars, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Anime Male Avatar:<input type="checkbox" name="man"/> Anime Female Avatar:<input type="checkbox" name="woman" /></div></p>
             <p><input type="submit" name="downloadavatar" value="Start Download"/></p>
@@ -335,6 +340,7 @@ function live2d_option_page() {
         ?>
         <div>
             <form action="" method="post">
+                <?php wp_nonce_field('kratos_admin_options-update'); ?>
                 <div class="title"><h4>Live2D API Download</h4>Designed for beginners. The original API is large, so this is a simplified version.</div>
                 <span style="color:red;">Note: This feature disappears after downloading. Refresh the homepage to see the character. If it doesn't appear, try switching characters. If characters appear, it's successful. If it fails, delete the live2d-api directory from the root.</span>
                 <p><input type="submit" name="downlive2d" value="Start Download"/></p>
@@ -345,6 +351,7 @@ function live2d_option_page() {
     }?>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Emoji Pack Download</h4>Select your preferred type (<span style="color:red;">Existing emoji packs will be deleted. Select at least one.</span>)</div>
             <p><div>
                 Tieba Bubbles:<input type="checkbox" name="tieba"/>
