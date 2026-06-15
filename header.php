@@ -254,7 +254,7 @@ if($_COOKIE['goto_bibo']==1){
                     <div class="kratos-overlay"></div>
                     <div class="kratos-cover kratos-cover_2 text-center">
                         <div class="desc desc2 animate-box">
-                            <a href="<?php echo get_bloginfo('url'); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
+                            <a href="<?php echo home_url(); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
                         </div>
                     </div>
                 </div>
