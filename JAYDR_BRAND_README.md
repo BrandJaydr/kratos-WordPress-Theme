@@ -6,6 +6,39 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `d2f6c7b` | 2026-06-16 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi/CSRF regressions and modernize core logic |
+| `78597f5` | 2026-06-15 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `c0fd2e0` | 2026-06-15 | google-labs-jules[bot] | Finalize WordPress 7.0 and PHP 8.5 compatibility |
+| `e258efa` | 2026-06-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `e800e3d` | 2026-06-13 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `1bc381a` | 2026-06-12 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `136d44f` | 2026-06-11 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 10, 2026) |
+| `c4f5d41` | 2026-06-10 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 10, 2026) |
+| `cae43a8` | 2026-06-09 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global fork history |
+| `a15b0c8` | 2026-06-09 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi and CSRF vulnerabilities |
+| `02b6a9d` | 2026-06-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `efa3622` | 2026-06-08 | google-labs-jules[bot] | chore: finalize WordPress 7.0 stable and PHP 8.5 compatibility |
+| `3829cc9` | 2026-06-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with latest fork history |
+| `ea16bb5` | 2026-06-06 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with latest fork history |
+| `fad7073` | 2026-06-05 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `32d38e0` | 2026-06-04 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `ab5d64e` | 2026-06-03 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `78748d0` | 2026-06-02 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQLi and CSRF regressions |
+| `504b4ac` | 2026-06-01 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `8436c6a` | 2026-06-01 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility and replace deprecated get_currentuserinfo |
+| `47c63ae` | 2026-05-31 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `0f6d341` | 2026-05-30 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `a03ce74` | 2026-05-29 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `d23bf70` | 2026-05-28 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `257ae5c` | 2026-05-27 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `dd87621` | 2026-05-26 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `dab68c5` | 2026-05-26 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi in Shortcodes/Widgets and CSRF in Live2D Settings |
+| `bbdb1a5` | 2026-05-25 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
+| `65ce729` | 2026-05-25 | google-labs-jules[bot] | chore: update WP 7.0 and PHP 8.5 compatibility and documentation |
+| `f2326e4` | 2026-05-24 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `7f006e0` | 2026-05-23 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `5bc40d8` | 2026-05-22 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `2885c2c` | 2026-05-21 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
@@ -139,6 +172,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **Final WordPress 7.0 Stable & PHP 8.5 Compatibility (June 2026)**:
+    - **Action**: Completed the final transition to WordPress 7.0 Stable (released May 20, 2026). Key improvements include replacing all instances of the deprecated `get_currentuserinfo()` with `wp_get_current_user()` and updating `header.php` to use `home_url()` instead of `get_bloginfo('url')`.
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
     - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
@@ -166,6 +201,9 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
+- **"Red Ranger" Elite Security Initiative (June 2026 Audit)**:
+    - **Neutralized SQLi Regressions**: Re-secured `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` by restoring `$wpdb->prepare()` for dynamic queries that had been compromised during recent merges.
+    - **Neutralized CSRF/Access Control Regressions**: Fortified `inc/live2d/live2d.php` by implementing `check_admin_referer('kratos_admin_options-update')`, `current_user_can('manage_options')`, and missing `wp_nonce_field()` calls.
 - **"Red Ranger" Elite Security Initiative**:
     - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
     - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
@@ -184,6 +222,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-06-09 | Vulnerability | SQL Injection and CSRF regressions in core theme files | Fixed |
+| 2026-06-01 | Bug | Deprecated `get_currentuserinfo()` causing stability issues in WP 7.0 | Fixed |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -200,6 +240,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
 - **Fix**: Restored the English-localized `preg_split` implementation: `preg_split('/\s+/u', ...)` to properly count words and handle HTML content.
 - **Prevention**: Use automated tests to verify string manipulation functions during major compatibility overhauls.
+
+### SQL Injection & CSRF Regressions (June 2026)
+- **Vulnerability**: High-impact regressions of SQL injection in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`, and CSRF in `inc/live2d/live2d.php` identified during the June Red Ranger audit.
+- **Fix**: Re-implemented `$wpdb->prepare()` for all dynamic queries and added `check_admin_referer()` with `current_user_can('manage_options')` checks for administrative settings.
+- **Prevention**: Regularly perform security audits after major merges to ensure hardening logic remains intact.
 
 ### SQL Injection Vulnerabilities (May 2026)
 - **Vulnerability**: High-impact SQL injection regressions identified in `inc/shortcode.php`, `inc/myfunction.php`, and `inc/widgets.php` where dynamic queries were not using `$wpdb->prepare()`.
