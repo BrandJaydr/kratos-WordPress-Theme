@@ -6,19 +6,58 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
-| `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
+| `90463b6` | 2026-06-19 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
+| `c57bf28` | 2026-06-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 18, 2026) |
+| `8c43074` | 2026-06-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `844c16f` | 2026-06-16 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `d2f6c7b` | 2026-06-16 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi/CSRF regressions and modernize core logic |
+| `78597f5` | 2026-06-15 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `c0fd2e0` | 2026-06-15 | google-labs-jules[bot] | Finalize WordPress 7.0 and PHP 8.5 compatibility |
+| `e258efa` | 2026-06-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `e800e3d` | 2026-06-13 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `1bc381a` | 2026-06-12 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `136d44f` | 2026-06-11 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 10, 2026) |
+| `c4f5d41` | 2026-06-10 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 10, 2026) |
+| `cae43a8` | 2026-06-09 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global fork history |
+| `a15b0c8` | 2026-06-09 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi and CSRF vulnerabilities |
+| `02b6a9d` | 2026-06-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
+| `efa3622` | 2026-06-08 | google-labs-jules[bot] | chore: finalize WordPress 7.0 stable and PHP 8.5 compatibility |
+| `3829cc9` | 2026-06-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with latest fork history |
+| `ea16bb5` | 2026-06-06 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with latest fork history |
+| `fad7073` | 2026-06-05 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `32d38e0` | 2026-06-04 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `ab5d64e` | 2026-06-03 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `78748d0` | 2026-06-02 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQLi and CSRF regressions |
+| `504b4ac` | 2026-06-01 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `8436c6a` | 2026-06-01 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility and replace deprecated get_currentuserinfo |
+| `47c63ae` | 2026-05-31 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `0f6d341` | 2026-05-30 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `a03ce74` | 2026-05-29 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `d23bf70` | 2026-05-28 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `257ae5c` | 2026-05-27 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `dd87621` | 2026-05-26 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `dab68c5` | 2026-05-26 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi in Shortcodes/Widgets and CSRF in Live2D Settings |
+| `bbdb1a5` | 2026-05-25 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
+| `65ce729` | 2026-05-25 | google-labs-jules[bot] | chore: update WP 7.0 and PHP 8.5 compatibility and documentation |
+| `f2326e4` | 2026-05-24 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `7f006e0` | 2026-05-23 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `5bc40d8` | 2026-05-22 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `2885c2c` | 2026-05-21 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `67ef2b6` | 2026-05-20 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
+| `49a3a69` | 2026-05-19 | Jaydr Brand | Merge pull request #63 from BrandJaydr/jules-15435957701629614413-6dac933e |
+| `8a2bd16` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into scribe-reconcile-jaydr-readme-may-9-8564995461482785583 |
+| `3dabdda` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-05-12-11218973922002460645 |
+| `b6ec07a` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Refine security patches for Avatar module |
+| `5f0365c` | 2026-05-19 | Jaydr Brand | Merge branch 'master' into jules-15435957701629614413-6dac933e |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
-| `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
 | `b61f146` | 2026-05-17 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `ef85929` | 2026-05-16 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `4260c8f` | 2026-05-15 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `a9e7530` | 2026-05-14 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history and log audits |
 | `834f5b5` | 2026-05-13 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
-| `34c6ebf` | 2026-05-12 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `6701dcf` | 2026-05-12 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize site-wide SQL Injection vulnerabilities |
 | `14570f5` | 2026-05-11 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `e225389` | 2026-05-11 | google-labs-jules[bot] | Update WordPress 7.0 & PHP 8.5 Compatibility |
-| `67b4f8f` | 2026-05-10 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `8d49ce2` | 2026-05-09 | google-labs-jules[bot] | docs: maintain Jaydr Brand's Readme with latest fork history and logs |
 | `faf895b` | 2026-05-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme and restore security/localization |
 | `49d0752` | 2026-05-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global fork history |
@@ -40,7 +79,6 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `eea258b` | 2026-04-25 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme and fix word count regression |
 | `72cde76` | 2026-04-24 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
 | `0269e72` | 2026-04-23 | google-labs-jules[bot] | docs: update Jaydr Brand's Readme with latest fork history and PHP 8.4 compatibility |
-| `129b51f` | 2026-04-22 | Jaydr Brand | Merge pull request #31 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
 | `0e0a7c5` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-21-4684313713613964232 |
 | `27c2c41` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-11-9869165968175424990 |
 | `004e709` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-20-8979347884893328532 |
@@ -48,65 +86,26 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `2804a30` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-17-17444911089078576382 |
 | `f47bcf1` | 2026-04-22 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14-12763179741709912690 |
 | `af7469e` | 2026-04-21 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
-| `8031920` | 2026-04-20 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `702b98e` | 2026-04-20 | google-labs-jules[bot] | chore: complete site-wide PHP 8.5 and WP 7.0 compatibility |
-| `04648f3` | 2026-04-19 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
 | `9f0931f` | 2026-04-18 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
-| `e968437` | 2026-04-17 | google-labs-jules[bot] | Maintain Jaydr Brand's Readme with comprehensive fork history and error logs |
-| `905cb45` | 2026-04-16 | google-labs-jules[bot] | Resolve merge conflicts and synchronize modernization improvements |
-| `aa22a43` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and fix English localization issues |
-| `4021e78` | 2026-04-16 | Jaydr Brand | Merge pull request #23 from BrandJaydr/scribe-jaydr-brand-readme-update-2026-04-15-7347432482780167729 |
 | `e916f1a` | 2026-04-16 | google-labs-jules[bot] | Update Jaydr Brand's Readme and restore compatibility fixes |
-| `056aae3` | 2026-04-15 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-14 |
 | `2a74981` | 2026-04-14 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
-| `8e64fca` | 2026-04-13 | Jaydr Brand | Fix spelling error in README.md |
-| `4c71b92` | 2026-04-13 | Jaydr Brand | Update README with link to Jaydr brand readme |
-| `4d281dd` | 2026-04-13 | Jaydr Brand | Merge pull request #18 (Readme and log updates) |
 | `38600d7` | 2026-04-13 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
 | `2019434` | 2026-04-13 | google-labs-jules[bot] | Update WordPress (7.0) and PHP (8.5) compatibility |
 | `0c32cb1` | 2026-04-12 | google-labs-jules[bot] | Document latest fork improvements and security fixes in Jaydr Brand's Readme |
-| `6d02582` | 2026-04-11 | Jaydr Brand | Merge pull request #17 (Fix avatar/profile issues) |
 | `116af33` | 2026-04-11 | google-labs-jules[bot] | Implement Anime Avatar Picker and fix profile avatar issues |
-| `e6ccada` | 2026-04-11 | google-labs-jules[bot] | Fix avatar and profile update issues |
-| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support |
-| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 from BrandJaydr/international-services-refactor-16677824139598441472 |
-| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
-| `bc3b7e4` | 2026-04-10 | Jaydr Brand | Merge pull request #16 (README and Log updates) |
+| `ba41563` | 2026-04-11 | google-labs-jules[bot] | Finalize international services integration with QPlayer SoundCloud support and documentation |
 | `24effb1` | 2026-04-10 | google-labs-jules[bot] | Update Jaydr Brand's Readme with History, Improvements, and Error Logs |
-| `bd2e627` | 2026-04-10 | google-labs-jules[bot] | docs: analyze Bilibili/Netease intent and suggest international alternatives |
+| `aebe761` | 2026-04-10 | Jaydr Brand | Merge pull request #15 from BrandJaydr/international-services-refactor-16677824139598441472 |
+| `8b5e3e4` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-09-14314886304084581410 |
+| `0a2da02` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-6592228501064288272-16821344627579975297 |
+| `c167b7e` | 2026-04-10 | google-labs-jules[bot] | ⚡ Bolt: Optimize performance & 🌐 Translation: Full English localization |
 | `ad8aa70` | 2026-04-10 | google-labs-jules[bot] | Fix typography issues and add global/per-page configuration options |
-| `b7ac4e4` | 2026-04-10 | Jaydr Brand | Merge pull request #12 (README and Log updates) |
-| `8b5e3e4` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-2026-04-09 |
-| `9bf8508` | 2026-04-09 | Jaydr Brand | Merge pull request #11 (Readme update) |
-| `0a2da02` | 2026-04-09 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-update-v2 |
-| `2608f9f` | 2026-04-09 | Jaydr Brand | Merge pull request #13 (Typography fixes) |
-| `d2edcdf` | 2026-04-09 | Jaydr Brand | Merge pull request #10 (Readme update) |
-| `743cbbb` | 2026-04-09 | Jaydr Brand | Merge pull request #14 (Service alternatives analysis) |
-| `d644ac3` | 2026-04-09 | google-labs-jules[bot] | Update Jaydr Brand's Readme with commit history and error logs |
-| `d5a6dac` | 2026-04-08 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md with new commit history |
 | `afc3a6a` | 2026-04-07 | google-labs-jules[bot] | Update JAYDR_BRAND_README.md and sync theme version to 2.3 |
 | `bc3a010` | 2026-04-07 | google-labs-jules[bot] | Overhaul documentation and bump theme version to 2.3 |
-| `bd05411` | 2026-04-06 | Jaydr Brand | Create FUNDING.yml |
-| `6655fed` | 2026-04-06 | Jaydr Brand | Merge pull request #6 (WP/PHP compatibility) |
-| `6f2a902` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into wordpress-php-compatibility-update |
-| `4a80783` | 2026-04-06 | Jaydr Brand | Merge pull request #8 (Translation) |
-| `273012e` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into translate-chinese-to-english |
-| `65ba056` | 2026-04-06 | Jaydr Brand | Merge pull request #9 (Theme config docs) |
-| `9a80431` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Repository Map and Theme Configuration guides |
-| `972262b` | 2026-04-06 | google-labs-jules[bot] | Create comprehensive Theme Configuration document |
-| `47eafea` | 2026-04-06 | google-labs-jules[bot] | Translate all non-English text to English across the Kratos theme |
-| `b44e1a5` | 2026-04-06 | Jaydr Brand | Merge pull request #7 (Readme setup) |
+| `6f2a902` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into wordpress-php-compatibility-update-3020281067143114679 |
+| `273012e` | 2026-04-06 | Jaydr Brand | Merge branch 'master' into translate-chinese-to-english-kratos-theme-6098243628233544169 |
 | `8de0284` | 2026-04-06 | google-labs-jules[bot] | Add Jaydr Brand's Readme to track fork changes and security logs |
-| `59e9a69` | 2026-04-06 | google-labs-jules[bot] | Update Kratos theme for WordPress 6.7 and PHP 8.4 compatibility |
-| `3969085` | 2026-04-05 | Jaydr Brand | Merge pull request #5 (Security hardening) |
-| `294a865` | 2026-04-05 | google-labs-jules[bot] | Security Hardening: Patching high-impact vulnerabilities |
-| `0348eaa` | 2026-04-05 | Jaydr Brand | Merge pull request #3 (Performance optimization) |
-| `55eecfe` | 2026-04-05 | Jaydr Brand | Merge pull request #2 (XSS fix) |
-| `4764892` | 2026-04-05 | google-labs-jules[bot] | ⚡ Bolt: Optimize snow animation and site timer performance |
-| `43f4ad9` | 2026-04-05 | google-labs-jules[bot] | 🛡️ Sentinel: [HIGH] Fix XSS vulnerability in Bilibili comment metadata |
-| `912e107` | 2026-04-05 | Jaydr Brand | Merge pull request #1 (WP/PHP compatibility) |
-| `5223a19` | 2026-04-05 | google-labs-jules[bot] | Further improvements for WordPress and PHP 8.x compatibility |
-| `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
 
@@ -166,6 +165,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
+- **Red Ranger Security Audits (June 2026)**:
+    - **Action**: Neutralized high-impact SQL Injection and CSRF regressions identified in `inc/shortcode.php`, `inc/widgets.php`, `inc/myfunction.php`, and `inc/live2d/live2d.php`. Re-implemented `$wpdb->prepare()` for dynamic queries and WordPress nonces for administrative forms.
+- **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
+    - **Action**: Finalized site-wide modernization for WordPress 7.0 Stable and PHP 8.5. Replaced the deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php` and verified syntax stability across all core files.
 - **"Red Ranger" Elite Security Initiative**:
     - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
     - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
@@ -195,6 +198,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### SQL Injection & CSRF Regressions (June 2026)
+- **Error**: Periodic Red Ranger audits identified that previous security patches for SQL Injection (in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`) and CSRF (in `inc/live2d/live2d.php`) had regressed due to merge conflicts or incomplete modernization.
+- **Fix**: Re-neutralized all identified regressions by enforcing `$wpdb->prepare()` for all dynamic SQL and implementing `check_admin_referer()` and `wp_nonce_field()` for all administrative state changes.
+- **Prevention**: Enforce a "Zero Trust" policy for all dynamic inputs and use `php -l` and automated security scans during each release cycle.
+
+### Deprecated get_currentuserinfo() (June 2026)
+- **Error**: Use of the deprecated `get_currentuserinfo()` function in `inc/shortcode.php` was causing compatibility issues with WordPress 7.0.
+- **Fix**: Replaced `get_currentuserinfo()` with the modern `wp_get_current_user()` function.
+- **Prevention**: Regularly audit the codebase for deprecated WordPress functions using official compatibility guides.
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
