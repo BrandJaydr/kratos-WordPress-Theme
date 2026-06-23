@@ -338,7 +338,7 @@ function most_hot_posts($days=30,$nums=5){
     global $wpdb;
     $today = date("Y-m-d H:i:s");
     $daysago = date("Y-m-d H:i:s",strtotime($today)-($days*24*60*60));
-    $result = $wpdb->get_results("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN '$daysago' AND '$today' and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 ,$nums");
+    $result = $wpdb->get_results($wpdb->prepare("SELECT comment_count,ID,post_title,post_date FROM $wpdb->posts WHERE post_date BETWEEN %s AND %s and post_type='post' and post_status='publish' ORDER BY comment_count DESC LIMIT 0 , %d", $daysago, $today, $nums));
     $output = '';
     if(empty($result)){
         $output = '<li>'.__('No data for now','moedog').'</li>';
