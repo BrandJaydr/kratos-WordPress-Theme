@@ -2,18 +2,23 @@
 
 This document provides information about the compatibility of the Kratos theme with the latest versions of WordPress and PHP.
 
-## Latest Versions (as of May 2026)
+## Latest Versions (as of June 2026)
 
-- **WordPress:** 7.0 (RC3; Final release scheduled for May 20, 2026)
+- **WordPress:** 7.0 (Stable release, May 20, 2026)
 - **PHP:** 8.5 (Stable Support)
 
 ## Compatibility Status
 
-The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0 RC3) and PHP (8.5).
+The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0 "Armstrong") and PHP (8.5).
 
 ## Recent Improvements and Fixes
 
 To ensure seamless operation on modern environments, the following updates have been implemented:
+
+### June 2026 Update
+- **WordPress 7.0 Stable Finalization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+- **API Modernization**: Updated `header.php` to use `home_url()` instead of legacy `get_bloginfo('url')` or `get_bloginfo('home')` calls.
+- **Stability Verification**: Confirmed site-wide syntax stability for PHP 8.5 using `php -l` on core theme files.
 
 ### May 2026 Update
 - **English Word Count Restoration:** Fixed a regression in `inc/myfunction.php` where the `count_words()` function was incorrectly using Chinese character-counting logic. Restored the English word-counting implementation using `preg_split` and updated the output format to "X words".
