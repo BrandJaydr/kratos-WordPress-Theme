@@ -466,7 +466,7 @@ function kratos_get_html_sitemap(){
 </head>
 <body>
 <div class="container">
-    <h1 class="page-title"><a href="<?php echo get_option('home').'/sitemap.xml'; ?>" target="_blank">Sitemap</a></h1><?php
+    <h1 class="page-title"><a href="<?php echo home_url().'/sitemap.xml'; ?>" target="_blank">Sitemap</a></h1><?php
     $posts = get_posts('numberposts=-1&orderby=post_date&order=DESC');
     if(count($posts)): ?>
     <h2 class="section-title">Article</h2>

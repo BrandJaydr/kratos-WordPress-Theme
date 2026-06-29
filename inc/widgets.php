@@ -163,9 +163,9 @@ class kratos_widget_about extends WP_Widget {
         $imgurl = $instance['imgurl']?esc_url($instance['imgurl']):'';
         $bkimgurl = $instance['bkimgurl']?esc_url($instance['bkimgurl']):'';
         echo $before_widget;
-        if(!is_home()) $redirect = get_permalink(); else $redirect = get_bloginfo('home');?>
+        if(!is_home()) $redirect = get_permalink(); else $redirect = home_url();?>
         <div class="photo-background">
-            <div class="photo-background" style="background:url(<?php if(!empty($bkimgurl)) echo $bkimgurl; else echo bloginfo('template_url')."/static/images/about.jpg"; ?>) no-repeat center center;-webkit-background-size:cover;background-size:cover"></div>
+            <div class="photo-background" style="background:url(<?php if(!empty($bkimgurl)) echo $bkimgurl; else echo get_template_directory_uri()."/static/images/about.jpg"; ?>) no-repeat center center;-webkit-background-size:cover;background-size:cover"></div>
         </div>
         <?php if(current_user_can('manage_options')){ ?>
         <div class="photo-wrapper clearfix">
@@ -205,7 +205,7 @@ class kratos_widget_about extends WP_Widget {
         <?php }else{ ?>
         <div class="photo-wrapper clearfix">
             <div class="photo-wrapper-tip text-center">
-                <a href="<?php echo wp_login_url($redirect); ?>" rel="nofollow"><img title="Click avatar to login" class="about-photo" src="<?php if(!empty($imgurl)) echo $imgurl; else echo bloginfo('template_url')."/static/images/photo.jpg"; ?>" alt=""/></a>
+                <a href="<?php echo wp_login_url($redirect); ?>" rel="nofollow"><img title="Click avatar to login" class="about-photo" src="<?php if(!empty($imgurl)) echo $imgurl; else echo get_template_directory_uri()."/static/images/photo.jpg"; ?>" alt=""/></a>
             </div>
         </div>
         <div class="textwidget">

@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `c7b88ed` | 2026-06-26 | google-labs-jules[bot] | chore: finalize WordPress 7.0 Stable and PHP 8.5 compatibility |
 | `3d816c7` | 2026-05-19 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SSRF and Path Traversal in Avatar Module |
 | `c0ee4c5` | 2026-05-18 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history |
 | `a4ce164` | 2026-05-18 | google-labs-jules[bot] | chore: update WordPress 7.0 and PHP 8.5 compatibility |
@@ -139,6 +140,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
+- **Final WordPress 7.0 Stable and PHP 8.5 Compatibility (June 2026)**:
+    - **Action**: Modernized long-standing legacy and deprecated code to ensure full compatibility with the official release of WordPress 7.0 ("Armstrong").
+    - **Fixes**:
+        - Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+        - Modernized legacy `get_bloginfo('home')`, `get_bloginfo('url')`, and `get_option('home')` calls to `home_url()` across `header.php`, `inc/widgets.php`, and `inc/core.php`.
+        - Transitioned legacy asset pathing from `bloginfo('template_url')` to `get_template_directory_uri()`.
+        - Corrected redundant `echo` calls for `bloginfo('name')` in `header.php`.
 - **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
     - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
