@@ -103,7 +103,7 @@ function local_random_avatar( $avatar, $id_or_email, $size, $default, $alt) {
         $imgs = getfilecouts(dirname(dirname(__FILE__)).'/static/images/avatar/*');
         if (empty($imgs)) return $avatar;
         $random = mt_rand(0, count($imgs) - 1);
-        $avatar_url = get_bloginfo('template_url') . "/static/images/avatar/" . substr($imgs[$random], strripos($imgs[$random], '/') + 1);
+        $avatar_url = get_template_directory_uri() . "/static/images/avatar/" . substr($imgs[$random], strripos($imgs[$random], '/') + 1);
     }
     return "<img alt='".esc_attr($alt)."' src='".esc_url($avatar_url)."' class='avatar avatar-".esc_attr($size)." photo' height='".esc_attr($size)."' width='".esc_attr($size)."'/><div style='position: absolute;'><a href='//www.bilibili.com/blackboard/help.html#Member level related' target='_blank' lvl='0' class='n-level m-level'></a></div>";
 }

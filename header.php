@@ -47,7 +47,7 @@ if($_COOKIE['goto_bibo']==1){
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
-    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
+    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo home_url(); ?>">
     <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
@@ -57,15 +57,15 @@ if($_COOKIE['goto_bibo']==1){
     <link rel="icon" type="image/x-icon" href="<?php echo kratos_option('site_ico'); ?>">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <?php wp_head();wp_print_scripts('theme-jq'); ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/inc/live2d/waifu.css';?>"/>
-    <link rel="stylesheet" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/style.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/inc/live2d/waifu.css';?>"/>
+    <link rel="stylesheet" href="<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/style/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/style/main.css">
     <style>
         #offcanvas-menu{background:#3a3f51;top:190px;width:198px;}
     </style>
 </head>
 <?php flush(); ?>
-<body class="home blog" style="background-image: url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/body_repeat.png); background-color: #d4d5e0; background-repeat: repeat-x; background-position: center 0;">
+<body class="home blog" style="background-image: url(<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/images/body_repeat.png); background-color: #d4d5e0; background-repeat: repeat-x; background-position: center 0;">
 <?php wp_body_open(); ?>
 <div id="kratos-wrapper">
     <div id="kratos-page">
@@ -103,10 +103,10 @@ if($_COOKIE['goto_bibo']==1){
                         wp_nav_menu($defaults); ?>
                     </div>
                 </div>
-                <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/prism.css';?>"/>
-                <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/inc/live2d/waifu.css';?>"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/static/css/prism.css';?>"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/inc/live2d/waifu.css';?>"/>
                 <?php if(kratos_option('animal_load')){?>
-                    <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/animate.min.css';?>"/>
+                    <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/static/css/animate.min.css';?>"/>
                 <?php }?>
             </header>
         </div>
@@ -128,7 +128,7 @@ if($_COOKIE['goto_bibo']==1){
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
-    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
+    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo home_url(); ?>">
     <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
@@ -139,8 +139,8 @@ if($_COOKIE['goto_bibo']==1){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=<?php echo esc_attr(str_replace(' ', '+', $google_fonts)); ?>">
     <?php endif; ?>
     <!-- Bootstrap Core CSS File -->
-    <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/bootstrap.min.css';?>"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/style/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/static/css/bootstrap.min.css';?>"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/style/style.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
     <?php wp_head();wp_print_scripts('theme-jq'); ?>
     <style><?php
@@ -188,10 +188,10 @@ if($_COOKIE['goto_bibo']==1){
             letter-spacing: 0.5px;
         }
     </style>
-      <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/prism.css';?>"/>
-      <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/inc/live2d/waifu.css';?>"/>
+      <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/static/css/prism.css';?>"/>
+      <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/inc/live2d/waifu.css';?>"/>
       <?php if(kratos_option('animal_load')){?>
-          <link rel="stylesheet" type="text/css" href="<?php echo  bloginfo('template_url').'/static/css/animate.min.css';?>"/>
+          <link rel="stylesheet" type="text/css" href="<?php echo  get_template_directory_uri().'/static/css/animate.min.css';?>"/>
       <?php }?>
   </head>
     <?php flush(); ?>
@@ -254,7 +254,7 @@ if($_COOKIE['goto_bibo']==1){
                     <div class="kratos-overlay"></div>
                     <div class="kratos-cover kratos-cover_2 text-center">
                         <div class="desc desc2 animate-box">
-                            <a href="<?php echo get_bloginfo('url'); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
+                            <a href="<?php echo home_url(); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
                         </div>
                     </div>
                 </div>

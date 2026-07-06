@@ -29,7 +29,7 @@
         <div class="touxiang">
             <a href="https://space.bilibili.com/<?php echo $bilibilUid?>" target="_top">
                 <img src="<?php echo $bilibililive->advanter ?>" alt="Avatar"></a>
-            <span class="renzheng" style="background-image:url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/icon2.png);"></span>
+            <span class="renzheng" style="background-image:url(<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/images/icon2.png);"></span>
         </div>
         <div class="banner-item width">
             <a class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">Homepage</a>

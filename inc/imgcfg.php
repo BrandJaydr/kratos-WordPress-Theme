@@ -74,7 +74,7 @@ function kratos_blog_thumbnail_new(){
         //Get all images directly and store them in a list
         $imgs=getfilecouts(dirname(dirname(__FILE__)).'/static/images/thumb/*');
         $random = mt_rand(0,count($imgs)-1);
-        return get_bloginfo('template_url')."/static/images/thumb/".substr($imgs[$random],strripos($imgs[$random],'/')+1);
+        return get_template_directory_uri()."/static/images/thumb/".substr($imgs[$random],strripos($imgs[$random],'/')+1);
     }
 }
 //Share the thumbnail fetching

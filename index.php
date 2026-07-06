@@ -29,7 +29,7 @@
             <div class="touxiang">
                 <a href="https://space.bilibili.com/<?php echo $bilibilUid?>" target="_top">
                     <img src="<?php echo $bilibililive->advanter ?>" alt="Avatar"></a>
-                <span class="renzheng" style="background-image:url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/icon2.png);"></span>
+                <span class="renzheng" style="background-image:url(<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/images/icon2.png);"></span>
             </div>
             <div class="banner-item width">
                 <a target="_blank" class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">Homepage</a>
@@ -182,9 +182,9 @@
                     <?php }
                     kratos_pages(3);wp_reset_query(); ?>
                 </section>
-            <script src="<?php echo bloginfo('template_url').'/static/js/weixinAudio.js';?>"></script>
+            <script src="<?php echo get_template_directory_uri().'/static/js/weixinAudio.js';?>"></script>
             <?php if(kratos_option('animal_load')){?>
-                <script src = "<?php echo  bloginfo('template_url').'/static/js/wow.min.js';?>" ></script >
+                <script src = "<?php echo  get_template_directory_uri().'/static/js/wow.min.js';?>" ></script >
             <?php }?>
             <script type="text/javascript">
                 $('.weixinAudio').weixinAudio({
@@ -267,10 +267,10 @@
             </aside>
             <?php }?>
         </div>
-        <script src="<?php echo  bloginfo('template_url').'/static/js/weixinAudio.js';?>"></script>
+        <script src="<?php echo  get_template_directory_uri().'/static/js/weixinAudio.js';?>"></script>
         <!-- Music Player -->
         <?php if(kratos_option('animal_load')){?>
-            <script src = "<?php echo  bloginfo('template_url').'/static/js/wow.min.js';?>" ></script >
+            <script src = "<?php echo  get_template_directory_uri().'/static/js/wow.min.js';?>" ></script >
         <?php }?>
         <script type="text/javascript">
             $('.weixinAudio').weixinAudio({

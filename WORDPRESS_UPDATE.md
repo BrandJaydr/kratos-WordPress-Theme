@@ -2,18 +2,24 @@
 
 This document provides information about the compatibility of the Kratos theme with the latest versions of WordPress and PHP.
 
-## Latest Versions (as of May 2026)
+## Latest Versions (as of July 2026)
 
-- **WordPress:** 7.0 (RC3; Final release scheduled for May 20, 2026)
-- **PHP:** 8.5 (Stable Support)
+- **WordPress:** 7.0 (Stable)
+- **PHP:** 8.5 (Stable)
 
 ## Compatibility Status
 
-The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0 RC3) and PHP (8.5).
+The Kratos theme is fully compatible with the latest stable releases of WordPress (7.0) and PHP (8.5).
 
 ## Recent Improvements and Fixes
 
 To ensure seamless operation on modern environments, the following updates have been implemented:
+
+### July 2026 Update
+- **Comprehensive API Modernization:** Replaced legacy and deprecated WordPress functions to ensure full compatibility with WordPress 7.0 Stable.
+    - **User Information:** Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+    - **Site URLs:** Modernized `get_bloginfo('url')`, `get_bloginfo('home')`, and `bloginfo('url')` to `home_url()` in `header.php`, `footer.php`, and `inc/widgets.php`.
+    - **Asset Loading:** Replaced legacy `get_bloginfo('template_url')` and `bloginfo('template_url')` with `get_template_directory_uri()` across all theme templates and core files (including `header.php`, `footer.php`, `single.php`, `index.php`, `page.php`, and `inc/shortcode.php`) for modern, efficient asset loading.
 
 ### May 2026 Update
 - **English Word Count Restoration:** Fixed a regression in `inc/myfunction.php` where the `count_words()` function was incorrectly using Chinese character-counting logic. Restored the English word-counting implementation using `preg_split` and updated the output format to "X words".

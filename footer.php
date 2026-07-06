@@ -13,13 +13,13 @@
                         echo (!kratos_option('social_linkedin'))?'':'<a target="_blank" rel="nofollow" href="'.kratos_option('social_linkedin').'"><i class="fa fa-linkedin-square"></i></a>';
                         echo (!kratos_option('social_github'))?'':'<a class="github-tip" target="_blank" rel="nofollow" href="'.kratos_option('social_github').'"><i class="fa fa-github"></i></a>';
                         echo (!kratos_option('show_rss'))?'':'<a class="rss-tip" title="RSS Subscription" target="_blank" rel="nofollow" href="';
-                        if(kratos_option('show_rss')){ bloginfo('url');
+                        if(kratos_option('show_rss')){ echo home_url();
                             echo '/feed"><i class="fa fa-rss"></i></a>';}
                         //Bilibili logo
                         if(kratos_option('social_bilibili'))
                         {
                             echo '<a target="_blank" rel="nofollow" href="https://space.bilibili.com/'.kratos_option('social_bilibili').'"><img style="height: 30px;top:-9px;position:relative;left:-4px;" title="bilibili" src="';
-                            bloginfo('template_url');
+                            echo get_template_directory_uri();
                             echo '/static/images/ua/bilibili.png"></a>';
                         }?>
 
@@ -84,11 +84,11 @@ if (! wp_is_mobile() && kratos_option('openlive2d')) {
         </div >
     </div >
     <script src = "';
-    echo  bloginfo('template_url');
+    echo  get_template_directory_uri();
     echo '/inc/live2d/waifu-tips.js" ></script ><script src = "';
-    echo  bloginfo('template_url');
+    echo  get_template_directory_uri();
     echo '/inc/live2d/live2d.js" ></script ><script type = "text/javascript" >initModel("';
-    echo  bloginfo('template_url');
+    echo  get_template_directory_uri();
     echo '/inc/live2d/waifu-tips.json")</script >';
 }
 ?>

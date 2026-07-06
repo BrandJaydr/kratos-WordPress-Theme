@@ -28,7 +28,7 @@
         <div class="touxiang">
             <a href="https://space.bilibili.com/<?php echo $bilibilUid?>" target="_top">
                 <img src="<?php echo $bilibililive->advanter ?>" alt="Avatar"></a>
-            <span class="renzheng" style="background-image:url(<?php echo  bloginfo('template_url').'/pages/';?>bilibililive/images/icon2.png);"></span>
+            <span class="renzheng" style="background-image:url(<?php echo  get_template_directory_uri().'/pages/';?>bilibililive/images/icon2.png);"></span>
         </div>
         <div class="banner-item width">
             <a target="_blank" class="active" href="https://space.bilibili.com/<?php echo $bilibilUid?>">Homepage</a>
@@ -47,16 +47,16 @@
         {if($position='left') $position='right'; else $position='left';}
         echo '.waifu {' . $position . ':' . $value . 'px;}';
     ?></style>
-        <script src="<?php echo  bloginfo('template_url').'/static/js/prism.js';?>"></script>
+        <script src="<?php echo  get_template_directory_uri().'/static/js/prism.js';?>"></script>
 <!--        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>-->
         <div id="primary" class="list">
         <?php get_template_part('/inc/single-templates/single',get_post_format()); ?>
     </div>
         <?php if(current_user_can('manage_options')&&is_single()||is_page()){ ?><div class="cd-tool text-center"><div class="<?php if(kratos_option('cd_weixin')) echo 'edit-box2 '; ?>edit-box"><?php echo edit_post_link('<span class="fa fa-pencil"></span>'); ?></div></div><?php } ?>
-        <script src="<?php echo  bloginfo('template_url').'/static/js/weixinAudio.js';?>"></script>
+        <script src="<?php echo  get_template_directory_uri().'/static/js/weixinAudio.js';?>"></script>
         <!--Music Player-->
         <?php if(kratos_option('animal_load')){?>
-            <script src = "<?php echo  bloginfo('template_url').'/static/js/wow.min.js';?>" ></script >
+            <script src = "<?php echo  get_template_directory_uri().'/static/js/wow.min.js';?>" ></script >
         <?php }?>
         <script type="text/javascript">
             $('.weixinAudio').weixinAudio({
@@ -117,15 +117,15 @@
             echo '.waifu {' . $position . ':' . $value . 'px;}';
         ?></style>
         <!-- Import JS files-->
-        <script src="<?php echo  bloginfo('template_url').'/static/js/prism.js';?>"></script>
+        <script src="<?php echo  get_template_directory_uri().'/static/js/prism.js';?>"></script>
         <div class="row">
         <?php get_template_part('/inc/single-templates/single',get_post_format()); ?>
         </div><?php
         if(current_user_can('manage_options')&&is_single()||is_page()){ ?><div class="cd-tool text-center"><div class="<?php if(kratos_option('cd_weixin')) echo 'edit-box2 '; ?>edit-box"><?php echo edit_post_link('<span class="fa fa-pencil"></span>'); ?></div></div><?php } ?>
-        <script src="<?php echo  bloginfo('template_url').'/static/js/weixinAudio.js';?>"></script>
+        <script src="<?php echo  get_template_directory_uri().'/static/js/weixinAudio.js';?>"></script>
         <!--Music Player-->
         <?php if(kratos_option('animal_load')){?>
-            <script src = "<?php echo  bloginfo('template_url').'/static/js/wow.min.js';?>" ></script >
+            <script src = "<?php echo  get_template_directory_uri().'/static/js/wow.min.js';?>" ></script >
         <?php }?>
         <script type="text/javascript">
             $('.weixinAudio').weixinAudio({
