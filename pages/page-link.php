@@ -7,12 +7,15 @@ get_header(); ?>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <?php
 //Receive post data here and judge
-if(!empty($_REQUEST)) {
-    $webname=array_key_exists("webname",$_REQUEST)?$_REQUEST['webname']:"";
-    $web=array_key_exists("web",$_REQUEST)?$_REQUEST['web']:"";
-    $introduce=array_key_exists("introduce",$_REQUEST)?$_REQUEST['introduce']:"None";
-    $avater=array_key_exists("avater",$_REQUEST)?$_REQUEST['avater']:"None";
-    $mail=array_key_exists("mail",$_REQUEST)?$_REQUEST['mail']:"";
+if(!empty($_POST) && isset($_POST['friend'])) {
+    if ( ! isset( $_POST['friend_nonce_field'] ) || ! wp_verify_nonce( $_POST['friend_nonce_field'], 'friend_nonce_action' ) ) {
+        wp_die('Security check failed');
+    }
+    $webname=isset($_POST['webname'])?sanitize_text_field($_POST['webname']):"";
+    $web=isset($_POST['web'])?esc_url_raw($_POST['web']):"";
+    $introduce=isset($_POST['introduce'])?sanitize_text_field($_POST['introduce']):"None";
+    $avater=isset($_POST['avater'])?esc_url_raw($_POST['avater']):"None";
+    $mail=isset($_POST['mail'])?sanitize_email($_POST['mail']):"";
     if(!$webname) echo "<script type='text/javascript'>alert('Name cannot be empty!')</script>";
     else if(!$web) echo "<script type='text/javascript'>alert('URL cannot be empty!')</script>";
     else if(!$mail) echo "<script type='text/javascript'>alert('Email address cannot be empty!')</script>";

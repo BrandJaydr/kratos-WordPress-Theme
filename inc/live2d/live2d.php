@@ -49,8 +49,12 @@ function downloadimg($url,$imgpath)
 
 //Live2D Model Settings Interface
 function live2d_option_page() {
+    if(!current_user_can('manage_options')) {
+        wp_die('Unauthorized');
+    }
     //Determine if there is data submission
     if(!empty($_POST)) {
+        check_admin_referer('kratos_admin_options-update');
         //Live2D Settings
         if(!empty($_POST['live2d-setting'])) {
             if (savejs($_POST['live2d-setting'])) {
@@ -69,38 +73,56 @@ function live2d_option_page() {
         }
         //Email Subscription Settings
         if(!empty($_POST['email_list'])) {
-            if(emaillist_add($_POST['email_list'])==1) {
+            $email = sanitize_email($_POST['email_list']);
+            if(!empty($email)){
+                if(emaillist_add($email)==1) {
+                    ?>
+                    <div id="message" class="updated">
+                        <p><strong>Record added successfully</strong></p>
+                    </div>
+                    <?php
+                }
+                else
+                {
+                     ?>
+                     <div id="message" class="updated">
+                         <p><strong>Record already exists</strong></p>
+                     </div>
+                     <?php
+                }
+            } else {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>Record added successfully</strong></p>
+                    <p><strong>Invalid email address</strong></p>
                 </div>
                 <?php
-            }
-            else
-            {
-                 ?>
-                 <div id="message" class="updated">
-                     <p><strong>Record already exists</strong></p>
-                 </div>
-                 <?php
             }
         }
         //Delete Subscribed User
         if(!empty($_POST['delete']))
         {
-            if(emaillist_remove($_POST['delete'])==0)
-            {
+            $email = sanitize_email($_POST['delete']);
+            if(!empty($email)){
+                if(emaillist_remove($email)==0)
+                {
+                    ?>
+                    <div id="message" class="updated">
+                        <p><strong>Subscriber not found</strong></p>
+                    </div>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <div id="message" class="updated">
+                        <p><strong>Subscriber removed from list</strong></p>
+                    </div>
+                    <?php
+                }
+            } else {
                 ?>
                 <div id="message" class="updated">
-                    <p><strong>Subscriber not found</strong></p>
-                </div>
-                <?php
-            }
-            else
-            {
-                ?>
-                <div id="message" class="updated">
-                    <p><strong>Subscriber removed from list</strong></p>
+                    <p><strong>Invalid email address</strong></p>
                 </div>
                 <?php
             }
@@ -202,18 +224,18 @@ function live2d_option_page() {
             //Get Database Prefix
             global $table_prefix;
             $data=[];
-            $data['link_name']=$_POST['name'];
-            $data['link_url']=$_POST['web'];
-            $data['link_description']=$_POST['introduce'];
-            $data['link_image']=$_POST['avater'];
+            $data['link_name']=sanitize_text_field($_POST['name']);
+            $data['link_url']=esc_url_raw($_POST['web']);
+            $data['link_description']=sanitize_text_field($_POST['introduce']);
+            $data['link_image']=esc_url_raw($_POST['avater']);
 //    $wpdb->insert($table_name, array('album' => "$_POST['album']", 'artist' => "$_POST['artist']"));
             //Insert friend link data into the database
             $wpdb->insert($table_prefix.'links',$data);
             //Delete This Content
-            $delete=$_POST['aselect']."]!!";
+            $delete=sanitize_text_field($_POST['aselect'])."]!!";
             update_option('application_list',str_replace($delete,"",esc_attr(get_option('application_list'))));
             //Send email notification to applicant
-            $to=$_POST['mail'];
+            $to=sanitize_email($_POST['mail']);
             $subject = 'Friend Link Application Approved!';
             $message='Hello, your friend link application has been approved! <br> -------- <br> This email is automatically sent by the system; if you do not know what it is about, you can ignore it.';
             $headers = 'Content-type: text/html';
@@ -247,6 +269,7 @@ function live2d_option_page() {
     <h1>Other Theme Settings</h1><br>
     <div>
         <form action="" method="post" id="live2d-options-form">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div><div class="title"><h4>Live2D Model Settings</h4> Read directly from and saved as a JS file. Do not modify areas other than settings!</div>
                 <textarea  rows="6" cols="150" name="live2d-setting"><?php echo getjs() ?></textarea>
             </div>
@@ -318,6 +341,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Background Image Resource Pack Download</h4>Select your preferred type (<span style="color:red;">Note: Existing images, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Default Anime Images:<input type="checkbox" name="donman"/> Bilibili:<input type="checkbox" name="bilibili" /></div></p>
             <p><input type="submit" name="download" value="Start Download"/></p>
@@ -325,6 +349,7 @@ function live2d_option_page() {
     </div>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Random Avatar Download</h4>Select your preferred type (<span style="color:red;">Note: Existing avatars, including uploads, will be deleted. If both are selected, all will be downloaded.</span>)</div>
             <p><div>Anime Male Avatar:<input type="checkbox" name="man"/> Anime Female Avatar:<input type="checkbox" name="woman" /></div></p>
             <p><input type="submit" name="downloadavatar" value="Start Download"/></p>
@@ -335,6 +360,7 @@ function live2d_option_page() {
         ?>
         <div>
             <form action="" method="post">
+                <?php wp_nonce_field('kratos_admin_options-update'); ?>
                 <div class="title"><h4>Live2D API Download</h4>Designed for beginners. The original API is large, so this is a simplified version.</div>
                 <span style="color:red;">Note: This feature disappears after downloading. Refresh the homepage to see the character. If it doesn't appear, try switching characters. If characters appear, it's successful. If it fails, delete the live2d-api directory from the root.</span>
                 <p><input type="submit" name="downlive2d" value="Start Download"/></p>
@@ -345,6 +371,7 @@ function live2d_option_page() {
     }?>
     <div>
         <form action="" method="post">
+            <?php wp_nonce_field('kratos_admin_options-update'); ?>
             <div class="title"><h4>Emoji Pack Download</h4>Select your preferred type (<span style="color:red;">Existing emoji packs will be deleted. Select at least one.</span>)</div>
             <p><div>
                 Tieba Bubbles:<input type="checkbox" name="tieba"/>
