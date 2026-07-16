@@ -225,8 +225,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Implemented a **Page Options** meta box for posts and pages, enabling per-instance overrides for sidebar layouts and header hero visibility.
 
 ### WordPress & PHP Compatibility Modernization
-- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (May 2026)**:
-    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0.
+- **Full PHP 8.5 & WordPress 7.0 Compatibility Overhaul (June 2026)**:
+    - **Action**: Finalized site-wide modernization of core logic and third-party integrations to ensure stable operation on PHP 8.5 and the official release of WordPress 7.0 ("Armstrong").
+    - **Refinement**: Replaced legacy `get_bloginfo('template_url')` and `get_bloginfo('url')` calls with `get_template_directory_uri()` and `home_url()` respectively for modern asset loading and URL handling.
+    - **Refinement**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php` to ensure stability on WordPress 7.0 Stable and PHP 8.5.
+
 - **WordPress 7.0 & PHP 8.5 Stable Support**:
     - **Action**: Modernized core files to ensure full compatibility with WordPress 7.0 and PHP 8.5. This includes removing all references to deprecated functions like `wp_title()` in `inc/core.php`.
     - **Note**: These fixes were specifically restored in commit `e916f1a` after being lost in a previous merge.
@@ -252,9 +255,10 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Action**: Performed comprehensive English localization for all newly restored assets to ensure a consistent user experience for international users.
 
 ### Security Hardening
-- **"Red Ranger" Elite Security Initiative**:
-    - **Neutralized SQL Injection**: Re-implemented `$wpdb->prepare()` across `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` to secure dynamic post and comment queries.
-    - **Neutralized CSRF**: Implemented `check_admin_referer` and `wp_nonce_field` in `inc/live2d/live2d.php` and other admin configuration pages to prevent unauthorized state changes.
+- **"Red Ranger" Elite Security Initiative (June 2026 Sync)**:
+    - **Neutralized SQL Injection Regressions**: Re-neutralized high-impact SQLi regressions in `inc/shortcode.php` (hide shortcode), `inc/widgets.php` (most_comm_posts), and `inc/myfunction.php` (most_hot_posts) using `$wpdb->prepare()` for all dynamic queries.
+    - **Neutralized CSRF Regressions**: Fortified `inc/live2d/live2d.php` and other admin settings by implementing `check_admin_referer('kratos_admin_options-update')`, `current_user_can('manage_options')`, and missing `wp_nonce_field()` calls for all form submissions.
+
     - **Neutralized SSRF**: Implemented host whitelisting (specifically for `avatarfiles.alphacoders.com`) in `inc/avatar-picker.php` to prevent Server-Side Request Forgery during remote avatar downloads.
     - **Neutralized Path Traversal**: Enforced strict path validation using `realpath` and whitelisting against `wp_upload_dir()['basedir']` before performing file deletions in `inc/avatars.php`.
     - **Enhanced Access Control**: Enforced `upload_files` and `edit_user` capability checks for all avatar-related AJAX handlers and profile updates.
@@ -282,6 +286,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | 2026-04-07 | Logic Error | Illogical word count comparison in `inc/myfunction.php` | Fixed |
 | 2026-04-07 | PHP 8.x Bug | Potential null pointer/empty string access in `showSummary` | Fixed |
 | 2025-01-24 | Vulnerability | Stored XSS in Bilibili Comment Metadata | Fixed |
+
+### SQL Injection Vulnerabilities (June 2026 Sync)
+- **Vulnerability**: High-impact SQL injection regressions identified in `inc/shortcode.php` (hide shortcode), `inc/myfunction.php` (most_hot_posts), and `inc/widgets.php` (most_comm_posts) where dynamic queries were not using `$wpdb->prepare()`.
+- **Fix**: Re-implemented `$wpdb->prepare()` for all dynamic post and comment queries to sanitize user-supplied data before database interaction. Verified via `php -l`.
+- **Prevention**: Enforce a strict "Prepare Before Query" policy and use static analysis tools to detect raw SQL concatenations.
+
+### CSRF and Access Control Regressions (June 2026 Sync)
+- **Vulnerability**: Regressions in `inc/live2d/live2d.php` allowed unauthorized access and CSRF attacks on admin settings due to missing nonce and capability checks.
+- **Fix**: Implemented `current_user_can('manage_options')`, `check_admin_referer('kratos_admin_options-update')`, and `wp_nonce_field()` for all admin forms.
+- **Prevention**: Ensure every administrative state-change is protected by both capability checks and cryptographic nonces.
 
 ### Word Count Regression (2026-04-20)
 - **Error**: Commit `702b98e` re-introduced a regression where `count_words()` in `inc/myfunction.php` was reverted to a Chinese character-counting implementation using `mb_strlen`, breaking English word counting.
