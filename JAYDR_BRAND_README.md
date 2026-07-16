@@ -6,6 +6,16 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `3cfdc6c` | 2026-07-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 7, 2026) |
+| `10eb3f2` | 2026-07-07 | google-labs-jules[bot] | Security: Neutralize SQLi, CSRF, and modernize WordPress API |
+| `1587820` | 2026-07-06 | google-labs-jules[bot] | docs: synchronize Jaydr Brand's Readme with global fork history (July 2026) |
+| `492389d` | 2026-07-06 | google-labs-jules[bot] | chore: comprehensive WordPress 7.0 (Stable) and PHP 8.5 compatibility update |
+| `d0383aa` | 2026-07-05 | google-labs-jules[bot] | docs: synchronize Jaydr Brand's Readme with global fork history (July 2026) |
+| `03493f2` | 2026-07-04 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 3, 2026) |
+| `8648621` | 2026-07-03 | google-labs-jules[bot] | I have reconciled Jaydr Brand's Readme with the global history as of July 2026. Here is a summary of the updates: |
+| `04c4b2a` | 2026-07-02 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 2026) |
+| `a92ba63` | 2026-07-01 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 30, 2026) |
+| `a8d3638` | 2026-06-30 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 29, 2026) |
 | `fc90513` | 2026-06-29 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 29, 2026) |
 | `4a54ab6` | 2026-06-29 | google-labs-jules[bot] | chore: finalize WordPress 7.0 Stable and PHP 8.5 compatibility |
 | `9903b5f` | 2026-06-28 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (June 2026) |
@@ -202,6 +212,12 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Polymorphic Feed Loader**:
     - **Action**: Refactored `pages/page-bibo.php` to dynamically switch between Bilibili, Mastodon, or YouTube feeds based on user configuration.
 
+### July 2026 Security & Modernization
+- **Red Ranger July Audit**:
+    - **Neutralized SQL Injection**: Fortified `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` using `$wpdb->prepare()` for all dynamic queries.
+    - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
+    - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
+    - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
 ### Typography & UI Customization
 - **Global Typography Controls**:
     - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
@@ -254,8 +270,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
-| 2026-06-23 | Security | SQL Injection and CSRF regressions in core theme files | Fixed (2026-06-23) |
-| 2026-06-01 | Compatibility | Deprecated `get_currentuserinfo()` used in `inc/shortcode.php` | Fixed (2026-06-01) |
+| 2026-07-07 | Vulnerability | SQLi and CSRF regressions in core theme files | Fixed (2026-07-07) |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
 | 2026-04-15 | Regression | Compatibility fixes for WP 7.0 and PHP 8.5 were lost in a merge | Fixed |
@@ -353,3 +368,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 ---
 
 *Note: This file is maintained to ensure a clear record of modifications since the repository was forked.*
+
+### SQLi and CSRF Regressions (July 2026)
+- **Error**: Re-neutralized high-impact SQL injection regressions in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`.
+- **Fix**: Implemented `$wpdb->prepare()` to sanitize all dynamic database interactions.
+- **Prevention**: Periodic security audits (Red Ranger) to catch regressions during major version updates.
