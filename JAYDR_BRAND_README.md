@@ -175,6 +175,20 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
+### WordPress & PHP Compatibility Modernization (June 2026)
+- **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
+    - **Action**: Finalized transition to WordPress 7.0 Stable (released May 20, 2026) and PHP 8.5.
+    - **Action**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` across `inc/shortcode.php` and other core files.
+    - **Action**: Modernized `header.php` and `inc/core.php` by replacing legacy `get_bloginfo('url')` and `get_bloginfo('home')` calls with `home_url()`.
+    - **Action**: Replaced legacy `get_bloginfo('template_url')` calls with `get_template_directory_uri()` (ensuring consistency) and modernized asset loading.
+
+### Security Hardening (June 2026 Red Ranger Audit)
+- **Neutralized SQL Injection Regressions**:
+    - **Action**: Applied `$wpdb->prepare()` to dynamic queries in `inc/shortcode.php` (hide shortcode), `inc/myfunction.php` (most_hot_posts), and `inc/widgets.php` (most_comm_posts).
+- **Neutralized CSRF & Access Control Regressions**:
+    - **Action**: Fortified `inc/live2d/live2d.php` by implementing `check_admin_referer('kratos_admin_options-update')`, `current_user_can('manage_options')`, and adding missing `wp_nonce_field()` to all admin forms.
+    - **Action**: Implemented input sanitization using `sanitize_text_field()` and `esc_url_raw()` for friend links and subscription fields.
+
 
 ### Documentation
 - **Repository Map**:
@@ -339,6 +353,17 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Details**: Raw user input from `$_POST` and `$_REQUEST` was saved directly into comment metadata and rendered without escaping.
 - **Fix**: Sanitize input using `sanitize_text_field()` and `esc_url_raw()`. Escape output using `esc_html()`, `esc_attr()`, and `esc_url()`.
 - **Prevention**: Enforce strict input sanitization and output escaping across all metadata handling functions.
+
+
+### SQL Injection & CSRF Regressions (June 2026)
+- **Error**: Red Ranger audit identified regressions in `inc/shortcode.php`, `inc/widgets.php`, `inc/myfunction.php`, and `inc/live2d/live2d.php` where security patches were lost or bypassed.
+- **Fix**: Re-implemented `$wpdb->prepare()` for SQL queries and enforced nonce/capability checks for admin actions. Verified via `php -l` and `verify_security_patches.php`.
+- **Prevention**: Maintain strict adherence to the "Prepare Before Query" policy and ensure all state-changing actions are protected by nonces.
+
+### Deprecated get_currentuserinfo() (June 2026)
+- **Error**: Use of deprecated `get_currentuserinfo()` function was causing compatibility issues with WordPress 7.0.
+- **Fix**: Replaced with `wp_get_current_user()`.
+- **Prevention**: Regularly audit codebase for deprecated WordPress functions and follow the official developer documentation for modern alternatives.
 
 ---
 
