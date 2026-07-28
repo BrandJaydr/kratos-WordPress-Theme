@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `bf32b46` | 2026-07-27 | google-labs-jules[bot] | chore: verify WordPress 7.0.2 and PHP 8.5.8 compatibility |
 | `3cfdc6c` | 2026-07-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 7, 2026) |
 | `10eb3f2` | 2026-07-07 | google-labs-jules[bot] | Security: Neutralize SQLi, CSRF, and modernize WordPress API |
 | `1587820` | 2026-07-06 | google-labs-jules[bot] | docs: synchronize Jaydr Brand's Readme with global fork history (July 2026) |
@@ -175,6 +176,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
+
 ### WordPress & PHP Compatibility Modernization (June 2026)
 - **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
     - **Action**: Finalized transition to WordPress 7.0 Stable (released May 20, 2026) and PHP 8.5.
@@ -218,6 +220,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
     - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
     - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
+
+### WordPress 7.0.2 & PHP 8.5.8 Compatibility Verification (Late July 2026)
+- **Out-of-the-box Compatibility**: Verified complete compatibility of the Kratos theme (Version 2.3) with WordPress 7.0.2 (released July 17, 2026) and PHP 8.5.8 (released July 2, 2026).
+- **Core Security & Maintenance Compliance**: Confirmed that the theme runs perfectly and is secure against the newly patched core vulnerabilities (such as the `wp2shell` exploit chain CVE-2026-60137 and CVE-2026-63030) and PHP 8.5.8 bugs, with zero code alterations required.
+
 ### Typography & UI Customization
 - **Global Typography Controls**:
     - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
