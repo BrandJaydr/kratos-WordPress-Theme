@@ -67,8 +67,7 @@ add_shortcode('collapse','xcollapse');
 
 function hide($atts,$content=null,$code=""){
     extract(shortcode_atts(array("reply_to_this"=>'true'),$atts));
-    global $current_user;
-    get_currentuserinfo();
+    $current_user = wp_get_current_user();
     if($current_user->ID) $email = $current_user->user_email;
     if($reply_to_this=='true'){
         if($email){

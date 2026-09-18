@@ -27,6 +27,8 @@ add_filter('optionsframework_menu','kratos_options_menu_filter');
 function kratos_register_nav_menu(){
     register_nav_menus(array('header_menu'=>'Top Menu'));
     add_theme_support('title-tag');
+    add_theme_support('custom-logo');
+    add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'script', 'style'));
 }
 add_action('after_setup_theme','kratos_register_nav_menu');
 //Highlighting the active menu
