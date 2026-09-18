@@ -15,6 +15,15 @@ The Kratos theme is fully compatible with the latest stable releases of WordPres
 
 To ensure seamless operation on modern environments, the following updates have been implemented:
 
+### July 2026 Update & Redundancy Analysis
+- **Redundancies Analysis vs. Recent WordPress Core Updates:**
+  - **WebP Support (`inc/core.php`):** Theme registers custom `upload_mimes` for `webp`. *Redundancy Note:* WordPress 5.8+ natively supports WebP image upload and processing out of the box. The theme filter remains as a safe fallback for custom mime handling.
+  - **XML Sitemaps (`inc/core.php`):** Theme contains a custom static XML/HTML sitemap generator (`kratos_sitemap_refresh`). *Redundancy Note:* WordPress 5.5+ natively provides built-in XML Sitemaps (`/wp-sitemap.xml`).
+  - **Document Title (`inc/core.php`):** Replaced custom `wp_title()` logic with native `add_theme_support('title-tag')`, eliminating legacy custom title filters.
+  - **Site Icons / Favicon:** Theme includes options for custom site icons (`site_ico`). *Redundancy Note:* WordPress 4.3+ supports native Site Icons (`add_theme_support('site-icon')`) via the Customizer.
+  - **HTML5 Markup & Custom Logo:** Added standard `add_theme_support('html5')` and `add_theme_support('custom-logo')` in `inc/core.php`.
+  - **User Capabilities:** Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php` to prevent PHP/WordPress deprecation notices.
+
 ### May 2026 Update
 - **English Word Count Restoration:** Fixed a regression in `inc/myfunction.php` where the `count_words()` function was incorrectly using Chinese character-counting logic. Restored the English word-counting implementation using `preg_split` and updated the output format to "X words".
 - **Complete PHP 8.5 compatibility:** Extended the conditional `curl_close()` version check to all Bilibili integration files (`pages/bilibili/bilibiliAnime.php` and `pages/bilibililive/BilibiliLive.php`), ensuring site-wide suppression of deprecation warnings on PHP 8.5+.

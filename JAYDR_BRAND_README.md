@@ -216,7 +216,11 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Red Ranger July Audit**:
     - **Neutralized SQL Injection**: Fortified `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` using `$wpdb->prepare()` for all dynamic queries.
     - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
-    - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
+    - **WordPress API Modernization & Redundancy Assessment**:
+        - Identified redundancies between custom theme features and WordPress core updates (e.g. native WebP support in WP 5.8+, core XML Sitemaps in WP 5.5+, native Site Icons, `title-tag`, and `html5` theme support).
+        - Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+        - Modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
+        - Added `custom-logo` and `html5` theme support in `inc/core.php`.
     - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
 ### Typography & UI Customization
 - **Global Typography Controls**:
