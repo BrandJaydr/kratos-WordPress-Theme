@@ -6,6 +6,28 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| `ac95f39` | 2026-09-24 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README with global repository history |
+| `88d93ac` | 2026-09-23 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README with global repository history |
+| `b67f8c1` | 2026-09-18 | google-labs-jules[bot] | Modernize theme for WordPress compatibility and document core redundancies |
+| `e22cdce` | 2026-07-30 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README and WORDPRESS_UPDATE with latest global history |
+| `c72bd46` | 2026-07-29 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README and WORDPRESS_UPDATE with latest global history |
+| `3441f87` | 2026-07-28 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README and WORDPRESS_UPDATE with latest global history |
+| `b23cfcd` | 2026-07-27 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README and WORDPRESS_UPDATE with latest global history |
+| `bf212ae` | 2026-07-27 | google-labs-jules[bot] | chore: verify WordPress 7.0.2 and PHP 8.5.8 compatibility |
+| `374aeb0` | 2026-07-25 | google-labs-jules[bot] | chore: skip JAYDR_BRAND_README reconciliation as no new changes were detected |
+| `2198082` | 2026-07-24 | google-labs-jules[bot] | docs: synchronize JAYDR_BRAND_README with global history |
+| `bf32b46` | 2026-07-22 | google-labs-jules[bot] | docs: reconcile JAYDR_BRAND_README with global history |
+| `868c9b9` | 2026-07-21 | google-labs-jules[bot] | docs: reconcile JAYDR_BRAND_README with global history |
+| `bca994b` | 2026-07-21 | google-labs-jules[bot] | Harden options, forms, and friend links against CSRF and XSS |
+| `8315cc5` | 2026-07-20 | google-labs-jules[bot] | docs: reconcile JAYDR_BRAND_README and WORDPRESS_UPDATE with global history |
+| `2d94a2b` | 2026-07-20 | google-labs-jules[bot] | docs: verify WordPress 7.0.2 and PHP 8.5.8 compatibility |
+| `6119a94` | 2026-07-19 | google-labs-jules[bot] | docs: reconcile JAYDR_BRAND_README with global history |
+| `ee1e715` | 2026-07-18 | google-labs-jules[bot] | docs: reconcile JAYDR_BRAND_README with global history |
+| `4ea97a0` | 2026-07-16 | Jaydr Brand | Merge branch 'master' into wp7-php85-compatibility-modernization-july-2026-8930793970367505206 |
+| `b1d3247` | 2026-07-16 | Jaydr Brand | Merge pull request #119 from BrandJaydr/scribe-jaydr-brand-readme-reconciliation-june-2026-13126813797902083993 |
+| `024b0f1` | 2026-07-16 | Jaydr Brand | Merge branch 'master' into scribe-jaydr-brand-readme-reconciliation-june-2026-13126813797902083993 |
+| `9c4df2e` | 2026-07-16 | Jaydr Brand | Merge branch 'master' into scribe-reconcile-jaydr-readme-june-2026-1071258066028900468 |
+| `bc31cb1` | 2026-07-08 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 2026) |
 | `3cfdc6c` | 2026-07-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 7, 2026) |
 | `10eb3f2` | 2026-07-07 | google-labs-jules[bot] | Security: Neutralize SQLi, CSRF, and modernize WordPress API |
 | `1587820` | 2026-07-06 | google-labs-jules[bot] | docs: synchronize Jaydr Brand's Readme with global fork history (July 2026) |
@@ -175,6 +197,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
+
 ### WordPress & PHP Compatibility Modernization (June 2026)
 - **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
     - **Action**: Finalized transition to WordPress 7.0 Stable (released May 20, 2026) and PHP 8.5.
@@ -218,6 +241,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
     - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
     - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
+
 ### Typography & UI Customization
 - **Global Typography Controls**:
     - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
