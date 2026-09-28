@@ -47,7 +47,7 @@ if($_COOKIE['goto_bibo']==1){
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
-    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
+    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo home_url(); ?>">
     <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
@@ -128,7 +128,7 @@ if($_COOKIE['goto_bibo']==1){
     <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:description" content="<?php kratos_description(); ?>">
-    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo get_bloginfo('home'); ?>">
+    <meta property="og:url" content="<?php if(!is_home()) echo get_permalink(); else echo home_url(); ?>">
     <meta name="twitter:title" content="<?php echo is_singular() ? get_the_title() : wp_get_document_title(); ?>">
     <meta name="twitter:description" content="<?php kratos_description(); ?>">
     <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@ if($_COOKIE['goto_bibo']==1){
                     <div class="kratos-overlay"></div>
                     <div class="kratos-cover kratos-cover_2 text-center">
                         <div class="desc desc2 animate-box">
-                            <a href="<?php echo get_bloginfo('url'); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
+                            <a href="<?php echo home_url(); ?>"><h2><?php echo kratos_option('background_image_text1'); ?></h2><br><span><?php echo  kratos_option('background_image_text2'); ?></span></a>
                         </div>
                     </div>
                 </div>
