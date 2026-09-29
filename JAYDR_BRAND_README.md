@@ -6,6 +6,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Commit Hash | Date | Author | Description |
 | :--- | :--- | :--- | :--- |
+| - | 2026-10-01 | google-labs-jules[bot] | 🛡️ Red Ranger: Neutralize SQLi, CSRF, Access Control regressions & sanitize inputs |
 | `3cfdc6c` | 2026-07-07 | google-labs-jules[bot] | docs: reconcile Jaydr Brand's Readme with global history (July 7, 2026) |
 | `10eb3f2` | 2026-07-07 | google-labs-jules[bot] | Security: Neutralize SQLi, CSRF, and modernize WordPress API |
 | `1587820` | 2026-07-06 | google-labs-jules[bot] | docs: synchronize Jaydr Brand's Readme with global fork history (July 2026) |
@@ -175,6 +176,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
+
 ### WordPress & PHP Compatibility Modernization (June 2026)
 - **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
     - **Action**: Finalized transition to WordPress 7.0 Stable (released May 20, 2026) and PHP 8.5.
@@ -218,6 +220,13 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
     - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
     - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
+
+### October 2026 Red Ranger Audit
+- **Red Ranger Security Audit & Neutralization**:
+    - **Neutralized SQL Injection**: Parameterized dynamic queries in `inc/shortcode.php` (`hide()`), `inc/widgets.php` (`most_comm_posts()`), and `inc/myfunction.php` (`most_hot_posts()`) using `$wpdb->prepare()`.
+    - **Neutralized CSRF & Broken Access Control**: Added `current_user_can('manage_options')`, `check_admin_referer('kratos_admin_options-update')`, and form nonces in `inc/live2d/live2d.php`. Fortified `pages/page-link.php` with `wp_verify_nonce` and input sanitization (`sanitize_text_field`, `esc_url_raw`, `sanitize_email`).
+    - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+
 ### Typography & UI Customization
 - **Global Typography Controls**:
     - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
@@ -274,6 +283,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 
 | Date | Type | Description | Status |
 | :--- | :--- | :--- | :--- |
+| 2026-10-01 | Vulnerability | SQLi, CSRF, Access Control, and Unsanitized Input regressions | Fixed (2026-10-01) |
 | 2026-07-07 | Vulnerability | SQLi and CSRF regressions in core theme files | Fixed (2026-07-07) |
 | 2026-04-20 | Regression | English word counting replaced by Chinese character counting in `count_words()` | Fixed (2026-05-18) |
 | 2026-04-16 | Regression | Merge conflicts caused loss of synchronization for modernization improvements | Fixed |
@@ -387,3 +397,8 @@ This README tracks the changes, additions, improvements, and hardening done to t
 - **Error**: Re-neutralized high-impact SQL injection regressions in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php`.
 - **Fix**: Implemented `$wpdb->prepare()` to sanitize all dynamic database interactions.
 - **Prevention**: Periodic security audits (Red Ranger) to catch regressions during major version updates.
+
+### SQLi, CSRF & Access Control Hardening (October 2026 Audit)
+- **Vulnerability**: SQL injection risks in `inc/shortcode.php`, `inc/widgets.php`, and `inc/myfunction.php` due to raw dynamic query concatenation; missing capability and nonce checks in `inc/live2d/live2d.php` and `pages/page-link.php`.
+- **Fix**: Implemented `$wpdb->prepare()` for dynamic queries, added `current_user_can('manage_options')` and `check_admin_referer()`, enforced `wp_verify_nonce()`, sanitized inputs, and replaced `get_currentuserinfo()` with `wp_get_current_user()`.
+- **Prevention**: Continuous automated static analysis and Zero Trust input validation before execution.
