@@ -175,6 +175,7 @@ This README tracks the changes, additions, improvements, and hardening done to t
 | `f6aa5d9` | 2026-04-05 | google-labs-jules[bot] | Update theme for WordPress 6.9.4 and PHP 8.5.4 compatibility |
 
 ## Improvements & Hardening
+
 ### WordPress & PHP Compatibility Modernization (June 2026)
 - **WordPress 7.0 Stable & PHP 8.5 Compatibility**:
     - **Action**: Finalized transition to WordPress 7.0 Stable (released May 20, 2026) and PHP 8.5.
@@ -218,6 +219,14 @@ This README tracks the changes, additions, improvements, and hardening done to t
     - **Neutralized CSRF & Access Control**: Implemented `check_admin_referer('kratos_admin_options-update')` and `current_user_can('manage_options')` across all admin forms in `inc/live2d/live2d.php` and `pages/page-link.php`.
     - **WordPress API Modernization**: Replaced deprecated `get_currentuserinfo()` with `wp_get_current_user()` and modernized legacy `bloginfo()`/`get_bloginfo()` calls to `home_url()` and `get_template_directory_uri()` throughout the theme.
     - **PHP 8.5.8 Compatibility**: Finalized compatibility for PHP 8.5.8, including robust error handling for `CurlHandle` and suppressed deprecation warnings.
+
+### October 2026 Compatibility Audit & Modernization
+- **WordPress 7.0.2 & PHP 8.5.8 Support**:
+    - **Action**: Verified site-wide out-of-the-box compatibility with WordPress 7.0.2 and PHP 8.5.8.
+    - **Action**: Replaced remaining instances of deprecated `get_currentuserinfo()` with `wp_get_current_user()` in `inc/shortcode.php`.
+    - **Action**: Modernized `bloginfo('template_url')` and `get_bloginfo('template_url')` calls to `get_template_directory_uri()` in `inc/shortcode.php`.
+    - **Action**: Updated `WORDPRESS_UPDATE.md` to detail WordPress 7.0.2 and PHP 8.5.8 compatibility status and modernization improvements.
+
 ### Typography & UI Customization
 - **Global Typography Controls**:
     - **Action**: Added a new **Typography** tab in theme options, allowing users to configure Google Fonts, font sizes, and line heights globally.
